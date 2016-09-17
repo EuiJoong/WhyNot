@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 회원 관련 서블릿  -->
+	<bean id="memberDAO" class="member.model.MemberDAOImpl">
+	</bean>
+	<bean id="loginModel" class="login.model.LoginModel"></bean>
+	<bean class="controller.MemberController">
+		<property name="memberDAO" ref="memberDAO"/>
+		<property name="loginModel" ref="loginModel"></property>
+	</bean>
+</beans>

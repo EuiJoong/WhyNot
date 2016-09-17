@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 컨텐츠 관련 서블릿  -->
+	<bean id="onlineContentDAO" class="onlinecontent.model.OnlineContentDAOImpl">
+	</bean>
+	<bean id="onlineCurriculumDAO" class="onlinecurriculum.model.OnlineCurriculumDAOImpl">
+	</bean>
+	<bean id="onlineCurriculumBoardDAO" class="onlinecurriculum.board.model.OnlineCurriculumBoardDAOImpl">
+	</bean>
+	<bean  class="controller.ContentController">
+		<property name="onlineContentDAO" ref="onlineContentDAO"></property>
+		<property name="onlineCurriculumDAO" ref="onlineCurriculumDAO"></property>
+		<property name="onlineCurriculumBoardDAO" ref="onlineCurriculumBoardDAO"></property>
+	</bean>
+</beans>

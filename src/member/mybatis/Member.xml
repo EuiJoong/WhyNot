@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member.mybatis.Member">
+<!-- 회원 가입 -->
+<insert id="insertMember" parameterType="member.model.MemberDBBean">
+	insert into wn_member values (board_seq.nextval, #{id}, #{password}, #{name}, #{gender}, #{birth}, #{interest} , 0 , 3 , sysdate , 1 , null)
+</insert>
+<!-- 아이디 중복 확인 -->
+<select id="idChk" parameterType="String" resultType="boolean">
+	select id from wn_member where  id = #{id}
+</select>
+
+<!-- 회원 수정 -->
+
+<!-- 회원 삭제 -->
+
+<!-- 회원 제재 -->
+</mapper>
