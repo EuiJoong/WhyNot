@@ -34,5 +34,6 @@
 			</c:choose>
 			</table>
 		</div>
+		<a href="insert.cate">쓰기</a>
 	</div>
 </div>

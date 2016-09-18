@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import category.model.CategoryDBBean;
+import category.mybatis.CategoryMybatis;
 import login.model.LoginModel;
 import member.model.MemberDAO;
 import member.model.MemberDBBean;
@@ -40,7 +42,10 @@ public class MemberController {
 	@RequestMapping(value = "/insert.member")
 	public ModelAndView insertFormMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("MemberController_insertFormMember() 실행");
-		return new ModelAndView("member/insertMemberForm.jsp");
+		
+		CategoryDBBean dto = new CategoryDBBean();
+		List<CategoryDBBean> list = CategoryMybatis.listCategory();
+		return new ModelAndView("member/insertMemberForm.jsp","cateList",list);
 
 	}
 
@@ -118,7 +123,6 @@ public class MemberController {
 			break;
 		case LoginModel.ERR:
 			System.out.println("DB오류");
-
 			break;
 
 		default:
@@ -145,11 +149,18 @@ public class MemberController {
 		return new ModelAndView("admin/member/member_listForm.jsp","memberList",list);
 	}
 	
-	/*//회원 수정(등급)
-	@RequestMapping(value="/list.member")
-	public ModelAndView updateGrade(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+	//회원 수정(등급)
+	@RequestMapping(value="/grade.member")
+	public ModelAndView gradeMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		HttpSession session = arg0.getSession();
-		return new ModelAndView("index.jsp");
-	}*/
+		return new ModelAndView("admin/member/member_gradeForm.jsp");
+	}
+	
+	//회원 제재
+	@RequestMapping(value="/acstate.member")
+	public ModelAndView acStateMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		HttpSession session = arg0.getSession();
+		return new ModelAndView("admin/member/member_gradeForm.jsp");
+	}
 	
 }

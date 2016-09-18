@@ -3,7 +3,7 @@
 <%@ include file="../admintop.jsp"%>
 <div align="center" style="width: 80%; float: right;">
 	<form name="f" action="insertPro.cate" method="post">
-	<table border="1" width="300">
+	<table border="1" width="300" >
 		<caption>카테고리 등록</caption>
 		<tr>
 			<th>카테고리 이름</th>

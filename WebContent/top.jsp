@@ -104,6 +104,7 @@
 											</c:otherwise>
 										</c:choose>
 										<li role="presentation" class="divider"></li>
+										<li role="presentation"><a href="content/online/curr_detailForm.jsp">강의실</a></li>
 										<li role="presentation"><a role="menuitem" tabindex="-1"
 											href="logout.member">로그아웃</a></li>
 									</ul>

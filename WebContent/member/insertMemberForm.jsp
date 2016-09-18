@@ -3,6 +3,8 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="../top.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link href="css/usersingup.min.css" rel="stylesheet">
 <script type="text/JavaScript" src="js/member.singup.js"></script>
 <body style="padding: 20px">
@@ -83,12 +85,19 @@
 			<div class="form-group">
 				<label for="interest">관심사항</label>
 			</div>
-			<span class="input-group-addon"> <input type="checkbox"
-				name="interest" id="chkbox" onclick="chkBoxCheck(0)" value="카테고리1">카테고리1
-				<input type="checkbox" name="interest" id="chkbox1"
-				onclick="chkBoxCheck(1)" value="카테고리2">카테고리2 <input
-				type="checkbox" name="interest" id="chkbox1"
-				onclick="chkBoxCheck(2)" value="카테고리3">카테고리3
+			<span class="input-group-addon"> <c:choose>
+					<c:when test="${cateList.size() == 0 }">
+						<c:out value="등록된 데이터가 없습니다." />
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="cateDTO" varStatus="i" begin="0"
+							end="${cateList.size() }" items="${cateList }">
+							<%-- <c:if test="${i % 5 = 1 }"><br></c:if> --%>
+								<input type="checkbox" name="interest" id="chkbox"
+									onclick="chkBoxCheck()" value="${cateDTO.name }">${cateDTO.name }
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</span>
 
 			<div class="form-group">
