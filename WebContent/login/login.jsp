@@ -29,6 +29,7 @@
 			<div class="panel-body">
 				<form method="post" action="login.member" role="login">
 					<!-- 쿠키 확인 -->
+					<% System.out.println(request.getParameter("num")); %>
 					<c:if test="${cookie != null }">
 						<c:forEach var="cookieVal" items="${cookie}">
 							<c:if test="${cookieVal.key == 'saveId' }">

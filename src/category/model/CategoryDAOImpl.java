@@ -2,36 +2,50 @@ package category.model;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import category.mybatis.CategoryMybatis;
+import member.mybatis.MemberMybatis;
+
 public class CategoryDAOImpl implements CategoryDAO {
 
+
+	
 	@Override
 	public CategoryDBBean getCategory(int ctnum) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("CategoryDAOImpl_getCategory() 角青");
+		System.out.println("己傍!");
+		return CategoryMybatis.getCategory(ctnum); 
 	}
 
 	@Override
-	public List<CategoryDBBean> ListCategory() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CategoryDBBean> listCategory() {
+		System.out.println("CategoryDAOImpl_ListCategory() 角青");
+		return CategoryMybatis.listCategory(); 
 	}
 
 	@Override
 	public void insertCategory(CategoryDBBean dto) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("CategoryDAOImpl_insertCategory() 角青");
+		CategoryMybatis.insertCate(dto); 
+		System.out.println("己傍!");
 	}
 
 	@Override
 	public void deleteCategory(int ctnum) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("CategoryDAOImpl_deleteCategory() 角青");
+		CategoryMybatis.deleteCate(ctnum);
+		System.out.println("己傍!");
 	}
 
 	@Override
-	public void updateCategory(int ctnum) {
+	public void updateCategory(CategoryDBBean dto) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("CategoryDAOImpl_updateCategory() 角青");
+		CategoryMybatis.updateCate(dto);
+		System.out.println("己傍!");
 	}
-
 }

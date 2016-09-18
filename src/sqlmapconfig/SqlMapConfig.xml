@@ -8,6 +8,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <!-- ~.mybatis 패키지에서 ~.xml에 데이터를 주고 받을  ~DBBean.java 의 별칭 주는 곳 (alias 의 대소문자 주의) -->
 <typeAliases>
 	<typeAlias type="member.model.MemberDBBean" alias="MemberDTO"/>
+	<typeAlias type="category.model.CategoryDBBean" alias="CategoryDTO"/>
+	
 </typeAliases>
 <environments default="development">
 <environment id="development">
@@ -28,6 +30,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <mapper resource="onlinecontent/mybatis/OnlineContent.xml"/>
 <mapper resource="onlinecurriculum/mybatis/OnlineCurriculum.xml"/>
 <mapper resource="onlinecurriculum/board/mybatis/OnlineCurriculumBoard.xml"/>
+
 </mappers>
 </configuration>
 <!--  파일에 설정만 바꾸어 줌-->

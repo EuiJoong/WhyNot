@@ -2,6 +2,8 @@ package member.model;
 
 import java.util.List;
 
+import org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer;
+
 import member.mybatis.MemberMybatis;
 
 public class MemberDAOImpl implements MemberDAO {
@@ -23,7 +25,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void deleteMember(String id) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -35,7 +37,8 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<MemberDBBean> listMember() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("MemberDAOImpl_listMember() ½ÇÇà");
+		return MemberMybatis.listMember();
 	}
 
 	@Override

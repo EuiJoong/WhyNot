@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import category.model.CategoryDBBean;
+import category.mybatis.CategoryMybatis;
 import onlinecontent.model.OnlineContentDAO;
 import onlinecurriculum.board.model.OnlineCurriculumBoardDAO;
 import onlinecurriculum.model.OnlineCurriculumDAO;
@@ -36,7 +40,10 @@ public class ContentController {
 	@RequestMapping(value = "/list.content")
 	public ModelAndView listContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("ContentController_listContent() 실행");
-		return new ModelAndView("content/contentList.jsp");
+		System.out.println(arg0.getParameter("ctnum")); //나중에 목록 갖고오기용
+		CategoryDBBean dto = new CategoryDBBean();
+		List<CategoryDBBean> list = CategoryMybatis.listCategory();
+		return new ModelAndView("content/contentList.jsp","cateList",list);
 
 	}
 

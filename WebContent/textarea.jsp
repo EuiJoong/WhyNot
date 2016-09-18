@@ -82,11 +82,8 @@
 						<option>Ketchup</option>
 						<option>Relish</option>
 					</select>
-
-
 				</div>
 			</div>
-
 			<div class="form-group">
 				<label class="control-label float-left">가 격 :</label>
 				<div class="col-sm-10">
@@ -94,7 +91,6 @@
 						placeholder="가격을 입력하세요.">
 				</div>
 			</div>
-
 			<!-- <div class="form-group">
             <label for="comment" align=center>내 용 :</label>
             <textarea class="form-control" rows="8" id="comment"></textarea>
@@ -112,10 +108,7 @@
 					<button type="submit" class="btn btn-default" onclick="abcd()">Submit</button>
 				</div>
 			</div>
-
-
 		</form>
-
 	</div>
 </body>
 <script>

@@ -4,4 +4,25 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="category.mybatis.Category">
+
+<insert id="insertCategory" parameterType="CategoryDTO">
+	insert into wn_category values(WN_CATEGORY_SEQ.nextval, #{name})
+</insert>
+
+<select id="getCategory" parameterType="CategoryDTO">
+	select * from wn_category where ctnum=#{ctnum}
+</select>
+
+<delete id="deleteCategory" parameterType="int">
+	delete from wn_category where ctnum=#{ctnum}
+</delete>
+
+<select id="listCategory" resultType="CategoryDTO">
+	select * from wn_category
+</select>
+
+<update id="updateCategory" parameterType="CategoryDTO">
+	update wn_category set name=#{name} where ctnum=#{ctnum}
+</update>
+
 </mapper>

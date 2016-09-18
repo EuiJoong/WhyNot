@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.ibatis.common.resources.Resources;
 
-import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
 
-public class CategoryMybatis{
+public class CategoryMybatis {
 	private static SqlSessionFactory sqlMapper;
 	static {
 		try {
@@ -28,24 +28,47 @@ public class CategoryMybatis{
 			throw new RuntimeException("Something bad happened while building the SqlMapClient instance." + e, e);
 		}
 	}
-	public CategoryDBBean getCategory(int ctnum) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public static void insertCate(CategoryDBBean dto) {
+		System.out.println("CateMybatis_insertCate() 실행");
+		SqlSession session = sqlMapper.openSession();
+		session.insert("insertCategory", dto);
+		session.commit(); // insert는 반드시 commit()를 해줘야 데이터가 쓰여짐
+		session.close();
 	}
-	public List<CategoryDBBean> ListCategory() {
-		// TODO Auto-generated method stub
-		return null;
+
+	public static CategoryDBBean getCategory(int ctnum){
+		System.out.println("CateMybatis_getCategory() 실행");
+		SqlSession session = sqlMapper.openSession();
+		CategoryDBBean dto = session.selectOne("getCategory", ctnum);
+		session.close();
+		return dto;
 	}
-	public void insertCategory(CategoryDBBean dto) {
-		// TODO Auto-generated method stub
+
+	public static void deleteCate(int ctnum) {
+		System.out.println("CateMybatis_deleteCate() 실행");
+		SqlSession session = sqlMapper.openSession();
+		session.delete("deleteCategory", ctnum);
+		session.commit();
+		session.close();
+	}
+
+	public static List<CategoryDBBean> listCategory(){
+		System.out.println("CateMybatis_ListCategory() 실행");
+		SqlSession session = sqlMapper.openSession();
+		List<CategoryDBBean> list = session.selectList("listCategory");
+		session.close();
+		return list;
+	}
+	
+
+	public static void updateCate(CategoryDBBean dto) {
+		System.out.println("CateMybatis_updateCate() 실행");
+		SqlSession session = sqlMapper.openSession();
+		session.update("updateCategory", dto);
+		session.commit();
+		session.close();
 		
 	}
-	public void deleteCategory(int ctnum) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void updateCategory(int ctnum) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

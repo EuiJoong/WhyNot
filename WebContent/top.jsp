@@ -65,7 +65,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>
 						<c:when test="${memberDTO == null}">
-							<li style="padding-top: 8px"><a href="login/login.jsp"
+							<li style="padding-top: 8px"><a href="login/login.jsp?num=1"
 								type="button" id="login" data-toggle="modal"
 								data-target=".bs-example-modal-sm"
 								style="padding-top: 8px; border: 0; background-color: transparent;">Login</a>

@@ -1,31 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../top.jsp"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="css/usercont_list.min.css" rel="stylesheet">
-<br><br>
+<br>
+<br>
 <nav>
-<div class="col-lg-12">
-	<h2 class="page-header">카테고리</h2>
-</div>
-<ul class="nav nav-justified">
-	<li class="active"><a href="#">카테고리1</a></li>
-	<li><a href="#">카테고리2</a></li>
-	<li><a href="#">카테고리3</a></li>
-	<li><a href="#">카테고리4</a></li>
-	<li><a href="#">카테고리5</a></li>
-	<li><a href="#">카테고리6</a></li>
-</ul>
+	<div class="col-lg-12">
+		<h2 class="page-header">카테고리</h2>
+	</div>
+	<ul class="nav nav-justified">
+		<c:choose>
+			<c:when test="${cateDTO.size() == 0 }">
+			<c:out value="등록된 카테고리가 없습니다."/>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="cateDTO" items="${cateList }">
+					<li><a href="list.content?ctnum=${cateDTO.ctnum }"><c:out
+								value="${cateDTO.name }"></c:out></a></li>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+
+	</ul>
 </nav>
 
-<br><br>
+<br>
+<br>
 
 <!-- 인강 -->
 <div class="row">
 	<div class="col-lg-12">
-		<h3>강좌 <button type="button" onclick="location.href='cont_insert.content'" style="float: right;">강의 등록</button></h3> 
+		<h3>
+			강좌
+			<button type="button" onclick="location.href='cont_insert.content'"
+				style="float: right;">강의 등록</button>
+		</h3>
 	</div>
-	<div>
-	</div>
+	<div></div>
 </div>
 <!-- /.row -->
 <div class="row text-center">
@@ -85,7 +97,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="col-md-3 col-sm-6 hero-feature">
 		<div class="thumbnail">
 			<img src="http://placehold.it/800x500" alt="">
@@ -211,7 +223,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="col-md-3 col-sm-6 hero-feature">
 		<div class="thumbnail">
 			<img src="http://placehold.it/800x500" alt="">

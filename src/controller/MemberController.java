@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -33,7 +34,9 @@ public class MemberController {
 	public void setLoginModel(LoginModel loginModel) {
 		this.loginModel = loginModel;
 	}
-
+	
+	
+	// --------------- 사용자 ---------------------------
 	@RequestMapping(value = "/insert.member")
 	public ModelAndView insertFormMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("MemberController_insertFormMember() 실행");
@@ -60,7 +63,7 @@ public class MemberController {
 		memberDAO.insertMember(dto);
 		return new ModelAndView("index.jsp");
 	}
-	
+	//로그인
 	@RequestMapping(value = "/login.member")
 	public ModelAndView loginMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		
@@ -124,11 +127,29 @@ public class MemberController {
 
 		return new ModelAndView(url);
 	}
-	
+	//로그아웃
 	@RequestMapping(value="/logout.member")
 	public ModelAndView logoutMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		HttpSession session = arg0.getSession();
 		session.invalidate();
 		return new ModelAndView("index.jsp");
 	}
+	
+	//----------------- 관리자 용 ----------------------------------
+	
+	//회원목록
+	@RequestMapping(value="/list.member")
+	public ModelAndView listMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		HttpSession session = arg0.getSession();
+		List<MemberDBBean> list = memberDAO.listMember();
+		return new ModelAndView("admin/member/member_listForm.jsp","memberList",list);
+	}
+	
+	/*//회원 수정(등급)
+	@RequestMapping(value="/list.member")
+	public ModelAndView updateGrade(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		HttpSession session = arg0.getSession();
+		return new ModelAndView("index.jsp");
+	}*/
+	
 }

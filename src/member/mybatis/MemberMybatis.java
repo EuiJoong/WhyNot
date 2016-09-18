@@ -62,7 +62,10 @@ public class MemberMybatis  {
 	}
 	public static List<MemberDBBean> listMember() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("MemberMybatis_listMember() ½ÇÇà");
+		SqlSession session = sqlMapper.openSession();
+		List<MemberDBBean> list = session.selectList("listMember");
+		return list;
 	}
 	public static void sanctionsMember(MemberDBBean dto, int mnum) {
 		// TODO Auto-generated method stub
