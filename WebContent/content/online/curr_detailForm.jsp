@@ -36,15 +36,22 @@
 			<div class="panel-body">
 				<div style="height: 30em;">영상위치</div>
 			</div>
+			
 			<!-- Q&A게시판 영역 -->
-			<div class="panel-heading">
-				<font>Q&A 게시판</font>
+			<div class="panel-heading" style="vertical-align: middle;">
+				<font style="float: left;">Q&A 게시판</font>
+				<form class="navbar-form" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
 			</div>
+			
 			<!-- 게시판 글 영역 -->
-			<div style="overflow: scroll;">
+			<div style="overflow:;">
 				<ul class="list-group" style="width: 100%; margin: 0; padding: 0;">
 					<li class="list-group-item">Cras justo odio</li>
-					<li class="list-group-item">Vestibulum at eros</li>
 				</ul>
 			</div>
 			<!-- List group -->
