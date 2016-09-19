@@ -18,26 +18,26 @@
 	<div class="col-md-6 col-md-offset-3">
 		<form name="f" action="insertPro.mileage" method="post">
 			<div class="form-group" class="form-control">
-				<label for="phone_company">결재 상품 선택</label>
+				<label for="money">결재 상품 선택</label>
 				<div class="btn-group input-group" data-toggle="buttons">
 					<label class="btn btn-success"> 
-					<input type="radio"	id="phone_company1" name="phone_company" />SKT</label><!-- 스타일풀어보면 체크 되어 있어요 -->
+					<input type="radio"	id="money1" name="money" value="1000" />1000원</label><!-- 스타일풀어보면 체크 되어 있어요 -->
 					<label class="btn btn-success"> 
-					<input type="radio"	id="phone_company2" name="phone_company" />KT</label>
+					<input type="radio"	id="money2" name="money" value="5000" />5000원</label>
 					<label class="btn btn-success"> 
-					<input type="radio"	id="phone_company3" name="phone_company" />LGU+</label>
+					<input type="radio"	id="money3" name="money" value="10000" />10000원</label>
 					<label class="btn btn-success"> 
-					<input type="radio"	id="phone_company4" name="phone_company" />알뜰폰</label>
+					<input type="radio"	id="money4" name="money" value="30000" />30000원</label>
 				</div>
 			</div>
-
+			
 			<div class="form-group" class="form-control">
-				<label for="money_tool">결재 수단</label>
+				<label for="moneytool">결재 수단</label>
 				<div class="btn-group input-group" data-toggle="buttons">
 					<label class="btn btn-success"> 
-					<input type="radio"	id="money_tool1" name="money_tool" />휴대전화 </label>
+					<input type="radio"	id="moneytool1" name="moneytool" value="휴대전화" />휴대전화 </label>
 					<label class="btn btn-success"> 
-					<input type="radio"	id="money_tool2" name="money_tool" />신용카드 </label>
+					<input type="radio"	id="moneytool2" name="moneytool" value="신용카드" />신용카드 </label>
 				</div>
 			</div>
 			<div class="form-group text-center">
