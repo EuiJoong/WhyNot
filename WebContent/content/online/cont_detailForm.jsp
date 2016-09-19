@@ -34,7 +34,7 @@ body {
 </head>
 <body>
 	<div style="padding: 50px">
-		인강 상세페이지.먼저 여기서 해보자! cont_detail.content, 수정4
+		인강 상세페이지.먼저 여기서 해보자! cont_detail.content, 수정55555
 		<div class="col-md-3 col-sm-6 hero-feature">
 			<div class="thumbnail">
 				<img src="http://placehold.it/800x500" alt="">
