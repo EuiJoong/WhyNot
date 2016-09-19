@@ -44,6 +44,7 @@
 <br>
 <br>
 <br>
+<a href ="mileage/MileageInsertForm.jsp">임시 마일리지 충전</a>
 <!-- 카테고리 메뉴 -->
 <nav>
 	<div class="col-lg-12">
