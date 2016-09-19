@@ -3,6 +3,7 @@ package onlinecontent.model;
 public class OnlineContentDBBean {
 	Integer vdnum, mnum;
 	String filename,filedir;
+	
 	public Integer getVdnum() {
 		return vdnum;
 	}

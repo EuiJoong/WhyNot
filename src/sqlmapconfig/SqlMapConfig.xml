@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <typeAliases>
 	<typeAlias type="member.model.MemberDBBean" alias="MemberDTO"/>
 	<typeAlias type="category.model.CategoryDBBean" alias="CategoryDTO"/>
+	<typeAlias type="onlinecontent.model.OnlineContentDBBean" alias="OnlineContentDTO"/>
 	
 </typeAliases>
 <environments default="development">
