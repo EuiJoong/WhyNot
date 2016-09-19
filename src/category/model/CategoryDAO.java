@@ -9,4 +9,5 @@ public interface CategoryDAO {
 	public void insertCategory(CategoryDBBean dto);
 	public void deleteCategory(int ctnum);
 	public void updateCategory(CategoryDBBean dto);
+	public boolean chkCategory(String name);
 }
