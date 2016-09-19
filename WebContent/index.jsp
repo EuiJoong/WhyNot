@@ -77,7 +77,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 					<p>
 						<a href="#" class="btn btn-primary">Buy Now!</a> <a
-							href="cont_detail.content" class="btn btn-default">상세보기Go</a>
+							href="cont_detail.content?num=0" class="btn btn-default">상세보기Go</a>
 					</p>
 				</div>
 			</div>
