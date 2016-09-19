@@ -33,7 +33,10 @@ public class CategoryController {
 	@RequestMapping(value = "/insert.cate")
 	public ModelAndView insertFormCategory(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("CategoryController_insertFormCategory() 실행");
-		return new ModelAndView("admin/category/cate_insertForm.jsp");
+		
+		System.out.println(arg0.getAttribute("msg"));
+		
+		return new ModelAndView("admin/category/cate_insertForm.jsp","msg",arg0.getAttribute("msg"));
 
 	}
 
@@ -44,6 +47,7 @@ public class CategoryController {
 		CategoryDBBean dto = new CategoryDBBean();
 		dto.setName(arg0.getParameter("name"));
 		CategoryDAO.insertCategory(dto);
+		
 		return new ModelAndView("list.cate");
 	}
 
@@ -80,6 +84,33 @@ public class CategoryController {
 		CategoryDAO.updateCategory(dto);
 		
 		return new ModelAndView("list.cate");
+	}
+
+	@RequestMapping(value = "/chk.cate")
+	public ModelAndView UpCategory(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		System.out.println("CategoryController_chkCategory() 실행");
+
+		String url = null;
+		String msg = "";
+		
+		if(arg0.getParameter("name")==null||arg0.getParameter("name")==""){
+			url = "insert.cate";
+		}else{
+		Boolean chk = CategoryDAO.chkCategory(arg0.getParameter("name"));
+		
+		if(chk){
+			msg = "중복!";
+			url = "insert.cate";
+		}else{
+			url = "insertPro.cate";
+		}}
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName(url);
+		mav.addObject("msg",msg);
+		System.out.println(msg);
+		
+		return mav;
 	}
 
 

@@ -1,8 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../admintop.jsp"%>
+
 <div align="center" style="width: 80%; float: right;">
-	<form name="f" action="insertPro.cate" method="post">
+
+
+<c:if test="${msg eq '중복!'}">
+<script type="text/javascript">
+    alert('${msg}');
+</script>
+</c:if>
+ 
+	<form name="f" action="chk.cate" method="post">
 	<table border="1" width="300" >
 		<caption>카테고리 등록</caption>
 		<tr>

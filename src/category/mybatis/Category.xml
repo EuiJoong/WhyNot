@@ -25,4 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	update wn_category set name=#{name} where ctnum=#{ctnum}
 </update>
 
+<select id="chkCategory" parameterType="String" resultType="String">
+	select name from wn_category where name = #{name}
+</select>
+
 </mapper>
