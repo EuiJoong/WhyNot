@@ -21,12 +21,12 @@ public class OnlineContentDAOImpl implements OnlineContentDAO {
 		
 	}
 
-	@Override
-	public void insertContent(OnlineContentDBBean dto, int num) {
+	@Override //OnlineContentVideoDBBean c_dto 추가
+	public void insertContent(OnlineContentVideoDBBean v_dto, int num) { 
 		// TODO Auto-generated method stub
 //OnlineContentDBBean
-		System.out.println(dto.getFiledir()+", "+num);
-		OnlineContentMybatis.insertContent(dto,num);//사실 이 dao는 마이바티스를 쓰면서 없어도 되는 부분임! 
+		System.out.println(v_dto.getFiledir()+", "+num); //c_dto 추가해야함
+		OnlineContentMybatis.insertContent(v_dto,num);//사실 이 dao는 마이바티스를 쓰면서 없어도 되는 부분임! 
 		//그냥 수업떄 쓴 것 뿐
 	}
 
@@ -43,7 +43,7 @@ public class OnlineContentDAOImpl implements OnlineContentDAO {
 	}
 
 	@Override
-	public void deleteContent(OnlineContentDBBean dto, int num) {
+	public void deleteContent(int num) {
 		// TODO Auto-generated method stub
 		
 	}

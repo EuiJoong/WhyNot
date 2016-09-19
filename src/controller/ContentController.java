@@ -22,6 +22,7 @@ import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
 import onlinecontent.model.OnlineContentDAO;
 import onlinecontent.model.OnlineContentDBBean;
+import onlinecontent.model.OnlineContentVideoDBBean;
 import onlinecurriculum.board.model.OnlineCurriculumBoardDAO;
 import onlinecurriculum.model.OnlineCurriculumDAO;
 
@@ -112,7 +113,7 @@ public class ContentController {
 				 * File source = new File("movie/sample2.mp4"); File target =
 				 * new File("movie/sample22.flv");
 				 */
-				OnlineContentDBBean dto = new OnlineContentDBBean();
+				OnlineContentVideoDBBean v_dto = new OnlineContentVideoDBBean();
 				//DB에 실제로 저장되는 경로
 				String filedir = "C:\\Users\\Administrator\\Desktop\\testvideo\\";
 				String[] fileNameE = fileName.split("[.]");// 0: 파일 네임, 1: 파일
@@ -121,12 +122,12 @@ public class ContentController {
 				System.out.println(fileNameE[0]);
 				System.out.println(fileNameE[1]);
 
-				dto.setFilename(fileNameE[0] + ".mp4");
-				dto.setFiledir(filedir);
-				dto.setMnum(0);
-				dto.setVdnum(0);
+				v_dto.setFilename(fileNameE[0] + ".mp4");
+				v_dto.setFiledir(filedir);
+				v_dto.setMnum(0);
+				v_dto.setVdnum(0);
 				System.out.println(onlineContentDAO);
-				onlineContentDAO.insertContent(dto, 0);// 임의로! 넣어지나 보자!
+				onlineContentDAO.insertContent(v_dto, 0);// 임의로! 넣어지나 보자!
 				// 2.forward로 값 있는 그대로 쭈욱 옮겨서..근데 저 쿼리문은 어떻게 실행하지
 				System.out.println("여기까지 왔나");
 
@@ -158,8 +159,10 @@ public class ContentController {
 	@RequestMapping(value = "/cont_insertPro.content") // 인강등록Pro(학교)
 	public ModelAndView insertProContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("ContentController_insertProContent() 실행");
+		
+		
+		
 		return new ModelAndView("content/contentList.jsp"); // 나중에 마이페이지로???
-
 	}
 
 	@RequestMapping(value = "/cont_detail.content") // 인강 상세보기
