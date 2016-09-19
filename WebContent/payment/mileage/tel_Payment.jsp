@@ -7,7 +7,7 @@
 <link href="css/user_payment.min.css" rel="stylesheet">
 
 <script type="text/JavaScript" src="js/mileage.singup.js"></script>
-	
+
 <body>
 	<article class="container">
 	<div class="page-header">
@@ -16,32 +16,31 @@
 		</h1>
 	</div>
 	<div class="col-md-6 col-md-offset-3">
-		<form name="f" action="card.mileage" method="post">
+		<form name="f" action="tel.mileage" method="post">
 		<div class ="label">
-		<label>결제 금액&nbsp;&nbsp;${money}원</label>
+		<label>결제 금액${money}원</label>
 		</div><br><br>
-		
-		<div class="form-group">
+		<div class="form-group" id = "tel_company">
 			<label for="tel_company">이동 통신사</label>
 				<div class="btn-group input-group" data-toggle="buttons">
 					<input type="radio" id = "tel_company1" name="tel_company" /><label>SKT</label>
-					<input type="radio" id = "tel_company2" name="tel_company" /><label>KT</label>	
+					<input type="radio" id = "tel_company2" name="tel_company" /><label>KT</label>
 					<input type="radio" id = "tel_company3" name="tel_company" /><label>LGU</label>
-					<input type="radio" id = "tel_company4" name="tel_company" /><label>알뜰폰</label>	
+					<input type="radio" id = "tel_company4" name="tel_company" /><label>알뜰폰</label>
 				</div>
 		</div><br>
 		<div>
-		<label>휴대전화번호</label>&nbsp;&nbsp;
-		<input type="text" id = "tel_num" class="form-control" maxlength="11"><br>
+		<label>휴대전화번호</label>
+		<input type="text" id = "tel_num" name="tel_num" class="form-control" maxlength="11"><br>
 		</div><br>
 		<label>주민등록번호</label><br>
 		<div>
-		<input type="text" id = "tel_cnum1" class="form-control" maxlength="8"> - <input type="text" id = "tel_cnum2" class="form-control" maxlength="1">XXXXXX
+		<input type="text" id = "tel_cnum1" name="tel_cnum1" class="form-control" maxlength="8"> - <input type="text" id = "tel_cnum2" name="tel_cnum2" class="form-control" maxlength="1">XXXXXX
 		</div>
 		<div class="form-group">
 				<h4>약관</h4>
-				<input type="checkbox" name="box"> 전채 선택 <br>
-				<input type="checkbox" name="box1">
+				<input type="checkbox" id = "box1" name="box" onclick="chkBoxCheck(0)" > 전채 선택 <br>
+				<input type="checkbox" id = "box2" name="box">
 				<textarea class="form-control" rows="3">
 임시약관 1
 
@@ -59,7 +58,7 @@
 – 해지 : 회사 또는 회원이 이용계약을 해약하는 것을 말합니다.
 (2) 이 약관에서 사용하는 용어 중 제1항에서 정하지 아니한 것은 관계 법령 및 서비스 별 안내에서 정하는 바에 따르며, 그 외에는 일반 관례에 따릅니다.
 				</textarea>
-				<input type="checkbox" name="box2">
+				<input type="checkbox" id = "box3" name="box">
 				<textarea class="form-control" rows="3">
 임시약관 2
 
@@ -77,7 +76,7 @@
 – 해지 : 회사 또는 회원이 이용계약을 해약하는 것을 말합니다.
 (2) 이 약관에서 사용하는 용어 중 제1항에서 정하지 아니한 것은 관계 법령 및 서비스 별 안내에서 정하는 바에 따르며, 그 외에는 일반 관례에 따릅니다.
 				</textarea>
-				<input type="checkbox" name="box3">
+				<input type="checkbox" id = "box4" name="box">
 				<textarea class="form-control" rows="3">
 임시약관 3
 
@@ -94,12 +93,12 @@
 – 충전 : 회사가 지정한 지불수단을 이용하여 회원이 현금을 회사에 지불하면 회사가 이에 상응하는 수량의 ‘사이버머니’를 당해 회원에게 지급하는 것을 말합니다.
 – 해지 : 회사 또는 회원이 이용계약을 해약하는 것을 말합니다.
 (2) 이 약관에서 사용하는 용어 중 제1항에서 정하지 아니한 것은 관계 법령 및 서비스 별 안내에서 정하는 바에 따르며, 그 외에는 일반 관례에 따릅니다.
-				</textarea>				
+				</textarea>
 			</div>
 			<div class="form-group text-center">
 		</div>
 			<div class="form-group text-center">
-				<button type="submit" class="btn btn-info" onclick="card_chk()">	결재요청<i class="fa fa-check spaceLeft"></i></button>
+				<button type="submit" class="btn btn-info" onclick="card_chk()">결재요청<i class="fa fa-check spaceLeft"></i></button>
 				<button type="button" class="btn btn-warning" onclick="location.href='main.app'">취소<i class="fa fa-times spaceLeft"></i></button>
 			</div>
 	</form>
@@ -110,7 +109,3 @@
 	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
