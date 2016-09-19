@@ -91,9 +91,8 @@
 										${memberDTO.name}님</h4>
 									<ul class="dropdown-menu" role="menu"
 										aria-labelledby="logindropMenu">
-										<li role="presentation"><a role="menuitem" tabindex="-1"
-											href="payment/mileage/selectPayment.jsp">${memberDTO.mileage }
-												마일리지</a></li>
+										<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="#"><a href ="payment/mileage/selectPayment.jsp">${memberDTO.mileage }마일리지</a></a></li>
 										<c:choose>
 											<c:when test="${memberDTO.grade == 1 }">
 												<li role="presentation"><a role="menuitem"
