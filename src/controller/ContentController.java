@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
 import onlinecontent.model.OnlineContentDAO;
@@ -32,6 +33,11 @@ public class ContentController {
 	private OnlineContentDAO onlineContentDAO;
 	private OnlineCurriculumDAO onlineCurriculumDAO;
 	private OnlineCurriculumBoardDAO onlineCurriculumBoardDAO;
+	private CategoryDAO CategoryDAO; 
+
+	public void setCategoryDAO(CategoryDAO categoryDAO) {
+		this.CategoryDAO = categoryDAO;
+	}
 
 	public void setOnlineContentDAO(OnlineContentDAO onlineContentDAO) {
 		this.onlineContentDAO = onlineContentDAO;
@@ -56,7 +62,7 @@ public class ContentController {
 			System.out.println("isMultipart if문 진입");
 			// E:\\java\\Main\\Temp
 			// C:\Users\Public\Downloads
-			File temporaryDir = new File("C:\\Users\\Administrator\\Desktop\\testvideo\\");
+			File temporaryDir = new File("E:\\java\\Main\\videoTest\\");
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			System.out.println("factory 생성성공");
 			factory.setSizeThreshold(1 * 1024 * 1024);
@@ -115,7 +121,7 @@ public class ContentController {
 				 */
 				OnlineContentVideoDBBean v_dto = new OnlineContentVideoDBBean();
 				//DB에 실제로 저장되는 경로
-				String filedir = "C:\\Users\\Administrator\\Desktop\\testvideo\\";
+				String filedir = "E:\\java\\Main\\videoTest\\";
 				String[] fileNameE = fileName.split("[.]");// 0: 파일 네임, 1: 파일
 															// 확장자
 				System.out.println(fileNameE.length);
@@ -152,7 +158,8 @@ public class ContentController {
 	@RequestMapping(value = "/cont_insert.content") // 인강등록Form(학교)
 	public ModelAndView insertFormContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("ContentController_insertFormContent() 실행");
-		return new ModelAndView("content/online/cont_insertForm.jsp");
+		List<CategoryDBBean> list = CategoryMybatis.listCategory();
+		return new ModelAndView("content/online/cont_insertForm.jsp", "cateList", list);
 
 	}
 
