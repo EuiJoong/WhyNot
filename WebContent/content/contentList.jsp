@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../top.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link href="css/usercont_list.min.css" rel="stylesheet">
+<link href="../css/usercont_list.min.css" rel="stylesheet">
+<script src="js/contentList.js"></script>
 <br>
 <br>
 <nav>
@@ -12,7 +13,7 @@
 	<ul class="nav nav-justified">
 		<c:choose>
 			<c:when test="${cateDTO.size() == 0 }">
-			<c:out value="등록된 카테고리가 없습니다."/>
+				<c:out value="등록된 카테고리가 없습니다." />
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="cateDTO" items="${cateList }">
@@ -33,8 +34,16 @@
 	<div class="col-lg-12">
 		<h3>
 			강좌
-			<button type="button" onclick="location.href='cont_insert.content'"
-				style="float: right;">강의 등록</button>
+			<c:choose>
+				<c:when test="${memberDTO == null}">
+					<button type="button" onclick="chkInsertCont()"
+						style="float: right;">강의 등록</button>
+				</c:when>
+				<c:otherwise>
+					<button type="button" onclick="location.href='cont_insert.content'"
+						style="float: right;">강의 등록</button>
+				</c:otherwise>
+			</c:choose>
 		</h3>
 	</div>
 	<div></div>
@@ -279,6 +288,5 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 <%@ include file="../bottom.jsp"%>
