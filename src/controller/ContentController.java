@@ -25,6 +25,8 @@ import onlinecontent.model.OnlineContentDBBean;
 import onlinecontent.model.OnlineContentVideoDBBean;
 import onlinecurriculum.board.model.OnlineCurriculumBoardDAO;
 import onlinecurriculum.model.OnlineCurriculumDAO;
+import payment.model.OnlinePaymentDBBean;
+import payment.mybatis.PaymentMybatis;
 
 @Controller
 public class ContentController {
@@ -168,8 +170,15 @@ public class ContentController {
 	@RequestMapping(value = "/cont_detail.content") // 인강 상세보기
 	public ModelAndView detailContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("ContentController_detailContent() 실행");
-		return new ModelAndView("content/online/cont_detailForm.jsp");
-
+		int mnum = Integer.parseInt(arg0.getParameter("mnum")); //구매자 회원번호
+		int ocnum = Integer.parseInt(arg0.getParameter("ocnum")); //온라인 컨텐츠 번호
+		
+		//결제 했는지 안했는지 확인
+		OnlinePaymentDBBean dto = PaymentMybatis.chkPurchaseOnline(mnum, ocnum);
+		boolean isPurchase = false;
+		if(mnum == dto.getMnum() && ocnum == dto.getOcnum()) //디비에 기록이 있으면
+			isPurchase = true;
+		return new ModelAndView("content/online/cont_detailForm.jsp","isPurchase",isPurchase);
 	}
 
 	// -------------- 커리큘럼 -----------------------------------

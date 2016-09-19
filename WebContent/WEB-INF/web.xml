@@ -40,6 +40,16 @@
 		<servlet-name>content</servlet-name>
 		<url-pattern>*.content</url-pattern>
 	</servlet-mapping>
+	<!-- 결제 -->
+	<servlet>
+		<servlet-name>payment</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>payment</servlet-name>
+		<url-pattern>*.payment</url-pattern>
+	</servlet-mapping>
 	<!-- 한글 필터링 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
