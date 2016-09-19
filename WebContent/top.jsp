@@ -92,7 +92,7 @@
 									<ul class="dropdown-menu" role="menu"
 										aria-labelledby="logindropMenu">
 										<li role="presentation"><a role="menuitem" tabindex="-1"
-											href="#">${memberDTO.mileage } 마일리지</a></li>
+											href ="mileage/MileageInsertForm.jsp">${memberDTO.mileage } 마일리지</a></li>
 										<c:choose>
 											<c:when test="${memberDTO.grade == 1 }">
 												<li role="presentation"><a role="menuitem"
