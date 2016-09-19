@@ -91,16 +91,8 @@
 										${memberDTO.name}님</h4>
 									<ul class="dropdown-menu" role="menu"
 										aria-labelledby="logindropMenu">
-<<<<<<< HEAD
-
 										<li role="presentation">
-										<a role="menuitem" tabindex="-1" href="#">${memberDTO.mileage }<a href ="mileage/MileageInsertForm.jsp">마일리지</a></a></li>
-
-=======
-										<li role="presentation"><a role="menuitem" tabindex="-1"
-											href="payment/mileage/selectPayment.jsp">${memberDTO.mileage }
-												마일리지</a></li>
->>>>>>> 9ba7e4e07862d9b41c56b19c334284a07fe42a1e
+										<a role="menuitem" tabindex="-1" href="#"><a href ="payment/mileage/selectPayment.jsp">${memberDTO.mileage }마일리지</a></a></li>
 										<c:choose>
 											<c:when test="${memberDTO.grade == 1 }">
 												<li role="presentation"><a role="menuitem"
