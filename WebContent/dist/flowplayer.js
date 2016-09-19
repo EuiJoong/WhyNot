@@ -2754,7 +2754,7 @@ flowplayer(function(api, root) {
          duration = api.video.duration;//여기
       	//아님 여기서 멈춤과 시간을 전부 관리.
       
-      if(time>1)
+      if(time>60)
 	  {
     	  //sessionStorage.setItem('stopTime', 'time');
     	  api.stop();  
