@@ -7,5 +7,9 @@
 <!-- 상단 메뉴바가 css로 인해서 윗부분이 겹쳐서 div로  style="padding: px" 줌 -->
 <div style="padding:50px">
 인강 등록페이지
+<form name="f" action="insertVideo.content" method="post" enctype="multipart/form-data" onsubmit="return writeChk()">
+	<input type="file" name="filename" size="15"/>
+	<input type="submit" name="submit" value="제출"/>
+</form>
 </div>
 <%@ include file="../../bottom.jsp"%>
