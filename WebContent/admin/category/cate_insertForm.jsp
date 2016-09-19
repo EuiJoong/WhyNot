@@ -5,10 +5,23 @@
 <div align="center" style="width: 80%; float: right;">
 
 
-<c:if test="${msg eq '중복!'}">
+<c:choose>
+<c:when test="${msg eq '중복!'}">
 <script type="text/javascript">
     alert('${msg}');
 </script>
+</c:when>
+<c:when test="${msg eq '값을 입력하세요!' }">
+<script type="text/javascript">
+    alert('${msg}');
+</script>
+</c:when>
+<c:otherwise></c:otherwise>
+</c:choose>
+
+
+<c:if test="">
+
 </c:if>
  
 	<form name="f" action="chk.cate" method="post">
