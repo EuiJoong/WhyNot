@@ -24,7 +24,6 @@ import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
 import onlinecontent.model.OnlineContentDAO;
 import onlinecontent.model.OnlineContentDBBean;
-import onlinecontent.model.OnlineContentVideoDBBean;
 import onlinecurriculum.board.model.OnlineCurriculumBoardDAO;
 import onlinecurriculum.model.OnlineCurriculumDAO;
 import payment.model.OnlinePaymentDBBean;

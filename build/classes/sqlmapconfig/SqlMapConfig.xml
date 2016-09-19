@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <typeAliases>
 	<typeAlias type="member.model.MemberDBBean" alias="MemberDTO"/>
 	<typeAlias type="category.model.CategoryDBBean" alias="CategoryDTO"/>
-	<typeAlias type="onlinecontent.model.OnlineContentVideoDBBean" alias="OnlineContentVideoDTO"/>
+	<typeAlias type="attachfile.model.VideoDBBean" alias="AttachFileVideoDTO"/>
 	<typeAlias type="payment.model.OnlinePaymentDBBean" alias="OnlinePaymentDTO"/>
 	
 </typeAliases>
