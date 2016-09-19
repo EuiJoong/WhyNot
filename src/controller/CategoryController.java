@@ -95,6 +95,7 @@ public class CategoryController {
 		
 		if(arg0.getParameter("name")==null||arg0.getParameter("name")==""){
 			url = "insert.cate";
+			msg = "값을 입력하세요!";
 		}else{
 		Boolean chk = CategoryDAO.chkCategory(arg0.getParameter("name"));
 		
