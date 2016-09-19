@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.ibatis.common.resources.Resources;
 
 import onlinecontent.model.OnlineContentDBBean;
+import onlinecontent.model.OnlineContentVideoDBBean;
 
 public class OnlineContentMybatis {
 	private static SqlSessionFactory sqlMapper;
@@ -60,7 +61,7 @@ public class OnlineContentMybatis {
 		// 이런식으로.
 	}
 
-	public static void insertContent(OnlineContentDBBean dto, int num) {
+	public static void insertContent(OnlineContentVideoDBBean v_dto, int num) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlMapper.openSession();
 		/*
@@ -69,7 +70,7 @@ public class OnlineContentMybatis {
 		 * dto.getFiledir()); map.put("filename", dto.getFilename());
 		 * map.put("num", num);
 		 */
-		session.insert("insertContent", dto);
+		session.insert("insertContent", v_dto);
 		session.commit();
 		System.out.println("session insert");
 		session.close();
