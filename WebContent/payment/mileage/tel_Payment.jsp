@@ -18,7 +18,7 @@
 	<div class="col-md-6 col-md-offset-3">
 		<form name="f" action="tel.mileage" method="post">
 		<div class ="label">
-		<label>결제 금액&nbsp;&nbsp;${money}원</label>
+		<label>결제 금액${money}원</label>
 		</div><br><br>
 		<div class="form-group" id = "tel_company">
 			<label for="tel_company">이동 통신사</label>
@@ -30,7 +30,7 @@
 				</div>
 		</div><br>
 		<div>
-		<label>휴대전화번호</label>&nbsp;&nbsp;
+		<label>휴대전화번호</label>
 		<input type="text" id = "tel_num" name="tel_num" class="form-control" maxlength="11"><br>
 		</div><br>
 		<label>주민등록번호</label><br>
@@ -39,7 +39,7 @@
 		</div>
 		<div class="form-group">
 				<h4>약관</h4>
-				<input type="checkbox" id = "box1" name="box"> 전채 선택 <br>
+				<input type="checkbox" id = "box1" name="box" onclick="chkBoxCheck(0)" > 전채 선택 <br>
 				<input type="checkbox" id = "box2" name="box">
 				<textarea class="form-control" rows="3">
 임시약관 1
