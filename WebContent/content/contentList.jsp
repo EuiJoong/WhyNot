@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../top.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link href="../css/usercont_list.min.css" rel="stylesheet">
+<link href="css/usercont_list.min.css" rel="stylesheet">
 <script src="js/contentList.js"></script>
 <br>
 <br>
@@ -93,76 +93,6 @@
 		</div>
 	</div>
 
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
 </div>
 <!-- ------------------------------------------------------------------------- -->
 
@@ -176,90 +106,6 @@
 
 <!-- Page Features -->
 <div class="row text-center">
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
 
 	<div class="col-md-3 col-sm-6 hero-feature">
 		<div class="thumbnail">
