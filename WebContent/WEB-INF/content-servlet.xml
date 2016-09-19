@@ -9,9 +9,12 @@
 	</bean>
 	<bean id="onlineCurriculumBoardDAO" class="onlinecurriculum.board.model.OnlineCurriculumBoardDAOImpl">
 	</bean>
+	<bean id="CategoryDAO" class="category.model.CategoryDAOImpl" />
 	<bean  class="controller.ContentController">
 		<property name="onlineContentDAO" ref="onlineContentDAO"></property>
 		<property name="onlineCurriculumDAO" ref="onlineCurriculumDAO"></property>
 		<property name="onlineCurriculumBoardDAO" ref="onlineCurriculumBoardDAO"></property>
+		<property name="categoryDAO" ref="CategoryDAO"></property>
 	</bean>
-</beans>
+</beans> 
+ 

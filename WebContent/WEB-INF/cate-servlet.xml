@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- 카테고리 관련 서블릿 -->
+<!-- 	카테고리 관련 서블릿 -->
 	<bean id="CategoryDAO" class="category.model.CategoryDAOImpl" />
 	<bean class="controller.CategoryController">
 		<property name="CategoryDAO" ref="CategoryDAO" />
