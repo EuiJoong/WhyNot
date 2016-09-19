@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAlias type="member.model.MemberDBBean" alias="MemberDTO"/>
 	<typeAlias type="category.model.CategoryDBBean" alias="CategoryDTO"/>
 	<typeAlias type="onlinecontent.model.OnlineContentVideoDBBean" alias="OnlineContentVideoDTO"/>
+	<typeAlias type="payment.model.OnlinePaymentDBBean" alias="OnlinePaymentDTO"/>
 	
 </typeAliases>
 <environments default="development">
@@ -31,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <mapper resource="onlinecontent/mybatis/OnlineContent.xml"/>
 <mapper resource="onlinecurriculum/mybatis/OnlineCurriculum.xml"/>
 <mapper resource="onlinecurriculum/board/mybatis/OnlineCurriculumBoard.xml"/>
-
+<mapper resource="payment/mybatis/Payment.xml"/>
 </mappers>
 </configuration>
 <!--  파일에 설정만 바꾸어 줌-->

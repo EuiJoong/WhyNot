@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="payment.mybatis.Payment">
+<!-- 쿼리문 작성 하는 곳 -->
+<!-- 온라인 구매 -->
+<insert id="purchaseOnline" parameterType="OnlinePaymentDTO">
+	insert into WN_OnPayment values (WN_OnPayment_seq.nextval, #{mnum}, #{ocnum}, #{amount}, sysdate)
+</insert>
+
+<!-- 온라인 구매 확인 -->
+<select id="chkPurchaseOnline" parameterType="HashMap" resultType="OnlinePaymentDTO">
+	select * from wn_onpayment where mnum = #{mnum} and ocnum = #{ocnum}
+</select>
+</mapper>

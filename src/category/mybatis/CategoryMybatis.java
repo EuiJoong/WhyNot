@@ -70,5 +70,19 @@ public class CategoryMybatis {
 		session.close();
 		
 	}
+	
+
+	public static boolean chkCate(String name) {
+		System.out.println("CateMybatis_chkCate() ½ÇÇà");
+		SqlSession session = sqlMapper.openSession();
+		System.out.println(name);
+		String res = session.selectOne("chkCategory", name);
+		boolean chk = true; 
+		if(res == null || res.equals("")){
+			chk = false;
+		}
+		session.close();
+		return chk;
+	}
 
 }

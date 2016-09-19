@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,6 +18,7 @@
 <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
+
 <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
 <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
 <!--[if lt IE 9]>
@@ -27,15 +30,19 @@
 <body>
 	<div>
 		<div class="panel panel-default"
-			style="float: left; height: 59em; width: 80%; position: relative;">
-			<!-- Default panel contents -->
+			style="float: left; height: 59em; width: 80%;">
 			<div class="panel-heading">커리큘럼 명</div>
+			<!-- 영상 영역 -->
 			<div class="panel-body">
 				<div style="height: 30em;">영상위치</div>
 			</div>
-			<div class="panel-heading">Q&A 게시판</div>
+			<!-- Q&A게시판 영역 -->
+			<div class="panel-heading">
+				<font>Q&A 게시판</font>
+			</div>
+			<!-- 게시판 글 영역 -->
 			<div class="panel-body">
-				<ul class="list-group">
+				<ul class="list-group" style="width: 100%; margin: 0; padding: 0;">
 					<li class="list-group-item">Cras justo odio</li>
 					<li class="list-group-item">Vestibulum at eros</li>
 				</ul>
@@ -43,10 +50,21 @@
 			<!-- List group -->
 		</div>
 
-		<!-- 우측 커리큘럼????? -->
-		<div style="width: 20%; float: right; position: fixed;">
+		<!-- <!-- 우측 커리큘럼 목록 -->
+		<div class="panel panel-default" style="width: 20%; float: right;">
+			<div class="panel-heading">커리큘럼 명</div>
 			<ul class="list-group">
-				<li class="list-group-item">커리큘럼 목록</li>
+				<c:choose>
+					<c:when test="${currList.size() == 0 || currList == null }">
+						<li class="list-group-item">등록된 커리큘럼이 없습니다.</li>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="currDto" items="${currList }">
+							<li class="list-group-item"><a
+								href="content/online/curr_detailForm.jsp">커리큘럼 목록</a></li>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</div>
 	</div>
