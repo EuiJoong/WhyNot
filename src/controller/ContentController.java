@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import attachfile.model.VideoDBBean;
 import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
@@ -121,7 +122,7 @@ public class ContentController {
 				 * File source = new File("movie/sample2.mp4"); File target =
 				 * new File("movie/sample22.flv");
 				 */
-				OnlineContentVideoDBBean v_dto = new OnlineContentVideoDBBean();
+				VideoDBBean v_dto = new VideoDBBean();
 				//DB에 실제로 저장되는 경로
 				String filedir = "E:\\java\\Main\\videoTest\\";
 				String[] fileNameE = fileName.split("[.]");// 0: 파일 네임, 1: 파일
