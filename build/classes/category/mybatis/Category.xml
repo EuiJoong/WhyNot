@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </delete>
 
 <select id="listCategory" resultType="CategoryDTO">
-	select * from wn_category
+	select * from wn_category ORDER BY ctnum ASC
 </select>
 
 <update id="updateCategory" parameterType="CategoryDTO">
