@@ -101,7 +101,7 @@
 											</c:when>
 											<c:otherwise>
 												<li role="presentation"><a role="menuitem"
-													tabindex="-1" href="#">마이페이지</a></li>
+													tabindex="-1" href="dashboard.mypage">마이페이지</a></li>
 											</c:otherwise>
 										</c:choose>
 										<li role="presentation" class="divider"></li>

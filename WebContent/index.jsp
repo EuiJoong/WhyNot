@@ -13,7 +13,7 @@
 <!-- 상단 슬라이드 -->
 <!-- Header Carousel -->
 <header id="myCarousel" class="carousel slide">
-	<!-- Indicators --> 
+	<!-- Indicators -->
 	<ol class="carousel-indicators">
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 		<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -51,7 +51,8 @@
 	</div>
 	<ul class="nav nav-justified">
 		<c:forEach var="cateDTO" items="${cateList }">
-			<li><a href="list.content?ctnum=${cateDTO.ctnum }" ><c:out value="${cateDTO.name }"></c:out></a></li>
+			<li><a href="list.content?ctnum=${cateDTO.ctnum }"><c:out
+						value="${cateDTO.name }"></c:out></a></li>
 		</c:forEach>
 	</ul>
 </nav>
@@ -76,7 +77,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 					<p>
 						<a href="#" class="btn btn-primary">Buy Now!</a> <a
-							href="cont_detail.content?num=0" class="btn btn-default" >상세보기Go</a>
+							href="cont_detail.content?num=0" class="btn btn-default">상세보기Go</a>
 					</p>
 				</div>
 			</div>
