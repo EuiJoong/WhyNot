@@ -48,4 +48,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 		CategoryMybatis.updateCate(dto);
 		System.out.println("성공!");
 	}
+	public boolean chkCategory(String name) {
+		System.out.println("CategoryDAOImpl_chkCategory() 실행");
+		boolean chk = CategoryMybatis.chkCate(name);
+		return chk;
+	}
 }
