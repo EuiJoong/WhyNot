@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import category.model.CategoryDBBean;
 import payment.model.OnlinePaymentDBBean;
 import payment.model.PaymentDAO;
 
@@ -35,4 +36,28 @@ public class PaymentController {
 		return new ModelAndView();
 		
 	}
+	
+	
+	@RequestMapping(value = "/select.mileage")
+	public ModelAndView insertFormCategory(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		System.out.println("CategoryController_insertFormCategory() 실행");
+		
+		System.out.println(arg0.getAttribute("money"));
+		
+		return new ModelAndView("admin/category/cate_insertForm.jsp","msg",arg0.getAttribute("msg"));
+
+	}
+
+	@RequestMapping(value = "/insertPro.cate")
+	public ModelAndView insertProCategory(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		System.out.println("CategoryController_insertProCategory() 실행");
+
+		CategoryDBBean dto = new CategoryDBBean();
+		dto.setName(arg0.getParameter("name"));
+		CategoryDAO.insertCategory(dto);
+		
+		return new ModelAndView("list.cate");
+	}
+	
+	
 }
