@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,9 +19,9 @@
 	<div class="col-md-6 col-md-offset-3">
 		<form name="f" action="card.mileage" method="post">
 		<div class ="label">
-		<label>결제 금액&nbsp;&nbsp;${money}원</label>
-		</div><br>
-		<div class = "form-group" id = "card_num" >
+		<label>결제 금액  ${money}원</label>
+		</div><br><br>
+		<div class = "form-group" name ="card_num" >
 		<label>신용카드 번호</label><br>
 		<div>
 		<input type="text" id = "card_num1" class="form-control" maxlength="4"> - 
@@ -30,7 +31,7 @@
 		</div></div><br>
 		<div class = "form-group" id = "card_day">
 		<input type="text" id = "card_day1" class="form-control" placeholder="MM" maxlength="2"> - 
-		<input type="text" id = "card_day2" class="form-control" placeholder="YY" maxlength="2">&nbsp;&nbsp;&nbsp;
+		<input type="text" id = "card_day2" class="form-control" placeholder="YY" maxlength="2">
 		<input type="text" id = "card_cvc" class="form-control" placeholder="CVC" maxlength="3">
 		</div><br><br>
 			<div class="form-group text-center">
@@ -45,7 +46,3 @@
 	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-

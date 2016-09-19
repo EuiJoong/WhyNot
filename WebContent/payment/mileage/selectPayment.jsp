@@ -5,9 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <link href="css/user_payment.min.css" rel="stylesheet">
-
 <script type="text/JavaScript" src="js/mileage.singup.js"></script>
-	
+
 <body>
 	<article class="container">
 	<div class="page-header">
@@ -17,9 +16,9 @@
 	</div>
 	<div class="col-md-6 col-md-offset-3">
 		<form name="f" action="select.mileage" method="post">
-			<div class="form-group" class="form-control">
+			<div class="form-group" id ="money" name = "money" class="form-control">
 				<label for="money">결재 상품 선택</label>
-				<div class="btn-group input-group" data-toggle="buttons">
+				<div class="btn-group input-group" data-toggle="buttons"  name = "money">
 					<label class="btn btn-success"> 
 					<input type="radio"	id="money1" name="money" />1000원</label><!-- 스타일풀어보면 체크 되어 있어요 -->
 					<label class="btn btn-success"> 
@@ -31,13 +30,13 @@
 				</div>
 			</div>
 			
-			<div class="form-group" class="form-control">
-				<label for="moneytool">결재 수단</label>
-				<div class="btn-group input-group" data-toggle="buttons">
+			<div class="form-group" id="tool" name="tool" class="form-control">
+				<label for="tool">결재 수단</label>
+				<div class="btn-group input-group" name="tool" data-toggle="buttons">
 					<label class="btn btn-success"> 
-					<input type="radio"	id="moneytool1" name="moneytool" />휴대전화 </label>
+					<input type="radio"	id="tool1" name="tool" />휴대전화 </label>
 					<label class="btn btn-success"> 
-					<input type="radio"	id="moneytool2" name="moneytool" />신용카드 </label>
+					<input type="radio"	id="tool2" name="tool" />신용카드 </label>
 				</div>
 			</div>
 			<div class="form-group text-center">
@@ -52,7 +51,3 @@
 	<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
