@@ -59,7 +59,7 @@
 					<!-- <button type="submit" class="btn btn-default">Submit</button> -->
 				</form>
 			</div>
-			
+
 			<!-- 우측 상단 메뉴 -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
@@ -91,17 +91,9 @@
 										${memberDTO.name}님</h4>
 									<ul class="dropdown-menu" role="menu"
 										aria-labelledby="logindropMenu">
-<<<<<<< HEAD
-										<li role="presentation">
-										<a role="menuitem" tabindex="-1" href="#">${memberDTO.mileage }<a href ="mileage/MileageInsertForm.jsp">마일리지</a></a></li>
-=======
 										<li role="presentation"><a role="menuitem" tabindex="-1"
-<<<<<<< HEAD
-											href ="payment/mileage/insertMileage.jsp">${memberDTO.mileage } 마일리지</a></li>
-=======
-											href ="mileage/MileageInsertForm.jsp">${memberDTO.mileage } 마일리지</a></li>
->>>>>>> dc2423b82c37dcf379aed4b58de9b4865305f714
->>>>>>> 04299da609a81d55a9c55056ebcc02f2eedfdeb4
+											href="mileage/MileageInsertForm.jsp">${memberDTO.mileage }
+												마일리지</a></li>
 										<c:choose>
 											<c:when test="${memberDTO.grade == 1 }">
 												<li role="presentation"><a role="menuitem"
@@ -114,7 +106,8 @@
 											</c:otherwise>
 										</c:choose>
 										<li role="presentation" class="divider"></li>
-										<li role="presentation"><a href="content/online/curr_detailForm.jsp" target="_blank">강의실</a></li>
+										<li role="presentation"><a
+											href="content/online/curr_detailForm.jsp" target="_blank">강의실</a></li>
 										<li role="presentation"><a role="menuitem" tabindex="-1"
 											href="logout.member">로그아웃</a></li>
 									</ul>
