@@ -44,7 +44,6 @@
 <br>
 <br>
 <br>
-<a href ="mileage/MileageInsertForm.jsp">임시 마일리지 충전</a>
 <!-- 카테고리 메뉴 -->
 <nav>
 	<div class="col-lg-12">
@@ -77,7 +76,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 					<p>
 						<a href="#" class="btn btn-primary">Buy Now!</a> <a
-							href="cont_detail.content?num=0" class="btn btn-default">상세보기Go</a>
+							href="cont_detail.content?num=0" class="btn btn-default" >상세보기Go</a>
 					</p>
 				</div>
 			</div>

@@ -27,7 +27,7 @@
     <![endif]-->
 <title>재능 교육 사이트 - WhyNot?</title>
 </head>
-<body>
+<body style="overflow: hidden;">
 	<div>
 		<div class="panel panel-default"
 			style="float: left; height: 59em; width: 80%;">
@@ -41,7 +41,7 @@
 				<font>Q&A 게시판</font>
 			</div>
 			<!-- 게시판 글 영역 -->
-			<div class="panel-body">
+			<div style="overflow: scroll;">
 				<ul class="list-group" style="width: 100%; margin: 0; padding: 0;">
 					<li class="list-group-item">Cras justo odio</li>
 					<li class="list-group-item">Vestibulum at eros</li>
