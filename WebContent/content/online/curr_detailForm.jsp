@@ -18,7 +18,9 @@
 <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
-
+<!-- Custom Fonts -->
+<link href="../../css/usercurr_detail.min.css" rel="stylesheet"
+	type="text/css">
 <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
 <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
 <!--[if lt IE 9]>
@@ -36,20 +38,20 @@
 			<div class="panel-body">
 				<div style="height: 30em;">영상위치</div>
 			</div>
-			
+
 			<!-- Q&A게시판 영역 -->
-			<div class="panel-heading" style="vertical-align: middle;">
-				<font style="float: left;">Q&A 게시판</font>
-				<form class="navbar-form" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
+			<div class="panel-heading">
+				<font class="qnafont" style="float: left;">Q&A 게시판</font>
+				<div class="qnaform">
+					<form class="navbar-form" role="search">
+						<input type="text" class="qnainput" placeholder="질문 입력란" width="200px">
+						<button type="submit" class="btn btn-default">등록</button>
+					</form>
+				</div>
 			</div>
-			
+
 			<!-- 게시판 글 영역 -->
-			<div style="overflow:;">
+			<div>
 				<ul class="list-group" style="width: 100%; margin: 0; padding: 0;">
 					<li class="list-group-item">Cras justo odio</li>
 				</ul>

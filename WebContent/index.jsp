@@ -211,7 +211,7 @@
 				<br>
 				<li>서비스 소개</li>
 				<br>
-				<li>이용약관</li>
+				<li><a href="agreement.footer">이용약관</a></li>
 				<br>
 				<li>개인정보취급방침</li>
 				<br>

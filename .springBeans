@@ -11,6 +11,7 @@
 		<config>WebContent/WEB-INF/app-servlet.xml</config>
 		<config>WebContent/WEB-INF/content-servlet.xml</config>
 		<config>WebContent/WEB-INF/payment-servet.xml</config>
+		<config>WebContent/WEB-INF/footer-servlet.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
