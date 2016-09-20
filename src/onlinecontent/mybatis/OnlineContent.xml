@@ -22,4 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		into WN_PHOTO values (wn_photo_seq.currval,#{p_dto.mnum},#{p_dto.filename},#{p_dto.fileext},#{p_dto.filedir})
 	    select * from dual
 	</insert>
+	<select id="listContent" parameterType="int" resultType="map">
+	select WN_online.*, WN_PHOTO.FILENAME, WN_PHOTO.FILEDIR, WN_PHOTO.FILEEXT, WN_MEMBER.NAME from WN_ONLINE, WN_PHOTO, WN_MEMBER where WN_ONLINE.PTNUM = WN_PHOTO.PTNUM and WN_ONLINE.CTNUM = #{ctnum}
+	</select>
 </mapper> 

@@ -119,8 +119,17 @@ public class ContentController {
 		System.out.println("ContentController_listContent() 실행");
 		System.out.println(arg0.getParameter("ctnum")); // 나중에 목록 갖고오기용
 		int ctnum = Integer.parseInt(arg0.getParameter("ctnum"));
-		/*List<OnlineContentDBBean> list = OnlineContentMybatis.listOnlineContent(ctnum);*/
-		return new ModelAndView("content/contentList.jsp");
+		
+		//--- 카테고리 목록 
+		List<CategoryDBBean> cateList = CategoryDAO.listCategory();
+		
+		List<Object> contList = onlineContentDAO.listOnlineContent(ctnum);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("cateList",cateList);
+		mav.addObject("contList",contList);
+		mav.setViewName("content/contentList.jsp");
+		return mav;
 
 	}
 

@@ -17,9 +17,10 @@ public class OnlineContentDAOImpl implements OnlineContentDAO {
 	}
 
 	@Override
-	public List<OnlineContentDBBean> listOnlineContent() {
+	public List listOnlineContent(int ctnum) {
 		// TODO Auto-generated method stub
-		return null;
+		List list = OnlineContentMybatis.listOnlineContent(ctnum);
+		return list;
 
 	}
 
