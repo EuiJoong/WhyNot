@@ -3,7 +3,7 @@ package onlinecontent.model;
 public class OnlineContentDBBean {
 	Integer ocnum; 	//온라인컨텐츠번호
 	Integer ctnum; 	//카테고리번호
-	String mnum;	//작성자
+	Integer mnum;	//작성자
 	String title;	//제목
 	String content;	//내용
 	Integer price;	//가격
@@ -22,10 +22,10 @@ public class OnlineContentDBBean {
 	public void setCtnum(Integer ctnum) {
 		this.ctnum = ctnum;
 	}
-	public String getMnum() {
+	public Integer getMnum() {
 		return mnum;
 	}
-	public void setMnum(String mnum) {
+	public void setMnum(Integer mnum) {
 		this.mnum = mnum;
 	}
 	public String getTitle() {

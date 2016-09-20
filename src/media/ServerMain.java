@@ -26,7 +26,7 @@ public class ServerMain implements Runnable{
 				InputStream is = client.getInputStream();
 				DataInputStream dis = new DataInputStream(is);
 				//C:\\Users\\고경숙\\Desktop\\WhyNot_02\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\WhyNot\\video\\
-				String upDir = "E:\\java\\Main\\videoTest\\";
+				String upDir = "C:\\Users\\Administrator\\Desktop\\testvideo\\";
 				FileOutputStream fos = null;
 				
 				
@@ -65,10 +65,10 @@ public class ServerMain implements Runnable{
         		}//mp4가 아니면 인코딩 시작
         		//어떤 파일이든, mp4로 인코딩
         		System.out.println("인코딩 시작");
-        		String filedir="E:\\java\\Main\\videoTest\\";
+        		String filedir="C:\\Users\\Administrator\\Desktop\\testvideo\\";
         		System.out.println("filedir : "+filedir);
-        		File source = new File("E:\\java\\Main\\videoTest\\"+fileName);
-        		File target = new File("E:\\java\\Main\\videoTest\\"+fileNameE[0]+".mp4");
+        		File source = new File("C:\\Users\\Administrator\\Desktop\\testvideo\\"+fileName);
+        		File target = new File("C:\\Users\\Administrator\\Desktop\\testvideo\\"+fileNameE[0]+".mp4");
         		AudioAttributes audio = new AudioAttributes();
         		VideoAttributes video = new VideoAttributes();
         		audio.setCodec("libmp3lame");

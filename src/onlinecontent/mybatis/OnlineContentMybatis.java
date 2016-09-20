@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.ibatis.common.resources.Resources;
 
+import attachfile.model.PhotoDBBean;
 import attachfile.model.VideoDBBean;
 import onlinecontent.model.OnlineContentDBBean;
 
@@ -35,33 +36,26 @@ public class OnlineContentMybatis {
 
 	public static OnlineContentDBBean getContent(int num) {
 		// TODO Auto-generated method stub
-		int mnum = num;
-		OnlineContentDBBean dto = new OnlineContentDBBean();
-
-		SqlSession session = sqlMapper.openSession();
-		dto = (OnlineContentDBBean) session.selectOne("getContent", mnum);
-		session.commit();
-		System.out.println("session get");
-		session.close();
-		return dto;
-	}
-
-	public static List<OnlineContentDBBean> listOnlineContent() {
-		// TODO Auto-generated method stub
+		// int mnum = num;
+		// OnlineContentDBBean dto = new OnlineContentDBBean();
+		//
+		// SqlSession session = sqlMapper.openSession();
+		// dto = (OnlineContentDBBean) session.selectOne("getContent", mnum);
+		// session.commit();
+		// System.out.println("session get");
+		// session.close();
 		return null;
-
-		/*
-		 * List list=null; SqlSession session=sqlMapper.openSession();
-		 * list=session.selectList("listBoard"); session.close(); return list;
-		 * List list=null; try{ list=sqlMapper.queryForList("listBoard");
-		 * }catch(SQLException e){ System.out.println("listBoard 실행 에러"); }
-		 * return list;
-		 */
-
-		// 이런식으로.
 	}
 
-	public static void insertContent(VideoDBBean v_dto, int num) {
+	public static List<OnlineContentDBBean> listOnlineContent(int ctnum) {
+		// TODO Auto-generated method stub
+		SqlSession session = sqlMapper.openSession();
+		session.selectList("listBoard");
+		session.close();
+		return null;
+	}
+
+	public static void insertContent(OnlineContentDBBean oc_dto, PhotoDBBean p_dto, VideoDBBean v_dto) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlMapper.openSession();
 		/*
@@ -70,7 +64,15 @@ public class OnlineContentMybatis {
 		 * dto.getFiledir()); map.put("filename", dto.getFilename());
 		 * map.put("num", num);
 		 */
-		session.insert("insertContent", v_dto);
+		Map contentMap = new HashMap<>();
+		contentMap.put("oc_dto", oc_dto);
+		contentMap.put("p_dto", p_dto);
+		contentMap.put("v_dto", v_dto);
+		if (v_dto.getFilename() == null || v_dto.getFilename().equals(""))
+			session.insert("insertContent_videoNo", contentMap);
+		else
+			session.insert("insertContent_videoOk", contentMap);
+
 		session.commit();
 		System.out.println("session insert");
 		session.close();
