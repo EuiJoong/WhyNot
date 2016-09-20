@@ -93,7 +93,7 @@ public class ContentController {
 				// File uploadedFile = new File(fileName);
 				System.out.println("filename : " + fileName);
 				System.out.println("filesize : " + fileSize);
-				Socket client = new Socket("127.0.0.1", 12345);
+				Socket client = new Socket("192.168.80.1", 12345);
 				System.out.println("서버접속성공!!");
 				InputStream is = fileItem.getInputStream();
 				OutputStream os = client.getOutputStream();
@@ -177,15 +177,16 @@ public class ContentController {
 	@RequestMapping(value = "/cont_detail.content") // 인강 상세보기
 	public ModelAndView detailContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("ContentController_detailContent() 실행");
-		int mnum = Integer.parseInt(arg0.getParameter("mnum")); //구매자 회원번호
+/*		int mnum = Integer.parseInt(arg0.getParameter("mnum")); //구매자 회원번호
 		int ocnum = Integer.parseInt(arg0.getParameter("ocnum")); //온라인 컨텐츠 번호
 		
 		//결제 했는지 안했는지 확인
 		OnlinePaymentDBBean dto = PaymentMybatis.chkPurchaseOnline(mnum, ocnum);
 		boolean isPurchase = false;
 		if(mnum == dto.getMnum() && ocnum == dto.getOcnum()) //디비에 기록이 있으면
-			isPurchase = true;
-		return new ModelAndView("content/online/cont_detailForm.jsp","isPurchase",isPurchase);
+			isPurchase = true;*/
+		return new ModelAndView("content/online/cont_detailForm.jsp","isPurchase",true);
+		//return new ModelAndView("content/online/cont_detailForm.jsp");
 	}
 
 	// -------------- 커리큘럼 -----------------------------------
