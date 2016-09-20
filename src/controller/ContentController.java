@@ -137,7 +137,9 @@ public class ContentController {
 		// ===================================================================
 		arg0.setCharacterEncoding("UTF-8");
 		arg1.setCharacterEncoding("UTF-8");
-
+		System.out.println("제목:"+arg0.getParameter("title"));
+		System.out.println("내용:"+arg0.getParameter("content"));
+		
 		OnlineContentDBBean oc_dto = null;
 		PhotoDBBean p_dto = null;
 		VideoDBBean v_dto = null;
@@ -169,7 +171,7 @@ public class ContentController {
 						// 파일을 제외한 나머지 파라미터 처리
 						String name = fileItem.getFieldName();
 						System.out.println("값일때 : " + name);
-						String value = fileItem.getString();
+						String value = fileItem.getString("UTF-8");
 						System.out.println("값일때 : " + value);
 						Integer ptnum; // 사진번호
 						Integer vdnum; // 동영상번호

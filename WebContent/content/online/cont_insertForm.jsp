@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../top.jsp"%>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- css 는 밑에 링크 파일에!! -->
 <!-- Daum Web Editor -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/daumeditor/css/editor.css"
 	type="text/css" charset="utf-8" />
-	
+
 <script
 	src="${pageContext.request.contextPath}/daumeditor/js/editor_loader.js?environment=development"
 	type="text/javascript" charset="utf-8"></script>
@@ -135,9 +136,6 @@
 						: </label> <input type="file" class="fileform" id="video-file"
 						name="video-file">
 				</div>
-
-
-
 
 				<!-- 에디터 컨테이너 시작 -->
 				<div id="tx_trex_container " class="tx-editor-container">
@@ -722,6 +720,31 @@
 		 */
 		function validForm(editor) {
 			// Place your validation logic here
+			if (document.tx_editor_form.title.value == null
+					|| document.tx_editor_form.title.value == "") {
+				alert("제목을 입력해 주세요.");
+				tx_editor_form.title.focus();
+				return false;
+			}
+
+			if (document.tx_editor_form.price.value == null
+					|| document.tx_editor_form.price.value == "") {
+				alert("가격을 입력해 주세요.");
+				tx_editor_form.price.focus();
+				return false;
+			}
+
+			var exptext = /[0-9]/;
+			if (exptext.test(document.tx_editor_form.price.value) == false) {
+				alert("가격은 숫자로만 입력이 가능합니다.");
+				document.f.id.focus();
+				return false;
+			}
+
+			if (!document.getElementById('image-file').value) {
+				alert("이미지를 첨부해 주세요.");
+				return false;
+			}
 
 			// sample : validate that content exists
 			var validator = new Trex.Validator();
@@ -784,5 +807,5 @@
 	<div>
 		<button onclick='saveContent()'>저장</button>
 	</div>
-	</div>
-	<%@ include file="../../bottom.jsp"%>
+</div>
+<%@ include file="../../bottom.jsp"%>
