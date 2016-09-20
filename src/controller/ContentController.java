@@ -26,6 +26,7 @@ import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
 import onlinecontent.model.OnlineContentDAO;
 import onlinecontent.model.OnlineContentDBBean;
+import onlinecontent.mybatis.OnlineContentMybatis;
 import onlinecurriculum.board.model.OnlineCurriculumBoardDAO;
 import onlinecurriculum.model.OnlineCurriculumDAO;
 import payment.model.OnlinePaymentDBBean;
@@ -117,9 +118,9 @@ public class ContentController {
 	public ModelAndView listContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("ContentController_listContent() 실행");
 		System.out.println(arg0.getParameter("ctnum")); // 나중에 목록 갖고오기용
-		CategoryDBBean dto = new CategoryDBBean();
-		List<CategoryDBBean> list = CategoryMybatis.listCategory();
-		return new ModelAndView("content/contentList.jsp", "cateList", list);
+		int ctnum = Integer.parseInt(arg0.getParameter("ctnum"));
+		/*List<OnlineContentDBBean> list = OnlineContentMybatis.listOnlineContent(ctnum);*/
+		return new ModelAndView("content/contentList.jsp");
 
 	}
 
