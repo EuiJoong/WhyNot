@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.ibatis.common.resources.Resources;
 
+import attachfile.model.PhotoDBBean;
 import attachfile.model.VideoDBBean;
 import onlinecontent.model.OnlineContentDBBean;
 
@@ -35,15 +36,15 @@ public class OnlineContentMybatis {
 
 	public static OnlineContentDBBean getContent(int num) {
 		// TODO Auto-generated method stub
-		int mnum = num;
-		OnlineContentDBBean dto = new OnlineContentDBBean();
-
-		SqlSession session = sqlMapper.openSession();
-		dto = (OnlineContentDBBean) session.selectOne("getContent", mnum);
-		session.commit();
-		System.out.println("session get");
-		session.close();
-		return dto;
+//		int mnum = num;
+//		OnlineContentDBBean dto = new OnlineContentDBBean();
+//
+//		SqlSession session = sqlMapper.openSession();
+//		dto = (OnlineContentDBBean) session.selectOne("getContent", mnum);
+//		session.commit();
+//		System.out.println("session get");
+//		session.close();
+		return null;
 	}
 
 	public static List<OnlineContentDBBean> listOnlineContent() {
@@ -61,7 +62,7 @@ public class OnlineContentMybatis {
 		// 이런식으로.
 	}
 
-	public static void insertContent(VideoDBBean v_dto, int num) {
+	public static void insertContent(OnlineContentDBBean oc_dto, PhotoDBBean p_dto, VideoDBBean v_dto) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlMapper.openSession();
 		/*
@@ -70,7 +71,15 @@ public class OnlineContentMybatis {
 		 * dto.getFiledir()); map.put("filename", dto.getFilename());
 		 * map.put("num", num);
 		 */
-		session.insert("insertContent", v_dto);
+		Map contentMap = new HashMap<>();
+		contentMap.put("oc_dto", oc_dto);
+		contentMap.put("p_dto", p_dto);
+		contentMap.put("v_dto", v_dto);
+		if(v_dto.getFilename()==null || v_dto.getFilename().equals("")) 
+			session.insert("insertContent_videoNo", contentMap);
+		else
+			session.insert("insertContent_videoOk", contentMap);
+			
 		session.commit();
 		System.out.println("session insert");
 		session.close();
