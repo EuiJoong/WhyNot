@@ -65,17 +65,39 @@ public class ContentController {
 		String fileName = fileItem.getName();
 		long fileSize = fileItem.getSize() / 1024 + (fileItem.getSize() % 1024 > 0 ? 1 : 0);
 		// File uploadedFile = new File(fileName);
-		System.out.println("filename : " + fileName);
-		System.out.println("filesize : " + fileSize);
-		Socket client = new Socket("127.0.0.1", 12345);
+		
+		String[] fileNameE=fileName.split("[.]");
+		String ext=fileNameE[fileNameE.length-1];//확장자
+		String filetitle="";
+		
+		if(fileNameE.length>2)
+		{
+			for(int i=0;i<fileNameE.length-1;i++)
+			{
+				filetitle+=fileNameE[i]+".";								}
+		}
+		
+		//이제 난수
+		for(int i=0;i<16;i++){
+			filetitle+=(int)(Math.random()*9);
+		}
+		filetitle+=".";
+		//filetitle:파일명, ext:파일 확장자
+		String result=filetitle+ext;
+		
+		
+		//System.out.println("filename : " + fileName);
+		//System.out.println("filesize : " + fileSize);
+		Socket client = new Socket("192.168.0.9", 12345);
 		System.out.println("서버접속성공!!");
 		InputStream is = fileItem.getInputStream();
 		OutputStream os = client.getOutputStream();
 		DataOutputStream dout = new DataOutputStream(os);
 
+		
 		dout.writeLong(fileSize);
-		dout.writeUTF(fileName);
-		System.out.println("경로 : " + fileName);
+		dout.writeUTF(result);
+		System.out.println("경로 : " + result);
 		byte[] buffer = new byte[1024];
 
 		int len;
@@ -97,14 +119,14 @@ public class ContentController {
 		 */
 		VideoDBBean v_dto = new VideoDBBean();
 		// DB에 실제로 저장되는 경로
-		String filedir = "C:\\Users\\Administrator\\Desktop\\testvideo\\";
-		String[] fileNameE = fileName.split("[.]");// 0: 파일 네임, 1: 파일
+		String filedir = "C:\\Users\\고경숙\\Documents\\WhyNot";
+		//String[] fileNameE = fileName.split("[.]");// 0: 파일 네임, 1: 파일
 													// 확장자
 		System.out.println(fileNameE.length);
 		System.out.println(fileNameE[0]);
 		System.out.println(fileNameE[1]);
 
-		v_dto.setFilename(fileNameE[0] + ".mp4");
+		v_dto.setFilename(filetitle + "mp4");
 		v_dto.setFiledir(filedir);
 		v_dto.setMnum(0);
 		v_dto.setVdnum(0);
@@ -147,7 +169,7 @@ public class ContentController {
 		boolean isMultipart = ServletFileUpload.isMultipartContent(arg0);
 
 		if (isMultipart) {
-			File temporaryDir = new File("C:\\Users\\Administrator\\Desktop\\testvideo\\");// 동영상
+			File temporaryDir = new File("C:\\Users\\고경숙\\Documents\\WhyNot");// 동영상
 																		// 임시저장폴더
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			System.out.println("factory 생성성공");
@@ -155,7 +177,7 @@ public class ContentController {
 			factory.setRepository(temporaryDir);
 			ServletFileUpload upload = new ServletFileUpload(factory);
 			System.out.println("ServletFileUpload 생성성공");
-			upload.setSizeMax(2 * 1024 * 1024 * 1024);// 파일최대 제한용량
+			upload.setSizeMax(3 * 1024 * 1024 * 1024);// 파일최대 제한용량
 			List items = null;
 			try {
 				items = upload.parseRequest(arg0);
@@ -174,6 +196,8 @@ public class ContentController {
 						System.out.println("값일때 : " + name);
 						String value = fileItem.getString("UTF-8");
 						System.out.println("값일때 : " + value);
+						if(value==null || value.equals(""))
+							value="0";
 						Integer ptnum; // 사진번호
 						Integer vdnum; // 동영상번호
 						switch (name) {
@@ -202,7 +226,7 @@ public class ContentController {
 						case "image-file": // image파일 처리
 							System.out.println("사진파일일때 : " + name);
 							String[] nameArr = fileItem.getName().split("[.]");
-							String upPath = "C:\\Users\\Administrator\\Desktop\\testvideo\\";
+							String upPath = "C:\\Users\\고경숙\\Documents\\WhyNot";
 							p_dto = new PhotoDBBean();
 							p_dto.setFiledir(upPath);
 							p_dto.setFilename(nameArr[0]);
@@ -212,8 +236,15 @@ public class ContentController {
 							break;
 						case "video-file": // video파일 처리
 							System.out.println("비디오파일일때 : " + name);
+							
+							//여기서 난수발생해야 dao에 들어가겠구나!
+							
+
+							
+							
 							if (fileItem.getName() == null || fileItem.getName().equals(""))
 								break;
+							
 							v_dto = insertVideo(fileItem); // video파일 전송 및 인코딩
 															// 메소드 호출
 							break;
