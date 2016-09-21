@@ -64,7 +64,7 @@
 				<%-- <c:out value="${contData.FILEDIR}${contData.FILENAME }.${contData.FILEEXT }"></c:out> --%>
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
-						<img src="" style="width: 15em; height: 10em;"
+						<img src="${pageContext.request.contextPath}/images/${contData.FILENAME}.${contData.FILEEXT}" style="width: 15em; height: 10em;"
 							alt="이미지 출력이 ㅠㅠ" />
 						<div class="caption">
 							<h3>

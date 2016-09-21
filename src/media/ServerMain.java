@@ -26,13 +26,12 @@ public class ServerMain implements Runnable{
 				InputStream is = client.getInputStream();
 				DataInputStream dis = new DataInputStream(is);
 				//C:\\Users\\고경숙\\Desktop\\WhyNot_02\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\WhyNot\\video\\
-				String upDir = "D:\\testvideo\\";
+				String upDir = "C:\\Users\\Administrator\\Desktop\\testvideo";
 				FileOutputStream fos = null;
 				
 				
 				long data = dis.readLong();
 				String fileName = dis.readUTF();
-				
 				
 /*				String[] fileNameE=fileName.split("[.]");//0: 파일 네임, 1: 파일 확장자
 				String ext=fileNameE[fileNameE.length-1];
@@ -50,12 +49,6 @@ public class ServerMain implements Runnable{
 				
 				filetitle+=".";
 				System.out.println("filetitle : "+filetitle);*/
-				
-				
-				
-				
-				
-				
 				
 				File file = new File(fileName);
 				//System.out.println("서버측에서 받아온 파일 네임 : "+fileName);
