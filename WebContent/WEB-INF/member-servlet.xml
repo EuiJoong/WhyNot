@@ -6,8 +6,10 @@
 	<bean id="memberDAO" class="member.model.MemberDAOImpl">
 	</bean>
 	<bean id="loginModel" class="login.model.LoginModel"></bean>
+	<bean id="categoryDAO" class="category.model.CategoryDAOImpl" />
 	<bean class="controller.MemberController">
 		<property name="memberDAO" ref="memberDAO"/>
 		<property name="loginModel" ref="loginModel"></property>
+		<property name="categoryDAO" ref="categoryDAO"></property>  
 	</bean>
 </beans>

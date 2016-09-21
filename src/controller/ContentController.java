@@ -30,6 +30,7 @@ import onlinecontent.mybatis.OnlineContentMybatis;
 import onlinecurriculum.board.model.OnlineCurriculumBoardDAO;
 import onlinecurriculum.model.OnlineCurriculumDAO;
 import payment.model.OnlinePaymentDBBean;
+import payment.model.PaymentDAO;
 import payment.mybatis.PaymentMybatis;
 import attachfile.*;
 
@@ -39,10 +40,11 @@ public class ContentController {
 	private OnlineContentDAO onlineContentDAO;
 	private OnlineCurriculumDAO onlineCurriculumDAO;
 	private OnlineCurriculumBoardDAO onlineCurriculumBoardDAO;
-	private CategoryDAO CategoryDAO;
+	private CategoryDAO categoryDAO;
+	private PaymentDAO paymentDAO;
 
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
-		this.CategoryDAO = categoryDAO;
+		this.categoryDAO = categoryDAO;
 	}
 
 	public void setOnlineContentDAO(OnlineContentDAO onlineContentDAO) {
@@ -56,8 +58,13 @@ public class ContentController {
 	public void setOnlineCurriculumBoardDAO(OnlineCurriculumBoardDAO onlineCurriculumBoardDAO) {
 		this.onlineCurriculumBoardDAO = onlineCurriculumBoardDAO;
 	}
+	public void setPaymentDAO(PaymentDAO paymentDAO) {
+		this.paymentDAO = paymentDAO;
+	}
+	
 
 	// -------------- 컨텐츠 -----------------------------------
+
 
 	public VideoDBBean insertVideo(FileItem fileItem) throws Exception {
 
@@ -119,15 +126,15 @@ public class ContentController {
 		System.out.println("ContentController_listContent() 실행");
 		System.out.println(arg0.getParameter("ctnum")); // 나중에 목록 갖고오기용
 		int ctnum = Integer.parseInt(arg0.getParameter("ctnum"));
-		
-		//--- 카테고리 목록 
-		List<CategoryDBBean> cateList = CategoryDAO.listCategory();
-		
+
+		// --- 카테고리 목록
+		List<CategoryDBBean> cateList = categoryDAO.listCategory();
+
 		List<Object> contList = onlineContentDAO.listOnlineContent(ctnum);
-		
+		System.out.println(contList.size());
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("cateList",cateList);
-		mav.addObject("contList",contList);
+		mav.addObject("cateList", cateList);
+		mav.addObject("contList", contList);
 		mav.setViewName("content/contentList.jsp");
 		return mav;
 
@@ -147,9 +154,9 @@ public class ContentController {
 		// ===================================================================
 		arg0.setCharacterEncoding("UTF-8");
 		arg1.setCharacterEncoding("UTF-8");
-		System.out.println("제목:"+arg0.getParameter("title"));
-		System.out.println("내용:"+arg0.getParameter("content"));
-		
+		System.out.println("제목:" + arg0.getParameter("title"));
+		System.out.println("내용:" + arg0.getParameter("content"));
+
 		OnlineContentDBBean oc_dto = null;
 		PhotoDBBean p_dto = null;
 		VideoDBBean v_dto = null;
@@ -157,7 +164,7 @@ public class ContentController {
 
 		if (isMultipart) {
 			File temporaryDir = new File("C:\\Users\\Administrator\\Desktop\\testvideo\\");// 동영상
-																		// 임시저장폴더
+			// 임시저장폴더
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			System.out.println("factory 생성성공");
 			factory.setSizeThreshold(1 * 1024 * 1024);// 메모리 임시저장 제한용량
@@ -246,15 +253,19 @@ public class ContentController {
 	@RequestMapping(value = "/cont_detail.content") // 인강 상세보기
 	public ModelAndView detailContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("ContentController_detailContent() 실행");
-		int mnum = Integer.parseInt(arg0.getParameter("mnum")); // 구매자 회원번호
-		int ocnum = Integer.parseInt(arg0.getParameter("ocnum")); // 온라인 컨텐츠 번호
-
-		// 결제 했는지 안했는지 확인
-		OnlinePaymentDBBean dto = PaymentMybatis.chkPurchaseOnline(mnum, ocnum);
-		boolean isPurchase = false;
-		if (mnum == dto.getMnum() && ocnum == dto.getOcnum()) // 디비에 기록이 있으면
-			isPurchase = true;
-		return new ModelAndView("content/online/cont_detailForm.jsp", "isPurchase", isPurchase);
+		ModelAndView mav = new ModelAndView();
+		
+		if (arg0.getParameter("mnum") != null) {// 비로그인 구별
+			int mnum = Integer.parseInt(arg0.getParameter("mnum")); // 로그인자 회원번호
+			int ocnum = Integer.parseInt(arg0.getParameter("ocnum")); // 온라인 컨텐츠
+			OnlinePaymentDBBean dto = paymentDAO.chkPurchaseOnline(mnum, ocnum);
+			boolean isPurchase = false;// 결제내역 
+			if(dto != null)
+				isPurchase = true; //결제 내역이 있으면 
+			mav.addObject("isPurchase", isPurchase);
+		}
+		mav.setViewName("content/online/cont_detailForm.jsp");
+		return mav;
 	}
 
 	// -------------- 커리큘럼 -----------------------------------

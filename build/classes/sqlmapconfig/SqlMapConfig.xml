@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </dataSource>
 </environment>
 </environments>
+
 <mappers>
 <!-- *.mybatis/*.xml mapper 추가하는 곳 -->
 <mapper resource="member/mybatis/Member.xml"/>
@@ -33,6 +34,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <mapper resource="onlinecurriculum/mybatis/OnlineCurriculum.xml"/>
 <mapper resource="onlinecurriculum/board/mybatis/OnlineCurriculumBoard.xml"/>
 <mapper resource="payment/mybatis/Payment.xml"/>
+
 </mappers>
 </configuration>
 <!--  파일에 설정만 바꾸어 줌-->

@@ -11,7 +11,7 @@ public class LoginModel {
 	public static final int NOT_ID = 1;
 	public static final int NOT_PW = 2;
 	public static final int ERR = -1;
-
+	
 	private MemberDBBean dto;
 
 	public MemberDBBean getDto() {

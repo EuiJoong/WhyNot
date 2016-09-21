@@ -23,6 +23,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    select * from dual
 	</insert>
 	<select id="listContent" parameterType="int" resultType="map">
-	select WN_online.*, WN_PHOTO.FILENAME, WN_PHOTO.FILEDIR, WN_PHOTO.FILEEXT, WN_MEMBER.NAME from WN_ONLINE, WN_PHOTO, WN_MEMBER where WN_ONLINE.PTNUM = WN_PHOTO.PTNUM and WN_ONLINE.CTNUM = #{ctnum}
+	select WN_online.*, WN_PHOTO.FILENAME, WN_PHOTO.FILEDIR, WN_PHOTO.FILEEXT, WN_MEMBER.NAME from WN_ONLINE, WN_PHOTO, WN_MEMBER where WN_ONLINE.PTNUM = WN_PHOTO.PTNUM and WN_ONLINE.CTNUM = #{ctnum} and WN_MEMBER.MNUM = WN_PHOTO.MNUM
 	</select>
 </mapper> 

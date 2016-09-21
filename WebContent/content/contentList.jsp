@@ -4,6 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="css/usercont_list.min.css" rel="stylesheet">
 <script src="js/contentList.js"></script>
+<c:set var="memberDTO" value="${memberDTO }" />
 <br>
 <br>
 <nav>
@@ -58,17 +59,34 @@
 			</p>
 		</c:when>
 		<c:otherwise>
+			<!-- img/defaultpro.png -->
 			<c:forEach var="contData" items="${contList }">
-			<%-- <c:out value="${contData.FILEDIR}${contData.FILENAME }.${contData.FILEEXT }"/> --%>
+				<%-- <c:out value="${contData.FILEDIR}${contData.FILENAME }.${contData.FILEEXT }"></c:out> --%>
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
-						a<img  src="C:\\Users\\Administrator\\Desktop\\testvideo\\defaultpro.png" alt="http://placehold.it/800x500"">
+						<img src="" style="width: 15em; height: 10em;"
+							alt="이미지 출력이 ㅠㅠ" />
 						<div class="caption">
-							<h3><c:out value="${contData.TITLE }"/></h3>
-							<p><c:out value="${contData.NAME }"/></p>
+							<h3>
+								<c:out value="${contData.TITLE }" />
+							</h3>
 							<p>
-								<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-									class="btn btn-default">More Info</a>
+								<c:out value="${contData.NAME }" />
+							</p>
+							<p>
+								<c:choose>
+									<c:when test="${memberDTO == null }">
+										<a
+											href="cont_detail.content?ocnum=${contData.OCNUM }"
+											class="btn btn-default">More Info</a>
+									</c:when>
+									<c:otherwise>
+										<a href="#" class="btn btn-primary">Buy Now!</a>
+										<a
+											href="cont_detail.content?mnum=${memberDTO.mnum }&ocnum=${contData.OCNUM }"
+											class="btn btn-default">More Info</a>
+									</c:otherwise>
+								</c:choose>
 							</p>
 						</div>
 					</div>

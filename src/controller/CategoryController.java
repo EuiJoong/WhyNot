@@ -23,10 +23,10 @@ import category.model.CategoryDBBean;
 @Controller
 public class CategoryController {
 
-	private CategoryDAO CategoryDAO;
+	private CategoryDAO categoryDAO;
 
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
-		this.CategoryDAO = categoryDAO;
+		this.categoryDAO = categoryDAO;
 	}
 
 
@@ -46,7 +46,7 @@ public class CategoryController {
 
 		CategoryDBBean dto = new CategoryDBBean();
 		dto.setName(arg0.getParameter("name"));
-		CategoryDAO.insertCategory(dto);
+		categoryDAO.insertCategory(dto);
 		
 		return new ModelAndView("list.cate");
 	}
@@ -56,14 +56,14 @@ public class CategoryController {
 		System.out.println("CategoryController_listCategory() 실행");
 		
 		CategoryDBBean dto = new CategoryDBBean();
-		List<CategoryDBBean> list = CategoryDAO.listCategory();
+		List<CategoryDBBean> list = categoryDAO.listCategory();
 		return new ModelAndView("admin/category/cate_listForm.jsp","cateList",list);
 	}
 
 	@RequestMapping(value = "/delete.cate")
 	public ModelAndView deleteCategory(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("CategoryController_listCategory() 실행");
-		CategoryDAO.deleteCategory(Integer.parseInt(arg0.getParameter("ctnum")));
+		categoryDAO.deleteCategory(Integer.parseInt(arg0.getParameter("ctnum")));
 
 		return new ModelAndView("list.cate");
 	}
@@ -81,7 +81,7 @@ public class CategoryController {
 		CategoryDBBean dto = new CategoryDBBean();
 		dto.setName(arg0.getParameter("name"));
 		dto.setCtnum(Integer.parseInt(arg0.getParameter("ctnum")));
-		CategoryDAO.updateCategory(dto);
+		categoryDAO.updateCategory(dto);
 		
 		return new ModelAndView("list.cate");
 	}
@@ -97,7 +97,7 @@ public class CategoryController {
 			url = "insert.cate";
 			msg = "값을 입력하세요!";
 		}else{
-		Boolean chk = CategoryDAO.chkCategory(arg0.getParameter("name"));
+		Boolean chk = categoryDAO.chkCategory(arg0.getParameter("name"));
 		
 		if(chk){
 			msg = "중복!";

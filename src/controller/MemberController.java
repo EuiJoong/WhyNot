@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
 import login.model.LoginModel;
@@ -28,7 +29,7 @@ public class MemberController {
 
 	private MemberDAO memberDAO;
 	private LoginModel loginModel;
-
+	private CategoryDAO categoryDAO;
 	public void setMemberDAO(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
@@ -37,13 +38,19 @@ public class MemberController {
 		this.loginModel = loginModel;
 	}
 	
+	public void setCategoryDAO(CategoryDAO categoryDAO) {
+		this.categoryDAO = categoryDAO;
+	}
 	
+	
+
 	// --------------- 사용자 ---------------------------
 	@RequestMapping(value = "/insert.member")
 	public ModelAndView insertFormMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("MemberController_insertFormMember() 실행");
 		
 		CategoryDBBean dto = new CategoryDBBean();
+		/*categoryDAO.listCategory();*/
 		List<CategoryDBBean> list = CategoryMybatis.listCategory();
 		return new ModelAndView("member/insertMemberForm.jsp","cateList",list);
 
