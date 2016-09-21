@@ -13,4 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="chkPurchaseOnline" parameterType="HashMap" resultType="OnlinePaymentDTO">
 	select * from wn_onpayment where mnum = #{mnum} and ocnum = #{ocnum}
 </select>
+<!-- 마일리지 구매 -->
+<insert id="purchaseMileage" parameterType="MileagePaymentDTO">
+	insert into WN_BEAN values (WN_BEAN_seq.nextval, #{mnum}, sysdate, #{amount}, #{bway})
+</insert>
 </mapper>

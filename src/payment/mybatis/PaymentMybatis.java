@@ -10,15 +10,16 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.ibatis.common.resources.Resources;
 
+import payment.model.MileagePaymentDBBean;
 import payment.model.OnlinePaymentDBBean;
 
 public class PaymentMybatis {
 	private static SqlSessionFactory sqlMapper;
 	static {
 		try {
-			// Reader = 위치 지정
+			// Reader = 위치 지정 
 			Reader reader = Resources.getResourceAsReader("sqlmapconfig/SqlMapConfig.xml");
-			// 1.SqlMapConfig.xml
+			//1.SqlMapConfig.xml 
 			// 들어오는 값을 지정 시켜줌
 			sqlMapper = new SqlSessionFactoryBuilder().build(reader);
 			// 마이바티스로 바뀌면서 세션타입으로 처리를 해주게 됌
@@ -60,4 +61,15 @@ public class PaymentMybatis {
 		session.commit(); // insert는 반드시 commit()를 해줘야 데이터가 쓰여짐
 		session.close();
 	} 
+	
+
+	//마일리지 구매 (충전)
+	public static void purchaseMileage(MileagePaymentDBBean dto){
+		System.out.println("PaymentMybatis_purchaseMileage() 실행");
+		SqlSession session = sqlMapper.openSession();
+		session.insert("purchaseMileage", dto);
+		session.commit(); // insert는 반드시 commit()를 해줘야 데이터가 쓰여짐
+		session.close();
+	} 
 }
+

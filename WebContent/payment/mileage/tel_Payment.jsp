@@ -1,24 +1,106 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
-<link href="css/user_payment.min.css" rel="stylesheet">
+<link href="../../css/user_payment.min.css" rel="stylesheet">
+<script type="text/JavaScript">
 
-<script type="text/JavaScript" src="js/mileage.singup.js"></script>
 
-<body>
-	<article class="container">
+function isCom() {
+
+	if (!$(':input:radio[name=tel_company]:checked').val()) {
+		alert("통신사를 선택해 주세요");
+		exit;
+	}
+}
+
+function isNum() {
+	
+	if (document.f.tel_num.value == "") {
+		alert("휴대전화번호를 적어주세요");
+		document.f.tel_num.focus();
+		exit;
+	}
+	
+	var exptext = /([0-9])+/g//숫자만
+	
+	if(	exptext.test(document.f.tel_num.value)==false){
+		alert("휴대전화번호가 이상합니다!!");
+		document.f.tel_num.focus();
+		exit;
+	}
+	
+	
+	if (document.f.tel_cnum1.value == ""||
+		document.f.tel_cnum2.value == "") {
+		alert("주민 번호를 적어주세요");
+		document.f.card_num.card_num1.focus();
+		exit;
+	}
+	
+	/* if(	exptext.test(document.f.tel_cnum1.value)==false||
+		exptext.test(document.f.tel_cnum2.value)==false	){
+		alert("주민 번호가 이상합니다!!");
+		document.f.tel_cnum1.focus();
+		exit;
+	} */
+	
+	
+}
+
+function chkBoxCheck(intChkNumber) {
+
+		if (eval("document.f.box[" + 0 + "].checked") == true) {
+		for (j = 1; j < 4; j++) {
+		document.f.box[j].checked = true;
+			}
+		}
+}
+
+function isBox() {
+
+	for (j = 1; j < 4; j++) {
+	if (eval("document.f.box[" + j + "].checked") != true) {
+		alert("약관에 동의해 주세요!");
+		exit;
+		}
+	}
+
+}
+
+function tel_chk() {
+
+	if(isCom()){
+		return;
+	}if(isNum()){
+		return;
+	}if(isBox()){
+		return;
+	}
+	document.f.submit();
+	
+}
+
+
+
+
+
+</script>
+
+<body style="padding: 20px">
 	<div class="page-header">
 		<h1>
 			휴대폰 충전
 		</h1>
 	</div>
 	<div class="col-md-6 col-md-offset-3">
-		<form name="f" action="tel.mileage" method="post">
+		<form name="f" action="/WhyNot/purchase.payment" method="post">
+			<input type="hidden" name = "mnum" value="${param.mnum}">
+			<input type="hidden" name = "bway" value="${param.bway}">
+			<input type="hidden" name = "amount" value="${param.amount}">
 		<div class ="label">
-		<label>결제 금액${money}원</label>
+		<label>결제 금액${param.amount}원</label>
 		</div><br><br>
 		<div class="form-group" id = "tel_company">
 			<label for="tel_company">이동 통신사</label>
@@ -35,7 +117,8 @@
 		</div><br>
 		<label>주민등록번호</label><br>
 		<div>
-		<input type="text" id = "tel_cnum1" name="tel_cnum1" class="form-control" maxlength="8"> - <input type="text" id = "tel_cnum2" name="tel_cnum2" class="form-control" maxlength="1">XXXXXX
+		<input type="text" id = "tel_cnum1" name="tel_cnum1" class="form-control" maxlength="6"> - 
+		<input type="text" id = "tel_cnum2" name="tel_cnum2" class="form-control" maxlength="1">XXXXXX
 		</div>
 		<div class="form-group">
 				<h4>약관</h4>
@@ -98,7 +181,7 @@
 			<div class="form-group text-center">
 		</div>
 			<div class="form-group text-center">
-				<button type="submit" class="btn btn-info" onclick="card_chk()">결재요청<i class="fa fa-check spaceLeft"></i></button>
+				<button type="button" class="btn btn-info" onclick="tel_chk()">결재요청<i class="fa fa-check spaceLeft"></i></button>
 				<button type="button" class="btn btn-warning" onclick="location.href='main.app'">취소<i class="fa fa-times spaceLeft"></i></button>
 			</div>
 	</form>

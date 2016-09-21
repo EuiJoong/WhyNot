@@ -12,7 +12,7 @@
 </c:if>
 <!-- 상단 슬라이드 -->
 <!-- Header Carousel -->
-<header id="myCarousel" class="carousel slide">
+<header id="myCarousel	" class="carousel slide">
 	<!-- Indicators -->
 	<ol class="carousel-indicators">
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>

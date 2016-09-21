@@ -21,8 +21,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public List<CategoryDBBean> listCategory() {
-		System.out.println("CategoryDAOImpl_ListCategory() 角青");
-		return CategoryMybatis.listCategory(); 
+		System.out.println("CategoryDAOImpl_listCategory() 角青");
+		List<CategoryDBBean> list = CategoryMybatis.listCategory(); 
+		return list;
 	}
 
 	@Override
@@ -31,7 +32,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		System.out.println("CategoryDAOImpl_insertCategory() 角青");
 		CategoryMybatis.insertCate(dto); 
 		System.out.println("己傍!");
-	}
+	} 
 
 	@Override
 	public void deleteCategory(int ctnum) {

@@ -8,5 +8,4 @@
 <bean class="controller.PaymentController">
 	<property name="paymentDAO" ref="paymentDAO"></property>
 </bean>
-
 </beans>

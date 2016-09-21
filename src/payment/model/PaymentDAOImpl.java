@@ -26,9 +26,12 @@ public class PaymentDAOImpl implements PaymentDAO {
 		
 	}
 
+
 	@Override
 	public void purchaseMileage(MileagePaymentDBBean mileage_dto) {
-		// TODO Auto-generated method stub
+		System.out.println("PaymentDAOImpl_purchaseMileage() 실행");
+		PaymentMybatis.purchaseMileage(mileage_dto);
+		System.out.println("성공!");
 		
 	}
 

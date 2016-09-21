@@ -13,11 +13,16 @@ import category.mybatis.CategoryMybatis;
 @Controller
 public class MainController {
 	
+	private CategoryDAO categoryDAO;
+	
+	public void setCategoryDAO(CategoryDAO categoryDAO) {
+		this.categoryDAO = categoryDAO;
+	}
+
 	@RequestMapping(value="/main.app")
 	public ModelAndView goMain(){//user메인 페이지 이동
 		System.out.println("MainController_ goMain() 실행");
-		CategoryDBBean dto = new CategoryDBBean();
-		List<CategoryDBBean> list = CategoryMybatis.listCategory();
+		List<CategoryDBBean> list = categoryDAO.listCategory();
 		return new ModelAndView("index.jsp","cateList",list);
 	}
 	
