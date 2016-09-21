@@ -10,7 +10,7 @@ public interface OnlineContentDAO {
 	
 	//---- User ---------
 	public OnlineContentDBBean getContent(int num); //인강(학교) - 상세보기
-	public List<OnlineContentDBBean> listOnlineContent(); //인강(학교) - 전체   
+	public List listOnlineContent(int ctnum); //인강(학교) - 전체   
 	public void insertContent(OnlineContentDBBean oc_dto, PhotoDBBean p_dto, VideoDBBean v_dto); //인강(학교) - 등록
 	public void updateContent(OnlineContentDBBean dto ,int num); //인강(학교) - 수정
 	

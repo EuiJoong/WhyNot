@@ -47,12 +47,12 @@ public class OnlineContentMybatis {
 		return null;
 	}
 
-	public static List<OnlineContentDBBean> listOnlineContent(int ctnum) {
+	public static List listOnlineContent(int ctnum) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlMapper.openSession();
-		session.selectList("listBoard");
+		List list = session.selectList("listContent", ctnum);
 		session.close();
-		return null;
+		return list;
 	}
 
 	public static void insertContent(OnlineContentDBBean oc_dto, PhotoDBBean p_dto, VideoDBBean v_dto) {

@@ -51,47 +51,32 @@
 <!-- /.row -->
 <div class="row text-center">
 
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
+	<c:choose>
+		<c:when test="${contList.size() == 0 }">
+			<p>
+				<c:out value="해당된 카테고리 내에서 등록된 컨텐츠가 없습니다." />
+			</p>
+		</c:when>
+		<c:otherwise>
+			<c:forEach var="contData" items="${contList }">
+			<%-- <c:out value="${contData.FILEDIR}${contData.FILENAME }.${contData.FILEEXT }"/> --%>
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail">
+						a<img  src="C:\\Users\\Administrator\\Desktop\\testvideo\\defaultpro.png" alt="http://placehold.it/800x500"">
+						<div class="caption">
+							<h3><c:out value="${contData.TITLE }"/></h3>
+							<p><c:out value="${contData.NAME }"/></p>
+							<p>
+								<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+									class="btn btn-default">More Info</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
-		</div>
-	</div>
 
 </div>
 <!-- ------------------------------------------------------------------------- -->

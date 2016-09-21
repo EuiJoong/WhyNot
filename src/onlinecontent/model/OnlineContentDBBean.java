@@ -1,5 +1,7 @@
 package onlinecontent.model;
 
+import attachfile.model.PhotoDBBean;
+
 public class OnlineContentDBBean {
 	Integer ocnum; 	//온라인컨텐츠번호
 	Integer ctnum; 	//카테고리번호
@@ -9,7 +11,14 @@ public class OnlineContentDBBean {
 	Integer price;	//가격
 	Integer ptnum;	//사진번호
 	Integer vdnum;	//동영상번호
+	PhotoDBBean p_dto;
 	
+	public PhotoDBBean getP_dto() {
+		return p_dto;
+	}
+	public void setP_dto(PhotoDBBean p_dto) {
+		this.p_dto = p_dto;
+	}
 	public Integer getOcnum() {
 		return ocnum;
 	}
