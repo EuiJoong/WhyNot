@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +47,7 @@ public class MainController {
 			recommandList = onlineContentDAO.recommendContent(mnum); // 추천
 			mav.addObject("recommandList", recommandList);
 		}
-		
+
 		mav.addObject("cateList", catelist);
 		mav.setViewName("index.jsp");
 		return mav;
@@ -59,5 +60,6 @@ public class MainController {
 		System.out.println("MainController_goAdminMain() 실행");
 		return new ModelAndView("admin/adminMain.jsp");
 	}
+
 
 }

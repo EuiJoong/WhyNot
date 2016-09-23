@@ -34,6 +34,14 @@ public class LoginMybatis {
 			session.close();
 			return resDTO;
 		}
+		
+		public static MemberDBBean reLogin(int mnum) {
+			System.out.println("LoginMybatis_ reLogin()½ÇÇà");
+			SqlSession session = sqlMapper.openSession();
+			MemberDBBean resDTO = session.selectOne("reLogin", mnum);
+			session.close();
+			return resDTO;
+		}
 
 	}
 

@@ -48,5 +48,12 @@ public class LoginModel {
 			return res;
 		}
 	}
-
+	
+	public MemberDBBean reLogin(int mnum){
+		System.out.println("LoginModel_reLogin() ½ÇÇà");
+		MemberDBBean resDTO = LoginMybatis.reLogin(mnum);
+		
+		return resDTO;
+		
+	}
 }

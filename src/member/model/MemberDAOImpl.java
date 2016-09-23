@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer;
 
 import member.mybatis.MemberMybatis;
@@ -102,6 +104,17 @@ public class MemberDAOImpl implements MemberDAO {
 	public void updateAuth(String id, String auth) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void tradeMileage(int mnum, int mileage, int seller) {
+		// TODO Auto-generated method stub
+		System.out.println("MemberDAOImpl_tradeMileage() ½ÇÇà");
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("mnum", mnum);
+		map.put("mileage", mileage);
+		map.put("seller", seller);
+		MemberMybatis.tradeMileage(map);
 	}
 
 }

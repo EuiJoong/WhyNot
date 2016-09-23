@@ -27,6 +27,31 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+<!-- --여기부터 비디오 스크립트 부분 -->
+<!-- player skin -->
+<link rel="stylesheet" type="text/css" href="../../dist/minimalist.css?f">
+
+<!-- site specific styling -->
+<style>
+body {
+	font: 12px "Myriad Pro", "Lucida Grande", sans-serif;
+	text-align: center;
+	padding-top: 1%;
+}
+
+.flowplayer {
+	width: 70%;
+}
+</style>
+
+<!-- flowplayer depends on jQuery 1.7.1+ (for now) -->
+<script src="../../dist/jquery.js"></script>
+
+<!-- include flowplayer -->
+<script src="../../dist/flowplayer.js?i"></script>
+
+<!-- 여기까지 비디오 스크립트 부분 -->
 <title>재능 교육 사이트 - WhyNot?</title>
 </head>
 <body style="overflow: hidden;">
@@ -36,8 +61,19 @@
 			<div class="panel-heading">커리큘럼 명</div>
 			<!-- 영상 영역 -->
 			<div class="panel-body">
-				<div style="height: 30em;">영상위치</div>
+				<div style="height: 30em;">영상위치 수정5				
+					<div id="h-div" class="flowplayer play-button" data-engine="flash"
+					data-swf="../../dist/flowplayer.swf"
+					data-rtmp="rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st"
+					data-ratio=".4167">
+						<video autoplay preload="none">
+							<source type="video/mp4" src="../../movie/test.mp4">
+						</video>				
+					</div>
+				</div>
 			</div>
+					
+			
 
 			<!-- Q&A게시판 영역 -->
 			<div class="panel-heading">

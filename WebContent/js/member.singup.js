@@ -2,7 +2,7 @@
 function chkBoxCheck(intChkNumber) {
 
 	// 체크박스 갯수만큼 반복문을 돌면서
-/*	for (j = 0; j < 3; j++) {
+	for (j = 0; j < 3; j++) {
 		// 체크박스가 선택되어 있으면
 		if (eval("document.f.interestcheckbox[" + j + "].checked") == true) {
 		// 우선 체크박스의 속성을 선택되지 않음으로 하고
@@ -14,7 +14,7 @@ function chkBoxCheck(intChkNumber) {
 			document.f.interestcheckbox[j].checked = true;
 			}
 		}
-	}*/
+	}
 }
 function isID(Obj) {
 	

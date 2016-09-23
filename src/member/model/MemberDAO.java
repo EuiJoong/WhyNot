@@ -15,6 +15,7 @@ public interface MemberDAO {
 	public boolean reAuth(HashMap reAuthMap);
 	public void findPassword(String id);
 	public void chargeMileage(MemberDBBean dto);
+	public void tradeMileage(int mnum, int mileage , int seller);
 	//---- 관리자 ---------
 	public List<MemberDBBean> listMember(); //모든 회원정보
 	public void sanctionsMember(MemberDBBean dto,int mnum);//회원 제재(관리자용)

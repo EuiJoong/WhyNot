@@ -7,17 +7,11 @@
 <!-- 상세정보의 비디오 정보들 -->
 <c:set var="contList" value="${contList }" />
 <!-- 상세정보(wn_member, wn_photo, wn_online -->
-
-<!-- 잠깐만! -->
 <!-- css 는 밑에 링크 파일에!! -->
 <link href="css/usercont_detail.min.css" rel="stylesheet">
-<!-- 경숙이 파트 (인강 상세보기) -->
 <!-- 상단 메뉴바가 css로 인해서 윗부분이 겹쳐서 div로  style="padding: px" 줌 -->
-
-
 <!-- player skin -->
 <link rel="stylesheet" type="text/css" href="dist/minimalist.css?f">
-
 <!-- site specific styling -->
 <style>
 body {
@@ -33,14 +27,20 @@ body {
 
 <!-- flowplayer depends on jQuery 1.7.1+ (for now) -->
 <script src="dist/jquery.js"></script>
-
 <!-- include flowplayer -->
 <script src="dist/flowplayer.js?i"></script>
 
+<script type="text/javascript">
+	function chkMileage(price,mileage) {
+		if(mileage < price){
+			alert("마일리지가 부족합니다.");
+			return;
+		}
+		
+		document.purchase.submit();
+	}
+</script>
 <!-- ----------------------------------------------------여기까지 잠깐  -->
-
-<title>재능 교육 사이트 - WhyNot? 상세보기</title>
-</head>
 <body style="overflow: auto;" class="makescroll">
 	<c:forEach var="contData" items="${contList }">
 		<div>
@@ -60,9 +60,9 @@ body {
 							alt="" width="400" height="250">
 					</c:if>
 
-					강사 : ${contData.ID }<br /> 강의 내용 : ${contData.CONTENT }
-
-
+					강사 : ${contData.ID }<br /> 강의 내용 : ${contData.CONTENT } 가격 :
+					${contData.PRICE }
+					<c:out value="보유 마일리지 ${memberDTO.mileage }" />
 					<div align="right">
 						<c:choose>
 							<c:when test="${memberDTO != null }">
@@ -73,15 +73,25 @@ body {
 											등록</a>
 									</c:when>
 									<c:when test="${memberDTO.id!=contData.ID && !isPurchase}">
-										<a href="#" class="btn btn-primary">강의 구매</a>
+										<form action="purchaseOnline.payment" method="post" name="purchase">
+											<a type="button" class="btn btn-primary"
+												onclick="chkMileage(${contData.PRICE},${memberDTO.mileage })">강의
+												구매</a>
+											<input type="hidden" name="amount" value="${contData.PRICE }">
+											<input type="hidden" name="mnum" value="${memberDTO.mnum }">
+											<input type="hidden" name="ocnum" value="${contData.OCNUM }">
+											<input type="hidden" name="seller" value="${contData.MNUM }">
+										</form>
 									</c:when>
 									<c:when test="${memberDTO.id!=contData.ID && isPurchase}">
-										<a href="curri_detail.curr" class="btn btn-default">강의실 이동</a>
+										<a href="curri_detail.curr" class="btn btn-default" target="_blank">강의실 이동</a>
 									</c:when>
 								</c:choose>
 							</c:when>
 							<c:otherwise>
-
+								<script type="text/javascript">
+									alert("로그인 하셔야 구매 가능합니다.");
+								</script>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -159,8 +169,6 @@ body {
 									<option value="5">5점</option>
 								</select>
 							</p>
-
-
 
 							<button type="submit" class="btn btn-default">평가하기</button>
 						</form>
