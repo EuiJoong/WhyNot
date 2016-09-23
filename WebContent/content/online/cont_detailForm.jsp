@@ -65,17 +65,24 @@ body {
 
 					<div align="right">
 						<c:choose>
-							<c:when test="${isPurchase}">
-								<a href="#" class="btn btn-primary">강의 구매</a>
-							</c:when>							<c:otherwise>
-								<a href="curri_detail.curr" class="btn btn-default">강의실 이동</a>
-							</c:otherwise>
-						</c:choose>
-						<c:choose>
-							<c:when test="${memberDTO.id==contData.ID }">
-								<a href="cont_update.oncont" class="btn btn-primary">강의 수정</a>
-								<a href="curri_insert.curr" class="btn btn-primary">커리큘럼 등록</a>
+							<c:when test="${memberDTO != null }">
+								<c:choose>
+									<c:when test="${memberDTO.id==contData.ID}">
+										<a href="cont_update.oncont" class="btn btn-primary">강의 수정</a>
+										<a href="curri_insert.curr" class="btn btn-primary">커리큘럼
+											등록</a>
+									</c:when>
+									<c:when test="${memberDTO.id!=contData.ID && !isPurchase}">
+										<a href="#" class="btn btn-primary">강의 구매</a>
+									</c:when>
+									<c:when test="${memberDTO.id!=contData.ID && isPurchase}">
+										<a href="curri_detail.curr" class="btn btn-default">강의실 이동</a>
+									</c:when>
+								</c:choose>
 							</c:when>
+							<c:otherwise>
+
+							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
