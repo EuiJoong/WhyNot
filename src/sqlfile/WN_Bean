@@ -1,0 +1,51 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 토요일-9월-24-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table WN_BEAN
+--------------------------------------------------------
+
+  CREATE TABLE "WHYNOT"."WN_BEAN" 
+   (	"MBNUM" NUMBER, 
+	"MNUM" NUMBER, 
+	"BDATE" DATE, 
+	"AMOUNT" NUMBER, 
+	"BWAY" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into WHYNOT.WN_BEAN
+SET DEFINE OFF;
+Insert into WHYNOT.WN_BEAN (MBNUM,MNUM,BDATE,AMOUNT,BWAY) values (1,1,to_date('16/09/23','RR/MM/DD'),30000,1);
+Insert into WHYNOT.WN_BEAN (MBNUM,MNUM,BDATE,AMOUNT,BWAY) values (2,1,to_date('16/09/23','RR/MM/DD'),30000,1);
+--------------------------------------------------------
+--  DDL for Index WN_BEAN_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "WHYNOT"."WN_BEAN_PK" ON "WHYNOT"."WN_BEAN" ("MBNUM") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Constraints for Table WN_BEAN
+--------------------------------------------------------
+
+  ALTER TABLE "WHYNOT"."WN_BEAN" MODIFY ("MBNUM" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_BEAN" ADD CONSTRAINT "WN_BEAN_PK" PRIMARY KEY ("MBNUM")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+
+
+--------------------------------------------------------
+--  파일이 생성됨 - 토요일-9월-24-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence WN_BEAN_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_BEAN_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;

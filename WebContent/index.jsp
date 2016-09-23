@@ -41,9 +41,6 @@
 		<span class="icon-next"></span>
 	</a>
 </header>
-<br>
-<br>
-<br>
 <!-- 카테고리 메뉴 -->
 <nav>
 	<div class="col-lg-12">
