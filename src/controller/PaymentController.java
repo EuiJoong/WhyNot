@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
+import member.model.MemberDAO;
+import member.model.MemberDBBean;
 import payment.model.MileagePaymentDBBean;
 import payment.model.OnlinePaymentDBBean;
 import payment.model.PaymentDAO;
@@ -17,9 +19,14 @@ import payment.model.PaymentDAO;
 public class PaymentController {
 
 	private PaymentDAO paymentDAO;
+	private MemberDAO memberDAO;
 
 	public void setPaymentDAO(PaymentDAO paymentDAO) {
 		this.paymentDAO = paymentDAO;
+	}
+
+	public void setMemberDAO(MemberDAO memberDAO) {
+		this.memberDAO = memberDAO;
 	}
 	
 	@RequestMapping(value = "/purchaseOnline.payment")
@@ -38,6 +45,15 @@ public class PaymentController {
 		return new ModelAndView();
 
 	}
+	
+	@RequestMapping(value="/paymentForm.payment")
+	public ModelAndView paymentForm(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		System.out.println("PaymentController_paymentForm()");
+		
+		return new ModelAndView("payment/mileage/selectPayment.jsp");
+
+	}
+	
 	
 	@RequestMapping(value = "/select.payment")
 	public ModelAndView selectMileage(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
@@ -83,9 +99,17 @@ public class PaymentController {
 		dto.setBway(Integer.parseInt(arg0.getParameter("bway"))); // 1 구매 2환전
 
 		paymentDAO.purchaseMileage(dto);
+		
+		MemberDBBean mdto = new MemberDBBean();
+		
+		mdto.setMnum(Integer.parseInt(arg0.getParameter("mnum")));
+		mdto.setMileage(Integer.parseInt(arg0.getParameter("amount")));
+		
+		//memberDAO.
+		
 		System.out.println("DB 구매 성공");
 
-		return new ModelAndView();
+		return new ModelAndView("main.app");
 
 	}
 

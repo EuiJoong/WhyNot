@@ -4,9 +4,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 <bean id="categoryDAO" class="category.model.CategoryDAOImpl">
 </bean>
-
+<bean id="onlineContentDAO" class="onlinecontent.model.OnlineContentDAOImpl">
+</bean>
 <!-- 메인 페이지 이동용 서블릿 서블릿  -->
 <bean class="controller.MainController">
 	<property name="categoryDAO" ref="categoryDAO"></property>
+	<property name="onlineContentDAO" ref="onlineContentDAO"></property>
 </bean>
 </beans>

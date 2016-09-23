@@ -56,4 +56,22 @@ public class MemberDAOImpl implements MemberDAO {
 		return false;
 	}
 
+	@Override
+	public void findPassword(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void chargeMileage(int mnum, int mileage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateAuth(String id, String auth) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

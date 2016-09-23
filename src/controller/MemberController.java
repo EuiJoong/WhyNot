@@ -23,6 +23,7 @@ import category.mybatis.CategoryMybatis;
 import login.model.LoginModel;
 import member.model.MemberDAO;
 import member.model.MemberDBBean;
+import onlinecontent.model.OnlineContentDAO;
 
 @Controller
 public class MemberController {
@@ -30,6 +31,7 @@ public class MemberController {
 	private MemberDAO memberDAO;
 	private LoginModel loginModel;
 	private CategoryDAO categoryDAO;
+	private OnlineContentDAO onlineContentDAO;
 	public void setMemberDAO(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
@@ -41,8 +43,10 @@ public class MemberController {
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
 	}
-	
-	
+
+	public void setOnlineContentDAO(OnlineContentDAO onlineContentDAO) {
+		this.onlineContentDAO = onlineContentDAO;
+	}
 
 	// --------------- 사용자 ---------------------------
 	@RequestMapping(value = "/insert.member")
@@ -59,7 +63,7 @@ public class MemberController {
 	@RequestMapping(value = "/insertPro.member")
 	public ModelAndView insertProMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("MemberController_insertProMember() 실행");
-
+		System.out.println(arg0.getParameter("interest"));
 		/*
 		 * arg0.setCharacterEncoding("UTF-8");
 		 * arg1.setCharacterEncoding("UTF-8");
@@ -102,11 +106,16 @@ public class MemberController {
 			resDTO = entry.getValue();
 
 		}
+		ModelAndView mav = new ModelAndView();
+		
 		String url = ""; //다음 주소 값
 		switch ((int)key) {
 		case LoginModel.OK:
 			System.out.println("로그인 성공");
-			
+			List recommandList = onlineContentDAO.recommendContent(resDTO.getMnum()); //추천 강좌 db
+			System.out.println("추천 갯수" + recommandList.size());
+			System.out.println(recommandList);
+			mav.addObject("recommandList",recommandList);
 			//쿠키
 			Cookie ck  = new Cookie("saveId",resDTO.getId());
 			if(saveId != null){
@@ -120,7 +129,7 @@ public class MemberController {
 			HttpSession session = arg0.getSession();
 			session.setAttribute("memberDTO", resDTO);
 			
-			url = "index.jsp";
+			mav.setViewName("main.app");
 			break;
 		case LoginModel.NOT_ID:
 			System.out.println("아이디 틀림");
@@ -136,7 +145,7 @@ public class MemberController {
 			break;
 		}
 
-		return new ModelAndView(url);
+		return mav;
 	}
 	//로그아웃
 	@RequestMapping(value="/logout.member")

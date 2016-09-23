@@ -7,9 +7,11 @@
 	</bean>
 	<bean id="loginModel" class="login.model.LoginModel"></bean>
 	<bean id="categoryDAO" class="category.model.CategoryDAOImpl" />
+	<bean id="onlineContentDAO" class="onlinecontent.model.OnlineContentDAOImpl"/>
 	<bean class="controller.MemberController">
 		<property name="memberDAO" ref="memberDAO"/>
 		<property name="loginModel" ref="loginModel"></property>
 		<property name="categoryDAO" ref="categoryDAO"></property>  
+		<property name="onlineContentDAO" ref="onlineContentDAO"></property>
 	</bean>
 </beans>

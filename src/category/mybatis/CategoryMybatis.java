@@ -61,7 +61,6 @@ public class CategoryMybatis {
 		return list;
 	}
 	
-
 	public static void updateCate(CategoryDBBean dto) {
 		System.out.println("CateMybatis_updateCate() ½ÇÇà");
 		SqlSession session = sqlMapper.openSession();

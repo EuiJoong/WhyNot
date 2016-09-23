@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member.mybatis.Member">
 <!-- 회원 가입 -->
 <insert id="insertMember" parameterType="member.model.MemberDBBean">
-	insert into wn_member values (board_seq.nextval, #{id}, #{password}, #{name}, #{gender}, #{birth}, #{interest} , 1000000 , 3 , sysdate , 1 , null)
+	insert into wn_member values (member_seq.nextval, #{id}, #{password}, #{name}, #{gender}, #{birth}, #{interest} , 1000000 , 3 , sysdate , 1 , null)
 </insert>
 <!-- 아이디 중복 확인 -->
 <select id="idChk" parameterType="String" resultType="boolean">

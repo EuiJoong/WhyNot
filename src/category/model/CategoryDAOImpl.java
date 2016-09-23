@@ -9,8 +9,6 @@ import member.mybatis.MemberMybatis;
 
 public class CategoryDAOImpl implements CategoryDAO {
 
-
-	
 	@Override
 	public CategoryDBBean getCategory(int ctnum) {
 		// TODO Auto-generated method stub

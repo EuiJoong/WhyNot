@@ -53,4 +53,11 @@ public class OnlineContentDAOImpl implements OnlineContentDAO {
 
 	}
 
+	@Override //추천 강좌
+	public List recommendContent(int mnum) {
+		// TODO Auto-generated method stub
+		System.out.println("OnlineContentDAOImpl_recommendContent() 실행");
+		return OnlineContentMybatis.recommendContent(mnum);
+	}
+
 }

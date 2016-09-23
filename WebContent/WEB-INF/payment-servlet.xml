@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean id="paymentDAO" class="payment.model.PaymentDAOImpl">
-</bean>
-<bean class="controller.PaymentController">
-	<property name="paymentDAO" ref="paymentDAO"></property>
-</bean>
+	<bean id="paymentDAO" class="payment.model.PaymentDAOImpl"></bean>
+	<bean id="memberDAO" class="member.model.MemberDAOImpl"></bean>
+
+	<bean class="controller.PaymentController">
+		<property name="paymentDAO" ref="paymentDAO"></property>
+		<property name="memberDAO" ref="memberDAO"></property>
+	</bean>
 </beans>

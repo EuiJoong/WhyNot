@@ -1,5 +1,7 @@
 package payment.model;
 
+import java.util.List;
+
 import payment.mybatis.PaymentMybatis;
 
 public class PaymentDAOImpl implements PaymentDAO {
@@ -21,7 +23,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 	
 
 	@Override
-	public void purchaseOffline(OfflinePaymentDBBean offline_dto) {
+	public void purchaseOffline(int mnum, OfflinePaymentDBBean offline_dto) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -39,6 +41,25 @@ public class PaymentDAOImpl implements PaymentDAO {
 	public void exchangeMileage(MileagePaymentDBBean mileage_dto) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public OfflinePaymentDBBean chkPurchaseOffline(int mnum,OfflinePaymentDBBean offline_dto) {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public List<MileagePaymentDBBean> listPurchaseMileage(MileagePaymentDBBean mileage_dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MileagePaymentDBBean> listExchangeMileage(MileagePaymentDBBean mileage_dto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

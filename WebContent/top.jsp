@@ -91,7 +91,7 @@
 									<ul class="dropdown-menu" role="menu"
 										aria-labelledby="logindropMenu">
 										 <li role="presentation">
-										<a role="menuitem" tabindex="-1" href="select.payment?mnum=${memberDTO.mnum}">${memberDTO.mileage }마일리지</a></li>
+										<a role="menuitem" tabindex="-1" href="paymentForm.payment?mnum=${memberDTO.mnum}">${memberDTO.mileage }마일리지</a></li>
 										<c:choose>
 											<c:when test="${memberDTO.grade == 1 }">
 												<li role="presentation"><a role="menuitem"

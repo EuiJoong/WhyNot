@@ -93,4 +93,10 @@ public class OnlineContentMybatis {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public static List recommendContent(int mnum){
+		SqlSession session = sqlMapper.openSession();
+		List recommendList  = session.selectList("recommendContent",mnum);
+		return recommendList;
+	}
 }

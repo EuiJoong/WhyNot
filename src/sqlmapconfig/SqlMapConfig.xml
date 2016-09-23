@@ -7,12 +7,31 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <!-- ~.mybatis 패키지에서 ~.xml에 데이터를 주고 받을  ~DBBean.java 의 별칭 주는 곳 (alias 의 대소문자 주의) -->
 <typeAliases>
+	<!-- 회원  -->
 	<typeAlias type="member.model.MemberDBBean" alias="MemberDTO"/>
+	<!-- 카테고리  -->
 	<typeAlias type="category.model.CategoryDBBean" alias="CategoryDTO"/>
+	<!-- 첨부파일(이미지,영상)  -->
+	<typeAlias type="attachfile.model.PhotoDBBean" alias="AttachPhotoDTO"/>
 	<typeAlias type="attachfile.model.VideoDBBean" alias="AttachFileVideoDTO"/>
+	<!-- 결제(마일리지 충전,강좌구매,후원) -->
 	<typeAlias type="payment.model.OnlinePaymentDBBean" alias="OnlinePaymentDTO"/>
 	<typeAlias type="payment.model.MileagePaymentDBBean" alias="MileagePaymentDTO"/>
 	<!-- <typeAlias type="paymeny.model.OfflinePaymentDBBean" alias="OfflinePaymentDTO"/> -->
+	<!-- 투표 -->
+	<typeAlias type="event.vote.model.EventVoteDBBean" alias="EventVoteDTO"/>
+	<!-- 콘텐츠(인강,후원)  -->
+	<typeAlias type="onlinecontent.model.OnlineContentDBBean" alias="OnlineContentDTO"/>
+	<typeAlias type="offlinecontent.model.OfflineContentDBBean" alias="OfflineContentDTO"/>
+	<!-- 강의실 -->
+	<typeAlias type="onlinecurriculum.model.OnlineCurriculumDBBean" alias="OnlineCurriculumDTO"/>
+	<typeAlias type="onlinecurriculum.board.model.OnlineCurriculumDBBean" alias="OnlineCurriculumBoardDTO"/>
+	
+	<!-- 게시판(강사요청,자유,자주하는질문)  -->
+	<typeAlias type="requestboard.model.RequestBoardDBBean" alias="RequestBoardDTO"/>
+	<typeAlias type="freeboard.model.FreeBoardDBBean" alias="FreeBoardDTO"/>
+	
+	<!-- 문의 -->
 </typeAliases>
 <environments default="development">
 <environment id="development">
@@ -34,7 +53,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <mapper resource="onlinecontent/mybatis/OnlineContent.xml"/>
 <mapper resource="onlinecurriculum/mybatis/OnlineCurriculum.xml"/>
 <mapper resource="onlinecurriculum/board/mybatis/OnlineCurriculumBoard.xml"/>
+<mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
+<mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
 <mapper resource="payment/mybatis/Payment.xml"/>
+<mapper resource="event/vote/mybatis/EventVote.xml"/>
+<mapper resource="freeboard/mybatis/FreeBoard.xml"/>
+<mapper resource="requestboard/mybatis/RequestBoard.xml"/>
 </mappers>
 </configuration>
 <!--  파일에 설정만 바꾸어 줌-->

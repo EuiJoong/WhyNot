@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.ibatis.common.resources.Resources;
 
 import payment.model.MileagePaymentDBBean;
+import payment.model.OfflinePaymentDBBean;
 import payment.model.OnlinePaymentDBBean;
 
 public class PaymentMybatis {
@@ -71,5 +72,25 @@ public class PaymentMybatis {
 		session.commit(); // insert는 반드시 commit()를 해줘야 데이터가 쓰여짐
 		session.close();
 	} 
+	
+	public static void exchangeMileage(MileagePaymentDBBean mileage_dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void chkPurchaseOffline(OfflinePaymentDBBean offline_dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void listPurchaseMileage(MileagePaymentDBBean mileage_dto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void listExchangeMileage(MileagePaymentDBBean mileage_dto) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

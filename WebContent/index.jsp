@@ -129,73 +129,56 @@
 
 	<!-- 추천 강좌 -->
 	<!-- Title -->
-	<div class="row">
-		<div class="col-lg-12">
-			<h3>추천 강좌</h3>
-		</div>
-	</div>
 	<!-- /.row -->
 
 	<!-- Page Features -->
-	<div class="row text-center">
-
-		<div class="col-md-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<img src="http://placehold.it/800x500" alt="">
-				<div class="caption">
-					<h3>Feature Label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>
-						<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-							class="btn btn-default">More Info</a>
-					</p>
+	<c:choose>
+		<c:when test="${recommandList.size() == 0 }">
+			<p>
+				<c:out value="해당된 카테고리 내에서 등록된 컨텐츠가 없습니다." />
+			</p>
+		</c:when>
+		<c:otherwise>
+			<!-- img/defaultpro.png -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h3>추천 강좌</h3>
 				</div>
 			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<img src="http://placehold.it/800x500" alt="">
-				<div class="caption">
-					<h3>Feature Label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>
-						<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-							class="btn btn-default">More Info</a>
-					</p>
+			<c:forEach var="recommandData" items="${recommandList }">
+			aaaa
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail">
+						<img
+							src="${pageContext.request.contextPath}/images/${recommandData.FILENAME}.${recommandData.FILEEXT}"
+							style="width: 15em; height: 10em;" alt="이미지 출력이 ㅠㅠ" />
+						<div class="caption">
+							<h3>
+								<c:out value="${recommandData.TITLE }" />
+							</h3>
+							<p>
+								<c:out value="${recommandData.NAME }" />
+							</p>
+							<p>
+								<c:choose>
+									<c:when test="${memberDTO == null }">
+										<a href="cont_detail.content?ocnum=${recommandData.OCNUM }"
+											class="btn btn-default">More Info</a>
+									</c:when>
+									<c:otherwise>
+										<a href="#" class="btn btn-primary">Buy Now!</a>
+										<a
+											href="cont_detail.content?mnum=${recommandData.mnum }&ocnum=${recommandData.OCNUM }"
+											class="btn btn-default">More Info</a>
+									</c:otherwise>
+								</c:choose>
+							</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<img src="http://placehold.it/800x500" alt="">
-				<div class="caption">
-					<h3>Feature Label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>
-						<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-							class="btn btn-default">More Info</a>
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<img src="http://placehold.it/800x500" alt="">
-				<div class="caption">
-					<h3>Feature Label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>
-						<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-							class="btn btn-default">More Info</a>
-					</p>
-				</div>
-			</div>
-		</div>
-
-	</div>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 	<!--추천 강좌 끝 -->
 
 

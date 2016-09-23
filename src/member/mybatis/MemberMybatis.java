@@ -67,11 +67,25 @@ public class MemberMybatis  {
 		List<MemberDBBean> list = session.selectList("listMember");
 		return list;
 	}
-	public static void sanctionsMember(MemberDBBean dto, int mnum) {
+	public static void sanctionsMember(MemberDBBean dto, int mnum) {//제재
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void findPassword(String id) {//비밀번호 찾기
 		// TODO Auto-generated method stub
 		
 	}
 
+	public void chargeMileage(int mnum, int mileage) {//마일리지 충전
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateAuth(String id, String auth) {//인증 
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

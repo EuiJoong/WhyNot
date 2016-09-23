@@ -4,8 +4,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <link href="../../css/user_payment.min.css" rel="stylesheet">
-<script type="text/JavaScript" src="../../js/mileage.singup.js"></script>
+<script type="text/JavaScript">
+function isMoney() {
 
+	if (!$(':input:radio[name=amount]:checked').val()) {
+		alert("돈을 선택해 주세요");
+		exit;
+	}
+}
+function isTool() {
+
+	if (!$(':input:radio[name=tool]:checked').val()) {
+		alert("충전 방식을 선택해 주세요");
+		exit;
+	}
+}
+
+function btnChk() {
+
+	if(isMoney()){
+		return;
+	}if(isTool()){
+		return;
+	}
+	document.f.submit();
+}
+</script>
 <body style="padding: 20px">
 	<div class="page-header">
 		<h1>
@@ -39,7 +63,7 @@
 				</div>
 			</div>
 			<div class="form-group text-center">
-				<button type="button" class="btn btn-info" onclick="chk()">	결재요청<i class="fa fa-check spaceLeft"></i></button>
+				<button type="button" class="btn btn-info" onclick="btnChk()">	결재요청<i class="fa fa-check spaceLeft"></i></button>
 				<button type="button" class="btn btn-warning" onclick="location.href='main.app'">취소<i class="fa fa-times spaceLeft"></i></button>
 			</div>
 	</form>

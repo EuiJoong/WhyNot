@@ -4,7 +4,50 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <link href="../../css/user_payment.min.css" rel="stylesheet">
-<script type="text/JavaScript" src="../../js/mileage.singup.js"></script>
+<script type="text/JavaScript" >
+
+
+function isCard_num() {
+
+	if (document.f.card_num.card_num1.value == ""||
+		document.f.card_num.card_num2.value == ""||
+		document.f.card_num.card_num3.value == ""||
+		document.f.card_num.card_num4.value == ""||
+		document.f.card_day.card_day1.value == ""||
+		document.f.card_day.card_day2.value == ""||
+		document.f.card_day.card_cvc.value == "") {
+		alert("카드번호를 적어주세요");
+		document.f.card_num.card_num1.focus();
+		exit;
+	}
+	/*
+	var exptext = /([0-9])+/g//숫자만
+	if(	exptext.test(document.f.card_num.card_num1.value)==false||
+		exptext.test(document.f.card_num.card_num2.value)==false||
+		exptext.test(document.f.card_num.card_num3.value)==false||
+		exptext.test(document.f.card_num.card_num4.value)==false||
+		exptext.test(document.f.card_day.card_day1.value)==false||
+		exptext.test(document.f.card_day.card_day2.value)==false||
+		exptext.test(document.f.card_day.card_cvc.value)==false){
+		alert("카드번호가 이상합니다!!");
+		document.f.card_num.card_num1.focus();
+		exit;
+	}*/
+	
+}
+function card_chk() {
+
+	if(isCard_num()){
+		return;
+	}
+	document.f.submit();
+	
+}
+
+
+
+
+</script>
 
 <body style="padding: 20px">
 	<div class="page-header">
