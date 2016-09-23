@@ -18,7 +18,7 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach var="cateDTO" items="${cateList }">
-					<li><a href="list.content?ctnum=${cateDTO.ctnum }"><c:out
+					<li><a href="list.oncont?ctnum=${cateDTO.ctnum }"><c:out
 								value="${cateDTO.name }"></c:out></a></li>
 				</c:forEach>
 			</c:otherwise>
@@ -41,7 +41,7 @@
 						style="float: right;">강의 등록</button>
 				</c:when>
 				<c:otherwise>
-					<button type="button" onclick="location.href='cont_insert.content'"
+					<button type="button" onclick="location.href='cont_insert.oncont'"
 						style="float: right;">강의 등록</button>
 				</c:otherwise>
 			</c:choose>
@@ -77,13 +77,13 @@
 								<c:choose>
 									<c:when test="${memberDTO == null }">
 										<a
-											href="cont_detail.content?ocnum=${contData.OCNUM }"
+											href="cont_detail.oncont?ocnum=${contData.OCNUM }"
 											class="btn btn-default">More Info</a>
 									</c:when>
 									<c:otherwise>
 										<a href="#" class="btn btn-primary">Buy Now!</a>
 										<a
-											href="cont_detail.content?mnum=${memberDTO.mnum }&ocnum=${contData.OCNUM }"
+											href="cont_detail.oncont?mnum=${memberDTO.mnum }&ocnum=${contData.OCNUM }"
 											class="btn btn-default">More Info</a>
 									</c:otherwise>
 								</c:choose>

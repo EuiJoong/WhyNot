@@ -95,12 +95,12 @@ function tel_chk() {
 		</h1>
 	</div>
 	<div class="col-md-6 col-md-offset-3">
-		<form name="f" action="/WhyNot/purchase.payment" method="post">
+		<form name="f" action="purchasePro.payment" method="post">
 			<input type="hidden" name = "mnum" value="${param.mnum}">
 			<input type="hidden" name = "bway" value="${param.bway}">
-			<input type="hidden" name = "amount" value="${param.amount}">
+			<input type="hidden" name = "amount" value="${amount}">
 		<div class ="label">
-		<label>결제 금액${param.amount}원</label>
+		<label>결제 금액${amount}원</label>
 		</div><br><br>
 		<div class="form-group" id = "tel_company">
 			<label for="tel_company">이동 통신사</label>
@@ -182,7 +182,7 @@ function tel_chk() {
 		</div>
 			<div class="form-group text-center">
 				<button type="button" class="btn btn-info" onclick="tel_chk()">결재요청<i class="fa fa-check spaceLeft"></i></button>
-				<button type="button" class="btn btn-warning" onclick="location.href='main.app'">취소<i class="fa fa-times spaceLeft"></i></button>
+				<button type="button" class="btn btn-warning" onclick="self.close()">취소<i class="fa fa-times spaceLeft"></i></button>
 			</div>
 	</form>
 	</div>

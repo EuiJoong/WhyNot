@@ -10,6 +10,7 @@ public class LoginModel {
 	public static final int OK = 0;
 	public static final int NOT_ID = 1;
 	public static final int NOT_PW = 2;
+	public static final int NOT_AUTH = 3;
 	public static final int ERR = -1;
 	
 	private MemberDBBean dto;
@@ -28,8 +29,16 @@ public class LoginModel {
 		HashMap<Object, MemberDBBean> res = new HashMap<>();
 		if (resDTO != null) {
 			if (dto.getPassword().equals(resDTO.getPassword())) {
-				res.put(OK, resDTO);
-				return res;
+				if(resDTO.getAuth().equals("ok"))
+				{
+					res.put(OK, resDTO);
+					return res;
+				}
+				else
+				{
+					res.put(NOT_AUTH, resDTO);
+					return res;
+				}
 			} else {
 				res.put(NOT_PW, null);
 				return res;

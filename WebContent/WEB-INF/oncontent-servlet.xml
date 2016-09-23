@@ -12,12 +12,14 @@
 	</bean>
 	<bean id="categoryDAO" class="category.model.CategoryDAOImpl" />
 	<bean id="paymentDAO" class="payment.model.PaymentDAOImpl" />
-	<bean class="controller.ContentController">
+	<bean id="assessmentDAO" class="assessment.model.AssessmentDAOImpl" />
+	<bean class="controller.OnContentController">
 		<property name="onlineContentDAO" ref="onlineContentDAO"></property>
 		<property name="onlineCurriculumDAO" ref="onlineCurriculumDAO"></property>
 		<property name="onlineCurriculumBoardDAO" ref="onlineCurriculumBoardDAO"></property>
 		<property name="categoryDAO" ref="categoryDAO"></property>
 		<property name="paymentDAO" ref="paymentDAO"></property>
+		<property name="assessmentDAO" ref="assessmentDAO"></property>
 	</bean>
 </beans> 
  

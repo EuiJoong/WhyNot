@@ -90,7 +90,7 @@
 		등록하기 위한 Form으로 상황에 맞게 수정하여 사용한다. Form 이름은 에디터를 생성할 때 설정값으로 설정한다.
 	-->
 		<form name="tx_editor_form" id="tx_editor_form"
-			action="cont_insertPro.content" method="post" accept-charset="UTF-8"
+			action="cont_insertPro.oncont" method="post" accept-charset="UTF-8"
 			enctype="multipart/form-data">
 			<input type="hidden" name="mnum"
 				value="${sessionScope.memberDTO.mnum }" />

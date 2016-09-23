@@ -59,9 +59,9 @@ function card_chk() {
 		<form name="f" action="/WhyNot/purchase.payment" method="post">
 			<input type="hidden" name = "mnum" value="${param.mnum}">
 			<input type="hidden" name = "bway" value="${param.bway}">
-			<input type="hidden" name = "amount" value="${param.amount}">amount
+			<input type="hidden" name = "amount" value="${amount}">amount
 		<div class ="label">
-		<label>결제 금액  ${param.amount}원</label>
+		<label>결제 금액  ${amount}원</label>
 		</div><br><br>
 		<div class = "form-group" >
 		<label>신용카드 번호</label><br>
@@ -78,7 +78,7 @@ function card_chk() {
 		</div><br><br>
 			<div class="form-group text-center">
 				<button type="button" class="btn btn-info" onclick="card_chk()">	결재요청<i class="fa fa-check spaceLeft"></i></button>
-				<button type="button" class="btn btn-warning" onclick="location.href='main.app'">취소<i class="fa fa-times spaceLeft"></i></button>
+				<button type="button" class="btn btn-warning" onclick="self.close()">취소<i class="fa fa-times spaceLeft"></i></button>
 			</div>
 	</form>
 	</div>

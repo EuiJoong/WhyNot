@@ -26,6 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select WN_online.*, WN_PHOTO.FILENAME, WN_PHOTO.FILEDIR, WN_PHOTO.FILEEXT, WN_MEMBER.NAME from WN_ONLINE, WN_PHOTO, WN_MEMBER where WN_ONLINE.PTNUM = WN_PHOTO.PTNUM and WN_ONLINE.CTNUM = #{ctnum} and WN_MEMBER.MNUM = WN_PHOTO.MNUM
 	</select>
 	 <select id="recommendContent" parameterType="int" resultType="map">
-		select * from (select * from (select  WN_ONLINE.*, WN_MEMBER.NAME , WN_PHOTO.FILEDIR, WN_PHOTO.FILENAME, WN_PHOTO.FILEEXT from WN_MEMBER, WN_CATEGORY, WN_ONLINE, WN_PHOTO where WN_MEMBER.INTEREST = WN_CATEGORY.NAME and WN_MEMBER.MNUM = #{mnum} and WN_ONLINE.CTNUM = WN_CATEGORY.CTNUM and WN_ONLINE.PTNUM = WN_PHOTO.PTNUM ) ORDER BY DBMS_RANDOM.VALUE ) where rownum <![CDATA[<=]]> 10
+		select * from (select * from (select  WN_ONLINE.*, WN_MEMBER.NAME , WN_PHOTO.FILEDIR, WN_PHOTO.FILENAME, WN_PHOTO.FILEEXT from WN_MEMBER, WN_CATEGORY, WN_ONLINE, WN_PHOTO where WN_MEMBER.INTEREST = WN_CATEGORY.NAME and WN_MEMBER.MNUM = #{mnum} and WN_ONLINE.CTNUM = WN_CATEGORY.CTNUM and WN_ONLINE.PTNUM = WN_PHOTO.PTNUM)ORDER BY DBMS_RANDOM.VALUE) where rownum <![CDATA[<=]]> 10 
 	</select> 
+	<select id="getDetailWho" parameterType="int" resultType="map">
+	select WN_online.*, WN_MEMBER.* from WN_ONLINE, WN_MEMBER 
+	where WN_ONLINE.OCNUM=#{OCNUM} and WN_MEMBER.MNUM=(SELECT MNUM FROM WN_ONLINE WHERE OCNUM=#{OCNUM})
+	</select>
 </mapper> 

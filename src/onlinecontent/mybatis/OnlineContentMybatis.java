@@ -34,17 +34,30 @@ public class OnlineContentMybatis {
 		}
 	}
 
-	public static OnlineContentDBBean getContent(int num) {
+	public static VideoDBBean getContent(int num) {
 		// TODO Auto-generated method stub
 		// int mnum = num;
-		// OnlineContentDBBean dto = new OnlineContentDBBean();
+		VideoDBBean dto = new VideoDBBean();
 		//
-		// SqlSession session = sqlMapper.openSession();
-		// dto = (OnlineContentDBBean) session.selectOne("getContent", mnum);
-		// session.commit();
-		// System.out.println("session get");
-		// session.close();
-		return null;
+		System.out.println("num : " + num);
+		SqlSession session = sqlMapper.openSession();
+		dto = (VideoDBBean) session.selectOne("getContent", num);
+		session.commit();
+		System.out.println("session get");
+		session.close();
+		return dto;
+	}
+
+	public static List getDetailWho(int ocnum) {
+
+		SqlSession session = sqlMapper.openSession();
+		System.out.println("ocnum : " + ocnum);
+		List list = session.selectList("getDetailWho", ocnum);
+		session.commit();
+		System.out.println("list.size() : " + list.size());
+		session.close();
+
+		return list;
 	}
 
 	public static List listOnlineContent(int ctnum) {
@@ -93,10 +106,10 @@ public class OnlineContentMybatis {
 		// TODO Auto-generated method stub
 
 	}
-	
-	public static List recommendContent(int mnum){
+
+	public static List recommendContent(int mnum) {
 		SqlSession session = sqlMapper.openSession();
-		List recommendList  = session.selectList("recommendContent",mnum);
+		List recommendList = session.selectList("recommendContent", mnum);
 		return recommendList;
 	}
 }

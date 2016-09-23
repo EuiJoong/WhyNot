@@ -6,16 +6,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member.mybatis.Member">
 <!-- 회원 가입 -->
 <insert id="insertMember" parameterType="member.model.MemberDBBean">
-	insert into wn_member values (member_seq.nextval, #{id}, #{password}, #{name}, #{gender}, #{birth}, #{interest} , 1000000 , 3 , sysdate , 1 , null)
+	insert into wn_member values (wn_member_seq.nextval, #{id}, #{password}, #{name}, #{gender}, #{birth}, #{interest} , 1000000 , 3 , sysdate , 1 , null, #{auth})
 </insert>
 <!-- 아이디 중복 확인 -->
 <select id="idChk" parameterType="String" resultType="boolean">
 	select id from wn_member where  id = #{id}
 </select>
+<!-- 회원 인증 확인 -->
+<update id="authCHK" parameterType="HashMap"> 
+	update wn_member set auth='ok' where id=#{id} and auth=#{auth}
+</update>
+<!-- 회원 재인증 -->
+<update id="reAuth" parameterType="HashMap"> 
+	update wn_member set auth=#{auth} where id=#{id}
+</update>
 <!-- 회원 목록 -->
 <select id="listMember" resultType="MemberDTO">
 	select * from wn_member
 </select>
+<!-- 회원 자료 -->
+<select id="getMember" parameterType="int" resultType="MemberDTO">
+	select * from wn_member where mnum=#{mnum}
+</select>
+<!-- 마일리지 충전 -->
+<update id="chargeMileage" parameterType="MemberDTO">
+	update wn_member set mileage= mileage+#{mileage}  where mnum=#{mnum}
+</update>
 <!-- 회원 수정 -->
 
 <!-- 회원 삭제 -->

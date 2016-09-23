@@ -1,6 +1,9 @@
 package member.model;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.support.incrementer.MySQLMaxValueIncrementer;
 
@@ -9,9 +12,10 @@ import member.mybatis.MemberMybatis;
 public class MemberDAOImpl implements MemberDAO {
 
 	@Override
-	public MemberDBBean getMember(String id) {
+	public MemberDBBean getMember(int mnum) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("MemberDAOImpl_getMember()실행");
+		return MemberMybatis.getMember(mnum);
 	}
 
 	@Override
@@ -46,6 +50,30 @@ public class MemberDAOImpl implements MemberDAO {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public boolean authCHK(HashMap authMap)
+	{
+		//Enumeration<HashMap> k =  Collections.enumeration(authMap.entrySet());
+		Iterator it = authMap.entrySet().iterator();
+		
+		while(it.hasNext())
+		{
+			Map.Entry en = (Map.Entry)it.next();
+			System.out.println(en.getKey()+"    "+en.getValue());
+			System.out.println("!!!");
+		}
+		System.out.println("MemberDAOImpl_authCHK() 실행");
+		System.out.println("성공!");
+		System.out.println("================== 여기까진 성공이다==================");
+		return MemberMybatis.authCHK(authMap);
+	}
+	
+	@Override
+	public boolean reAuth(HashMap reAuthMap) {
+		// TODO Auto-generated method stub
+		return MemberMybatis.reAuth(reAuthMap);
+	}
 
 	@Override
 	public boolean idChk(String id) {
@@ -63,9 +91,11 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void chargeMileage(int mnum, int mileage) {
+	public void chargeMileage(MemberDBBean dto) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("MemberDAOImpl_chargeMileage() 실행");
+		MemberMybatis.chargeMileage(dto);
+		System.out.println("성공!");
 	}
 
 	@Override

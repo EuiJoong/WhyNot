@@ -2,7 +2,10 @@ package member.mybatis;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -38,9 +41,12 @@ public class MemberMybatis  {
 		session.close();
 	}
 	
-	public static MemberDBBean getMember(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public static MemberDBBean getMember(int mnum) {
+		System.out.println("MemberMybatis_getMember() 실행");
+		SqlSession session = sqlMapper.openSession();
+		MemberDBBean dto = session.selectOne("getMember", mnum);
+		//session.close();
+		return dto;
 	}
 	public static void deleteMember(String id) {
 		// TODO Auto-generated method stub
@@ -51,15 +57,57 @@ public class MemberMybatis  {
 		
 	}
 	//아이디 중복 확인
-	public static boolean idChk(String id) {
-		// TODO Auto-generated method stub
-		System.out.println("MemberMybatis_idChk() 실행");
+		public static boolean idChk(String id) {
+			// TODO Auto-generated method stub
+			System.out.println("MemberMybatis_idChk() 실행");
+			SqlSession session = sqlMapper.openSession();
+			boolean res = session.selectOne("idChk", id);
+			session.close();
+			
+			return false;
+		}
+	
+	// 이메일 인증
+		public static boolean authCHK(HashMap authMap)
+		{
+			System.out.println("MemberMybatis_authCHK() 실행");
+			Iterator it = authMap.entrySet().iterator();
+			
+			while(it.hasNext())
+			{
+				Map.Entry en = (Map.Entry)it.next();
+				System.out.println(en.getKey()+"    "+en.getValue());
+				System.out.println("!!!");
+			}
+			SqlSession session = sqlMapper.openSession();
+			int res = session.update("authCHK", authMap);
+			boolean chk = true; 
+			session.commit();
+			System.out.println(res);
+			if(res < 0){
+				System.out.println("업데이트 실패시 false로 바꿈");
+				chk = false;
+			}
+			session.close();
+			return chk;
+		}
+	
+	// 재인증
+	public static boolean reAuth(HashMap reAuthMap)
+	{
 		SqlSession session = sqlMapper.openSession();
-		boolean res = session.selectOne("idChk", id);
+		int res = session.update("reAuth", reAuthMap);
+		boolean chk = true; 
+		session.commit();
+		System.out.println(res);
+		if(res < 0){
+			System.out.println("업데이트 실패시 false로 바꿈");
+			chk = false;
+		}
 		session.close();
-		
-		return false;
+		return chk;
 	}
+	
 	public static List<MemberDBBean> listMember() {
 		// TODO Auto-generated method stub
 		System.out.println("MemberMybatis_listMember() 실행");
@@ -77,9 +125,13 @@ public class MemberMybatis  {
 		
 	}
 
-	public void chargeMileage(int mnum, int mileage) {//마일리지 충전
+	public static void chargeMileage(MemberDBBean dto) {//마일리지 충전
 		// TODO Auto-generated method stub
-		
+		System.out.println("MemberMybaris_chargeMileage() 실행");
+		SqlSession session = sqlMapper.openSession();
+		session.update("chargeMileage", dto);
+		session.commit();
+		session.close();
 	}
 
 	public void updateAuth(String id, String auth) {//인증 

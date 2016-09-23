@@ -9,3 +9,4 @@ public interface OnlineCurriculumDAO {
 	public void updateCurriculum(OnlineCurriculumDBBean dto ,int num); //수정
 	public void deleteCurriculum(OnlineCurriculumDBBean dto ,int num); //삭제
 }
+

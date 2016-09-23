@@ -30,15 +30,35 @@
 		<servlet-name>member</servlet-name>
 		<url-pattern>*.member</url-pattern>
 	</servlet-mapping>
-	<!-- 컨텐츠 -->
+	<!-- Offline 컨텐츠 -->
 	<servlet>
-		<servlet-name>content</servlet-name>
+		<servlet-name>oncontent</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>content</servlet-name>
-		<url-pattern>*.content</url-pattern>
+		<servlet-name>oncontent</servlet-name>
+		<url-pattern>*.oncont</url-pattern>
+	</servlet-mapping>
+	<!-- Offline 컨텐츠 -->
+	<servlet>
+		<servlet-name>offcontent</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>offcontent</servlet-name>
+		<url-pattern>*.offcont</url-pattern>
+	</servlet-mapping>
+	<!-- 커리큘럼(강의실) -->
+		<servlet>
+		<servlet-name>curriculum</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>curriculum</servlet-name>
+		<url-pattern>*.curr</url-pattern>
 	</servlet-mapping>
 	<!-- 결제 -->
 	<servlet>

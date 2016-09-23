@@ -9,9 +9,9 @@ import onlinecontent.mybatis.OnlineContentMybatis;
 public class OnlineContentDAOImpl implements OnlineContentDAO {
 
 	@Override
-	public OnlineContentDBBean getContent(int num) {
+	public VideoDBBean getContent(int num) {
 		// TODO Auto-generated method stub
-		OnlineContentDBBean dto = new OnlineContentDBBean();
+		VideoDBBean dto = new VideoDBBean();
 		dto = OnlineContentMybatis.getContent(num);
 		return dto;
 	}
@@ -58,6 +58,14 @@ public class OnlineContentDAOImpl implements OnlineContentDAO {
 		// TODO Auto-generated method stub
 		System.out.println("OnlineContentDAOImpl_recommendContent() ½ÇÇà");
 		return OnlineContentMybatis.recommendContent(mnum);
+	}
+	
+	@Override
+	public List getDetailWho(int ocnum) {
+		// TODO Auto-generated method stub
+		//OnlineContentDBBean dto=new OnlineContentDBBean();
+		List list=OnlineContentMybatis.getDetailWho(ocnum);
+		return list;
 	}
 
 }

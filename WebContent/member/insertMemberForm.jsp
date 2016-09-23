@@ -15,6 +15,7 @@
 		</h1>
 	</div>
 	<div class="col-md-6 col-md-offset-3">
+		<!--이곳부터 들어간 내용이 insertPro.member로 이동-->
 		<form name="f" action="insertPro.member" method="post">
 			<div class="form-group">
 				<label for="id">아이디</label>
@@ -22,25 +23,13 @@
 					<input type="text" name="id" class="form-control-1" id="id"
 						placeholder="id@mail.com" style="float: left;">
 					<button type="button" class="btn btn-success" onclick="idCHK()"
-						style="float: left;">인증번호 전송</button>
+						style="float: left;">중복확인</button>
 				</div>
 			</div>
 			<br> <br>
 			<%
 				//if(id!=null){
 			%>
-			<div class="form-group" class="form-inline">
-				<label for="CHK">인증번호</label> <br> <input type="text"
-					name="EmailCHK" class="form-control-1" id="CHK"
-					placeholder="이메일 인증번호" style="float: left;">
-				<samp>
-					<button type="button" class="btn btn-success" style="float: left;">확인</button>
-				</samp>
-			</div>
-			<%
-				//}
-			%>
-			<br> <br>
 
 			<div class="form-group">
 				<label for="password1">비밀번호</label> <input type="password"

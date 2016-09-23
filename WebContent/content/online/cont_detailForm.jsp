@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ include file="../../top.jsp"%>
 <c:set var="isPurchase" value="${isPurchase}" />
+<!-- 구매확인 -->
+<c:set var="videoDTO" value="${videoDTO }" />
+<!-- 상세정보의 비디오 정보들 -->
+<c:set var="contList" value="${contList }" />
+<!-- 상세정보(wn_member, wn_photo, wn_online -->
+
 <!-- 잠깐만! -->
 <!-- css 는 밑에 링크 파일에!! -->
 <link href="css/usercont_detail.min.css" rel="stylesheet">
@@ -15,13 +21,13 @@
 <!-- site specific styling -->
 <style>
 body {
-   font: 12px "Myriad Pro", "Lucida Grande", sans-serif;
-   text-align: center;
-   padding-top: 1%;
+	font: 12px "Myriad Pro", "Lucida Grande", sans-serif;
+	text-align: center;
+	padding-top: 1%;
 }
 
 .flowplayer {
-   width: 100%;
+	width: 40%;
 }
 </style>
 
@@ -32,135 +38,132 @@ body {
 <script src="dist/flowplayer.js?i"></script>
 
 <!-- ----------------------------------------------------여기까지 잠깐  -->
-<div>
-<div style="padding: 50px">
-   <div class="right text-center">
-      <div class="col-md-3 col-sm-6 hero-feature">
-         <div class="thumbnail">   
-            <img src="http://placehold.it/800x500" alt="">
-            <ul>
-               <div class="captionC">
-                  <h3>강의설명 ${isPurchase }</h3>
-                  <p>여기는 강의설명 부분입니다.</p>
-                  <p>
-                  <c:choose>
-                     <c:when test="${isPurchase }">
-                        <a href="#" class="btn btn-primary">강의실 이동</a>
-                     </c:when>
-                     <c:otherwise>
-                        <a href="#" class="btn btn-default">강의 구매</a>
-                     </c:otherwise>
-                  </c:choose>
-                  </p>
-               </div>
-            </ul>
-         </div>
-      </div>
-   </div>
-   
-   
-   <div class="row text-center">
 
-      <div class="col-md-3 col-sm-6 hero-feature">
-         <div id="h-div" class="flowplayer play-button" data-engine="flash"
-            data-swf="dist/flowplayer.swf"
-            data-rtmp="rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st"
-            data-ratio=".4167">
+<title>재능 교육 사이트 - WhyNot? 상세보기</title>
+</head>
+<body style="overflow: auto;" class="makescroll">
+	<c:forEach var="contData" items="${contList }">
+		<div>
+			<div class="panel panel-default"
+				style="float: left; height: 59em; width: 80%;">
+				<div class="panel-heading">커리큘럼 명 수정2</div>
+				<!-- 강사소개 영역 -->
+				<div class="thumbnailC" align="left">
+					<c:if test="${contData.FILENAME == null }">
+						<img
+							src="${pageContext.request.contextPath}/images/defaultpro.png"
+							alt="" width="400" height="250">
+					</c:if>
+					<c:if test="${contData.FILENAME != null }">
+						<img
+							src="${pageContext.request.contextPath}/images/${contData.FILENAME}.${contData.FILEEXT }"
+							alt="" width="400" height="250">
+					</c:if>
+
+					강사 : ${contData.ID }<br /> 강의 내용 : ${contData.CONTENT }
 
 
-            <video autoplay preload="none">
-               <source type="video/mp4" src="movie/test.mp4">
-            </video>
+					<div align="right">
+						<c:choose>
+							<c:when test="${isPurchase}">
+								<a href="#" class="btn btn-primary">강의 구매</a>
+							</c:when>							<c:otherwise>
+								<a href="curri_detail.curr" class="btn btn-default">강의실 이동</a>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${memberDTO.id==contData.ID }">
+								<a href="cont_update.oncont" class="btn btn-primary">강의 수정</a>
+								<a href="curri_insert.curr" class="btn btn-primary">커리큘럼 등록</a>
+							</c:when>
+						</c:choose>
+					</div>
+				</div>
 
-         </div>
-         <div>
-            <div class="captionC right">
-               <h3>Orientation</h3>
-               <p>강의 11</p>
-               <p>강의 2</p>
-               <p>강의 3</p>
-               <p>강의 4</p>
-               <p>강의 5</p>
-               <p>
-               
-                  <c:if test="${isPurchase }">
-                     <a href="#" class="btn btn-default">평가하기</a>
-                  </c:if>
-   
-               </p>
-            </div>
-         </div>
-      </div>
-   </div>
-   
-   
-</div>
-</div>
-<%-- <div style="padding: 50px">
+				<!-- Q&A게시판 영역 -->
+				<div class="panel-heading">
+					<font class="qnafont" style="float: left;">오리엔테이션 및 강의 목록</font>
+				</div>
+				<div class="qnaform" align="left">
+					<form class="navbar-form" role="search">
+						<div class="panel-body">
+							<div style="height: 30em;">
+								<div id="h-div" class="flowplayer play-button"
+									data-engine="flash" data-swf="../../dist/flowplayer.swf"
+									data-rtmp="rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st"
+									data-ratio=".4167">
 
-   <div class="right text-center">
-      <div class="col-md-3 col-sm-6 hero-feature">
-         <div class="thumbnail">   
-            <img src="http://placehold.it/800x500" alt="">
+									<video autoplay preload="none">
+										<!-- <source type="video/mp4" src="movie/test.mp4"> -->
+										<source type="video/mp4"
+											src="${pageContext.request.contextPath}/video/${videoDTO.filename }">
+									</video>
 
-            <div class="captionC">
-               <h3>강의설명 ${isPurchase }</h3>
-               <p>여기는 강의설명 부분입니다.</p>
-               <p>
-               <c:choose>
-                  <c:when test="${isPurchase }">
-                     <a href="#" class="btn btn-primary">강의실 이동</a>
-                  </c:when>
-                  <c:otherwise>
-                     <a href="#" class="btn btn-default">강의 구매</a>
-                  </c:otherwise>
-               </c:choose>
-               </p>
-            </div>
-         
-         </div>
-      </div>
-   </div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- 강의 평가 -->
+			<div class="panel-heading">
+				<font class="qnafont" style="float: left;">강의 평가</font>
+				<div class="qnaform">
+					<p>평가 내용</p>
+					<div align="left">
 
-   <div class="row text-center">
+						<c:set var="sum" value="0" />
+						<c:choose>
+							<c:when test="${assessmentList.size()==0}">
+								평가 가 없습니다.
+								</c:when>
+							<c:otherwise>
+								<c:forEach var="dto" items="${assessmentList}">
+									<tr>
+										<td>${dto.content}</td>
+										<td>${dto.reg_date}</td>
+										<td>${dto.grademark}점</td>
+									</tr>
+									<br />
+								</c:forEach>
+									평균 : ${avg }
+								</c:otherwise>
+						</c:choose>
 
-      <div class="col-md-3 col-sm-6 hero-feature">
-         <div id="h-div" class="flowplayer play-button" data-engine="flash"
-            data-swf="dist/flowplayer.swf"
-            data-rtmp="rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st"
-            data-ratio=".4167">
+						<form action="insertAssessment.content?mnum=${memberDTO.mnum }"
+							method="post" name="cmtform">
+							<textarea name="assessmentContent" rows="3" cols="70"></textarea>
+							<c:choose>
+								<c:when test="${memberDTO != null }">
 
 
-            <video autoplay preload="none">
-               <source type="video/mp4" src="movie/test.mp4">
-            </video>
+									<input type="hidden" name="writer" value="${memberDTO.name }">
+									<input type="hidden" name="ocnum" value="${contData.OCNUM }">
+										${contData.OCNUM }
+									</c:when>
+							</c:choose>
 
-         </div>
-         <div class="captionC right">
-            <h3>Orientation</h3>
-            <p>강의 11</p>
-            <p>강의 2</p>
-            <p>강의 3</p>
-            <p>강의 4</p>
-            <p>강의 5</p>
-            <p>
-            
-               <c:if test="${isPurchase }">
-                  <a href="#" class="btn btn-default">평가하기</a>
-               </c:if>
-
-            </p>
-         </div>
-      </div>
-   </div>
-
-</div>
- --%>
+							<p>
+								<select name="grademark">
+									<option value="1" selected>1점</option>
+									<option value="2">2점</option>
+									<option value="3">3점</option>
+									<option value="4">4점</option>
+									<option value="5">5점</option>
+								</select>
+							</p>
 
 
 
+							<button type="submit" class="btn btn-default">평가하기</button>
+						</form>
 
-
-
+					</div>
+				</div>
+				<!-- <a href="#" class="btn btn-primary">평가하기</a> -->
+			</div>
+		</div>
+	</c:forEach>
+</body>
 
 <%@ include file="../../bottom.jsp"%>

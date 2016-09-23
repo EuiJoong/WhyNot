@@ -25,12 +25,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAlias type="offlinecontent.model.OfflineContentDBBean" alias="OfflineContentDTO"/>
 	<!-- 강의실 -->
 	<typeAlias type="onlinecurriculum.model.OnlineCurriculumDBBean" alias="OnlineCurriculumDTO"/>
-	<typeAlias type="onlinecurriculum.board.model.OnlineCurriculumDBBean" alias="OnlineCurriculumBoardDTO"/>
-	
-	<!-- 게시판(강사요청,자유,자주하는질문)  -->
+	<typeAlias type="onlinecurriculum.board.model.OnlineCurriculumBoardDBBean" alias="OnlineCurriculumBoardDTO"/>
+	<typeAlias type="assessment.model.AssessmentDBBean" alias="AssessmentDTO"/>
+	<!-- 게시판(강사요청,자유)  -->
 	<typeAlias type="requestboard.model.RequestBoardDBBean" alias="RequestBoardDTO"/>
 	<typeAlias type="freeboard.model.FreeBoardDBBean" alias="FreeBoardDTO"/>
 	
+	<!-- 공지사항  -->
+	<typeAlias type="notice.model.NoticeBoardDBBean" alias="NoticeBoardDTO"/>
 	<!-- 문의 -->
 </typeAliases>
 <environments default="development">
@@ -59,6 +61,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <mapper resource="event/vote/mybatis/EventVote.xml"/>
 <mapper resource="freeboard/mybatis/FreeBoard.xml"/>
 <mapper resource="requestboard/mybatis/RequestBoard.xml"/>
+<mapper resource="notice/mybatis/NoticeBoard.xml"/>
+<mapper resource="assessment/mybatis/Assessment.xml"/>
 </mappers>
 </configuration>
 <!--  파일에 설정만 바꾸어 줌-->

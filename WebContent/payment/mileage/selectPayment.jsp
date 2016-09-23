@@ -11,7 +11,9 @@ function isMoney() {
 		alert("돈을 선택해 주세요");
 		exit;
 	}
+
 }
+
 function isTool() {
 
 	if (!$(':input:radio[name=tool]:checked').val()) {
@@ -19,7 +21,6 @@ function isTool() {
 		exit;
 	}
 }
-
 function btnChk() {
 
 	if(isMoney()){
@@ -44,13 +45,16 @@ function btnChk() {
 				<label for="money">결재 상품 선택</label>
 				<div class="btn-group input-group" data-toggle="buttons"  name = "amount">
 					<label class="btn btn-success">
-					<input type="radio"	id="amount1" name="amount" value = "1000" />1000원</label><!-- 스타일풀어보면 체크 되어 있어요 -->
+					<input type="radio"	id="amount1" name="amount" value = "1000" onClick="this.form.box.readOnly=true" />1000원</label>
 					<label class="btn btn-success">
-					<input type="radio"	id="amount2" name="amount" value = "5000" />5000원</label>
+					<input type="radio"	id="amount2" name="amount" value = "5000" onClick="this.form.box.readOnly=true" />5000원</label>
 					<label class="btn btn-success">
-					<input type="radio"	id="amount3" name="amount" value = "10000" />10000원</label>
+					<input type="radio"	id="amount3" name="amount" value = "10000" onClick="this.form.box.readOnly=true" />10000원</label>
 					<label class="btn btn-success">
-					<input type="radio"	id="amount4" name="amount" value = "30000" />30000원</label>
+					<input type="radio"	id="amount4" name="amount" value = "30000" onClick="this.form.box.readOnly=true" />30000원</label>
+					<label class="btn btn-success">
+					<input type="radio"	id="amount5" name="amount" value = "amount" onClick="this.form.box.readOnly=false"/>직접입력</label>
+					<input type="text" name="box">
 				</div>
 			</div>
 			<div class="form-group" id="tool" name="tool" class="form-control">
@@ -64,7 +68,7 @@ function btnChk() {
 			</div>
 			<div class="form-group text-center">
 				<button type="button" class="btn btn-info" onclick="btnChk()">	결재요청<i class="fa fa-check spaceLeft"></i></button>
-				<button type="button" class="btn btn-warning" onclick="location.href='main.app'">취소<i class="fa fa-times spaceLeft"></i></button>
+				<button type="button" class="btn btn-warning" onclick="self.close()">취소<i class="fa fa-times spaceLeft"></i></button>
 			</div>
 	</form>
 	</div>

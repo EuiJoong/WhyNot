@@ -51,7 +51,7 @@
 	</div>
 	<ul class="nav nav-justified">
 		<c:forEach var="cateDTO" items="${cateList }">
-			<li><a href="list.content?ctnum=${cateDTO.ctnum }"><c:out
+			<li><a href="list.oncont?ctnum=${cateDTO.ctnum }"><c:out
 						value="${cateDTO.name }"></c:out></a></li>
 		</c:forEach>
 	</ul>
@@ -77,7 +77,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 					<p>
 						<a href="#" class="btn btn-primary">Buy Now!</a> <a
-							href="cont_detail.content?num=0" class="btn btn-default">상세보기Go</a>
+							href="cont_detail.oncont?num=0" class="btn btn-default">상세보기Go</a>
 					</p>
 				</div>
 			</div>
@@ -162,13 +162,13 @@
 							<p>
 								<c:choose>
 									<c:when test="${memberDTO == null }">
-										<a href="cont_detail.content?ocnum=${recommandData.OCNUM }"
+										<a href="cont_detail.oncont?ocnum=${recommandData.OCNUM }"
 											class="btn btn-default">More Info</a>
 									</c:when>
 									<c:otherwise>
 										<a href="#" class="btn btn-primary">Buy Now!</a>
 										<a
-											href="cont_detail.content?mnum=${recommandData.mnum }&ocnum=${recommandData.OCNUM }"
+											href="cont_detail.oncont?mnum=${recommandData.mnum }&ocnum=${recommandData.OCNUM }"
 											class="btn btn-default">More Info</a>
 									</c:otherwise>
 								</c:choose>

@@ -13,6 +13,17 @@ public class MemberDBBean {
 	String joindate;
 	int acstagte;
 	int ppnum; // 프로필사진번호...
+	String auth;
+	
+	
+
+	public String getAuth() {
+		return auth;
+	}
+
+	public void setAuth(String auth) {
+		this.auth = auth;
+	}
 
 	public int getMnum() {
 		return mnum;
