@@ -52,9 +52,16 @@ public class PaymentController {
 		// 技记 辆丰
 		HttpSession session = arg0.getSession();
 		session.invalidate();
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("mnum",Integer.parseInt(arg0.getParameter("mnum")));
+		mav.addObject("ocnum",Integer.parseInt(arg0.getParameter("ocnum")));
+		mav.setViewName("login/getLogin.jsp");
+		
+		
 		System.out.println("技记 力芭 ");
 		// さげ 恐 府畔 角青 救窃.....?
-		return new ModelAndView("login/getLogin.jsp");
+		return mav;
 
 	}
 
@@ -152,9 +159,10 @@ public class PaymentController {
 	@RequestMapping(value = "/login.payment") // 技记 府悸
 	public ModelAndView getLogin(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("MainController_getLogin() 角青");
-
+		System.out.println("mnum"+arg0.getParameter("mnum"));
+		System.out.println("ocnum"+arg0.getParameter("ocnum"));
 		int mnum = Integer.parseInt(arg0.getParameter("mnum"));
-		int ocnum = Integer.parseInt(arg0.getParameter("onnum"));
+		int ocnum = Integer.parseInt(arg0.getParameter("ocnum"));
 		MemberDBBean resDTO = loginModel.reLogin(mnum);
 		HttpSession session = arg0.getSession();
 		session.setAttribute("memberDTO", resDTO);
