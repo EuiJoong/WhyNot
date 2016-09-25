@@ -154,9 +154,9 @@ public class MemberController {
 			System.out.println(recommandList);
 			mav.addObject("recommandList", recommandList);
 			
-			// 카테고리 목록
+			/*// 카테고리 목록
 			List<CategoryDBBean> catelist = categoryDAO.listCategory();//카테고리 목록 
-			mav.addObject("catelist",catelist);
+			mav.addObject("catelist",catelist);*/
 			
 			// 쿠키
 			Cookie ck = new Cookie("saveId", resDTO.getId());

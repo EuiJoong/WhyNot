@@ -15,6 +15,7 @@ import com.sun.javafx.sg.prism.NGShape.Mode;
 import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
+import member.model.MemberDBBean;
 import onlinecontent.model.OnlineContentDAO;
 
 @Controller
@@ -38,16 +39,22 @@ public class MainController {
 		System.out.println("MainController_ goMain() 실행");
 
 		ModelAndView mav = new ModelAndView();
+		
+		//카테고리 목록
 		List<CategoryDBBean> catelist = categoryDAO.listCategory();// 카테고리 목록
-		/* List catelist = onlineContentDAO.listOnlineContent(ctnum); */
 
-		List recommandList = null;
-		if (arg0.getParameter("mnum") != null) {
-			int mnum = Integer.parseInt(arg0.getParameter("mnum"));
-			recommandList = onlineContentDAO.recommendContent(mnum); // 추천
+		//Best 목록
+		List bestList = onlineContentDAO.getBestContent();
+		
+		
+		// 추천 목록
+		if (arg0.getSession().getAttribute("memberDTO") != null) {
+			MemberDBBean memberDTO = (MemberDBBean) arg0.getSession().getAttribute("memberDTO");
+			List recommandList = onlineContentDAO.recommendContent(memberDTO.getMnum());
 			mav.addObject("recommandList", recommandList);
 		}
-
+		
+		mav.addObject("bestList",bestList);
 		mav.addObject("cateList", catelist);
 		mav.setViewName("index.jsp");
 		return mav;
@@ -60,6 +67,5 @@ public class MainController {
 		System.out.println("MainController_goAdminMain() 실행");
 		return new ModelAndView("admin/adminMain.jsp");
 	}
-
 
 }

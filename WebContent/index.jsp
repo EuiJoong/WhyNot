@@ -58,82 +58,63 @@
 
 	<!-- Best 강좌 -->
 	<!-- Title -->
-	<div class="row">
-		<div class="col-lg-12">
-			<h3>Best 강좌</h3>
-		</div>
-	</div>
 	<!-- /.row -->
 	<!-- Page Features -->
-	<div class="row text-center">
-		<div class="col-md-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<img src="http://placehold.it/800x500" alt="">
-				<div class="caption">
-					<h3>Feature Label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>
-						<a href="#" class="btn btn-primary">Buy Now!</a> <a
-							href="cont_detail.oncont?num=0" class="btn btn-default">상세보기Go</a>
-					</p>
+	<c:choose>
+		<c:when test="${bestList.size() == 0 || bestList == null }">
+			<p>
+				<c:out value="Best강좌가 없습니다." />
+			</p>
+		</c:when>
+		<c:otherwise>
+			<!-- img/defaultpro.png -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h3>Best 강좌</h3>
 				</div>
 			</div>
-		</div>
-		<div class="col-md-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<img src="http://placehold.it/800x500" alt="">
-				<div class="caption">
-					<h3>Feature Label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>
-						<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-							class="btn btn-default">More Info</a>
-					</p>
+			<c:forEach var="bestData" items="${bestList }">
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail" align="center">
+						<img
+							src="${pageContext.request.contextPath}/images/${bestData.FILENAME}.${bestData.FILEEXT}"
+							style="width: 15em; height: 10em;" alt="이미지 출력이 ㅠㅠ" />
+						<div class="caption">
+							<h3>
+								<c:out value="${bestData.TITLE }" />
+							</h3>
+							<p>
+								<c:out value="${bestData.NAME }" />
+							</p>
+							<p>
+								<c:choose>
+									<c:when test="${memberDTO == null }">
+										<a href="cont_detail.oncont?ocnum=${bestData.OCNUM }"
+											class="btn btn-default">More Info</a>
+									</c:when>
+									<c:otherwise>
+										<a href="#" class="btn btn-primary">Buy Now!</a>
+										<a
+											href="cont_detail.oncont?mnum=${bestData.mnum }&ocnum=${bestData.OCNUM }"
+											class="btn btn-default">More Info</a>
+									</c:otherwise>
+								</c:choose>
+							</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<img src="http://placehold.it/800x500" alt="">
-				<div class="caption">
-					<h3>Feature Label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>
-						<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-							class="btn btn-default">More Info</a>
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-3 col-sm-6 hero-feature">
-			<div class="thumbnail">
-				<img src="http://placehold.it/800x500" alt="">
-				<div class="caption">
-					<h3>Feature Label</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-					<p>
-						<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-							class="btn btn-default">More Info</a>
-					</p>
-				</div>
-			</div>
-		</div>
-
-	</div>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 	<!-- Best 강좌 끝 -->
 
 	<!-- 추천 강좌 -->
-	<!-- Title -->
-	<!-- /.row -->
-
 	<!-- Page Features -->
 	<c:choose>
-		<c:when test="${recommandList.size() == 0 }">
-			<p>
+		<c:when test="${recommandList.size() == 0 || recommandList == null }">
+			<%-- <p>
 				<c:out value="해당된 카테고리 내에서 등록된 컨텐츠가 없습니다." />
-			</p>
+			</p> --%>
 		</c:when>
 		<c:otherwise>
 			<!-- img/defaultpro.png -->
@@ -143,9 +124,8 @@
 				</div>
 			</div>
 			<c:forEach var="recommandData" items="${recommandList }">
-			aaaa
 				<div class="col-md-3 col-sm-6 hero-feature">
-					<div class="thumbnail">
+					<div class="thumbnail" align="center">
 						<img
 							src="${pageContext.request.contextPath}/images/${recommandData.FILENAME}.${recommandData.FILEEXT}"
 							style="width: 15em; height: 10em;" alt="이미지 출력이 ㅠㅠ" />
@@ -177,7 +157,6 @@
 		</c:otherwise>
 	</c:choose>
 	<!--추천 강좌 끝 -->
-
 
 	<!-- Features Section -->
 	<div class="row">

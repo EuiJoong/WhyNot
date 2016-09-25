@@ -63,9 +63,17 @@ public class OnlineContentDAOImpl implements OnlineContentDAO {
 	@Override
 	public List getDetailWho(int ocnum) {
 		// TODO Auto-generated method stub
+		System.out.println("OnlineContentDAOImpl_getDetailWho()");
 		//OnlineContentDBBean dto=new OnlineContentDBBean();
 		List list=OnlineContentMybatis.getDetailWho(ocnum);
 		return list;
+	}
+
+	@Override
+	public List getBestContent() {
+		// TODO Auto-generated method stub
+		System.out.println("OnlineContentDAOImpl_getBestContent()");
+		return OnlineContentMybatis.getBestContent();
 	}
 
 }

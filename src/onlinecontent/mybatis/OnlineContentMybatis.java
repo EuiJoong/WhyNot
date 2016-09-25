@@ -36,7 +36,7 @@ public class OnlineContentMybatis {
 
 	public static VideoDBBean getContent(int num) {
 		// TODO Auto-generated method stub
-		// int mnum = num;
+		System.out.println("OnlineContentMybatis_getContent() 角青");
 		VideoDBBean dto = new VideoDBBean();
 		//
 		System.out.println("num : " + num);
@@ -49,7 +49,7 @@ public class OnlineContentMybatis {
 	}
 
 	public static List getDetailWho(int ocnum) {
-
+		System.out.println("OnlineContentMybatis_getDetailWho() 角青");
 		SqlSession session = sqlMapper.openSession();
 		System.out.println("ocnum : " + ocnum);
 		List list = session.selectList("getDetailWho", ocnum);
@@ -62,6 +62,7 @@ public class OnlineContentMybatis {
 
 	public static List listOnlineContent(int ctnum) {
 		// TODO Auto-generated method stub
+		System.out.println("OnlineContentMybatis_listOnlineContent() 角青");
 		SqlSession session = sqlMapper.openSession();
 		List list = session.selectList("listContent", ctnum);
 		session.close();
@@ -70,6 +71,7 @@ public class OnlineContentMybatis {
 
 	public static void insertContent(OnlineContentDBBean oc_dto, PhotoDBBean p_dto, VideoDBBean v_dto) {
 		// TODO Auto-generated method stub
+		System.out.println("OnlineContentMybatis_insertContent() 角青");
 		SqlSession session = sqlMapper.openSession();
 		/*
 		 * Map map=new HashMap(); map.put("mnum", dto.getMnum());
@@ -94,22 +96,35 @@ public class OnlineContentMybatis {
 
 	public static void updateContent(OnlineContentDBBean dto, int num) {
 		// TODO Auto-generated method stub
+		System.out.println("OnlineContentMybatis_updateContent() 角青");
 
 	}
 
 	public static void sanctionsContent(OnlineContentDBBean dto, int num) {
 		// TODO Auto-generated method stub
+		System.out.println("OnlineContentMybatis_sanctionsContent() 角青");
 
 	}
 
 	public static void deleteContent(OnlineContentDBBean dto, int num) {
 		// TODO Auto-generated method stub
-
+		System.out.println("OnlineContentMybatis_deleteContent() 角青");
 	}
 
 	public static List recommendContent(int mnum) {
+		System.out.println("OnlineContentMybatis_recommendContent() 角青");
 		SqlSession session = sqlMapper.openSession();
 		List recommendList = session.selectList("recommendContent", mnum);
+		session.close();
 		return recommendList;
+	}
+	
+	
+	public static List getBestContent() {
+		System.out.println("OnlineContentMybatis_getBestContent() 角青");
+		SqlSession session = sqlMapper.openSession();
+		List bestList = session.selectList("getBestContent");
+		session.close();
+		return bestList;
 	}
 }

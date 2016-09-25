@@ -15,6 +15,7 @@ public interface OnlineContentDAO {
 	public void updateContent(OnlineContentDBBean dto ,int num); //인강(학교) - 수정
 	public List recommendContent(int mnum);
 	public List getDetailWho(int ocnum);
+	public List getBestContent();
 	//---- 관리자 ---------
 	public void sanctionsContent(OnlineContentDBBean dto,int num);//인강(학교) - 제재
 	public void deleteContent(int num); //인강(학교) - 삭제
