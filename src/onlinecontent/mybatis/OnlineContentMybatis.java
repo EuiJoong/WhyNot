@@ -132,7 +132,7 @@ public class OnlineContentMybatis {
 		// TODO Auto-generated method stub
 		System.out.println("OnlineContentDAOImpl_searchContent()");
 		SqlSession session = sqlMapper.openSession();
-		List searchList = session.selectList("searchOnContent");
+		List searchList = session.selectList("searchOnContent",searchStr);
 		session.close();
 		return searchList;
 	}

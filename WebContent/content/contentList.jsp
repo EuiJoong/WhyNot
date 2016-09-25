@@ -51,47 +51,94 @@
 </div>
 <!-- /.row -->
 <div class="row text-center">
-
 	<c:choose>
-		<c:when test="${contList.size() == 0 }">
-			<p>
-				<c:out value="해당된 카테고리 내에서 등록된 컨텐츠가 없습니다." />
-			</p>
+		<c:when test="${searchList != null }">
+			<c:choose>
+				<c:when test="${searchList.size() == 0 }">
+					<p>
+						<c:out value="없는 정보 입니다." />
+					</p>
+				</c:when>
+				<c:otherwise>
+					<!-- img/defaultpro.png -->
+					<c:forEach var="searchData" items="${searchList }">
+						<%-- <c:out value="${contData.FILEDIR}${contData.FILENAME }.${contData.FILEEXT }"></c:out> --%>
+						<div class="col-md-3 col-sm-6 hero-feature">
+							<div class="thumbnail">
+								<img
+									src="${pageContext.request.contextPath}/images/${searchData.FILENAME}.${searchData.FILEEXT}"
+									style="width: 15em; height: 10em;" alt="이미지 출력이 ㅠㅠ" />
+								<div class="caption">
+									<h3>
+										<c:out value="${searchData.TITLE }" />
+									</h3>
+									<p>
+										<c:out value="${searchData.NAME }" />
+									</p>
+									<p>
+										<c:choose>
+											<c:when test="${memberDTO == null }">
+												<a href="cont_detail.oncont?ocnum=${searchData.OCNUM }"
+													class="btn btn-default">More Info</a>
+											</c:when>
+											<c:otherwise>
+												<a href="#" class="btn btn-primary">Buy Now!</a>
+												<a
+													href="cont_detail.oncont?mnum=${memberDTO.mnum }&ocnum=${searchData.OCNUM }"
+													class="btn btn-default">More Info</a>
+											</c:otherwise>
+										</c:choose>
+									</p>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</c:when>
 		<c:otherwise>
-			<!-- img/defaultpro.png -->
-			<c:forEach var="contData" items="${contList }">
-				<%-- <c:out value="${contData.FILEDIR}${contData.FILENAME }.${contData.FILEEXT }"></c:out> --%>
-				<div class="col-md-3 col-sm-6 hero-feature">
-					<div class="thumbnail">
-						<img src="${pageContext.request.contextPath}/images/${contData.FILENAME}.${contData.FILEEXT}" style="width: 15em; height: 10em;"
-							alt="이미지 출력이 ㅠㅠ" />
-						<div class="caption">
-							<h3>
-								<c:out value="${contData.TITLE }" />
-							</h3>
-							<p>
-								<c:out value="${contData.NAME }" />
-							</p>
-							<p>
-								<c:choose>
-									<c:when test="${memberDTO == null }">
-										<a
-											href="cont_detail.oncont?ocnum=${contData.OCNUM }"
-											class="btn btn-default">More Info</a>
-									</c:when>
-									<c:otherwise>
-										<a href="#" class="btn btn-primary">Buy Now!</a>
-										<a
-											href="cont_detail.oncont?mnum=${memberDTO.mnum }&ocnum=${contData.OCNUM }"
-											class="btn btn-default">More Info</a>
-									</c:otherwise>
-								</c:choose>
-							</p>
+			<c:choose>
+				<c:when test="${contList.size() == 0 }">
+					<p>
+						<c:out value="해당된 카테고리 내에서 등록된 컨텐츠가 없습니다." />
+					</p>
+				</c:when>
+				<c:otherwise>
+					<!-- img/defaultpro.png -->
+					<c:forEach var="contData" items="${contList }">
+						<%-- <c:out value="${contData.FILEDIR}${contData.FILENAME }.${contData.FILEEXT }"></c:out> --%>
+						<div class="col-md-3 col-sm-6 hero-feature">
+							<div class="thumbnail">
+								<img
+									src="${pageContext.request.contextPath}/images/${contData.FILENAME}.${contData.FILEEXT}"
+									style="width: 15em; height: 10em;" alt="이미지 출력이 ㅠㅠ" />
+								<div class="caption">
+									<h3>
+										<c:out value="${contData.TITLE }" />
+									</h3>
+									<p>
+										<c:out value="${contData.NAME }" />
+									</p>
+									<p>
+										<c:choose>
+											<c:when test="${memberDTO == null }">
+												<a href="cont_detail.oncont?ocnum=${contData.OCNUM }"
+													class="btn btn-default">More Info</a>
+											</c:when>
+											<c:otherwise>
+												<a href="#" class="btn btn-primary">Buy Now!</a>
+												<a
+													href="cont_detail.oncont?mnum=${memberDTO.mnum }&ocnum=${contData.OCNUM }"
+													class="btn btn-default">More Info</a>
+											</c:otherwise>
+										</c:choose>
+									</p>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-			</c:forEach>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</c:otherwise>
 	</c:choose>
 

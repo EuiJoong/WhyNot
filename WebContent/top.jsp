@@ -47,14 +47,15 @@
 				<!-- 좌측상단 팀명 -->
 				<a class="navbar-brand" id="logo" href="main.app">WhyNot?</a>
 
-				<!-- 모바일 화면시 검색버튼 -->
-				<button type="button" class="navbar-search" data-toggle="collapse"
-					data-target="#search-btn">검색</button>
 
 				<!-- 검색 입력창 -->
-				<form class="navbar-form navbar-left" role="search">
+				<form class="navbar-form navbar-left" role="search" method="post"
+					action="cont.search">
 					<input type="text" class="form-control-search" placeholder="Search"
-						id="search-btn">
+						id="search-btn" name="searchStr">
+					<!-- 모바일 화면시 검색버튼 -->
+					<button type="submit" class="navbar-search" data-toggle="collapse"
+						data-target="#search-btn" >검색</button>
 					<!-- <button type="submit" class="btn btn-default">Submit</button> -->
 				</form>
 			</div>
@@ -90,8 +91,8 @@
 										${memberDTO.name}님</h4>
 									<ul class="dropdown-menu" role="menu"
 										aria-labelledby="logindropMenu">
-										 <li role="presentation">
-										<a role="menuitem" tabindex="-1" href="paymentForm.payment?mnum=${memberDTO.mnum}">${memberDTO.mileage }마일리지</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" target="_blank"
+											href="paymentForm.payment?mnum=${memberDTO.mnum}">${memberDTO.mileage }마일리지</a></li>
 										<c:choose>
 											<c:when test="${memberDTO.grade == 1 }">
 												<li role="presentation"><a role="menuitem"

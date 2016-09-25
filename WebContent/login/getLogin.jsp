@@ -16,6 +16,7 @@
 	<form action="login.payment" name="f" method="post">
 		<input type="hidden" name="mnum" value="${mnum }"> 
 		<input type="hidden" name="ocnum" value="${ocnum }">
+		<input type="hidden" name="mode" value="purchase">
 	</form>
 </body>
 </html>
