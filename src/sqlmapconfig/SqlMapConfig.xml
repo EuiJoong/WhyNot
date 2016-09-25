@@ -19,7 +19,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAlias type="payment.model.MileagePaymentDBBean" alias="MileagePaymentDTO"/>
 	<!-- <typeAlias type="paymeny.model.OfflinePaymentDBBean" alias="OfflinePaymentDTO"/> -->
 	<!-- 투표 -->
-	<typeAlias type="event.vote.model.EventVoteDBBean" alias="EventVoteDTO"/>
+	<typeAlias type="event.poll.model.PollDBBean" alias="PollDTO"/>
+	<typeAlias type="event.poll.model.NomineeDBBean" alias="NomineeDTO"/>
+	<typeAlias type="event.poll.model.VoteDBBean" alias="VoteDTO"/>
 	<!-- 콘텐츠(인강,후원)  -->
 	<typeAlias type="onlinecontent.model.OnlineContentDBBean" alias="OnlineContentDTO"/>
 	<typeAlias type="offlinecontent.model.OfflineContentDBBean" alias="OfflineContentDTO"/>
@@ -58,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
 <mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
 <mapper resource="payment/mybatis/Payment.xml"/>
-<mapper resource="event/vote/mybatis/EventVote.xml"/>
+<mapper resource="event/poll/mybatis/EventPoll.xml"/>
 <mapper resource="freeboard/mybatis/FreeBoard.xml"/>
 <mapper resource="requestboard/mybatis/RequestBoard.xml"/>
 <mapper resource="notice/mybatis/NoticeBoard.xml"/>

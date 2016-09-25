@@ -25,7 +25,7 @@
 				value="${memberDTO.name }님" /></li>
 		<li class="list-group-item"><a href="list.cate">카테고리</a></li>
 		<li class="list-group-item"><a href="list.member">회원관리</a></li>
-		<li class="list-group-item">목록4</li>
+		<li class="list-group-item"><a href="list.poll">투표관리</a></li>
 		<li class="list-group-item">목록5</li>
 		<li class="list-group-item">목록6</li>
 		<li class="list-group-item">목록7</li>

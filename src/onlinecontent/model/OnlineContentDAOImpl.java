@@ -76,4 +76,11 @@ public class OnlineContentDAOImpl implements OnlineContentDAO {
 		return OnlineContentMybatis.getBestContent();
 	}
 
+	@Override
+	public List searchContent(String searchStr) {
+		// TODO Auto-generated method stub
+		System.out.println("OnlineContentDAOImpl_searchContent()");
+		return OnlineContentMybatis.searchContent(searchStr);
+	}
+
 }

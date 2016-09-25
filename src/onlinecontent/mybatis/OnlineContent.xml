@@ -35,4 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getBestContent" resultType="map">
 		select * from (select DISTINCT best.* from (select  wn_ONLINE.ocnum, WN_CATEGORY.NAME as ctname, wn_ONLINE.title, wn_ONLINE.content, wn_ONLINE.price, wn_ONLINE.ptnum, wn_member.NAME , WN_PHOTO.FILEDIR, WN_PHOTO.FILENAME, WN_PHOTO.FILEEXT , COUNT(*) OVER(PARTITION BY WN_CATEGORY.CTNUM, wn_ONLINE.ocnum, wn_ONLINE.title, wn_ONLINE.content, wn_ONLINE.price, wn_ONLINE.ptnum, wn_member.NAME , WN_PHOTO.FILEDIR, WN_PHOTO.FILENAME, WN_PHOTO.FILEEXT) as cnt from wn_onpayment , wn_ONLine, wn_photo, wn_member, WN_CATEGORY where wn_ONLine.OCNUM = wn_onpayment.OCNUM and WN_ONLINE.CTNUM = WN_CATEGORY.CTNUM  and wn_ONLine.MNUM = wn_member.mnum and wn_ONLine.PTNUM = wn_photo.PTNUM ) best ORDER BY best.cnt desc) where rownum <![CDATA[<=]]> 8
 	</select>
+	<select id="searchOnContent" parameterType="String" resultType="map">
+	select * from (select wn_ONLINE.ocnum, WN_CATEGORY.NAME as ctname, wn_ONLINE.title, wn_ONLINE.content, wn_ONLINE.price, wn_ONLINE.ptnum, wn_member.NAME , WN_PHOTO.FILEDIR, WN_PHOTO.FILENAME, WN_PHOTO.FILEEXT from WN_ONLINE, WN_PHOTO, WN_MEMBER, WN_CATEGORY where wn_ONLine.MNUM = wn_member.mnum and wn_ONLine.PTNUM = wn_photo.PTNUM and wn_ONLine.CTNUM = wn_CATEGORY.CTNUM)where NAME like '%'+#{searchStr}+'%' or TITLE like '%'+#{searchStr}+'%'
+	</select>
 </mapper> 

@@ -90,6 +90,36 @@
 		<servlet-name>footer</servlet-name>
 		<url-pattern>*.footer</url-pattern>
 	</servlet-mapping>
+	<!-- search 검색 -->
+	<servlet>
+		<servlet-name>search</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>search</servlet-name>
+		<url-pattern>*.search</url-pattern>
+	</servlet-mapping>
+	<!-- 이벤트 -->
+	<servlet>
+		<servlet-name>event</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>event</servlet-name>
+		<url-pattern>*.event</url-pattern>
+	</servlet-mapping>
+		<!-- 이벤트 -->
+	<servlet>
+		<servlet-name>poll</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>poll</servlet-name>
+		<url-pattern>*.poll</url-pattern>
+	</servlet-mapping>
 	<!-- 한글 필터링 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>

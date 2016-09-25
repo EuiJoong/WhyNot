@@ -15,6 +15,9 @@
 		<config>WebContent/WEB-INF/oncontent-servlet.xml</config>
 		<config>WebContent/WEB-INF/offcontent-servlet.xml</config>
 		<config>WebContent/WEB-INF/curriculum-servlet.xml</config>
+		<config>WebContent/WEB-INF/search-servlet.xml</config>
+		<config>WebContent/WEB-INF/event-servlet.xml</config>
+		<config>WebContent/WEB-INF/poll-servlet.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
