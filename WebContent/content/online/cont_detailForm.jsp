@@ -201,6 +201,7 @@ body {
 				<!-- <a href="#" class="btn btn-primary">평가하기</a> -->
 			</div>
 		</div>
+
 	</c:forEach>
 </body>
 
