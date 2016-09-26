@@ -24,7 +24,7 @@ public class PollController {
 	@RequestMapping(value = "/insert.poll")//투표글 등록Form
 	public ModelAndView insertFormPoll(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("PollController_insertFormPoll() 실행");
-		return new ModelAndView("event/poll/poll_insert.jsp");
+		return new ModelAndView("admin/poll/poll_insert.jsp");
 
 	}
 
@@ -39,7 +39,7 @@ public class PollController {
 	public ModelAndView listPoll(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("PollController_listPoll() 실행");
 		
-		return new ModelAndView("event/board_list.jsp");
+		return new ModelAndView("admin/poll/poll_list.jsp");
 	}
 	
 	@RequestMapping(value = "/doPoll.poll") //사용자가 투표 하기
