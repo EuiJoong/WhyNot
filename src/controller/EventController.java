@@ -54,13 +54,21 @@ public class EventController {
 	public ModelAndView deleteEvent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("EventController_deleteEvent() 角青");
 		eventDAO.deleteEvent(Integer.parseInt(arg0.getParameter("eventNum")));
+		System.out.println("昏力己傍!");
 		return new ModelAndView("list.event");
 	}
 	
 	@RequestMapping(value = "/update.event")
 	public ModelAndView UpdateFormEvent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("EventController_UpdateFormEvent() 角青");
-		return new ModelAndView("admin/event/event_updateForm.jsp");
+		int eventNum = Integer.parseInt(arg0.getParameter("eventNum"));
+		EventDBBean dto = eventDAO.getEvent(eventNum);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/event/event_updateForm.jsp");
+		mav.addObject("eventDTO", dto);
+		System.out.println("EventController_UpdateFormEvent() 己傍!");
+		System.out.println(dto.getEventNum());
+		return mav;
 	}
 
 	@RequestMapping(value = "/updatePro.event")

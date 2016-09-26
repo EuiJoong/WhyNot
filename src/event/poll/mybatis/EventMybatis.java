@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.ibatis.common.resources.Resources;
+
+import attachfile.model.VideoDBBean;
 import event.poll.model.EventDBBean;
 
 public class EventMybatis {
@@ -35,9 +37,13 @@ public class EventMybatis {
 		session.close();
 	}
 	
-	public static void deleteEvent() {
+	public static void deleteEvent(int eventNum) {
 		// TODO Auto-generated method stub
 		System.out.println("EventMybatis_deleteEvent() 실행");
+		SqlSession session = sqlMapper.openSession();
+		session.delete("deleteEvent", eventNum);
+		session.commit();
+		session.close();
 		
 	}
 	public static void updateEvent(EventDBBean dto) {
@@ -62,7 +68,12 @@ public class EventMybatis {
 	public static EventDBBean getEvent(int eventNum) {
 		// TODO Auto-generated method stub
 		System.out.println("EventMybatis_getEvent() 실행");
-		return null;
+		EventDBBean dto = new EventDBBean();
+		SqlSession session = sqlMapper.openSession();
+		dto = (EventDBBean) session.selectOne("getEvent", eventNum); 
+		session.commit();
+		session.close();
+		return dto;
 	}
 	
 	

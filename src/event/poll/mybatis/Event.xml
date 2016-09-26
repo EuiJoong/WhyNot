@@ -17,4 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	update wn_poll set eventtitle=#{eventTitle}, deadline=to_date(#{deadLine}, 'YYYY-MM-DD') where eventNum=#{eventNum}
 </update>
 
+<select id="getEvent" parameterType="int" resultType="EventDTO">
+	select * from WN_POLL where eventnum=#{eventNum}
+</select> 
+
+<delete id="deleteEvent" parameterType="int">
+	delete from wn_poll where eventnum=#{eventNum}
+</delete>
+
 </mapper>

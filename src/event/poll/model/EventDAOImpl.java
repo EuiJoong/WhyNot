@@ -17,8 +17,9 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public void deleteEvent(int eventNum) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("EventDAOImpl_updateDelete() 角青");
+		EventMybatis.deleteEvent(eventNum); 
+		System.out.println("己傍!");
 	}
 
 	@Override
@@ -29,9 +30,12 @@ public class EventDAOImpl implements EventDAO {
 	}
 
 	@Override
-	public EventDBBean getEvent(int ctnum) {
-		// TODO Auto-generated method stub
-		return null;
+	public EventDBBean getEvent(int eventNum) {
+		System.out.println("EventDAOImpl_getEvent() 角青");
+		EventDBBean dto = new EventDBBean();
+		dto = EventMybatis.getEvent(eventNum);
+		System.out.println("EventDAOImpl_getEvent() 己傍!");
+		return dto;
 	}
 
 	@Override
