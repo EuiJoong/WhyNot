@@ -9,7 +9,7 @@
 <script type="text/javascript">
     function eexit() {
             // 자동 실행 할 javascript 함수 또는 코드를 넣는다.
-    	opener.location.href = "부모창";	
+    	opener.location.href = "main.app";	
     	self.close();	
     };
 </script>
