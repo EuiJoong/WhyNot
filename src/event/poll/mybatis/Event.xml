@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="event.poll.mybatis.Event">
+
+<select id="listEvent" resultType="EventDTO">
+	select * from wn_poll ORDER BY deadline ASC
+</select>
+
+<insert id="insertEvent" parameterType="EventDTO">
+	insert into wn_poll (eventnum, eventtitle, deadline) values (wn_event_seq.nextval, #{eventTitle}, to_date(#{deadLine}, 'YYYY-MM-DD'))
+</insert>
+
+<update id="updateEvent" parameterType="EventDTO">
+	update wn_poll set eventtitle=#{eventTitle}, deadline=to_date(#{deadLine}, 'YYYY-MM-DD') where eventNum=#{eventNum}
+</update>
+
+</mapper>

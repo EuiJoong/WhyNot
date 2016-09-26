@@ -67,7 +67,6 @@ public class CategoryMybatis {
 		session.update("updateCategory", dto);
 		session.commit();
 		session.close();
-		
 	}
 	
 
