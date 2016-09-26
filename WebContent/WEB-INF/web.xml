@@ -110,6 +110,16 @@
 		<servlet-name>event</servlet-name>
 		<url-pattern>*.event</url-pattern>
 	</servlet-mapping>
+	<!-- 후보자 -->
+	<servlet>
+		<servlet-name>nominee</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>nominee</servlet-name>
+		<url-pattern>*.nominee</url-pattern>
+	</servlet-mapping>
 	<!-- 투표 -->
 	<servlet>
 		<servlet-name>poll</servlet-name>

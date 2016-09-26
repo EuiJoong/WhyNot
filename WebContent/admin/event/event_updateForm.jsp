@@ -5,6 +5,7 @@
 
 <div align="center" style="width: 80%; float: right;">
 	<form name="f" action="updatePro.event" method="post">
+	<input type="hidden" name="eventNum" value="${eventDTO.eventNum }">
 		<br>
 		<table border="1" width="400" >
 		<caption>이벤트 수정</caption>

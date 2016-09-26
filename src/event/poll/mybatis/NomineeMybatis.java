@@ -3,16 +3,18 @@ package event.poll.mybatis;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import com.ibatis.common.resources.Resources;
 
-import attachfile.model.VideoDBBean;
 import event.poll.model.EventDBBean;
+import event.poll.model.NomineeDBBean;
 
-public class EventMybatis {
-	
+public class NomineeMybatis
+{
 	private static SqlSessionFactory sqlMapper;
 	static {
 		try {
@@ -29,53 +31,58 @@ public class EventMybatis {
 		}
 	}
 	
-	public static void insertEvent(EventDBBean dto) {
-		// TODO Auto-generated method stub
-		System.out.println("EventMybatis_insertEvent() 실행");
-		SqlSession session = sqlMapper.openSession();
-		session.insert("insertEvent", dto);
-		session.commit(); // insert는 반드시 commit()를 해줘야 데이터가 쓰여짐
-		session.close();
-	}
-	
-	public static void deleteEvent(int eventNum) {
-		// TODO Auto-generated method stub
-		System.out.println("EventMybatis_deleteEvent() 실행");
-		SqlSession session = sqlMapper.openSession();
-		session.delete("deleteEvent", eventNum);
-		session.commit();
-		session.close();
-		
-	}
-	public static void updateEvent(EventDBBean dto) {
-		// TODO Auto-generated method stub
-		System.out.println("EventMybatis_updateEvent() 실행");
-		SqlSession session = sqlMapper.openSession();
-		session.update("updateEvent", dto);
-		session.commit();
-		session.close();
-	}
-	
-	public static List<EventDBBean> listEvent()
+	public static List<NomineeDBBean> listNominee()
 	{
-		// TODO Auto-generated method stub
-		System.out.println("EventMybatis_listEvent() 실행");
+		System.out.println("NomineeMybatis_listNominee() 실행");
 		SqlSession session = sqlMapper.openSession();
-		List<EventDBBean> list = session.selectList("listEvent");
+		List<NomineeDBBean> list = session.selectList("listNominee");
 		session.close();
+		System.out.println("NomineeMybatis_listNominee() 성공");
 		return list;
 	}
 	
-	public static EventDBBean getEvent(int eventNum) {
-		// TODO Auto-generated method stub
-		System.out.println("EventMybatis_getEvent() 실행");
-		EventDBBean dto = new EventDBBean();
+	public static List<NomineeDBBean> getEventNum()
+	{
+		System.out.println("NomineeMybatis_getEventNum() 실행");
 		SqlSession session = sqlMapper.openSession();
-		dto = (EventDBBean) session.selectOne("getEvent", eventNum); 
+		List<NomineeDBBean> list = session.selectList("getEventNum");
+		session.close();
+		System.out.println("NomineeMybatis_getEventNum() 성공");
+		return list;
+	}
+	
+	public static void insertNominee(NomineeDBBean dto) {
+		System.out.println("NomineeMybatis_insertNominee() 실행");
+		SqlSession session = sqlMapper.openSession();
+		session.insert("insertNominee", dto);
+		session.commit();
+		session.close();
+		System.out.println("NomineeMybatis_insertNominee() 성공!");
+	}
+	
+	public static void deleteNominee(int nomiNum) {
+		System.out.println("NomineeMybatis_deleteNominee() 실행");
+		SqlSession session = sqlMapper.openSession();
+		session.delete("deleteNominee", nomiNum);
+		session.commit();
+		session.close();
+	}
+	
+	public static void updateNominee(NomineeDBBean dto) {
+		System.out.println("NomineeMybatis_updateNominee() 실행");
+		SqlSession session = sqlMapper.openSession();
+		session.update("updateNominee", dto);
+		session.commit();
+		session.close();
+	}
+	
+	public static NomineeDBBean getNominee(int nomiNum) {
+		System.out.println("EventMybatis_getEvent() 실행");
+		NomineeDBBean dto = new NomineeDBBean();
+		SqlSession session = sqlMapper.openSession();
+		dto = (NomineeDBBean) session.selectOne("getNominee", nomiNum); 
 		session.commit();
 		session.close();
 		return dto;
 	}
-	
-	
 }
