@@ -35,14 +35,14 @@ public class OnlineContentMybatis {
 		}
 	}
 
-	public static VideoDBBean getContent(int num) {
+	public static VideoDBBean getContent(int ocnum) {
 		// TODO Auto-generated method stub
 		System.out.println("OnlineContentMybatis_getContent() ½ÇÇà");
 		VideoDBBean dto = new VideoDBBean();
 		//
-		System.out.println("num : " + num);
+		System.out.println("ocnum : " + ocnum);
 		SqlSession session = sqlMapper.openSession();
-		dto = (VideoDBBean) session.selectOne("getContent", num);
+		dto = (VideoDBBean) session.selectOne("getContent", ocnum);
 		session.commit();
 		System.out.println("session get");
 		session.close();

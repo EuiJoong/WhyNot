@@ -9,10 +9,10 @@ import onlinecontent.mybatis.OnlineContentMybatis;
 public class OnlineContentDAOImpl implements OnlineContentDAO {
 
 	@Override
-	public VideoDBBean getContent(int num) {
+	public VideoDBBean getContent(int ocnum) {
 		// TODO Auto-generated method stub
 		VideoDBBean dto = new VideoDBBean();
-		dto = OnlineContentMybatis.getContent(num);
+		dto = OnlineContentMybatis.getContent(ocnum);
 		return dto;
 	}
 

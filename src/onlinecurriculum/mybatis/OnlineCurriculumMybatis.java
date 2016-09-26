@@ -33,9 +33,13 @@ public class OnlineCurriculumMybatis{
 		}
 	}
 	
-	public static OnlineCurriculumDBBean getCurriculum(int num) {
+	public static List getCurriculum(OnlineCurriculumDBBean dto) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("OnlineCurriculumMybatis_getCurriculum() ½ÇÇà");
+		SqlSession session = sqlMapper.openSession();
+		List currList =  session.selectList("getCurr",dto);
+		session.close();
+		return currList;
 	}
 	public static List<OnlineCurriculumDBBean> listCurriculum(int lsnum) {
 		// TODO Auto-generated method stub

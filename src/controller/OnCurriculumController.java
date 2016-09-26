@@ -275,18 +275,18 @@ public class OnCurriculumController {
 	public ModelAndView detailCurri(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("OnCurriculumController_detailCurri() 실행");
 		
-		int lsnum = Integer.parseInt(arg0.getParameter("lsnum"));
-		System.out.println("clnum: "+ arg0.getParameter("clnum"));
-		List currList = null;
-		ModelAndView mav = new ModelAndView();
+		OnlineCurriculumDBBean dto = new OnlineCurriculumDBBean();
+		dto.setLsnum(Integer.parseInt(arg0.getParameter("lsnum")));
+		dto.setClnum(Integer.parseInt(arg0.getParameter("clnum")));
+		dto.setTtnum(Integer.parseInt(arg0.getParameter("ttnum")));
 		
-		if(arg0.getParameter("clnum") != null || !arg0.getParameter("clnum").equals("")){
-			int clnum = Integer.parseInt(arg0.getParameter("clnum"));
-			
-		}else{
-			 currList = onlineCurriculumDAO.listCurriculum(lsnum);
-		}
+		//1개 모든 데이터
+		List currData = onlineCurriculumDAO.getCurriculum(dto);
+		//목록
+		List currList = onlineCurriculumDAO.listCurriculum(Integer.parseInt(arg0.getParameter("lsnum")));
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("currList",currList);
+		mav.addObject("currData",currData);
 		mav.setViewName("content/online/curr_detailForm.jsp");
 		
 		return mav;

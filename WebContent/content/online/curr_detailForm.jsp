@@ -40,15 +40,19 @@
 
 </head>
 <body style="overflow: auto;">
+
 	<div>
+
 		<div class="panel panel-default" style="float: left; width: 80%;">
-			<div class="panel-heading">커리큘럼 명</div>
-			<!-- 영상 영역 -->
-			<div class="panel-body">
-				<div style="height: 30em;">영상위치</div>
+			<c:forEach var="curr" items="${currData }">
+				<div class="panel-heading">${curr.TITLE }</div>
 
-			</div>
+				<!-- 영상 영역 -->
+				<div class="panel-body">
+					<div style="height: 30em;">영상위치</div>
 
+				</div>
+			</c:forEach>
 			<!-- Q&A게시판 영역 -->
 			<!-- <div class="panel-heading">
 				<font class="qnafont" style="float: left;">Q&A 게시판</font>
@@ -59,8 +63,8 @@
 						<button type="submit" class="btn btn-default">등록</button>
 					</form>
 					
-				</div>
-			</div> -->
+				</div>-->
+			<!-- </div> -->
 
 			<!-- 게시판 글 영역 -->
 			<div style="display: block;">
@@ -199,10 +203,12 @@
 					<c:otherwise>
 						<c:forEach var="currDto" items="${currList }">
 							<li class="list-group-item">
-								<form action="curri_detail.curr" method="post" name="move">
-								<input type="hidden" name="clnum" value="${currDto.CLNUM }">
-								<input type="hidden" name="lsnum" value="${currDto.LSNUM }">
-								<a onclick="javascript: document.move.submit()">	<c:out value="${currDto.TITLE}" /></a>
+								<form action="curri_detail.curr" method="post" id="move">
+									<input type="hidden" name="clnum" value="${currDto.CLNUM }">
+									<input type="hidden" name="lsnum" value="${currDto.LSNUM }">
+									<input type="hidden" name="ttnum" value="${currDto.TTNUM }">
+									<a onclick="document.getElementById('move').submit()"><c:out
+											value="${currDto.TITLE}" /></a>
 								</form>
 							</li>
 						</c:forEach>

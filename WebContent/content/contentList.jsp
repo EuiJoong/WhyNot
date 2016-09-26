@@ -121,7 +121,7 @@
 									</p>
 									<p>
 										<c:choose>
-											<c:when test="${memberDTO == null }">
+											<c:when test="${memberDTO == null }"> 
 												<a href="cont_detail.oncont?ocnum=${contData.OCNUM }"
 													class="btn btn-default">More Info</a>
 											</c:when>

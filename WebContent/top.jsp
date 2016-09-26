@@ -105,7 +105,7 @@
 										</c:choose>
 										<li role="presentation" class="divider"></li>
 										<li role="presentation"><a
-											href="content/online/curr_detailForm.jsp" target="_blank">강의실</a></li>
+											href="content/online/cont_detail.jsp" target="_blank">강의실</a></li>
 										<li role="presentation"><a role="menuitem" tabindex="-1"
 											href="logout.member">로그아웃</a></li>
 									</ul>

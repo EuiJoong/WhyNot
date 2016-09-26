@@ -299,7 +299,7 @@ public class OnContentController {
 			mav.addObject("isPurchase", isPurchase);
 		} // 여기
 
-		VideoDBBean videoDTO = onlineContentDAO.getContent(mnum);// 비디오정보받아오기
+		VideoDBBean videoDTO = onlineContentDAO.getContent(ocnum);// 비디오정보받아오기
 		// getDetailWho
 		if (videoDTO != null) {
 			mav.addObject("videoDTO", videoDTO);

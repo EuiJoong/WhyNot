@@ -9,9 +9,10 @@ import onlinecurriculum.mybatis.OnlineCurriculumMybatis;
 public class OnlineCurriculumDAOImpl implements OnlineCurriculumDAO {
 
 	@Override
-	public OnlineCurriculumDBBean getCurriculum(int num) {
+	public List getCurriculum(OnlineCurriculumDBBean dto) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("OnlineCurriculumDAOImpl_getCurriculum() ½ÇÇà");
+		return OnlineCurriculumMybatis.getCurriculum(dto);
 	}
 
 	@Override
