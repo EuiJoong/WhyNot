@@ -114,7 +114,7 @@ body {
 										<!-- <source type="video/mp4" src="movie/test.mp4"> -->
 										<source type="video/mp4"
 											src="${pageContext.request.contextPath}/video/${videoDTO.filename }">
-									</video>
+									</video> 
 
 								</div>
 							</div>

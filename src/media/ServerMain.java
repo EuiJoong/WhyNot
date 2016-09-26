@@ -25,8 +25,9 @@ public class ServerMain implements Runnable{
 				System.out.println(client.getInetAddress()+ " 접속됨..");
 				InputStream is = client.getInputStream();
 				DataInputStream dis = new DataInputStream(is);
+				//C:\\spring_ws\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\WhyNot\\video\\
 				//C:\\Users\\고경숙\\Desktop\\WhyNot_02\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\WhyNot\\video\\
-				String upDir = "C:\\Users\\Administrator\\Desktop\\testvideo";
+				String upDir = "C:\\spring_ws\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\WhyNot\\video\\";
 				FileOutputStream fos = null;
 				
 				
@@ -102,11 +103,11 @@ public class ServerMain implements Runnable{
         		}//mp4가 아니면 인코딩 시작
         		//어떤 파일이든, mp4로 인코딩
         		System.out.println("인코딩 시작");
-        		String filedir="D:\\testvideo\\";
+        		String filedir="C:\\Users\\Administrator\\Desktop\\testvideo";
         		System.out.println("filedir : "+filedir);
         		System.out.println("filetitle : "+filetitle);
-        		File source = new File("D:\\testvideo\\"+filetitle+ext);
-        		File target = new File("D:\\testvideo\\"+filetitle+"mp4");//여기서 난수발생
+        		File source = new File("C:\\spring_ws\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\WhyNot\\video\\"+filetitle+ext);
+        		File target = new File("C:\\spring_ws\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\WhyNot\\video\\"+filetitle+"mp4");//여기서 난수발생
         		AudioAttributes audio = new AudioAttributes();
         		VideoAttributes video = new VideoAttributes();
         		audio.setCodec("libmp3lame");

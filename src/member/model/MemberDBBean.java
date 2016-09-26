@@ -15,8 +15,6 @@ public class MemberDBBean {
 	int ppnum; // 프로필사진번호...
 	String auth;
 	
-	
-
 	public String getAuth() {
 		return auth;
 	}

@@ -177,7 +177,7 @@
 				<br>
 				<li><a href="">이벤트 게시판</a></li>
 				<br>
-				<li>FAQ</li>
+				<li>자주하는 질문</li>
 			</ul>
 		</div>
 		<div class="col-md-6">
