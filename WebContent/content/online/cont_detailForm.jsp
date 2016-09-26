@@ -68,23 +68,46 @@ body {
 							<c:when test="${memberDTO != null }">
 								<c:choose>
 									<c:when test="${memberDTO.id==contData.ID}">
-										<a href="cont_update.oncont" class="btn btn-primary">강의 수정</a>
-										<a href="curri_insert.curr" class="btn btn-primary">커리큘럼
-											등록</a>
+										<form action="cont_update.oncont" method="post" name="fupdate">
+											<a class="btn btn-primary"
+												onclick="javascript: document.fupdate.submit()">강의 수정</a>
+										</form>
+										<form action="curri_insert.curr" method="post" name="finsert">
+											<input type="hidden" name="lsnum" value="${lsnum }">
+											<input type="hidden" name="ocnum" value="${contData.OCNUM }">
+											<a class="btn btn-primary"
+												onclick="javascript: document.finsert.submit()">커리큘럼 등록</a>
+										</form>
+										<c:choose>
+											<c:when test="${currList.size() == 0 || currList == null }">
+											</c:when>
+											<c:otherwise>
+												<form action="curri_detail.curr" method="post" name="fmove">
+													<input type="hidden" name="lsnum" value="${lsnum }">
+													<a class="btn btn-primary"
+														onclick="javascript: document.fmove.submit()">강의실 이동</a>
+												</form>
+											</c:otherwise>
+										</c:choose>
 									</c:when>
 									<c:when test="${memberDTO.id!=contData.ID && !isPurchase}">
-										<form action="purchaseOnline.payment" method="post" name="purchase">
+										<form action="purchaseOnline.payment" method="post"
+											name="purchase">
 											<a type="button" class="btn btn-primary"
 												onclick="chkMileage(${contData.PRICE},${memberDTO.mileage })">강의
-												구매</a>
-											<input type="hidden" name="amount" value="${contData.PRICE }">
-											<input type="hidden" name="mnum" value="${memberDTO.mnum }">
-											<input type="hidden" name="ocnum" value="${contData.OCNUM }">
+												구매</a> <input type="hidden" name="amount"
+												value="${contData.PRICE }"> <input type="hidden"
+												name="mnum" value="${memberDTO.mnum }"> <input
+												type="hidden" name="ocnum" value="${contData.OCNUM }">
 											<input type="hidden" name="seller" value="${contData.MNUM }">
 										</form>
 									</c:when>
 									<c:when test="${memberDTO.id!=contData.ID && isPurchase}">
-										<a href="curri_detail.curr" class="btn btn-default" target="_blank">강의실 이동</a>
+										<form action="curri_detail.curr" method="post" name="ffmove">
+											<input type="hidden" name="lsnum" value="${lsnum }">
+											<a class="btn btn-default" target="_blank"
+												onclick="javascript: document.ffmove.submit() ">강의실 이동</a>
+										</form>
 									</c:when>
 								</c:choose>
 							</c:when>
@@ -114,7 +137,7 @@ body {
 										<!-- <source type="video/mp4" src="movie/test.mp4"> -->
 										<source type="video/mp4"
 											src="${pageContext.request.contextPath}/video/${videoDTO.filename }">
-									</video> 
+									</video>
 
 								</div>
 							</div>

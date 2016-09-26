@@ -3,5 +3,30 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="onlinecurriculum.mybatis.OnlineCurriculum">
-<!-- 쿼리문 작성 하는 곳 -->
+	<!-- 강의 등록시 Lesson 테이블 데이터 등록 -->
+	<insert id="createLesson" parameterType="int">
+		insert into wn_lesson
+		values (wn_lesson_seq.nextval, #{ocnum})
+	</insert>
+	<!-- lsnum 값 구하기 -->
+	<select id="getLsnum" parameterType="int" resultType="int">
+		select lsnum from wn_lesson where ocnum= #{ocnum}
+	</select>
+	<!-- 커리큘럼 목록 등록 -->
+	<insert id="insertContent_textOk" parameterType="map">
+		insert all
+		into WN_CLASS values (wn_class_seq.nextval,#{oc_dto.lsnum},wn_text_seq.nextval,#{oc_dto.title})
+		into WN_TEXT values (wn_text_seq.currval,#{t_dto.lsnum},#{t_dto.filename},#{t_dto.fileext},#{t_dto.filedir})
+		into WN_ClassVIDEO values (wn_class_seq.currval,#{v_dto.filename},#{v_dto.filedir})
+	    select * from dual
+	</insert>
+	<insert id="insertContent_textNo" parameterType="map">
+		insert all
+		into WN_CLASS values (wn_class_seq.nextval,#{oc_dto.lsnum},#{oc_dto.title})
+		into WN_ClassVIDEO values (wn_class_seq.currval,#{v_dto.filename},#{v_dto.filedir})
+	    select * from dual
+	</insert>
+	<select id="listCurr" parameterType="int" resultType="map">
+		select * from wn_class where lsnum= #{lsnum}	
+	</select>
 </mapper>

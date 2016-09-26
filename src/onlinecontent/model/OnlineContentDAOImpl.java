@@ -27,11 +27,9 @@ public class OnlineContentDAOImpl implements OnlineContentDAO {
 	@Override // OnlineContentVideoDBBean c_dto 추가
 	public void insertContent(OnlineContentDBBean oc_dto, PhotoDBBean p_dto, VideoDBBean v_dto) {
 		// TODO Auto-generated method stub
-		// OnlineContentDBBean
-		OnlineContentMybatis.insertContent(oc_dto, p_dto, v_dto);// 사실 이 dao는
-																	// 마이바티스를
-																	// 쓰면서 없어도
-																	// 되는 부분임!
+		System.out.println("OnlineContentDAOImpl_insertContent() 실행");
+		// 사실 이 dao는 마이바티스를 쓰면서 없어도되는 부분임!
+		OnlineContentMybatis.insertContent(oc_dto, p_dto, v_dto);
 		// 그냥 수업떄 쓴 것 뿐
 	}
 
