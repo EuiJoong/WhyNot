@@ -6,7 +6,7 @@
 	<div align="center">
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
-			<div class="panel-heading">카테고리 목록</div>
+			<div class="panel-heading">회원 목록</div>
 
 			<!-- Table -->
 			<table class="table">

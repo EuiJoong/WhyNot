@@ -21,12 +21,11 @@
 	<ul class="list-group"
 		style="float: left; width: 20%; position: fixed;">
 		<li class="list-group-item"><a href="adminMain.app">Home</a></li>
-		<li class="list-group-item">관리자:<c:out
-				value="${memberDTO.name }님" /></li>
+		<li class="list-group-item">관리자:<c:out value="${memberDTO.name }님" /></li>
 		<li class="list-group-item"><a href="list.cate">카테고리</a></li>
 		<li class="list-group-item"><a href="list.member">회원관리</a></li>
-		<li class="list-group-item"><a href="list.poll">투표관리</a></li>
-		<li class="list-group-item">목록5</li>
+		<li class="list-group-item"><a href="list.event">이벤트관리</a></li>
+		<li class="list-group-item"><a href="list.poll">후보자관리</a></li>
 		<li class="list-group-item">목록6</li>
 		<li class="list-group-item">목록7</li>
 		<li class="list-group-item">목록8</li>

@@ -1,0 +1,51 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 월요일-9월-26-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table WN_POLL
+--------------------------------------------------------
+
+  CREATE TABLE "WHYNOT"."WN_POLL" 
+   (	"EVENTNUM" NUMBER, 
+	"EVENTTITLE" VARCHAR2(100 BYTE), 
+	"DEADLINE" DATE
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into WHYNOT.WN_POLL
+SET DEFINE OFF;
+Insert into WHYNOT.WN_POLL (EVENTNUM,EVENTTITLE,DEADLINE) values (3,'갓경숙 짱',to_date('17/05/17','RR/MM/DD'));
+Insert into WHYNOT.WN_POLL (EVENTNUM,EVENTTITLE,DEADLINE) values (4,'등록잘되나요',to_date('16/09/01','RR/MM/DD'));
+--------------------------------------------------------
+--  DDL for Index WN_POLL_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "WHYNOT"."WN_POLL_PK" ON "WHYNOT"."WN_POLL" ("EVENTNUM") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Constraints for Table WN_POLL
+--------------------------------------------------------
+
+  ALTER TABLE "WHYNOT"."WN_POLL" ADD CONSTRAINT "WN_POLL_PK" PRIMARY KEY ("EVENTNUM")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "WHYNOT"."WN_POLL" MODIFY ("DEADLINE" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_POLL" MODIFY ("EVENTTITLE" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_POLL" MODIFY ("EVENTNUM" NOT NULL ENABLE);
+
+  --------------------------------------------------------
+--  파일이 생성됨 - 화요일-9월-27-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence WN_EVENT_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_EVENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+  
