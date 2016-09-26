@@ -17,7 +17,7 @@ public class EventDAOImpl implements EventDAO {
 
 	@Override
 	public void deleteEvent(int eventNum) {
-		System.out.println("EventDAOImpl_updateDelete() 실행");
+		System.out.println("EventDAOImpl_deleteEvent() 실행");
 		EventMybatis.deleteEvent(eventNum); 
 		System.out.println("성공!");
 	}
