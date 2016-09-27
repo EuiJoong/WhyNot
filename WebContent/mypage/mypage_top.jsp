@@ -43,7 +43,7 @@
 <!-- 메뉴 텝 -->
 <c:set var="readUrl" value="${pageContext.request.requestURL}" />
 <div>
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs nav-justified">
 		<c:choose>
 			<c:when test="${fn:contains(readUrl,'dashboard')}">
 				<li role="presentation" class="active"><a

@@ -29,8 +29,9 @@ import category.mybatis.CategoryMybatis;
 import onlinecontent.model.OnlineContentDAO;
 import onlinecontent.model.OnlineContentDBBean;
 import onlinecontent.mybatis.OnlineContentMybatis;
-import onlinecurriculum.board.model.OnlineCurriculumBoardDAO;
 import onlinecurriculum.model.OnlineCurriculumDAO;
+import onlinecurriculum.model.OnlineCurriculumDBBean;
+import onlinecurriculum.qna.model.OnlineCurriculumQNADAO;
 import payment.model.OnlinePaymentDBBean;
 import payment.model.PaymentDAO;
 import payment.mybatis.PaymentMybatis;
@@ -41,7 +42,7 @@ public class OnContentController {
 
 	private OnlineContentDAO onlineContentDAO;
 	private OnlineCurriculumDAO onlineCurriculumDAO;
-	private OnlineCurriculumBoardDAO onlineCurriculumBoardDAO;
+	private OnlineCurriculumQNADAO onlineCurriculumQNADAO;
 	private CategoryDAO categoryDAO;
 	private PaymentDAO paymentDAO;
 	private AssessmentDAO assessmentDAO;
@@ -58,8 +59,8 @@ public class OnContentController {
 		this.onlineCurriculumDAO = onlineCurriculumDAO;
 	}
 
-	public void setOnlineCurriculumBoardDAO(OnlineCurriculumBoardDAO onlineCurriculumBoardDAO) {
-		this.onlineCurriculumBoardDAO = onlineCurriculumBoardDAO;
+	public void setOnlineCurriculumQNADAO(OnlineCurriculumQNADAO onlineCurriculumQNADAO) {
+		this.onlineCurriculumQNADAO = onlineCurriculumQNADAO;
 	}
 
 	public void setPaymentDAO(PaymentDAO paymentDAO) {
@@ -288,7 +289,6 @@ public class OnContentController {
 		ModelAndView mav = new ModelAndView();
 		int mnum = -1;
 		int ocnum = Integer.parseInt(arg0.getParameter("ocnum"));
-
 		if (arg0.getParameter("mnum") != null) {// 비로그인 구별
 			mnum = Integer.parseInt(arg0.getParameter("mnum")); // 로그인자 회원번호
 			// 온라인 컨텐츠
@@ -299,7 +299,7 @@ public class OnContentController {
 			mav.addObject("isPurchase", isPurchase);
 		} // 여기
 
-		VideoDBBean videoDTO = onlineContentDAO.getContent(mnum);// 비디오정보받아오기
+		VideoDBBean videoDTO = onlineContentDAO.getContent(ocnum);// 비디오정보받아오기
 		// getDetailWho
 		if (videoDTO != null) {
 			mav.addObject("videoDTO", videoDTO);
@@ -336,6 +336,15 @@ public class OnContentController {
 
 		System.out.println("점수" + sum);
 		System.out.println("평점:" + avg);
+		
+		//lsnum 구하기
+		int lsnum = onlineCurriculumDAO.getLsnum(ocnum);
+		
+		//커리큘럼 목록 구하기
+		List<OnlineCurriculumDBBean> currList = onlineCurriculumDAO.listCurriculum(lsnum);
+		
+		mav.addObject("currList",currList);
+		mav.addObject("lsnum",lsnum);
 		mav.addObject("avg", avg);
 
 		mav.addObject("ocnum", ocnum);

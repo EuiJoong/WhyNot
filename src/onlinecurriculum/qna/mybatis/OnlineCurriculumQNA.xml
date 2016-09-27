@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 파일 생성시 복사해서 쓰기 위한 base 파일  -->
+<mapper namespace="onlinecurriculum.qna.mybatis.OnlineCurriculumQNA">
+<!-- 쿼리문 작성 하는 곳 -->
+<select id="listContentQa" parameterType="int" resultType="OnlineCurriculumQNADTO">
+	select * from WN_QNA where lsnum=#{lsnum} order by qanum desc
+	</select>
+	
+	<insert id="insertQNA" parameterType="OnlineCurriculumQNADTO">
+	insert into WN_QNA values (wn_qna_seq.nextval, #{lsnum}, #{mnum}, #{content}, sysdate)
+	</insert>
+	
+	<delete id="deleteQNA" parameterType="map">
+		delete from wn_qna where mnum=#{mnum} and qanum=#{qanum}
+	</delete>
+	
+	<update id="answerQNA" parameterType="OnlineCurriculumQNADTO">
+	merge into merge_test q
+		using (select * from wn_qna where qanum = #{qanum}) o
+		on q.qanum is not null
+	when matched then
+		update set q.content = #{content}
+	when not matched then
+		insert into (#{qanum}, #{lsnum}, #{mnum}, #{content}, sysdate)
+		where o.qanum is null;
+	
+	</update>
+</mapper>

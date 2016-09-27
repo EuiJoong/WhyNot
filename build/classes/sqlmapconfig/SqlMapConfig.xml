@@ -26,9 +26,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 콘텐츠(인강,후원)  -->
 	<typeAlias type="onlinecontent.model.OnlineContentDBBean" alias="OnlineContentDTO"/>
 	<typeAlias type="offlinecontent.model.OfflineContentDBBean" alias="OfflineContentDTO"/>
+	
 	<!-- 강의실 -->
 	<typeAlias type="onlinecurriculum.model.OnlineCurriculumDBBean" alias="OnlineCurriculumDTO"/>
-	<typeAlias type="onlinecurriculum.board.model.OnlineCurriculumBoardDBBean" alias="OnlineCurriculumBoardDTO"/>
+	<typeAlias type="onlinecurriculum.qna.model.OnlineCurriculumQNADBBean" alias="OnlineCurriculumQNADTO"/>
 	<typeAlias type="assessment.model.AssessmentDBBean" alias="AssessmentDTO"/>
 	<!-- 게시판(강사요청,자유)  -->
 	<typeAlias type="requestboard.model.RequestBoardDBBean" alias="RequestBoardDTO"/>
@@ -57,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <mapper resource="category/mybatis/Category.xml"/>
 <mapper resource="onlinecontent/mybatis/OnlineContent.xml"/>
 <mapper resource="onlinecurriculum/mybatis/OnlineCurriculum.xml"/>
-<mapper resource="onlinecurriculum/board/mybatis/OnlineCurriculumBoard.xml"/>
+<mapper resource="onlinecurriculum/qna/mybatis/OnlineCurriculumQNA.xml"/>
 <mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
 <mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
 <mapper resource="payment/mybatis/Payment.xml"/>

@@ -15,6 +15,7 @@ import com.ibatis.common.resources.Resources;
 import attachfile.model.PhotoDBBean;
 import attachfile.model.VideoDBBean;
 import onlinecontent.model.OnlineContentDBBean;
+import onlinecurriculum.mybatis.OnlineCurriculumMybatis;
 
 public class OnlineContentMybatis {
 	private static SqlSessionFactory sqlMapper;
@@ -34,14 +35,14 @@ public class OnlineContentMybatis {
 		}
 	}
 
-	public static VideoDBBean getContent(int num) {
+	public static VideoDBBean getContent(int ocnum) {
 		// TODO Auto-generated method stub
 		System.out.println("OnlineContentMybatis_getContent() ½ÇÇà");
 		VideoDBBean dto = new VideoDBBean();
 		//
-		System.out.println("num : " + num);
+		System.out.println("ocnum : " + ocnum);
 		SqlSession session = sqlMapper.openSession();
-		dto = (VideoDBBean) session.selectOne("getContent", num);
+		dto = (VideoDBBean) session.selectOne("getContent", ocnum);
 		session.commit();
 		System.out.println("session get");
 		session.close();
@@ -87,10 +88,13 @@ public class OnlineContentMybatis {
 			session.insert("insertContent_videoNo", contentMap);
 		else
 			session.insert("insertContent_videoOk", contentMap);
-
 		session.commit();
-		System.out.println("session insert");
+		
+		int ocnum = session.selectOne("getOcnum",oc_dto.getTitle());
 		session.close();
+		System.out.println("getOcnum: " + ocnum);
+		OnlineCurriculumMybatis.createLesson(ocnum);
+		System.out.println("session insert");
 
 	}
 
