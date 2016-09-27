@@ -149,25 +149,8 @@
 							@decsription
 							<li></li> 단위로 위치를 이동할 수 있다.
 						-->
-								<li class="tx-list">
-									<div unselectable="on" id="tx_image"
-										class="tx-image tx-btn-trans">
-										<a href="javascript:;" title="사진" class="tx-text">사진</a>
-									</div>
-								</li>
-								<!-- 이미지 첨부 버튼 끝 -->
-								<li class="tx-list">
-									<div unselectable="on" id="tx_file"
-										class="tx-file tx-btn-trans">
-										<a href="javascript:;" title="파일" class="tx-text">파일</a>
-									</div>
-								</li>
 
 								<li class="tx-list tx-list-extra">
-									<div unselectable="on" class="tx-btn-nlrbg tx-extra">
-										<a href="javascript:;" class="tx-icon" title="버튼 더보기">버튼
-											더보기</a>
-									</div>
 									<ul class="tx-extra-menu tx-menu" style="left: -48px;"
 										unselectable="on">
 										<!--

@@ -5,9 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 파일 생성시 복사해서 쓰기 위한 base 파일 -->
 <mapper namespace="onlinecurriculum.qna.mybatis.OnlineCurriculumQNA">
 	<!-- 쿼리문 작성 하는 곳 -->
-	<select id="listContentQa" parameterType="int"
+	<select id="listContentQa" parameterType="OnlineCurriculumQNADTO"
 		resultType="OnlineCurriculumQNADTO">
-		select * from WN_QNA where lsnum=#{lsnum} order by qanum desc
+		select * from WN_QNA where lsnum= #{lsnum} and clnum= #{clnum} order by qanum desc
 	</select>
 
 	<insert id="insertQNA" parameterType="OnlineCurriculumQNADTO">
@@ -16,11 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<delete id="deleteQNA" parameterType="map">
-		delete from wn_qna where
-		mnum=#{mnum} and qanum=#{qanum}
+		delete from WN_QNA where mnum=#{mnum} and qanum=#{qanum} and clnum=#{clnum}
 	</delete>
 
 	<insert id="answerQNA" parameterType="OnlineCurriculumQNADTO">
-		insert into WN_QNA values (#{qanum}, #{lsnum}, #{mnum}, #{content}, sysdate)
+		insert into WN_QNA values (#{qanum}, #{lsnum}, #{mnum}, #{content}, sysdate,#{clnum})
 	</insert>
 </mapper>

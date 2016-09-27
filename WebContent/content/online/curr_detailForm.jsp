@@ -33,49 +33,36 @@
 
 <%-- <c:set var="memberDTO" value="${sessionScope.memberDTO }" /> --%>
 <title>재능 교육 사이트 - WhyNot?</title>
-
 </head>
+<!-- flowplayer depends on jQuery 1.7.1+ (for now) -->
+<script src="${pageContext.request.contextPath}/dist/jquery.js"></script>
+<!-- include flowplayer -->
+<script src="${pageContext.request.contextPath}/dist/flowplayer.js?i"></script>
 <body style="overflow: auto;">
 	<c:forEach var="curr" items="${currData }">
 		<div>
 
 			<div class="panel panel-default"
-				style="float: left; width: 80%; position: fixed; ">
-
+				style="float: left; width: 80%; position: fixed;">
 				<div class="panel-heading" style="height: 3em">${curr.TITLE }</div>
 				<!-- 영상 영역 -->
 				<div class="panel-body"
-					style="background-color: black; height: 30em;">
+					style=" height: 30em;">
 					<!-- 영상 부분 -->
 					<div id="h-div" class="flowplayer play-button" data-engine="flash"
 						data-swf="${pageContext.request.contextPath}/dist/flowplayer.swf"
 						data-rtmp="rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st"
 						data-ratio=".4167" style="height: 30em;">
-
 						<video autoplay preload="none">
 							<!-- <source type="video/mp4" src="movie/test.mp4"> -->
 							<source type="video/mp4" src="WhyNot/video/${videoDTO.filename }">
 						</video>
-
 					</div>
 				</div>
 
-				<!-- Q&A게시판 영역 -->
-				<!-- <div class="panel-heading">
-				<font class="qnafont" style="float: left;">Q&A 게시판</font>
-				<div class="qnaform">
-					<form class="navbar-form" role="search">
-						<input type="text" class="qnainput" placeholder="질문 입력란"
-							width="200px">
-						<button type="submit" class="btn btn-default">등록</button>
-					</form>
-					
-				</div>-->
-				<!-- </div> -->
-
 				<!-- 게시판 글 영역 -->
 
-				<div  style="background-color: black;">
+				<div style="background-color: black;">
 					<!-- 댓글 시작~ -->
 					<div class="well"
 						style="position: fixed; width: 80%; margin-bottom: 1px; height: 10em;">
@@ -86,6 +73,7 @@
 								<input type="hidden" name="lsnum" value="${curr.LSNUM }">
 								<input type="hidden" name="clnum" value="${curr.CLNUM }">
 								<input type="hidden" name="ttnum" value="${curr.TTNUM }">
+								<input type="hidden" name="mnum" value="${memberDTO.mnum }">
 								<div style="float: left; width: 80%;">
 									<textarea rows="2" class="form-control"
 										style="display: inline;" name="content"></textarea>
@@ -104,126 +92,135 @@
 				</div>
 				<%-- <c:choose>
 					<c:when test="${memberDTO.id != writer}"> --%>
-						<div
-							style="display: block; overflow: scroll; height: 275px; margin-top: 123px;">
-				<%-- 	</c:when>
+				<div
+					style="display: block; overflow: scroll; height: 275px; margin-top: 123px;">
+					<%-- 	</c:when>
 					<c:otherwise>
 						<div
 							style="display: block; overflow: auto; height: 275px; margin-top: 64px;">
 					</c:otherwise>
 				</c:choose> --%>
-				<!-- 질답 리스트님 와주세욥 -->
-				<c:set var="collNum" value="1" />
-				<c:choose>
-					<c:when test="${qnaList.size()==0 }">
+					<!-- 질답 리스트님 와주세욥 -->
+					<c:set var="collNum" value="1" />
+					<c:choose>
+						<c:when test="${qnaList.size()==0 }">
 						질문이 없습니다.
 					</c:when>
-					<c:otherwise>
-						<c:forEach var="qnaDTO" items="${qnaList }">
-							<fmt:parseNumber var="i" integerOnly="true" type="number"
-								value="${qnaDTO.qanum%2 }" />
-							<c:choose>
-								<c:when test="${i!=0 }">
-									<c:set var="collNum" value="${collNum+1 }" />
-									<hr style="margin: 16px 8px;">
-									<div class="media" style="margin-top: 20px;">
-										<a class="pull-left" href="#"> <img class="media-object"
-											src="http://placehold.it/64x64" alt="">
-										</a>
-										<div class="media-body">
-											<h4 class="media-heading">
-												${qnaDTO.mnum } <small>${qnaDTO.createddate }</small>
-											</h4>
-											${qnaDTO.content } <br> <a data-toggle="collapse"
-												href="#collapseExample${collNum }" aria-expanded="false"
-												aria-controls="collapseExample"> [답변달기] </a> <a
-												href="qna_delete.curr?qanum=${qnaDTO.qanum }&mnum=${memberDTO.mnum }">[삭제]</a>
-											<div class="collapse" id="collapseExample${collNum }">
-												<div class="well" style="margin: 8px;">
+						<c:otherwise>
+							<c:forEach var="qnaDTO" items="${qnaList }">
+								<fmt:parseNumber var="i" integerOnly="true" type="number"
+									value="${qnaDTO.qanum%2 }" />
+								<c:choose>
+									<c:when test="${i!=0 }">
+										<c:set var="collNum" value="${collNum+1 }" />
+										<hr style="margin: 16px 8px;">
+										<div class="media" style="margin-top: 20px;">
+											<a class="pull-left" href="#"> <img class="media-object"
+												src="http://placehold.it/64x64" alt="">
+											</a>
+											<div class="media-body">
+												<h4 class="media-heading">
+													${qnaDTO.mnum } <small>${qnaDTO.createddate }</small>
+												</h4>
+												${qnaDTO.content } <br>
+												<c:if test="${qnaDTO.mnum != memberDTO.mnum}"> <a data-toggle="collapse"
+													href="#collapseExample${collNum }" aria-expanded="false"
+													aria-controls="collapseExample"> [답변달기] </a></c:if>
+												<c:if test="${qnaDTO.mnum == memberDTO.mnum}">
+													<a
+														href="qna_delete.curr?qanum=${qnaDTO.qanum }&mnum=${memberDTO.mnum }&lsnum=${curr.LSNUM }&clnum=${qnaDTO.clnum}&ttnum=${curr.TTNUM }">[삭제]</a>
+												</c:if>
+												<div class="collapse" id="collapseExample${collNum }">
+													<div class="well" style="margin: 8px;">
 
-													<!-- 댓글 답글 -->
-													<form action="qna_answer.curr?lsnum=${qnaDTO.lsnum }"
-														method="post" role="form" style="height: 96px;">
-														<div style="float: left; width: 80%;">
-															<textarea rows="4" class="form-control"
-																style="display: inline;" name="content"></textarea>
-														</div>
+														<!-- 댓글 답글 -->
+														<form action="qna_answer.curr?lsnum=${qnaDTO.lsnum }"
+															method="post" role="form" style="height: 96px;">
+															<div style="float: left; width: 80%;">
+																<textarea rows="4" class="form-control"
+																	style="display: inline;" name="content"></textarea>
+															</div>
 
-														<input type="hidden" name="mnum"
-															value="${memberDTO.mnum }"> <input type="hidden"
-															name="qanum" value="${qnaDTO.qanum-1 }"> <input
-															type="hidden" name="clnum" value="${curr.clnum }">
+															<input type="hidden" name="mnum"
+																value="${memberDTO.mnum }"> <input type="hidden"
+																name="qanum" value="${qnaDTO.qanum-1 }"> <input
+																type="hidden" name="clnum" value="${curr.CLNUM }">
+															<input type="hidden" name="ttnum" value="${curr.TTNUM }">
 
-														<div
-															style="float: left; width: 19%; height: 80%; margin-left: 8px;">
-															<button type="submit" class="btn"
-																style="width: 99%; height: 99%; margin: 8px; background-color: #6799FF;">Submit</button>
-														</div>
-													</form>
-													<!-- 댓글 답글 끝 -->
-												</div>
-											</div>
-										</div>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="media">
-										<div class="media-body">
-											<h4 class="media-heading"></h4>
-											<!-- Nested Comment -->
-											<div class="media" style="margin-top: 0px;">
-
-												<div class="media-body">
-													<img class="pull-left"
-														src="${pageContext.request.contextPath}/img/ask.png"
-														alt="" style="width: 64px; float: left;"> <a
-														href="#"> <img src="http://placehold.it/64x64" alt=""
-														style="float: left;">
-													</a>
-													<div style="float: left; margin-left: 8px;">
-														<h4 class="media-heading">
-															${qnaDTO.mnum } <small>${qnaDTO.createddate }</small>
-														</h4>
-														${qnaDTO.content } [수정] <a
-															href="qna_delete.curr?qanum=${qnaDTO.qanum }&mnum=${memberDTO.mnum }">[삭제]</a>
+															<div
+																style="float: left; width: 19%; height: 80%; margin-left: 8px;">
+																<button type="submit" class="btn"
+																	style="width: 99%; height: 99%; margin: 8px; background-color: #6799FF;">Submit</button>
+															</div>
+														</form>
+														<!-- 댓글 답글 끝 -->
 													</div>
 												</div>
 											</div>
-											<!-- End Nested Comment -->
 										</div>
-									</div>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-						<hr style="margin: 16px 8px;">
-					</c:otherwise>
-				</c:choose>
-				<!-- 댓글 끝 -->
+									</c:when>
+									<c:otherwise>
+										<div class="media">
+											<div class="media-body">
+												<h4 class="media-heading"></h4>
+												<!-- Nested Comment -->
+												<div class="media" style="margin-top: 0px;">
+
+													<div class="media-body">
+														<img class="pull-left"
+															src="${pageContext.request.contextPath}/img/ask.png"
+															alt="" style="width: 64px; float: left;"> <a
+															href="#"> <img src="http://placehold.it/64x64" alt=""
+															style="float: left;">
+														</a>
+														<div style="float: left; margin-left: 8px;">
+															<h4 class="media-heading">
+																${qnaDTO.mnum } <small>${qnaDTO.createddate }</small>
+															</h4>
+															${qnaDTO.content }
+															<c:if test="${qnaDTO.mnum == memberDTO.mnum}">
+																<a
+																	href="qna_delete.curr?qanum=${qnaDTO.qanum }&mnum=${memberDTO.mnum }&lsnum=${curr.LSNUM }&clnum=${qnaDTO.clnum}&ttnum=${curr.TTNUM }">[삭제]</a>
+															</c:if>
+														</div>
+													</div>
+												</div>
+												<!-- End Nested Comment -->
+											</div>
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<hr style="margin: 16px 8px;">
+						</c:otherwise>
+					</c:choose>
+					<!-- 댓글 끝 -->
+				</div>
+				<!-- List group -->
+
 			</div>
-			<!-- List group -->
 
-		</div>
-
-		<!-- <!-- 우측 커리큘럼 목록 -->
-		<div class="panel panel-default" style="width: 20%; float: right; ">
-			<div class="panel-heading">커리큘럼 명</div>
-			<ul class="list-group">
-				<c:choose>
-					<c:when test="${currList.size() == 0 || currList == null }">
-						<li class="list-group-item">등록된 커리큘럼이 없습니다.</li>
-					</c:when>
-					<c:otherwise>
-						<c:forEach var="currDto" items="${currList }">
-							<li class="list-group-item "><a class="btn"
-								href="curri_detail.curr?lsnum=${currDto.LSNUM }&clnum=${currDto.CLNUM}&ttnum=${currDto.TTNUM}"><c:out
-										value="${currDto.TITLE}" /> <c:out
-										value="${currDto.TTNUM }${currDto.LSNUM }${currDto.CLNUM }"></c:out></a>
-							</li>
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
+			<!-- <!-- 우측 커리큘럼 목록 -->
+			<div class="panel panel-default" style="width: 20%; float: right;">
+				<div class="panel-heading">커리큘럼 명</div>
+				<ul class="list-group">
+					<c:choose>
+						<c:when test="${currList.size() == 0 || currList == null }">
+							<li class="list-group-item">등록된 커리큘럼이 없습니다.</li>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="currDto" items="${currList }">
+								<li class="list-group-item "><a class="btn"
+									href="curri_detail.curr?lsnum=${currDto.LSNUM }&clnum=${currDto.CLNUM}&ttnum=${currDto.TTNUM}"><c:out
+											value="${currDto.TITLE}" /> 
+											
+											<c:out value="${currDto.TTNUM }${currDto.LSNUM }${currDto.CLNUM }"></c:out></a>
+								</li>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</ul>
+			</div>
 		</div>
 	</c:forEach>
 	<!-- jQuery -->

@@ -31,10 +31,12 @@ public class OnlineCurriculumQNAMybatis  {
 		}
 	}
 	
-	public static List listCurriQNA(int lsnum) {
+	public static List listCurriQNA(OnlineCurriculumQNADBBean dto) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlMapper.openSession();
-		List<OnlineCurriculumQNADBBean> list = session.selectList("listContentQa", lsnum);
+		System.out.println(dto.getClnum());
+		System.out.println(dto.getLsnum());
+		List<OnlineCurriculumQNADBBean> list = session.selectList("listContentQa", dto);
 		session.close();
 		return list;
 	}
@@ -62,16 +64,16 @@ public class OnlineCurriculumQNAMybatis  {
 		session.close();
 	}
 	
-	public static void deleteCurriQNA(int qanum, int mnum){
+	public static void deleteCurriQNA(int qanum, int mnum, int clnum){
 		SqlSession session = sqlMapper.openSession();
-		
+		System.out.println(qanum + ":" + mnum + ":" + clnum);
 		Map<String, Integer> deleteQAMap = new HashMap<>();
 		
 		deleteQAMap.put("qanum", qanum);
 		deleteQAMap.put("mnum",	mnum);
+		deleteQAMap.put("clnum",clnum);
 		
 		session.delete("deleteQNA", deleteQAMap);
-		
 		session.commit();
 		session.close();
 		System.out.println("deleteQA Complete");

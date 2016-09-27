@@ -16,6 +16,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -497,5 +498,39 @@ public class OnContentController {
 		//return new ModelAndView("content/online/cont_detailForm.jsp");
 
 	}
+	
+	   @RequestMapping(value = "/insertAssessment.oncont") // detailForm-평가하기
+	   public ModelAndView insertAssessment(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+	      System.out.println("ContentController_insertAssessment() 실행");
+	      //여기
+	      System.out.println(arg0.getParameter("mnum"));
+		int mnum= Integer.parseInt(arg0.getParameter("mnum"));
+		int grademark = ServletRequestUtils.getIntParameter(arg0, "grademark");
+		System.out.println(grademark);
+		//int asnum =1;//이건 뭐지
+		String person =arg0.getParameter("writer");
+		ModelAndView mav = new ModelAndView();
+
+		int ocnum=Integer.parseInt(arg0.getParameter("ocnum"));
+		System.out.println("컨텐츠 넘버 : "+ocnum);
+		System.out.println("평점 : "+grademark);
+		AssessmentDBBean dto = new AssessmentDBBean();
+		//dto.setAsnum(asnum);
+		dto.setOcnum(ocnum);
+		dto.setPerson(person);
+		dto.setContent(ServletRequestUtils.getStringParameter(arg0,"assessmentContent"));
+		dto.setGrademark(ServletRequestUtils.getIntParameter(arg0, "grademark"));
+		assessmentDAO.insertAssessment(dto);
+		
+//			List<AssessmentDBBean> list = AssessmentDAO.listAssessment();	
+//			mva.addObject("list",list);
+		mav.setViewName("cont_detail.oncont");
+		mav.addObject("ocnum"+ocnum);
+		mav.addObject("mnum"+mnum);
+		return mav;
+		
+	/*      List<CategoryDBBean> list = CategoryMybatis.insertAssessment();
+	      return new ModelAndView("content/online/cont_detailForm.jsp");*/
+	   }
 
 }

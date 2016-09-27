@@ -8,10 +8,10 @@ import onlinecurriculum.qna.mybatis.OnlineCurriculumQNAMybatis;
 public class OnlineCurriculumQNADAOImpl implements OnlineCurriculumQNADAO{
 
 	@Override
-	public List listOnlineContentQa(int lsnum) {
+	public List listOnlineContentQa(OnlineCurriculumQNADBBean dto) {
 		// TODO Auto-generated method stub
 		System.out.println("OnlineCurriculumQNADAOImpl_listOnlineContentQa() 실행");
-		return OnlineCurriculumQNAMybatis.listCurriQNA(lsnum);
+		return OnlineCurriculumQNAMybatis.listCurriQNA(dto);
 	}
 
 	@Override
@@ -29,10 +29,10 @@ public class OnlineCurriculumQNADAOImpl implements OnlineCurriculumQNADAO{
 	}
 	
 	@Override
-	public void deleteOnlineContentQa(int qanum, int mnum) {
+	public void deleteOnlineContentQa(int qanum, int mnum, int clnum) {
 		// TODO Auto-generated method stub
 		System.out.println("deleteOnlineContentQa_deleteOnlineContentQa() 실행");
-		OnlineCurriculumQNAMybatis.deleteCurriQNA(qanum, mnum);
+		OnlineCurriculumQNAMybatis.deleteCurriQNA(qanum, mnum , clnum);
 	}
 
 }

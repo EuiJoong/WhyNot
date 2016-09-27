@@ -292,7 +292,10 @@ public class OnCurriculumController {
 			System.out.println("cont" + it.next());
 		}
 		//Q&A 목록
-		List<OnlineCurriculumQNADBBean> qnaList = onlineCurriculumQNADAO.listOnlineContentQa(Integer.parseInt(arg0.getParameter("lsnum")));
+		OnlineCurriculumQNADBBean qnadto = new OnlineCurriculumQNADBBean();
+		qnadto.setLsnum(Integer.parseInt(arg0.getParameter("lsnum")));
+		qnadto.setClnum(Integer.parseInt(arg0.getParameter("clnum")));
+		List<OnlineCurriculumQNADBBean> qnaList = onlineCurriculumQNADAO.listOnlineContentQa(qnadto);
 		System.out.println("질답 사이즈"+qnaList.size());
 		
 		ModelAndView mav = new ModelAndView();
@@ -309,10 +312,12 @@ public class OnCurriculumController {
 	@RequestMapping(value = "/curri_delete.curr") // 삭제
 	public ModelAndView deleteCurri(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("OnContentController_deleteCurri() 실행");
-
-		int lsnum = Integer.parseInt(arg0.getParameter("lsnum"));
-
-		List<OnlineCurriculumQNADBBean> list = onlineCurriculumQNADAO.listOnlineContentQa(lsnum);
+		
+		OnlineCurriculumQNADBBean ocqna = new OnlineCurriculumQNADBBean();
+		ocqna.setLsnum(Integer.parseInt(arg0.getParameter("lsnum")));
+		ocqna.setClnum(Integer.parseInt(arg0.getParameter("clnum")));
+		
+		List<OnlineCurriculumQNADBBean> list = onlineCurriculumQNADAO.listOnlineContentQa(ocqna);
 
 		return new ModelAndView("content/online/curr_detailForm.jsp", "qnaList", list);
 	}
@@ -345,6 +350,7 @@ public class OnCurriculumController {
 		String content = arg0.getParameter("content");
 		int mnum = Integer.parseInt(arg0.getParameter("mnum"));
 		int clnum = Integer.parseInt(arg0.getParameter("clnum"));
+	
 		ocqna.setLsnum(lsnum);
 		ocqna.setContent(content);
 		ocqna.setMnum(mnum);
@@ -353,7 +359,6 @@ public class OnCurriculumController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("curri_detail.curr");
-		mav.addObject("lsnum",lsnum);
 		
 		return mav;
 
@@ -369,21 +374,22 @@ public class OnCurriculumController {
 		System.out.println(arg0.getParameter("content"));
 		System.out.println(arg0.getParameter("mnum"));
 		System.out.println(arg0.getParameter("qanum"));
-
+		System.out.println(arg0.getParameter("qanum"));
 		int lsnum = Integer.parseInt(arg0.getParameter("lsnum"));
 		String content = arg0.getParameter("content");
 		int mnum = Integer.parseInt(arg0.getParameter("mnum"));
 		int qanum = Integer.parseInt(arg0.getParameter("qanum"));
-
+		int clnum = Integer.parseInt(arg0.getParameter("clnum"));
 		ocqna.setLsnum(lsnum);
 		ocqna.setContent(content);
 		ocqna.setMnum(mnum);
 		ocqna.setQanum(qanum);
-		
+		ocqna.setClnum(clnum);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("curri_detail.curr");
 		mav.addObject("lsnum",lsnum);
-		
+		mav.addObject("lsnum",lsnum);
+		mav.addObject("clnum",clnum);
 		onlineCurriculumQNADAO.answerOnlineContentQa(ocqna);
 
 		return mav;
@@ -395,16 +401,16 @@ public class OnCurriculumController {
 
 		System.out.println("qanum : " + arg0.getParameter("qanum"));
 		System.out.println("mnum : " + arg0.getParameter("mnum"));
-		
+		System.out.println("lsnum : " + arg0.getParameter("lsnum"));
 		int qanum = Integer.parseInt(arg0.getParameter("qanum"));
 		int mnum = Integer.parseInt(arg0.getParameter("mnum"));
 		int lsnum = Integer.parseInt(arg0.getParameter("lsnum"));
-		onlineCurriculumQNADAO.deleteOnlineContentQa(qanum, mnum);
+		onlineCurriculumQNADAO.deleteOnlineContentQa(qanum, mnum,Integer.parseInt(arg0.getParameter("clnum")));
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("curri_detail.curr");
 		mav.addObject("lsnum",lsnum);
-		
+		mav.addObject("clnum",Integer.parseInt(arg0.getParameter("clnum")));
 		return mav;
 	}
 

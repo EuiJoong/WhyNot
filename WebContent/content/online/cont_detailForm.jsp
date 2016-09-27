@@ -115,26 +115,11 @@ body {
 					<!-- Blog Comments -->
 
 					<c:set var="sum" value="0" />
-					<c:choose>
-						<c:when test="${assessmentList.size()==0}">
-                        평가 가 없습니다.
-                        </c:when>
-						<c:otherwise>
-							<c:forEach var="dto" items="${assessmentList}">
-								<tr>
-									<td>${dto.content}</td>
-									<td>${dto.reg_date}</td>
-									<td>${dto.grademark}점</td>
-								</tr>
-								<br />
-							</c:forEach>
-                           평균 : ${avg }
-                        </c:otherwise>
-					</c:choose>
+					
 					<!-- Comments Form -->
-					<form role="form"
-						action="insertAssessment.content?mnum=${memberDTO.mnum }"
+					<form role="form" action="insertAssessment.oncont" method="post"
 						name="cmtform">
+						<input type="hidden" name="mnum" value="${memberDTO.mnum}">
 						<div class="well">
 							<h4>
 								강의 평가:<select name="grademark">
@@ -160,9 +145,35 @@ body {
 						</div>
 					</form>
 					<hr>
-
+					<c:choose>
+						<c:when test="${assessmentList.size()==0}">
+                        평가 가 없습니다.
+                        </c:when>
+						<c:otherwise>
+							<c:forEach var="dto" items="${assessmentList}">
+								<div class="media" style="margin-top: 20px;">
+									<a class="pull-left" href="#"> <img class="media-object"
+										src="http://placehold.it/64x64" alt="">
+									</a>
+									<div class="media-body">
+										<h4 class="media-heading">
+											${qnaDTO.mnum } <small>${dto.reg_date }</small>
+										</h4>
+										${dto.content} <br>
+									</div>
+									<%-- <tr>
+									<td>${dto.content}</td>
+									<td>${dto.reg_date}</td>
+									<td>${dto.grademark}점</td>
+								</tr> --%>
+									<br />
+								</div>
+							</c:forEach>
+                           평균 : ${avg }
+                        </c:otherwise>
+					</c:choose>
 					<!-- Posted Comments -->
-
+		
 					<div class="panel-heading">
 						<!-- <a href="#" class="btn btn-primary">평가하기</a> -->
 					</div>
@@ -175,55 +186,60 @@ body {
 
 					<!-- Blog Search Well -->
 					<c:if test="${memberDTO != null }">
-					<div class="well">
-						<c:choose>
-							<c:when test="${memberDTO != null }">
-								<c:choose>
-									<c:when test="${memberDTO.id==contData.ID}">
-										<div>
-											<form action="cont_update.oncont?mnum=${contData.MNUM }&ocnum=${contData.OCNUM}" method="post"
-												name="fupdate">
-												<a class="btn btn-primary"
-													onclick="javascript: document.fupdate.submit()">강의 수정</a>
+						<div class="well">
+							<c:choose>
+								<c:when test="${memberDTO != null }">
+									<c:choose>
+										<c:when test="${memberDTO.id==contData.ID}">
+											<div>
+												<form
+													action="cont_update.oncont?mnum=${contData.MNUM }&ocnum=${contData.OCNUM}"
+													method="post" name="fupdate">
+													<a class="btn btn-primary"
+														onclick="javascript: document.fupdate.submit()">강의 수정</a>
+												</form>
+												<form action="curri_insert.curr" method="post"
+													name="finsert">
+													<input type="hidden" name="lsnum" value="${lsnum }">
+													<input type="hidden" name="ocnum"
+														value="${contData.OCNUM }"> <a
+														class="btn btn-primary"
+														onclick="javascript: document.finsert.submit()">커리큘럼
+														등록</a>
+												</form>
+											</div>
+										</c:when>
+										<c:when test="${memberDTO.id!=contData.ID && !isPurchase}">
+											<form action="purchaseOnline.payment" method="post"
+												name="purchase">
+												<h3>가격: ${contData.PRICE }</h3>
+												<a type="button" class="btn btn-primary"
+													onclick="chkMileage(${contData.PRICE},${memberDTO.mileage })">강의
+													구매</a> <input type="hidden" name="amount"
+													value="${contData.PRICE }"> <input type="hidden"
+													name="mnum" value="${memberDTO.mnum }"> <input
+													type="hidden" name="ocnum" value="${contData.OCNUM }">
+												<input type="hidden" name="seller" value="${contData.MNUM }">
 											</form>
-											<form action="curri_insert.curr" method="post" name="finsert">
-												<input type="hidden" name="lsnum" value="${lsnum }">
-												<input type="hidden" name="ocnum" value="${contData.OCNUM }">
-												<a class="btn btn-primary"
-													onclick="javascript: document.finsert.submit()">커리큘럼 등록</a>
-											</form>
-										</div>
-									</c:when>
-									<c:when test="${memberDTO.id!=contData.ID && !isPurchase}">
-										<form action="purchaseOnline.payment" method="post"
-											name="purchase">
-											<h3>가격: ${contData.PRICE }</h3>
-											<a type="button" class="btn btn-primary"
-												onclick="chkMileage(${contData.PRICE},${memberDTO.mileage })">강의
-												구매</a> <input type="hidden" name="amount"
-												value="${contData.PRICE }"> <input type="hidden"
-												name="mnum" value="${memberDTO.mnum }"> <input
-												type="hidden" name="ocnum" value="${contData.OCNUM }">
-											<input type="hidden" name="seller" value="${contData.MNUM }">
-										</form>
-									</c:when>
-									<%-- <c:when test="${memberDTO.id!=contData.ID && isPurchase}">
+										</c:when>
+										<%-- <c:when test="${memberDTO.id!=contData.ID && isPurchase}">
 										<form action="curri_detail.curr" method="post" name="ffmove">
 											<input type="hidden" name="lsnum" value="${lsnum }">
 											<a class="btn btn-default" target="_blank"
 												onclick="javascript: document.ffmove.submit() ">강의실 이동</a>
 										</form>
 									</c:when> --%>
-								</c:choose>
-							</c:when>
-							<c:otherwise>
-								<script type="text/javascript">
+									</c:choose>
+								</c:when>
+								<c:otherwise>
+									<script type="text/javascript">
 									alert("로그인 하셔야 구매 가능합니다.");
 								</script>
-							</c:otherwise>
-						</c:choose>
-						<!-- /.input-group -->
-					</div></c:if>
+								</c:otherwise>
+							</c:choose>
+							<!-- /.input-group -->
+						</div>
+					</c:if>
 
 					<!-- Blog Categories Well -->
 					<div class="well">
@@ -326,16 +342,11 @@ body {
 						</c:choose>
 						<!-- /.row -->
 					</div>
-
 				</div>
 			</c:forEach>
 		</div>
 		<!-- /.row -->
-
 		<hr>
-
-
-
 		<!-- preBotton  -->
 		<!-- <footer>
 			<div class="row">

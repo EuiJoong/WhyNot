@@ -169,6 +169,7 @@ public class MemberController {
 			// memberDTO 세션으로 보내기
 			HttpSession session = arg0.getSession();
 			session.setAttribute("memberDTO", resDTO);
+			session.setMaxInactiveInterval(50000);
 			
 			url = "index.jsp";
 			break;
