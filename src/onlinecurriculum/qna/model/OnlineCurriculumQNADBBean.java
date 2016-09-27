@@ -4,8 +4,17 @@ public class OnlineCurriculumQNADBBean {
 	private int qanum;
 	private int lsnum;
 	private int mnum;
+	private int clnum;
 	private String content;
 	private String createddate;
+	
+	public int getClnum() {
+		return clnum;
+	}
+
+	public void setClnum(int clnum) {
+		this.clnum = clnum;
+	}
 
 	public int getQanum() {
 		return qanum;

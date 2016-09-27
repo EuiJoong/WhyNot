@@ -93,9 +93,8 @@
 											class="btn btn-default">More Info</a>
 									</c:when>
 									<c:otherwise>
-										<a href="#" class="btn btn-primary">Buy Now!</a>
 										<a
-											href="cont_detail.oncont?mnum=${bestData.mnum }&ocnum=${bestData.OCNUM }"
+											href="cont_detail.oncont?mnum=${memberDTO.mnum }&ocnum=${bestData.OCNUM }"
 											class="btn btn-default">More Info</a>
 									</c:otherwise>
 								</c:choose>
@@ -137,15 +136,14 @@
 								<c:out value="${recommandData.NAME }" />
 							</p>
 							<p>
-								<c:choose>
+							<c:choose>
 									<c:when test="${memberDTO == null }">
 										<a href="cont_detail.oncont?ocnum=${recommandData.OCNUM }"
 											class="btn btn-default">More Info</a>
 									</c:when>
 									<c:otherwise>
-										<a href="#" class="btn btn-primary">Buy Now!</a>
 										<a
-											href="cont_detail.oncont?mnum=${recommandData.mnum }&ocnum=${recommandData.OCNUM }"
+											href="cont_detail.oncont?mnum=${memberDTO.mnum }&ocnum=${recommandData.OCNUM }"
 											class="btn btn-default">More Info</a>
 									</c:otherwise>
 								</c:choose>
@@ -174,7 +172,7 @@
 				<li><a href="agreement.footer">이용약관</a></li>
 				<br>
 				<li>개인정보취급방침</li>
-				
+
 				<br>
 				<li><a href="">이벤트 게시판</a></li>
 				<br>

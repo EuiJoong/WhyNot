@@ -49,4 +49,11 @@ public class OnlineCurriculumDAOImpl implements OnlineCurriculumDAO {
 		return OnlineCurriculumMybatis.getLsnum(ocnum);
 	}
 
+	@Override
+	public List<OnlineCurriculumDBBean> listCurriculumData(OnlineCurriculumDBBean dto) {
+		// TODO Auto-generated method stub
+		System.out.println("OnlineCurriculumDAOImpl_listCurriculumData() ½ÇÇà");
+		return OnlineCurriculumMybatis.listCurriculumData(dto);
+	}
+
 }

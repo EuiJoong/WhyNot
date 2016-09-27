@@ -41,4 +41,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getOcnum" parameterType="String" resultType="int">
 		select ocnum from WN_ONLINE WHERE TITLE= #{value} 
 	</select>
+		<update id="updateContent_wnOnline" parameterType="map">
+		update WN_ONLINE set title=#{oc_dto.title}, content=#{oc_dto.content}, price=#{oc_dto.price} where ocnum=#{oc_dto.ocnum}
+	</update>
+	<update id="updateContent_wnPhoto" parameterType="map">
+		update WN_PHOTO set filename=#{p_dto.filename}, fileext=#{p_dto.fileext}, filedir=#{p_dto.filedir} where ptnum=#{oc_dto.ptnumO}
+	    
+	</update>
+	<update id="updateContent_wnVideo" parameterType="map">
+		update WN_VIDEO set filename=#{v_dto.filename}, filedir=#{v_dto.filedir} where vdnum=#{oc_dto.vdnumO}
+	</update>
 </mapper> 

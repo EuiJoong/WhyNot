@@ -28,5 +28,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="chkCategory" parameterType="String" resultType="String">
 	select name from wn_category where name = #{name}
 </select>
-
 </mapper>

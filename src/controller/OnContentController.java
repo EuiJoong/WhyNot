@@ -279,7 +279,7 @@ public class OnContentController {
 		// 카테고리 목록
 		List<CategoryDBBean> cateList = categoryDAO.listCategory();
 		// ===================================================================
-		return new ModelAndView("content/contentList.jsp", "cateList", cateList); // 나중에
+		return new ModelAndView("main.app", "cateList", cateList); // 나중에
 																					// 마이페이지로???
 	}
 
@@ -298,8 +298,10 @@ public class OnContentController {
 				isPurchase = true; // 결제 내역이 있으면
 			mav.addObject("isPurchase", isPurchase);
 		} // 여기
-
-		VideoDBBean videoDTO = onlineContentDAO.getContent(ocnum);// 비디오정보받아오기
+		OnlineContentDBBean dtoForVideo = new OnlineContentDBBean();
+		dtoForVideo.setMnum(mnum);
+		dtoForVideo.setOcnum(ocnum);
+		VideoDBBean videoDTO = onlineContentDAO.getContent(dtoForVideo);// 비디오정보받아오기
 		// getDetailWho
 		if (videoDTO != null) {
 			mav.addObject("videoDTO", videoDTO);
@@ -336,15 +338,15 @@ public class OnContentController {
 
 		System.out.println("점수" + sum);
 		System.out.println("평점:" + avg);
-		
-		//lsnum 구하기
+
+		// lsnum 구하기
 		int lsnum = onlineCurriculumDAO.getLsnum(ocnum);
-		
-		//커리큘럼 목록 구하기
+
+		// 커리큘럼 목록 구하기
 		List<OnlineCurriculumDBBean> currList = onlineCurriculumDAO.listCurriculum(lsnum);
-		
-		mav.addObject("currList",currList);
-		mav.addObject("lsnum",lsnum);
+
+		mav.addObject("currList", currList);
+		mav.addObject("lsnum", lsnum);
 		mav.addObject("avg", avg);
 
 		mav.addObject("ocnum", ocnum);
@@ -356,14 +358,143 @@ public class OnContentController {
 	@RequestMapping(value = "/cont_update.oncont")
 	public ModelAndView updateFormContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("OnContentController_updateFormCurri() 실행");
-		return new ModelAndView("content/online/cont_updateForm.jsp");
+		ModelAndView mav = new ModelAndView();
+
+		int mnum = Integer.parseInt(arg0.getParameter("mnum"));
+		int ocnum = Integer.parseInt(arg0.getParameter("ocnum"));
+
+		OnlineContentDBBean dtoForVideo = new OnlineContentDBBean();
+		dtoForVideo.setOcnum(ocnum);
+		dtoForVideo.setMnum(mnum);
+		VideoDBBean dtoResult = onlineContentDAO.getContent(dtoForVideo);
+
+		mav.addObject("videoDTO", dtoResult);
+
+		List<Object> contList = onlineContentDAO.getDetailWho(ocnum);
+
+		if (contList != null) {
+			mav.addObject("contList", contList);
+			System.out.println("수정! contList 있엉");
+		}
+		mav.setViewName("content/online/cont_updateForm.jsp");
+		return mav;
 
 	}
-	
+
 	@RequestMapping(value = "/cont_updatePro.oncont")
 	public ModelAndView updateProContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("OnContentController_detailProContent() 실행");
-		return new ModelAndView("content/online/cont_detailForm.jsp");
+		//이제 여기!
+		
+		int ptnumO=Integer.parseInt(arg0.getParameter("ptnum"));
+		int vdnumO=Integer.parseInt(arg0.getParameter("vdnum"));
+        OnlineContentDBBean oc_dto = null;
+        PhotoDBBean p_dto = null;
+        VideoDBBean v_dto = null;
+        boolean isMultipart = ServletFileUpload.isMultipartContent(arg0);
+
+        if (isMultipart) {
+           File temporaryDir = new File(arg0.getServletContext().getRealPath("/temp"));// 동영상
+                                                        // 임시저장폴더
+           DiskFileItemFactory factory = new DiskFileItemFactory();
+           System.out.println("factory 생성성공");
+           factory.setSizeThreshold(1 * 1024 * 1024);// 메모리 임시저장 제한용량
+           factory.setRepository(temporaryDir);
+           ServletFileUpload upload = new ServletFileUpload(factory);
+           System.out.println("ServletFileUpload 생성성공");
+           upload.setSizeMax(3 * 1024 * 1024 * 1024);// 파일최대 제한용량
+           List items = null;
+           try {
+              items = upload.parseRequest(arg0);
+           } catch (FileUploadException fe) {
+              System.out.println(fe);
+              fe.printStackTrace();
+           }
+           if (items != null) {
+              Iterator iter = items.iterator();
+              oc_dto = new OnlineContentDBBean();
+              while (iter.hasNext()) {
+                 FileItem fileItem = (FileItem) iter.next();
+                 if (fileItem.isFormField()) {
+                    // 파일을 제외한 나머지 파라미터 처리
+                    String name = fileItem.getFieldName();
+                    System.out.println("값일때 : " + name);
+                    String value = fileItem.getString("UTF-8");
+                    System.out.println("값일때 : " + value);
+                    if(value==null || value.equals(""))
+                       value="0";
+                    Integer ptnum; // 사진번호
+                    Integer vdnum; // 동영상번호
+                    switch (name) {
+                    case "ctnum":
+                       oc_dto.setCtnum(Integer.parseInt(value));
+                       break;
+                    case "mnum":
+                       oc_dto.setMnum(Integer.parseInt(value));
+                       break;
+                    case "title":
+                       oc_dto.setTitle(value);
+                       break;
+                    case "content":
+                       oc_dto.setContent(value);
+                       break;
+                    case "price":
+                       oc_dto.setPrice(Integer.parseInt(value));
+                       break;
+                    }
+
+                 } else {
+                    // 파일 업로드 처리
+                    String name = fileItem.getFieldName();
+                    System.out.println("파일일때 : " + name + "/ " + fileItem.getName());
+                    switch (name) {
+                    case "image-file": // image파일 처리
+                       System.out.println("사진파일일때 : " + name);
+                       String[] nameArr = fileItem.getName().split("[.]");
+                       String upPath =arg0.getServletContext().getRealPath("/images"); 
+                       		//arg0.getServletContext().getRealPath("/images");
+                       p_dto = new PhotoDBBean();
+                       p_dto.setFiledir(upPath);
+                       p_dto.setFilename(nameArr[0]);
+                       p_dto.setFileext(nameArr[1]);
+                       File imageFile = new File(upPath +"\\"+ fileItem.getName());
+                       fileItem.write(imageFile);
+                       break;
+                    case "video-file": // video파일 처리
+                       System.out.println("비디오파일일때 : " + name);
+
+                       
+                       if (fileItem.getName() == null || fileItem.getName().equals(""))
+                          break;
+                       
+                       v_dto = insertVideo(fileItem, arg0); // video파일 전송 및 인코딩
+                                               // 메소드 호출
+                       break;
+                    }
+
+                 }
+              }
+           }
+        }
+        if (v_dto == null) {
+           v_dto = new VideoDBBean();
+        }
+        //mnum, ocnum등록
+        int ocnum=Integer.parseInt(arg0.getParameter("ocnum"));
+        int mnum=Integer.parseInt(arg0.getParameter("mnum"));
+        oc_dto.setOcnum(ocnum);
+        oc_dto.setMnum(mnum);
+        oc_dto.setPtnumO(ptnumO);
+        oc_dto.setVdnumO(vdnumO);
+        p_dto.setMnum(oc_dto.getMnum());
+        v_dto.setMnum(oc_dto.getMnum());
+        //onlineContentDAO.insertContent(oc_dto, p_dto, v_dto);
+        onlineContentDAO.updateContent(oc_dto, p_dto, v_dto);
+        //카테고리 목록
+        List<CategoryDBBean> cateList = categoryDAO.listCategory();
+        // ===================================================================
+        return new ModelAndView("content/contentList.jsp","cateList", cateList); //
+		//return new ModelAndView("content/online/cont_detailForm.jsp");
 
 	}
 

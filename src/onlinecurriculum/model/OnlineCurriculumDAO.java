@@ -8,6 +8,7 @@ import attachfile.model.TextDBBean;
 public interface OnlineCurriculumDAO {
 	public List getCurriculum(OnlineCurriculumDBBean dto ); //강의실
 	public List<OnlineCurriculumDBBean> listCurriculum(int lsnum); //켄텐츠 상세page에서 커리큘럼 목록
+	public List<OnlineCurriculumDBBean> listCurriculumData(OnlineCurriculumDBBean dto); //켄텐츠 상세page에서 커리큘럼 목록
 	public void insertCurriculum(OnlineCurriculumDBBean oc_dto ,TextDBBean t_dto, ClassVideoDBBean v_dto); //등록
 	public void updateCurriculum(OnlineCurriculumDBBean dto ,int num); //수정
 	public void deleteCurriculum(OnlineCurriculumDBBean dto ,int num); //삭제

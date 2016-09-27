@@ -35,14 +35,14 @@ public class OnlineContentMybatis {
 		}
 	}
 
-	public static VideoDBBean getContent(int ocnum) {
+	public static VideoDBBean getContent(OnlineContentDBBean dtoForVideo) {
 		// TODO Auto-generated method stub
 		System.out.println("OnlineContentMybatis_getContent() 실행");
 		VideoDBBean dto = new VideoDBBean();
 		//
-		System.out.println("ocnum : " + ocnum);
+		System.out.println("mnum : " + dtoForVideo.getMnum());
 		SqlSession session = sqlMapper.openSession();
-		dto = (VideoDBBean) session.selectOne("getContent", ocnum);
+		dto = (VideoDBBean) session.selectOne("getContent", dtoForVideo);
 		session.commit();
 		System.out.println("session get");
 		session.close();
@@ -98,9 +98,48 @@ public class OnlineContentMybatis {
 
 	}
 
-	public static void updateContent(OnlineContentDBBean dto, int num) {
+	public static void updateContent(OnlineContentDBBean oc_dto, PhotoDBBean p_dto, VideoDBBean v_dto) {
 		// TODO Auto-generated method stub
 		System.out.println("OnlineContentMybatis_updateContent() 실행");
+				//insert그대로 쓰되, update로! 쿼리문만 바꾸면 될 듯
+				SqlSession session = sqlMapper.openSession();
+				/*
+				 * Map map=new HashMap(); map.put("mnum", dto.getMnum());
+				 * map.put("vdnum",dto.getVdnum()); map.put("filedir",
+				 * dto.getFiledir()); map.put("filename", dto.getFilename());
+				 * map.put("num", num);
+				 */
+				Map contentMap = new HashMap<>();
+				contentMap.put("oc_dto", oc_dto);
+				contentMap.put("p_dto", p_dto);
+				contentMap.put("v_dto", v_dto);
+				System.out.println("쿼리 이제 들어갑니다."+oc_dto.getOcnum()+", "+oc_dto.getPtnumO()+", "+oc_dto.getVdnumO()+", "+v_dto.getFilename());
+				if (v_dto.getFilename() == null || v_dto.getFilename().equals("")){
+					System.out.println("비디오가 없어서 들어옴");
+					session.update("updateContent_wnOnline", contentMap);
+					session.commit();
+					session.close();
+					session=sqlMapper.openSession();
+					session.update("updateContent_wnPhoto", contentMap);
+					session.commit();
+					session.close();
+
+				}else{
+					session.update("updateContent_wnOnline", contentMap);
+					session.commit();
+					session.close();
+					session=sqlMapper.openSession();
+					session.update("updateContent_wnPhoto", contentMap);
+					session.commit();
+					session.close();
+					session=sqlMapper.openSession();
+					session.update("updateContent_wnVideo", contentMap);//update는 한 테이블만 가능하므로 다 해주어야 한다..
+					session.commit();
+					session.close();
+				}
+
+				
+				System.out.println("session update");
 
 	}
 

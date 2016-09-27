@@ -12,7 +12,21 @@ public class OnlineContentDBBean {
 	Integer ptnum;	//사진번호
 	Integer vdnum;	//동영상번호
 	PhotoDBBean p_dto;
+	Integer ptnumO;
+	Integer vdnumO;
 	
+	public Integer getPtnumO() {
+		return ptnumO;
+	}
+	public void setPtnumO(Integer ptnumO) {
+		this.ptnumO = ptnumO;
+	}
+	public Integer getVdnumO() {
+		return vdnumO;
+	}
+	public void setVdnumO(Integer vdnumO) {
+		this.vdnumO = vdnumO;
+	}
 	public PhotoDBBean getP_dto() {
 		return p_dto;
 	}
