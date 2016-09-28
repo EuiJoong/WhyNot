@@ -41,7 +41,7 @@ public class OnlineCurriculumQNAMybatis  {
 	
 	public static void insertCurriQNA(OnlineCurriculumQNADBBean ocqna){
 		SqlSession session = sqlMapper.openSession();
-		
+		System.out.println("³»¿ë:"+ocqna.getContent());
 //		Map qnaMap = new HashMap<>();
 //		qnaMap.put("lsnum", ocqna.getLsnum());
 //		qnaMap.put("content", ocqna.getContent());
@@ -56,7 +56,7 @@ public class OnlineCurriculumQNAMybatis  {
 	public static void answerCurriQNA(OnlineCurriculumQNADBBean ocqna){
 		SqlSession session = sqlMapper.openSession();
 		
-		session.update("answerQNA", ocqna);
+		session.insert("answerQNA", ocqna);
 		session.commit();
 		System.out.println("qna insert");
 		session.close();

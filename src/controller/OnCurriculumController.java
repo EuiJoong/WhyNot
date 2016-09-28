@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import assessment.model.AssessmentDAO;
@@ -26,6 +27,7 @@ import attachfile.model.TextDBBean;
 import attachfile.model.VideoDBBean;
 import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import onlinecontent.model.OnlineContentDAO;
 import onlinecontent.model.OnlineContentDBBean;
 import onlinecurriculum.model.OnlineCurriculumDAO;
@@ -274,19 +276,31 @@ public class OnCurriculumController {
 	@RequestMapping(value = "/curri_detail.curr") // 강의실Form
 	public ModelAndView detailCurri(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("OnCurriculumController_detailCurri() 실행");
-		
+		System.out.println("lsnum:"+ arg0.getParameter("lsnum") + " clnum:"+arg0.getParameter("clnum") + " ttnum:"+arg0.getParameter("ttnum"));
 		OnlineCurriculumDBBean dto = new OnlineCurriculumDBBean();
 		dto.setLsnum(Integer.parseInt(arg0.getParameter("lsnum")));
 		dto.setClnum(Integer.parseInt(arg0.getParameter("clnum")));
 		dto.setTtnum(Integer.parseInt(arg0.getParameter("ttnum")));
+		String writer = arg0.getParameter("writer");
 		
 		//1개 모든 데이터
 		List currData = onlineCurriculumDAO.getCurriculum(dto);
-		//목록
+		//커리큘럼 목록
 		List currList = onlineCurriculumDAO.listCurriculum(Integer.parseInt(arg0.getParameter("lsnum")));
+		Iterator it = currData.iterator();
+		while(it.hasNext()){
+			System.out.println("cont" + it.next());
+		}
+		//Q&A 목록
+		List<OnlineCurriculumQNADBBean> qnaList = onlineCurriculumQNADAO.listOnlineContentQa(Integer.parseInt(arg0.getParameter("lsnum")));
+		System.out.println("질답 사이즈"+qnaList.size());
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("currList",currList);
 		mav.addObject("currData",currData);
+		mav.addObject("qnaList",qnaList);
+		mav.addObject("writer",writer);
+		
 		mav.setViewName("content/online/curr_detailForm.jsp");
 		
 		return mav;
@@ -326,18 +340,22 @@ public class OnCurriculumController {
 		System.out.println(arg0.getParameter("lsnum"));
 		System.out.println(arg0.getParameter("content"));
 		System.out.println(arg0.getParameter("mnum"));
-
+		System.out.println(arg0.getParameter("clnum"));
 		int lsnum = Integer.parseInt(arg0.getParameter("lsnum"));
 		String content = arg0.getParameter("content");
 		int mnum = Integer.parseInt(arg0.getParameter("mnum"));
-
+		int clnum = Integer.parseInt(arg0.getParameter("clnum"));
 		ocqna.setLsnum(lsnum);
 		ocqna.setContent(content);
 		ocqna.setMnum(mnum);
-
+		ocqna.setClnum(clnum);
 		onlineCurriculumQNADAO.insertOnlineContentQa(ocqna);
-
-		return new ModelAndView("curri_detail.curr?lsnum=" + 1);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("curri_detail.curr");
+		mav.addObject("lsnum",lsnum);
+		
+		return mav;
 
 	}
 
@@ -361,10 +379,14 @@ public class OnCurriculumController {
 		ocqna.setContent(content);
 		ocqna.setMnum(mnum);
 		ocqna.setQanum(qanum);
-
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("curri_detail.curr");
+		mav.addObject("lsnum",lsnum);
+		
 		onlineCurriculumQNADAO.answerOnlineContentQa(ocqna);
 
-		return new ModelAndView("curri_detail.curr?lsnum=" + 1);
+		return mav;
 	}
 
 	@RequestMapping(value = "qna_delete.curr") // 댓글 삭제
@@ -373,13 +395,17 @@ public class OnCurriculumController {
 
 		System.out.println("qanum : " + arg0.getParameter("qanum"));
 		System.out.println("mnum : " + arg0.getParameter("mnum"));
-
+		
 		int qanum = Integer.parseInt(arg0.getParameter("qanum"));
 		int mnum = Integer.parseInt(arg0.getParameter("mnum"));
-
+		int lsnum = Integer.parseInt(arg0.getParameter("lsnum"));
 		onlineCurriculumQNADAO.deleteOnlineContentQa(qanum, mnum);
 
-		return new ModelAndView("curri_detail.curr?lsnum=" + 1);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("curri_detail.curr");
+		mav.addObject("lsnum",lsnum);
+		
+		return mav;
 	}
 
 }

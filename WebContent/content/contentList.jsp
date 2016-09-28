@@ -126,7 +126,6 @@
 													class="btn btn-default">More Info</a>
 											</c:when>
 											<c:otherwise>
-												<a href="#" class="btn btn-primary">Buy Now!</a>
 												<a
 													href="cont_detail.oncont?mnum=${memberDTO.mnum }&ocnum=${contData.OCNUM }"
 													class="btn btn-default">More Info</a>

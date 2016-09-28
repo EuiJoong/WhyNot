@@ -3,6 +3,7 @@ package onlinecurriculum.mybatis;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +48,17 @@ public class OnlineCurriculumMybatis{
 		SqlSession session = sqlMapper.openSession();
 		List<OnlineCurriculumDBBean> currList = session.selectList("listCurr",lsnum);
 		session.close();
+		
 		return currList;
+	}
+	
+	public static List<OnlineCurriculumDBBean> listCurriculumData(OnlineCurriculumDBBean dto) {
+		// TODO Auto-generated method stub
+		System.out.println("OnlineCurriculumMybatis_listCurriculumData() ½ÇÇà");
+		SqlSession session = sqlMapper.openSession();
+		List<OnlineCurriculumDBBean> currOne = session.selectList("listCurrData",dto);
+		session.close();
+		return currOne;
 	}
 	
 	public static void createLesson(int ocnum){

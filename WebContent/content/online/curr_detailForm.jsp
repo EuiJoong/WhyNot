@@ -32,29 +32,36 @@
     <![endif]-->
 
 <%-- <c:set var="memberDTO" value="${sessionScope.memberDTO }" /> --%>
-
-
-
 <title>재능 교육 사이트 - WhyNot?</title>
-
 
 </head>
 <body style="overflow: auto;">
+	<c:forEach var="curr" items="${currData }">
+		<div>
 
-	<div>
+			<div class="panel panel-default"
+				style="float: left; width: 80%; position: fixed; ">
 
-		<div class="panel panel-default" style="float: left; width: 80%;">
-			<c:forEach var="curr" items="${currData }">
-				<div class="panel-heading">${curr.TITLE }</div>
-
+				<div class="panel-heading" style="height: 3em">${curr.TITLE }</div>
 				<!-- 영상 영역 -->
-				<div class="panel-body">
-					<div style="height: 30em;">영상위치</div>
+				<div class="panel-body"
+					style="background-color: black; height: 30em;">
+					<!-- 영상 부분 -->
+					<div id="h-div" class="flowplayer play-button" data-engine="flash"
+						data-swf="${pageContext.request.contextPath}/dist/flowplayer.swf"
+						data-rtmp="rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st"
+						data-ratio=".4167" style="height: 30em;">
 
+						<video autoplay preload="none">
+							<!-- <source type="video/mp4" src="movie/test.mp4"> -->
+							<source type="video/mp4" src="WhyNot/video/${videoDTO.filename }">
+						</video>
+
+					</div>
 				</div>
-			</c:forEach>
-			<!-- Q&A게시판 영역 -->
-			<!-- <div class="panel-heading">
+
+				<!-- Q&A게시판 영역 -->
+				<!-- <div class="panel-heading">
 				<font class="qnafont" style="float: left;">Q&A 게시판</font>
 				<div class="qnaform">
 					<form class="navbar-form" role="search">
@@ -64,55 +71,61 @@
 					</form>
 					
 				</div>-->
-			<!-- </div> -->
+				<!-- </div> -->
 
-			<!-- 게시판 글 영역 -->
-			<div style="display: block;">
-				<!-- 댓글 시작~ -->
+				<!-- 게시판 글 영역 -->
 
-				<div class="well"
-					style="position: fixed; width: 80%; margin-bottom: 1px;">
-					<h4>Leave a Comment:</h4>
-					<form action="qna_insert.curr?lsnum=" method="post" role="form"
-						style="height: 96px;">
-						<div style="float: left; width: 80%;">
-							<textarea rows="4" class="form-control" style="display: inline;"
-								name="content"></textarea>
-						</div>
+				<div  style="background-color: black;">
+					<!-- 댓글 시작~ -->
+					<div class="well"
+						style="position: fixed; width: 80%; margin-bottom: 1px; height: 10em;">
+						<h4>Q&A</h4>
+						<c:if test="${memberDTO.id != writer}">
+							<form action="qna_insert.curr" method="post" role="form"
+								style="height: 56px;">
+								<input type="hidden" name="lsnum" value="${curr.LSNUM }">
+								<input type="hidden" name="clnum" value="${curr.CLNUM }">
+								<input type="hidden" name="ttnum" value="${curr.TTNUM }">
+								<div style="float: left; width: 80%;">
+									<textarea rows="2" class="form-control"
+										style="display: inline;" name="content"></textarea>
+								</div>
 
-						<input type="hidden" name="mnum" value="${memberDTO.mnum }">
-						<div
-							style="float: left; width: 19%; height: 80%; margin-left: 8px;">
-							<button type="submit" class="btn"
-								style="width: 99%; height: 99%; margin: 8px; background-color: #6799FF;">Submit</button>
-						</div>
+								<input type="hidden" name="mnum" value="${memberDTO.mnum }">
+								<div
+									style="float: left; width: 19%; height: 80%; margin-left: 8px;">
+									<button type="submit" class="btn"
+										style="width: 99%; height: 99%; margin: 8px; background-color: #6799FF;">Submit</button>
+								</div>
 
-					</form>
+							</form>
+						</c:if>
+					</div>
 				</div>
-			</div>
-			<div
-				style="display: block; overflow: auto; height: 275px; margin-top: 175px;">
-
+				<%-- <c:choose>
+					<c:when test="${memberDTO.id != writer}"> --%>
+						<div
+							style="display: block; overflow: scroll; height: 275px; margin-top: 123px;">
+				<%-- 	</c:when>
+					<c:otherwise>
+						<div
+							style="display: block; overflow: auto; height: 275px; margin-top: 64px;">
+					</c:otherwise>
+				</c:choose> --%>
 				<!-- 질답 리스트님 와주세욥 -->
-
 				<c:set var="collNum" value="1" />
-
 				<c:choose>
 					<c:when test="${qnaList.size()==0 }">
 						질문이 없습니다.
 					</c:when>
 					<c:otherwise>
-
 						<c:forEach var="qnaDTO" items="${qnaList }">
-
 							<fmt:parseNumber var="i" integerOnly="true" type="number"
 								value="${qnaDTO.qanum%2 }" />
 							<c:choose>
 								<c:when test="${i!=0 }">
 									<c:set var="collNum" value="${collNum+1 }" />
-
 									<hr style="margin: 16px 8px;">
-
 									<div class="media" style="margin-top: 20px;">
 										<a class="pull-left" href="#"> <img class="media-object"
 											src="http://placehold.it/64x64" alt="">
@@ -123,7 +136,7 @@
 											</h4>
 											${qnaDTO.content } <br> <a data-toggle="collapse"
 												href="#collapseExample${collNum }" aria-expanded="false"
-												aria-controls="collapseExample"> [답변달기] </a> [수정] <a
+												aria-controls="collapseExample"> [답변달기] </a> <a
 												href="qna_delete.curr?qanum=${qnaDTO.qanum }&mnum=${memberDTO.mnum }">[삭제]</a>
 											<div class="collapse" id="collapseExample${collNum }">
 												<div class="well" style="margin: 8px;">
@@ -138,18 +151,16 @@
 
 														<input type="hidden" name="mnum"
 															value="${memberDTO.mnum }"> <input type="hidden"
-															name="qanum" value="${qnaDTO.qanum-1 }">
+															name="qanum" value="${qnaDTO.qanum-1 }"> <input
+															type="hidden" name="clnum" value="${curr.clnum }">
 
 														<div
 															style="float: left; width: 19%; height: 80%; margin-left: 8px;">
 															<button type="submit" class="btn"
 																style="width: 99%; height: 99%; margin: 8px; background-color: #6799FF;">Submit</button>
 														</div>
-
 													</form>
-
 													<!-- 댓글 답글 끝 -->
-
 												</div>
 											</div>
 										</div>
@@ -190,10 +201,11 @@
 				<!-- 댓글 끝 -->
 			</div>
 			<!-- List group -->
+
 		</div>
 
 		<!-- <!-- 우측 커리큘럼 목록 -->
-		<div class="panel panel-default" style="width: 20%; float: right;">
+		<div class="panel panel-default" style="width: 20%; float: right; ">
 			<div class="panel-heading">커리큘럼 명</div>
 			<ul class="list-group">
 				<c:choose>
@@ -202,21 +214,18 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="currDto" items="${currList }">
-							<li class="list-group-item">
-								<form action="curri_detail.curr" method="post" id="move">
-									<input type="hidden" name="clnum" value="${currDto.CLNUM }">
-									<input type="hidden" name="lsnum" value="${currDto.LSNUM }">
-									<input type="hidden" name="ttnum" value="${currDto.TTNUM }">
-									<a onclick="document.getElementById('move').submit()"><c:out
-											value="${currDto.TITLE}" /></a>
-								</form>
+							<li class="list-group-item "><a class="btn"
+								href="curri_detail.curr?lsnum=${currDto.LSNUM }&clnum=${currDto.CLNUM}&ttnum=${currDto.TTNUM}"><c:out
+										value="${currDto.TITLE}" /> <c:out
+										value="${currDto.TTNUM }${currDto.LSNUM }${currDto.CLNUM }"></c:out></a>
 							</li>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</ul>
 		</div>
-	</div>
+		</div>
+	</c:forEach>
 	<!-- jQuery -->
 	<script src="../../js/jquery.js"></script>
 	<script

@@ -30,9 +30,9 @@ body {
 
 <html lang="en">
 <!-- flowplayer depends on jQuery 1.7.1+ (for now) -->
-<script src="dist/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/dist/jquery.js"></script>
 <!-- include flowplayer -->
-<script src="dist/flowplayer.js?i"></script>
+<script src="${pageContext.request.contextPath}/dist/flowplayer.js?i"></script>
 
 <script type="text/javascript">
 	function chkMileage(price,mileage) {
@@ -46,8 +46,8 @@ body {
 </script>
 <body style="padding-top: 16px;">
 	<!-- Page Content -->
-	<div class="container">
 
+	<div class="container">
 		<div class="row">
 			<c:forEach var="contData" items="${contList }">
 				<!-- left division -->
@@ -91,34 +91,24 @@ body {
 						</div>
 
 					</div>
-
-
 					<hr>
-
 					<p class="lead">Intro</p>
-
 					<hr>
-
 					<!-- 영상 부분 -->
 					<div id="h-div" class="flowplayer play-button" data-engine="flash"
-						data-swf="../../dist/flowplayer.swf"
+						data-swf="${pageContext.request.contextPath}/dist/flowplayer.swf"
 						data-rtmp="rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st"
 						data-ratio=".4167">
-
 						<video autoplay preload="none">
-							<!-- <source type="video/mp4" src="movie/test.mp4"> -->
 							<source type="video/mp4"
-								src="${pageContext.request.contextPath}/video/${videoDTO.filename }">
+								src="${pageContext.request.contextPath}/WhyNot/video/${videoDTO.filename }">
 						</video>
-
 					</div>
-
 					<hr>
 
 					<!-- Post Content -->
 					<p class="lead">강의 소개</p>
 					${contData.CONTENT }
-					</p>
 
 					<hr>
 
@@ -184,13 +174,14 @@ body {
 				<div class="col-md-4" style="margin-top: 50px;">
 
 					<!-- Blog Search Well -->
+					<c:if test="${memberDTO != null }">
 					<div class="well">
 						<c:choose>
 							<c:when test="${memberDTO != null }">
 								<c:choose>
 									<c:when test="${memberDTO.id==contData.ID}">
 										<div>
-											<form action="cont_update.oncont" method="post"
+											<form action="cont_update.oncont?mnum=${contData.MNUM }&ocnum=${contData.OCNUM}" method="post"
 												name="fupdate">
 												<a class="btn btn-primary"
 													onclick="javascript: document.fupdate.submit()">강의 수정</a>
@@ -202,17 +193,6 @@ body {
 													onclick="javascript: document.finsert.submit()">커리큘럼 등록</a>
 											</form>
 										</div>
-										<%-- <c:choose>
-											<c:when test="${currList.size() == 0 || currList == null }">
-											</c:when>
-											<c:otherwise>
-												<form action="curri_detail.curr" method="post" name="fmove">
-													<input type="hidden" name="lsnum" value="${lsnum }">
-													<a class="btn btn-primary"
-														onclick="javascript: document.fmove.submit()">강의실 이동</a>
-												</form>
-											</c:otherwise>
-										</c:choose> --%>
 									</c:when>
 									<c:when test="${memberDTO.id!=contData.ID && !isPurchase}">
 										<form action="purchaseOnline.payment" method="post"
@@ -243,7 +223,7 @@ body {
 							</c:otherwise>
 						</c:choose>
 						<!-- /.input-group -->
-					</div>
+					</div></c:if>
 
 					<!-- Blog Categories Well -->
 					<div class="well">
@@ -300,34 +280,38 @@ body {
 																<c:when
 																	test="${memberDTO.id!=contData.ID && isPurchase}">
 																	<form action="curri_detail.curr" method="post"
-																		id="gara">
+																		target="_blank" id="gara">
 																		<input type="hidden" name="lsnum"
 																			value="${currData.LSNUM }"> <input
 																			type="hidden" name="clnum" value="${currData.CLNUM }">
 																		<input type="hidden" name="ttnum"
-																			value="${currData.TTNUM }"> <a
-																			href="#" onclick="document.getElementById('gara').submit();"
+																			value="${currData.TTNUM }"> <input
+																			type="hidden" name="writer" value="${contData.ID }">
+																		<a href="#"
+																			onclick="document.getElementById('gara').submit();"
 																			class="list-group-item">${currData.TITLE } <span
 																			class="badge">이동</span>
 																		</a>
 																	</form>
 																</c:when>
 																<c:when test="${memberDTO.id==contData.ID}">
-																	<form action="curri_detail.curr" method="post"
-																		id="plz">
+																	<form action="curri_detail.curr" method="post" id="plz"
+																		target="_blank">
 																		<input type="hidden" name="lsnum"
 																			value="${currData.LSNUM }"><input
 																			type="hidden" name="clnum" value="${currData.CLNUM }">
 																		<input type="hidden" name="ttnum"
-																			value="${currData.TTNUM }"><a
-																			href="#" onclick="document.getElementById('plz').submit();"
+																			value="${currData.TTNUM }"> <input
+																			type="hidden" name="writer" value="${contData.ID }">
+																		<a href="#"
+																			onclick="document.getElementById('plz').submit();"
 																			class="list-group-item"> ${currData.TITLE } <span
 																			class="badge">이동</span>
 																		</a>
 																	</form>
 																</c:when>
 																<c:otherwise>
-																		 <a class="list-group-item"> ${currData.TITLE } </a>
+																	<a class="list-group-item"> ${currData.TITLE } </a>
 																</c:otherwise>
 															</c:choose>
 
@@ -353,24 +337,16 @@ body {
 
 
 		<!-- preBotton  -->
-		<footer>
+		<!-- <footer>
 			<div class="row">
 				<div class="col-lg-12">
 					<p>여기엔 &copy; 강사에 관련된 또는 강의와 관련된 하단을 넣어도 됩니다 지워도 되구요~ bottom
 						복붙해서 위치만 잡았어요</p>
 				</div>
-			</div>
-			<!-- /.row -->
-		</footer>
+			</div> 
+		</footer>-->
 
 	</div>
-	<!-- /.container -->
-
-	<!-- jQuery -->
-	<!-- 	<script src="js/jquery.js"></script>
-
-	Bootstrap Core JavaScript
-	<script src="js/bootstrap.min.js"></script>  -->
 </body>
 
 </html>
