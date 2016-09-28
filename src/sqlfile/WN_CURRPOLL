@@ -1,0 +1,29 @@
+--------------------------------------------------------
+--  ÆÄÀÏÀÌ »ý¼ºµÊ - È­¿äÀÏ-9¿ù-27-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table WN_CURRPOLL
+--------------------------------------------------------
+
+  CREATE TABLE "WHYNOT"."WN_CURRPOLL" 
+   (	"EVENTNUM" NUMBER, 
+	"MEMBEREMAIL" VARCHAR2(50 BYTE), 
+	"NOMINUM" NUMBER, 
+	"NOMINAME" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into WHYNOT.WN_CURRPOLL
+SET DEFINE OFF;
+Insert into WHYNOT.WN_CURRPOLL (EVENTNUM,MEMBEREMAIL,NOMINUM,NOMINAME) values (3,'2385121@naver.com',1,'°«°æ¼÷');
+Insert into WHYNOT.WN_CURRPOLL (EVENTNUM,MEMBEREMAIL,NOMINUM,NOMINAME) values (4,'2385121@naver.com',2,'ÁöÁ¸°æ¼÷');
+--------------------------------------------------------
+--  Constraints for Table WN_CURRPOLL
+--------------------------------------------------------
+
+  ALTER TABLE "WHYNOT"."WN_CURRPOLL" MODIFY ("NOMINAME" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_CURRPOLL" MODIFY ("NOMINUM" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_CURRPOLL" MODIFY ("MEMBEREMAIL" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_CURRPOLL" MODIFY ("EVENTNUM" NOT NULL ENABLE);

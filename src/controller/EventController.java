@@ -21,7 +21,7 @@ public class EventController {
 		this.eventDAO = eventDAO;
 	}
 	
-	@RequestMapping(value = "/list.event")//투표글 등록Pro
+	@RequestMapping(value = "/list.event")
 	public ModelAndView listEvent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception
 	{
 		System.out.println("EventController_listEvent() 실행");

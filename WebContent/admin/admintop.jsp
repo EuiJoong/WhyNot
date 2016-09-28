@@ -27,7 +27,7 @@
 		<li class="list-group-item"><a href="list.member">회원관리</a></li>
 		<li class="list-group-item"><a href="list.event">이벤트관리</a></li>
 		<li class="list-group-item"><a href="list.nominee">후보자관리</a></li>
-		<li class="list-group-item"><a href="list.nominee">회원투표현황</a></li>
+		<li class="list-group-item"><a href="list.poll">회원투표현황</a></li>
 		<li class="list-group-item">목록7</li>
 		<li class="list-group-item">목록8</li>
 		<li class="list-group-item">목록9</li>

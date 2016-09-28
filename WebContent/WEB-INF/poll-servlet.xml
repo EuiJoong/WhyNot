@@ -3,9 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean id="eventPollDAO" class="event.poll.model.EventPollDAOImpl">
-</bean>
-<bean class="controller.PollController">
-	<property name="eventPollDAO" ref="eventPollDAO"></property>
-</bean>
+	<bean id="pollDAO" class="event.poll.model.PollDAOImpl"/>
+	<bean class="controller.PollController">
+		<property name="pollDAO" ref="pollDAO"/>
+	</bean>
 </beans>

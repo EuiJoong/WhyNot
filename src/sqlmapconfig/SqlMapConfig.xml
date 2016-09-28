@@ -62,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
 <mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
 <mapper resource="payment/mybatis/Payment.xml"/>
-<mapper resource="event/poll/mybatis/EventPoll.xml"/>
+<mapper resource="event/poll/mybatis/Poll.xml"/>
 <mapper resource="event/poll/mybatis/Event.xml"/>
 <mapper resource="event/poll/mybatis/Nominee.xml"/>
 <mapper resource="freeboard/mybatis/FreeBoard.xml"/>

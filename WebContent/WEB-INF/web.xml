@@ -130,6 +130,7 @@
 		<servlet-name>poll</servlet-name>
 		<url-pattern>*.poll</url-pattern>
 	</servlet-mapping>
+	
 	<!-- 한글 필터링 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
