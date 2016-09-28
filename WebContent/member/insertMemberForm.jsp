@@ -6,13 +6,114 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link href="css/usersingup.min.css" rel="stylesheet">
-<script type="text/JavaScript" src="js/member.singup.js"></script>
+<!-- <script type="text/JavaScript" src="js/member.singup.js"></script> -->
+<script type="text/javascript">
+	function chkBoxCheck(intChkNumber) {
+
+		// 체크박스 갯수만큼 반복문을 돌면서
+		for (j = 0; j < 3; j++) {
+			// 체크박스가 선택되어 있으면
+			if (eval("document.f.interestcheckbox[" + j + "].checked") == true) {
+				// 우선 체크박스의 속성을 선택되지 않음으로 하고
+				document.f.interestcheckbox[j].checked = false;
+				// 사용자가 클릭한 체크박스와 프로그래밍적으로 돌고 있는
+				// 체크박스의 번호가 같으면
+				if (j == intChkNumber) {
+					// 이런 경우만 체크박스가 선택되도록 한다...
+					document.f.interestcheckbox[j].checked = true;
+				}
+			}
+		}
+	}
+
+	function chk() {
+		if (document.f.id.value == "") {
+			alert("아이디를 입력해 주세요!!");
+			document.f.id.focus();
+			return;
+		}
+
+		var exptextId = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		if (exptextId.test(document.f.id.value) == false) {
+			//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
+			alert("아이디 양식이 올바르지 않습니다.");
+			document.f.id.focus();
+			return;
+		}
+
+		if (document.f.password.value == "") {
+			alert("비밀번호를 입력해 주세요!!");
+			document.f.password.focus();
+			return;
+		}
+
+		var exptextPw = /([A-Za-z0-9]{6,20})+/g//특수문자 빼고 6자리 이상
+		if (exptextPw.test(document.f.password.value) == false) {
+			alert("비밀번호가 이상합니다!!");
+			document.f.password.focus();
+			return;
+		}
+
+		if (document.f.password.value != document.f.passwd2.value) {
+			alert("비밀번호가 다릅니다!!");
+			document.f.passwd2.focus();
+			return;
+		}
+
+		if (document.f.name.value == "") {
+			alert("이름을 입력해 주세요!!");
+			document.f.name.focus();
+			return;
+		}
+
+		var exptextName = /([A-Za-z0-9ㄱ-ㅎ]{2,20})+/g//여기 한글이 않되서 어케할지 모르갰음
+		if (exptextName.test(document.f.name.value) == false) {
+			alert("이름이 이상합니다!!");
+			f.name.focus();
+			return;
+		}
+		
+		if(document.f.gender.checked == false){
+			alert("성별을 알려주세요!!");
+			document.f.gender.focus();
+			return;
+		}
+		
+		if (document.f.birth.value == "") {
+			alert("생일을 입력해 주세요!!");
+			document.f.birth.focus();
+			return;
+		}
+
+		var exptextBrith = /([0-9]{8})+/g//숫자 8자리
+		if (exptextBrith.test(document.f.birth.value) == false) {
+			alert("생일이 이상합니다!!");
+			document.f.birth.focus();
+			return;
+		}
+		
+		if(document.f.interest.checked == false){
+			alert("관심분야 1개를 정해주세요!!");
+			document.f.interest.focus();
+			return;
+		}
+
+		if (document.f.box.checked == false) {
+			alert("약관을 읽어 주세요!!");
+			return;
+		}
+		document.f.submit();
+
+	}
+
+	function idCHK() {
+
+	}
+</script>
 <body style="padding: 20px">
 	<article class="container">
 	<div class="page-header">
-		<h1>
-			회원가입 <small>너는 이미 가입되어 있다</small>
-		</h1>
+		<h1>회원가입</h1>
 	</div>
 	<div class="col-md-6 col-md-offset-3">
 		<!--이곳부터 들어간 내용이 insertPro.member로 이동-->
@@ -38,8 +139,8 @@
 			</div>
 			<div class="form-group">
 				<label for="password2">비밀번호 확인</label> <input type="password"
-					name="passwd2" class="form-control-1" id="passwd2"
-					placeholder="비밀번호 확인">
+					name="passwd2" class="form-control-1" id="passwd2" onkeyup="chk()"
+					placeholder="비밀번호 확인"><label for="password2"></label>
 				<!-- <p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p> -->
 			</div>
 
@@ -54,7 +155,7 @@
 				<label for="gender">성별</label>
 				<div class="btn-group input-group" data-toggle="buttons">
 					<label class="btn btn-success"> <input type="radio"
-						id="gender1" name="gender" checked="checked" value="남성">남성
+						id="gender1" name="gender" value="남성">남성
 					</label>
 					<!-- 스타일풀어보면 체크 되어 있어요 -->
 					<label class="btn btn-success"> <input type="radio"
@@ -82,8 +183,8 @@
 						<c:forEach var="cateDTO" varStatus="i" begin="0"
 							end="${cateList.size() }" items="${cateList }">
 							<%-- <c:if test="${i % 5 = 1 }"><br></c:if> --%>
-								<input type="checkbox" name="interest" id="chkbox"
-									onclick="chkBoxCheck()" value="${cateDTO.name }">${cateDTO.name }
+							<input type="radio" name="interest" id="chkbox" style="margin-right: 5px;"
+								 value="${cateDTO.name }">${cateDTO.name }
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
@@ -129,7 +230,7 @@
 				</div>
 			</div>
 			<div class="form-group text-center">
-				<button type="submit" class="btn btn-info" onclick="chk()">
+				<button type="button" class="btn btn-info" onclick="chk()">
 					회원가입<i class="fa fa-check spaceLeft"></i>
 				</button>
 				<button type="button" class="btn btn-warning"
@@ -139,9 +240,5 @@
 			</div>
 		</form>
 	</div>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> <script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="../js/bootstrap.min.js"></script>
 </body>
 <%@include file="../bottom.jsp"%>

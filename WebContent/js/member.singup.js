@@ -21,7 +21,7 @@ function isID(Obj) {
 	if (Obj.value == "") {
 		alert("아이디를 입력해 주세요!!");
 		document.f.id.focus();
-		exit;
+		return;
 	}
 	
 	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
@@ -29,7 +29,7 @@ function isID(Obj) {
 	//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
 	alert("아이디가 이상합니다!!");
 	document.f.id.focus();
-	exit;
+	return false;
 	}
 }
 function isCHK(Obj) {
@@ -108,7 +108,7 @@ function isBOX() {
 
 function chk() {
 	
-	if(isID(f.id)){
+	if(!isID(f.id)){
 		return;
 	}if(isCHK(f.EmailCHK)){
 		return;

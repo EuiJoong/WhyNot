@@ -61,12 +61,11 @@ body {
 					<hr>
 					<!-- Date/Time -->
 					<p>
-						by <a href="#">${contData.NAME }</a> <span
-							class="glyphicon glyphicon-time">날짜?</span>
+						by <a href="#" style="font-size: large; color: black;">${contData.NAME }</a><!--  <span
+							class="glyphicon glyphicon-time">날짜</span> -->
 					</p>
 
 					<hr>
-
 
 					<!-- 여기부터 소개 할게욥~ -->
 
@@ -243,8 +242,6 @@ body {
 
 					<!-- Blog Categories Well -->
 					<div class="well">
-						<h4>강의 목록</h4>
-
 						<!-- 상위 메뉴 -->
 						<c:choose>
 							<c:when test="${currList.size() == 0 || currList == null }">
@@ -282,7 +279,7 @@ body {
 												<h4 class="panel-title">
 													<a data-toggle="collapse" data-parent="#accordion"
 														href="#collapseOne" aria-expanded="true"
-														aria-controls="collapseOne"> 상위메뉴 ${reHigh } </a>
+														aria-controls="collapseOne">목록</a>
 												</h4>
 											</div>
 											<div id="collapseOne" class="panel-collapse collapse in"
