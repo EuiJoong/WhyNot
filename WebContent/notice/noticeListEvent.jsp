@@ -38,19 +38,19 @@
 					<tr>
 						<th>공지 번호</th>
 						<th>공지 제목</th>
+						<th>작성자</th>
 						<th>공지 날짜</th>
 					</tr>
 					
 					<c:if test="${size>0 }">
-					<td colspan="4" align="right">
 							<c:forEach var="noticeData" items="${listNoticeEvent }">
 							<tr>
 								<td>${noticeData.ntnum }</td>
 								<td> <a href="detail.notice?ntnum=${noticeData.ntnum }&isEvent=1&eventnum=${noticeData.eventnum}">${noticeData.title }</a></td>
+								<td>관리자</td>
 								<td> ${noticeData.reg_date }</td>
 							</tr>
 							</c:forEach>
-					</td>
 					</c:if>
 					
 					<c:if test="${size==0}">

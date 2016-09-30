@@ -17,7 +17,6 @@
 		<div class="panel panel-default">
 			<!-- Default panel contents -->
 			<div class="panel-heading">회원 투표 현황</div>
-
 			<!-- Table -->
 			<!-- <form name="f" action="insertPro.event" method="post"> -->
 			<table class="table">

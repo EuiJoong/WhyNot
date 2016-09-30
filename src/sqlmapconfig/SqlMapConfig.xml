@@ -4,7 +4,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="sqlmapconfig/db.properties" />
-
 	<!-- ~.mybatis 패키지에서 ~.xml에 데이터를 주고 받을 ~DBBean.java 의 별칭 주는 곳 (alias 의 대소문자 
 		주의) -->
 	<typeAliases>
@@ -24,9 +23,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="event.poll.model.NomineeDBBean" alias="NomineeDTO" />
 		<typeAlias type="event.poll.model.VoteDBBean" alias="VoteDTO" />
 		<typeAlias type="event.poll.model.CurrPollDBBean" alias="CurrPollDTO" />
-		<typeAlias type="event.poll.model.EventDBBean" alias="EventDTO"/>
+		<typeAlias type="event.poll.model.EventDBBean" alias="EventDTO" />
 
-<<<<<<< HEAD
 		<!-- 콘텐츠(인강,후원) -->
 		<typeAlias type="onlinecontent.model.OnlineContentDBBean"
 			alias="OnlineContentDTO" />
@@ -45,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="freeboard.model.FreeBoardDBBean" alias="FreeBoardDTO" />
 
 		<!-- 공지사항 -->
-		<typeAlias type="notice.model.NoticeBoardDBBean" alias="NoticeDTO"/>
+		<typeAlias type="notice.model.NoticeBoardDBBean" alias="NoticeDTO" />
 		<!-- 문의 -->
 	</typeAliases>
 	<environments default="development">
@@ -79,26 +77,5 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="notice/mybatis/NoticeBoard.xml" />
 		<mapper resource="assessment/mybatis/Assessment.xml" />
 	</mappers>
-=======
-<mappers>
-<!-- *.mybatis/*.xml mapper 추가하는 곳 -->
-<mapper resource="member/mybatis/Member.xml"/>
-<mapper resource="login/mybatis/Login.xml"/>
-<mapper resource="category/mybatis/Category.xml"/>
-<mapper resource="onlinecontent/mybatis/OnlineContent.xml"/>
-<mapper resource="onlinecurriculum/mybatis/OnlineCurriculum.xml"/>
-<mapper resource="onlinecurriculum/qna/mybatis/OnlineCurriculumQNA.xml"/>
-<mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
-<mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
-<mapper resource="payment/mybatis/Payment.xml"/>
-<mapper resource="event/poll/mybatis/Poll.xml"/>
-<mapper resource="event/poll/mybatis/Event.xml"/>
-<mapper resource="event/poll/mybatis/Nominee.xml"/>
-<mapper resource="freeboard/mybatis/FreeBoard.xml"/>
-<mapper resource="requestboard/mybatis/RequestBoard.xml"/>
-<mapper resource="notice/mybatis/NoticeBoard.xml"/>
-<mapper resource="assessment/mybatis/Assessment.xml"/>
-</mappers>
->>>>>>> 1809d8cb5141a62898c7d342d3b5d4d0ee3e90bc
 </configuration>
 <!-- 파일에 설정만 바꾸어 줌 -->

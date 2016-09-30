@@ -55,7 +55,6 @@
 </nav>
 <!-- Page Content -->
 <div class="container">
-
 	<!-- Best 강좌 -->
 	<!-- Title -->
 	<!-- /.row -->
@@ -172,9 +171,8 @@
 				<li><a href="agreement.footer">이용약관</a></li>
 				<br>
 				<li>개인정보취급방침</li>
-
 				<br>
-				<li><a href="">이벤트 게시판</a></li>
+				<li><a href="listNoticeEvent.notice">이벤트 게시판</a></li>
 				<br>
 				<li>자주하는 질문</li>
 			</ul>
