@@ -4,7 +4,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="pollDAO" class="event.poll.model.PollDAOImpl"/>
+	<bean id="eventPollDAO" class="event.poll.model.EventPollDAOImpl"></bean>
+	
 	<bean class="controller.PollController">
 		<property name="pollDAO" ref="pollDAO"/>
+		<property name="eventPollDAO" ref="eventPollDAO"/>
 	</bean>
 </beans>
