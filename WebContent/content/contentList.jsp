@@ -41,8 +41,10 @@
 						style="float: right;">강의 등록</button>
 				</c:when>
 				<c:otherwise>
-					<button type="button" onclick="location.href='cont_insert.oncont'"
-						style="float: right;">강의 등록</button>
+					<!-- 					<button type="button" onclick="location.href='cont_insert.content'" -->
+					<!-- 						style="float: right;">강의 등록</button> -->
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target=".lecture-select" style="float: right;">강의 등록</button>
 				</c:otherwise>
 			</c:choose>
 		</h3>
@@ -121,7 +123,7 @@
 									</p>
 									<p>
 										<c:choose>
-											<c:when test="${memberDTO == null }"> 
+											<c:when test="${memberDTO == null }">
 												<a href="cont_detail.oncont?ocnum=${contData.OCNUM }"
 													class="btn btn-default">More Info</a>
 											</c:when>
@@ -155,7 +157,6 @@
 
 <!-- Page Features -->
 <div class="row text-center">
-
 	<div class="col-md-3 col-sm-6 hero-feature">
 		<div class="thumbnail">
 			<img src="http://placehold.it/800x500" alt="">
@@ -169,18 +170,16 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="col-md-3 col-sm-6 hero-feature">
-		<div class="thumbnail">
-			<img src="http://placehold.it/800x500" alt="">
-			<div class="caption">
-				<h3>Feature Label</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
-					<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
-						class="btn btn-default">More Info</a>
-				</p>
-			</div>
+</div>
+<div class="modal fade lecture-select" tabindex="-1" role="dialog"
+	aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content"
+			style="padding: 20px 40px; text-align: center">
+			<button type="button" class="btn"
+				onclick="location.href='cont_insert.oncont'">온라인</button>
+			<button type="button" class="btn"
+				onclick="location.href='offcont_insertForm.offcont'">오프라인</button>
 		</div>
 	</div>
 </div>

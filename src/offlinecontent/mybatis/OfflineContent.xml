@@ -5,4 +5,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 파일 생성시 복사해서 쓰기 위한 base 파일  -->
 <mapper namespace="offlinecontent.mybatis.OfflineContent">
 <!-- 쿼리문 작성 하는 곳 -->
+
+<!-- 강의장 예약 -->
+<select id="listClassRoom" resultType="String">
+	select addr from wn_classroom where kind='lent'
+</select>
+<select id="listSearchClassRoom" parameterType="map" resultType="map">
+	select c.addr, d.reserve_date, c.time, d.cl_reserve_stats, c.max_num, c.cr_num 
+	from wn_classroom c, wn_date d
+	where c.cr_num=d.cr_num
+	<if test="!addr.equals('')">
+		and addr=#{addr}
+	</if>
+	<if test="!reserve_date.equals('')">
+		and d.reserve_date=#{reserve_date}
+	</if>
+	<if test="!time.equals('')">
+		and time=#{time}
+	</if>
+</select>
+
+<!-- 오프라인 컨텐츠 Insert -->
+<select id="reserveCheck" parameterType="RdateDTO" resultType="int">
+	select count(*) from wn_date where reserve_date=#{reserve_date} and cr_num=#{cr_num} and cl_reserve_stats='예약완료'
+
+</select>
+<insert id="insertOffContent" parameterType="OffConDTO">
+	insert into wn_offline values
+	<choose>
+		<when test="cr_num==0">
+		(wn_offcontent_seq.nextval,#{ctnum},#{mnum},#{title},#{content},#{period},0,#{goal_amount},#{min_amount},0,wn_classroon_seq.nextval,wn_photo_seq.nextval,#{reserve_date})
+		</when>
+		<otherwise>
+		(wn_offcontent_seq.nextval,#{ctnum},#{mnum},#{title},#{content},#{period},0,#{goal_amount},#{min_amount},0,#{cr_num},wn_photo_seq.nextval,#{reserve_date})
+		</otherwise>
+	</choose>
+</insert>
+<insert id="reserve_insertClassRoom" parameterType="ClassRoomDTO">
+	insert into wn_classroom values(wn_classroom_seq.currval, #{time}, #{max_num}, #{addr}, #{reserve_date},'custom')
+</insert>
+<update id="reserve_updateDate" parameterType="RdateDTO"> 
+	update wn_date set cl_reserve_stats=#{cl_reserve_stats} where reserve_date=#{reserve_date} and cr_num=#{cr_num}
+</update>
+<update id="reserve_insertDate" parameterType="RdateDTO">
+	insert into wn_date values(#{reserve_date},wn_classroom_seq.currval, #{cl_reserve_stats})
+</update>
+<insert id="insertOffContent_Photo" parameterType="AttachPhotoDTO">
+	insert into wn_photo values(wn_photo_seq.currval, #{mnum}, #{filename}, #{fileext}, #{filedir})
+</insert>
+
 </mapper>

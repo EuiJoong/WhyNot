@@ -2,9 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
 	<!-- 컨텐츠 관련 서블릿 -->
-	<bean id="offlineContentDAO" class="offlinecontent.model.OfflineContentDAOImpl">
-	</bean>
+	<bean id="offlineContentDAO" class="offlinecontent.model.OfflineContentDAOImpl"></bean>
 	<bean id="categoryDAO" class="category.model.CategoryDAOImpl" />
 	<bean id="paymentDAO" class="payment.model.PaymentDAOImpl" />
 	<bean class="controller.OffContentController">
@@ -12,5 +12,5 @@
 		<property name="categoryDAO" ref="categoryDAO"></property>
 		<property name="paymentDAO" ref="paymentDAO"></property>
 	</bean>
-</beans> 
+</beans>  
  

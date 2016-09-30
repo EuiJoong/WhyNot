@@ -24,13 +24,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="event.poll.model.VoteDBBean" alias="VoteDTO" />
 		<typeAlias type="event.poll.model.CurrPollDBBean" alias="CurrPollDTO" />
 		<typeAlias type="event.poll.model.EventDBBean" alias="EventDTO" />
-
 		<!-- 콘텐츠(인강,후원) -->
 		<typeAlias type="onlinecontent.model.OnlineContentDBBean"
 			alias="OnlineContentDTO" />
 		<typeAlias type="offlinecontent.model.OfflineContentDBBean"
-			alias="OfflineContentDTO" />
-
+			alias="OffConDTO" />
+		<typeAlias type="offlinecontent.model.ReserveDateDBBean"
+			alias="RdateDTO" />
+		<typeAlias type="offlinecontent.model.ClassRoomDBBean"
+			alias="ClassRoomDTO" />
 		<!-- 강의실 -->
 		<typeAlias type="onlinecurriculum.model.OnlineCurriculumDBBean"
 			alias="OnlineCurriculumDTO" />
@@ -66,7 +68,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="onlinecontent/mybatis/OnlineContent.xml" />
 		<mapper resource="onlinecurriculum/mybatis/OnlineCurriculum.xml" />
 		<mapper resource="onlinecurriculum/qna/mybatis/OnlineCurriculumQNA.xml" />
-		<mapper resource="offlinecontent/mybatis/OfflineContent.xml" />
 		<mapper resource="offlinecontent/mybatis/OfflineContent.xml" />
 		<mapper resource="payment/mybatis/Payment.xml" />
 		<mapper resource="event/poll/mybatis/EventPoll.xml" />
