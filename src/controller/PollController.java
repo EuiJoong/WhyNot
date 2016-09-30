@@ -1,44 +1,34 @@
 package controller;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+<<<<<<< HEAD
 import category.model.CategoryDBBean;
 import event.poll.model.CurrPollDBBean;
 import event.poll.model.EventPollDAO;
+=======
+import event.poll.model.PollDAO;
+import event.poll.model.PollDBBean;
+>>>>>>> 1809d8cb5141a62898c7d342d3b5d4d0ee3e90bc
 
 @Controller
 public class PollController {
 	
-	private EventPollDAO eventPollDAO;
+	private PollDAO pollDAO;
 	
-	public void setEventPollDAO(EventPollDAO eventPollDAO) {
-		this.eventPollDAO = eventPollDAO;
-	}
-
-	@RequestMapping(value = "/insert.poll")//투표글 등록Form
-	public ModelAndView insertFormPoll(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
-		System.out.println("PollController_insertFormPoll() 실행");
-		return new ModelAndView("admin/poll/poll_insert.jsp");
-
-	}
-
-	@RequestMapping(value = "/insertPro.poll")//투표글 등록Pro
-	public ModelAndView insertProPoll(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
-		System.out.println("PollController_insertProPoll() 실행");
-
-		return new ModelAndView("");
+	public void setPollDAO(PollDAO pollDAO) {
+		this.pollDAO = pollDAO;
 	}
 
 	@RequestMapping(value = "/list.poll") //최상위(현재 진행중인..?) 투표 현황보기
 	public ModelAndView listPoll(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("PollController_listPoll() 실행");
+<<<<<<< HEAD
 		//이거쓰자
 		List list=eventPollDAO.getPoll();
 		ModelAndView mav = new ModelAndView();
@@ -55,25 +45,22 @@ public class PollController {
 		System.out.println("PollController_doPoll() 실행");
 		
 		return new ModelAndView("");
+=======
+		String para = arg0.getParameter("eventNum");
+		List<PollDBBean> pollList = null;
+		if(para!=null)
+		{
+			int eventNum = Integer.parseInt(para);
+			pollList = pollDAO.listPoll(eventNum);
+		}
+		else pollList = pollDAO.listPoll();
+		System.out.println(pollList.size());
+		List<PollDBBean> eventList = pollDAO.getAllEvent();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("admin/poll/poll_list.jsp");
+		mav.addObject("pollList", pollList);
+		mav.addObject("eventList", eventList);
+		return mav;
+>>>>>>> 1809d8cb5141a62898c7d342d3b5d4d0ee3e90bc
 	}
-	
-	
-	@RequestMapping(value = "/delete.poll") //투표글 삭제
-	public ModelAndView deletePoll(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
-		System.out.println("PollController_deletePoll() 실행");
-		return new ModelAndView("");
-	}
-	
-	@RequestMapping(value = "/update.poll")//투표글 수정Form
-	public ModelAndView UpdateFormPoll(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
-		System.out.println("PollController_UpdateFormPoll() 실행");
-		return new ModelAndView("");
-	}
-
-	@RequestMapping(value = "/updatePro.poll")//투표글 수정Pro
-	public ModelAndView UpdateProPoll(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
-		System.out.println("PollController_UpdateProPoll() 실행");
-		return new ModelAndView("");
-	}
-	
 }
