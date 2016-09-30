@@ -10,7 +10,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.ibatis.common.resources.Resources;
 
-public class EventPollMybatis{
+import event.poll.model.PollDBBean;
+
+public class PollMybatis{
 	private static SqlSessionFactory sqlMapper;
 	static {
 		try {
@@ -26,40 +28,31 @@ public class EventPollMybatis{
 			throw new RuntimeException("Something bad happened while building the SqlMapClient instance." + e, e);
 		}
 	}
-	public static void insertPoll() {
-		// TODO Auto-generated method stub
-		System.out.println("EventPollMybatis_insertPoll() 角青");
-		
-	}
-	public static void deletePoll() {
-		// TODO Auto-generated method stub
-		System.out.println("EventPollMybatis_deletePoll() 角青");
-		
-	}
-	public static void updatePoll() {
-		// TODO Auto-generated method stub
-		System.out.println("EventPollMybatis_updatePoll() 角青");
-		
-	}
-	public static List detailPoll() {
-		// TODO Auto-generated method stub
-		System.out.println("EventPollMybatis_detailPoll() 角青");
+	
+	public static List<PollDBBean> listPoll(int eventNum)
+	{
+		System.out.println("PollMybatis_listPoll() 角青");
 		SqlSession session = sqlMapper.openSession();
-		
-		List list = session.selectList("getCurrentEventState");
-		session.commit();
-		System.out.println("list.size() : " + list.size());
+		List<PollDBBean> list = session.selectList("listPoll", eventNum);
 		session.close();
-		
-		
 		return list;
-		
-	}
-	public static void doPoll() {
-		// TODO Auto-generated method stub
-		System.out.println("EventPollMybatis_doPoll() 角青");
-		
 	}
 	
+	public static List<PollDBBean> listPoll()
+	{
+		System.out.println("PollMybatis_listPoll() 角青");
+		SqlSession session = sqlMapper.openSession();
+		List<PollDBBean> list = session.selectList("listPolll");
+		session.close();
+		return list;
+	}
 	
+	public static List<PollDBBean> getAllEvent()
+	{
+		System.out.println("PollMybatis_getAllEvent() 角青");
+		SqlSession session = sqlMapper.openSession();
+		List<PollDBBean> list = session.selectList("getAllEvent");
+		session.close();
+		return list;
+	}
 }

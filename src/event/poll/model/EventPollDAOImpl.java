@@ -1,5 +1,10 @@
 package event.poll.model;
 
+import java.util.List;
+
+import event.poll.mybatis.EventPollMybatis;
+import onlinecontent.mybatis.OnlineContentMybatis;
+
 public class EventPollDAOImpl implements EventPollDAO {
 
 	@Override
@@ -21,9 +26,11 @@ public class EventPollDAOImpl implements EventPollDAO {
 	}
 
 	@Override
-	public void getPoll() {
+	public List getPoll() {
 		// TODO Auto-generated method stub
-		
+		//
+		List list = EventPollMybatis.detailPoll();
+		return list;
 	}
 
 	@Override

@@ -3,6 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
+<script type="text/javascript">
+	function goToVote(){
+		window.open("list.poll","new", "width=800, height=500");
+	}
+</script>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,7 +50,7 @@
 
 				<!-- 좌측상단 팀명 -->
 				<a class="navbar-brand" id="logo" href="main.app">WhyNot?</a>
-
+				<a class="navbar-brand" id="logo" onClick="javascript:goToVote()">투표</a>
 
 				<!-- 검색 입력창 -->
 				<form class="navbar-form navbar-left" role="search" method="post"

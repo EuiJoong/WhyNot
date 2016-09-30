@@ -4,5 +4,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 파일 생성시 복사해서 쓰기 위한 base 파일  -->
 <mapper namespace="notice.mybatis.NoticeBoard">
-<!-- 쿼리문 작성 하는 곳 -->
+<!--쿼리문 작성 하는 곳 -->
+	<select id="listNoticeEvent"  resultType="NoticeDTO">
+		select * from WN_NOTICE where eventnum <![CDATA[>]]> 0 order by eventnum desc
+	</select>
+	<select id="listNoticeNormal" resultType="NoticeDTO">
+		select * from wn_notice where eventnum <![CDATA[=]]> 0 order by ntnum desc
+	</select>
+	<select id="listNoticeAll" resultType="NoticeDTO">
+		select * from wn_notice order by ntnum desc
+	</select>
+	<select id="getEventNum" resultType="int">
+		select DISTINCT eventnum from wn_poll
+	</select>
+	<select id="selectNomineeOfEventnum" parameterType="int" resultType="NomineeDTO">
+		select * from wn_nominee where eventnum=#{eventnum}
+	</select>
+	<select id="selectNotice" parameterType="int" resultType="NoticeDTO">
+		select * from wn_notice where ntnum=#{ntnum}
+	</select>
+	<insert id="insertNotice" parameterType="NoticeDTO">
+		insert into wn_notice (ntnum, mnum, title, content, reg_date, eventnum) values (wn_notice_seq.nextval, #{mnum}, #{title}, #{content}, sysdate, #{eventnum})
+	</insert>
+	<insert id="insertCurrPoll" parameterType="CurrPollDTO">
+		insert into wn_currpoll (eventnum, memberemail, nominum, nominame) values (#{eventnum},#{membermail},#{nominum},(select nominame from wn_nominee where nominum=#{nominum}))
+	</insert>
+	<update id="updateVoteScore" parameterType="NomineeDTO">
+		update wn_nominee set score=(select score from wn_nominee where eventnum=#{eventNum} and nominum=#{nomiNum})+1 where eventnum=#{eventNum} and nominum=#{nomiNum}
+	</update>
+	<delete id="deleteNotice" parameterType="int">
+		delete from wn_notice where ntnum=#{ntnum}
+	</delete>
 </mapper>

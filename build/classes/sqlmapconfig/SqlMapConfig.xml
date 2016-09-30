@@ -2,73 +2,81 @@
 <!DOCTYPE configuration
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration> 
-<properties resource="sqlmapconfig/db.properties"/>
+<configuration>
+	<properties resource="sqlmapconfig/db.properties" />
 
-<!-- ~.mybatis 패키지에서 ~.xml에 데이터를 주고 받을  ~DBBean.java 의 별칭 주는 곳 (alias 의 대소문자 주의) -->
-<typeAliases>
-	<!-- 회원  -->
-	<typeAlias type="member.model.MemberDBBean" alias="MemberDTO"/>
-	<!-- 카테고리  -->
-	<typeAlias type="category.model.CategoryDBBean" alias="CategoryDTO"/>
-	<!-- 첨부파일(이미지,영상)  -->
-	<typeAlias type="attachfile.model.PhotoDBBean" alias="AttachPhotoDTO"/>
-	<typeAlias type="attachfile.model.VideoDBBean" alias="AttachFileVideoDTO"/>
-	<!-- 결제(마일리지 충전,강좌구매,후원) -->
-	<typeAlias type="payment.model.OnlinePaymentDBBean" alias="OnlinePaymentDTO"/>
-	<typeAlias type="payment.model.MileagePaymentDBBean" alias="MileagePaymentDTO"/>
-	<!-- <typeAlias type="paymeny.model.OfflinePaymentDBBean" alias="OfflinePaymentDTO"/> -->
-	<!-- 투표 -->
-	<typeAlias type="event.poll.model.EventDBBean" alias="EventDTO"/>
-	<typeAlias type="event.poll.model.NomineeDBBean" alias="NomineeDTO"/>
-	<typeAlias type="event.poll.model.PollDBBean" alias="PollDTO"/>
-	<typeAlias type="event.poll.model.VoteDBBean" alias="VoteDTO"/>
-	<!-- 콘텐츠(인강,후원)  -->
-	<typeAlias type="onlinecontent.model.OnlineContentDBBean" alias="OnlineContentDTO"/>
-	<typeAlias type="offlinecontent.model.OfflineContentDBBean" alias="OfflineContentDTO"/>
-	
-	<!-- 강의실 -->
-	<typeAlias type="onlinecurriculum.model.OnlineCurriculumDBBean" alias="OnlineCurriculumDTO"/>
-	<typeAlias type="onlinecurriculum.qna.model.OnlineCurriculumQNADBBean" alias="OnlineCurriculumQNADTO"/>
-	<typeAlias type="assessment.model.AssessmentDBBean" alias="AssessmentDTO"/>
-	<!-- 게시판(강사요청,자유)  -->
-	<typeAlias type="requestboard.model.RequestBoardDBBean" alias="RequestBoardDTO"/>
-	<typeAlias type="freeboard.model.FreeBoardDBBean" alias="FreeBoardDTO"/>
-	
-	<!-- 공지사항  -->
-	<typeAlias type="notice.model.NoticeBoardDBBean" alias="NoticeBoardDTO"/>
-	<!-- 문의 -->
-</typeAliases>
-<environments default="development">
-<environment id="development">
-<transactionManager type="JDBC"/>
-<dataSource type="POOLED">
-<property name="driver" value="${driver}"/>
-<property name="url" value="${url}"/>
-<property name="username" value="${username}"/>
-<property name="password" value="${password}"/>
-</dataSource>
-</environment>
-</environments>
+	<!-- ~.mybatis 패키지에서 ~.xml에 데이터를 주고 받을 ~DBBean.java 의 별칭 주는 곳 (alias 의 대소문자 
+		주의) -->
+	<typeAliases>
+		<!-- 회원 -->
+		<typeAlias type="member.model.MemberDBBean" alias="MemberDTO" />
+		<!-- 카테고리 -->
+		<typeAlias type="category.model.CategoryDBBean" alias="CategoryDTO" />
+		<!-- 첨부파일(이미지,영상) -->
+		<typeAlias type="attachfile.model.PhotoDBBean" alias="AttachPhotoDTO" />
+		<typeAlias type="attachfile.model.VideoDBBean" alias="AttachFileVideoDTO" />
+		<!-- 결제(마일리지 충전,강좌구매,후원) -->
+		<typeAlias type="payment.model.OnlinePaymentDBBean" alias="OnlinePaymentDTO" />
+		<typeAlias type="payment.model.MileagePaymentDBBean" alias="MileagePaymentDTO" />
+		<!-- <typeAlias type="paymeny.model.OfflinePaymentDBBean" alias="OfflinePaymentDTO"/> -->
+		<!-- 투표 -->
+		<typeAlias type="event.poll.model.PollDBBean" alias="PollDTO" />
+		<typeAlias type="event.poll.model.NomineeDBBean" alias="NomineeDTO" />
+		<typeAlias type="event.poll.model.VoteDBBean" alias="VoteDTO" />
+		<typeAlias type="event.poll.model.CurrPollDBBean" alias="CurrPollDTO" />
+		<typeAlias type="event.poll.model.EventDBBean" alias="EventDTO"/>
 
-<mappers>
-<!-- *.mybatis/*.xml mapper 추가하는 곳 -->
-<mapper resource="member/mybatis/Member.xml"/>
-<mapper resource="login/mybatis/Login.xml"/>
-<mapper resource="category/mybatis/Category.xml"/>
-<mapper resource="onlinecontent/mybatis/OnlineContent.xml"/>
-<mapper resource="onlinecurriculum/mybatis/OnlineCurriculum.xml"/>
-<mapper resource="onlinecurriculum/qna/mybatis/OnlineCurriculumQNA.xml"/>
-<mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
-<mapper resource="offlinecontent/mybatis/OfflineContent.xml"/>
-<mapper resource="payment/mybatis/Payment.xml"/>
-<mapper resource="event/poll/mybatis/EventPoll.xml"/>
-<mapper resource="event/poll/mybatis/Event.xml"/>
-<mapper resource="event/poll/mybatis/Nominee.xml"/>
-<mapper resource="freeboard/mybatis/FreeBoard.xml"/>
-<mapper resource="requestboard/mybatis/RequestBoard.xml"/>
-<mapper resource="notice/mybatis/NoticeBoard.xml"/>
-<mapper resource="assessment/mybatis/Assessment.xml"/>
-</mappers>
+		<!-- 콘텐츠(인강,후원) -->
+		<typeAlias type="onlinecontent.model.OnlineContentDBBean"
+			alias="OnlineContentDTO" />
+		<typeAlias type="offlinecontent.model.OfflineContentDBBean"
+			alias="OfflineContentDTO" />
+
+		<!-- 강의실 -->
+		<typeAlias type="onlinecurriculum.model.OnlineCurriculumDBBean"
+			alias="OnlineCurriculumDTO" />
+		<typeAlias type="onlinecurriculum.qna.model.OnlineCurriculumQNADBBean"
+			alias="OnlineCurriculumQNADTO" />
+		<typeAlias type="assessment.model.AssessmentDBBean" alias="AssessmentDTO" />
+		<!-- 게시판(강사요청,자유) -->
+		<typeAlias type="requestboard.model.RequestBoardDBBean"
+			alias="RequestBoardDTO" />
+		<typeAlias type="freeboard.model.FreeBoardDBBean" alias="FreeBoardDTO" />
+
+		<!-- 공지사항 -->
+		<typeAlias type="notice.model.NoticeBoardDBBean" alias="NoticeDTO"/>
+		<!-- 문의 -->
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<!-- *.mybatis/*.xml mapper 추가하는 곳 -->
+		<mapper resource="member/mybatis/Member.xml" />
+		<mapper resource="login/mybatis/Login.xml" />
+		<mapper resource="category/mybatis/Category.xml" />
+		<mapper resource="onlinecontent/mybatis/OnlineContent.xml" />
+		<mapper resource="onlinecurriculum/mybatis/OnlineCurriculum.xml" />
+		<mapper resource="onlinecurriculum/qna/mybatis/OnlineCurriculumQNA.xml" />
+		<mapper resource="offlinecontent/mybatis/OfflineContent.xml" />
+		<mapper resource="offlinecontent/mybatis/OfflineContent.xml" />
+		<mapper resource="payment/mybatis/Payment.xml" />
+		<mapper resource="event/poll/mybatis/EventPoll.xml" />
+		<mapper resource="event/poll/mybatis/Event.xml" />
+		<mapper resource="event/poll/mybatis/Nominee.xml" />
+		<mapper resource="freeboard/mybatis/FreeBoard.xml" />
+		<mapper resource="requestboard/mybatis/RequestBoard.xml" />
+		<mapper resource="notice/mybatis/NoticeBoard.xml" />
+		<mapper resource="assessment/mybatis/Assessment.xml" />
+	</mappers>
 </configuration>
-<!--  파일에 설정만 바꾸어 줌-->
+<!-- 파일에 설정만 바꾸어 줌 -->

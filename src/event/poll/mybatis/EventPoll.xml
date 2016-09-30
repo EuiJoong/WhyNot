@@ -5,4 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 파일 생성시 복사해서 쓰기 위한 base 파일  -->
 <mapper namespace="event.poll.mybatis.EventPoll">
 <!-- 쿼리문 작성 하는 곳 -->
+<select id="getCurrentEventState" resultType="CurrPollDTO">
+	select wn_nominee.*,wn_poll.eventtitle from wn_nominee,wn_poll where wn_nominee.eventnum=(select max(eventnum) from wn_poll) and wn_poll.eventnum=wn_nominee.eventnum
+</select>
 </mapper>
