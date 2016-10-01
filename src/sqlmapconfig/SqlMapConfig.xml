@@ -59,7 +59,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			</dataSource>
 		</environment>
 	</environments>
-
 	<mappers>
 		<!-- *.mybatis/*.xml mapper 추가하는 곳 -->
 		<mapper resource="member/mybatis/Member.xml" />
