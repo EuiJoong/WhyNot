@@ -25,8 +25,8 @@ public class RequestBoardController {
 	public ModelAndView ListBorad(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("requestboardController_listpushboard() ½ÇÇà");
-		int pageBlock = 5;
-		int pageSize = 5;
+		int pageBlock = 10;
+		int pageSize = 20;
 		String pageNum = arg0.getParameter("pageNum");
 		if (pageNum == null) {
 			pageNum = "1";

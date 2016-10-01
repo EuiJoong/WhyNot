@@ -1,0 +1,108 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 토요일-10월-01-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence WN_ASSESSMENT_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_ASSESSMENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_BEAN_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_BEAN_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_CATEGORY_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_CATEGORY_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 81 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_CLASS_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_CLASS_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_CLASSROOM_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_CLASSROOM_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 22 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_CLASSVIDEO_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_CLASSVIDEO_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_EVENT_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_EVENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_FREEBOARD_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_FREEBOARD_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_FREEBOARDCOMMENT_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_FREEBOARDCOMMENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_LESSON_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_LESSON_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_MEMBER_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_MEMBER_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_NOMINEE_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_NOMINEE_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_NOTICE_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_NOTICE_SEQ"  MINVALUE 1 MAXVALUE 9999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_OFFCONTENT_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_OFFCONTENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_ONCONTENT_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_ONCONTENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_ONPAYMENT_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_ONPAYMENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_PHOTO_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_PHOTO_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 81 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_QNA_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_QNA_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 2 START WITH 241 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_REQUESTBOARD_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_REQUESTBOARD_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_TEXT_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_TEXT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence WN_VIDEO_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_VIDEO_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;

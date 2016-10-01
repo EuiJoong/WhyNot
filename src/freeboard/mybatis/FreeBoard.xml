@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 쿼리문 작성 하는 곳 -->
 
   <select id="listfreeBoard" resultType="FreeBoardDTO" parameterType="HashMap" >
-   select * from (select rownum rn, A.* from (select * from wn_freeboard order by re_step asc)A) where rn between #{start} and #{end} 
+   select * from (select rownum rn, A.* from (select * from wn_freeboard order by bnum desc)A) where rn between #{start} and #{end} 
  </select>
   
   <insert id="insertfreeBoard" parameterType="FreeBoardDTO">

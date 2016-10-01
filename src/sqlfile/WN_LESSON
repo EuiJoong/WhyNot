@@ -1,0 +1,59 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 토요일-10월-01-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table WN_LESSON
+--------------------------------------------------------
+
+  CREATE TABLE "WHYNOT"."WN_LESSON" 
+   (	"LSNUM" NUMBER, 
+	"OCNUM" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into WHYNOT.WN_LESSON
+SET DEFINE OFF;
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (1,1);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (21,21);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (22,22);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (2,2);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (41,41);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (42,42);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (43,43);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (44,44);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (45,46);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (46,48);
+Insert into WHYNOT.WN_LESSON (LSNUM,OCNUM) values (47,49);
+--------------------------------------------------------
+--  DDL for Index WN_LESSON_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "WHYNOT"."WN_LESSON_PK" ON "WHYNOT"."WN_LESSON" ("LSNUM") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Constraints for Table WN_LESSON
+--------------------------------------------------------
+
+  ALTER TABLE "WHYNOT"."WN_LESSON" ADD CONSTRAINT "WN_LESSON_PK" PRIMARY KEY ("LSNUM")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "WHYNOT"."WN_LESSON" MODIFY ("LSNUM" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_LESSON" MODIFY ("OCNUM" NOT NULL ENABLE);
+
+  
+  --------------------------------------------------------
+--  파일이 생성됨 - 토요일-10월-01-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence WN_LESSON_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_LESSON_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+  

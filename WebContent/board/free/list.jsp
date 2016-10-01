@@ -8,15 +8,17 @@
 	<b>글 목 록</b>
 	<p>
 </div>
-<div style="width: 80%;">
-	<table>
-	<tr><td>
-	<b style="float: left;">총 [${count}]개의 글이 있습니다.</b>
-	<a href="insertFrom.freeboard?name=${memberDTO.name}&mnum=${memberDTO.mnum}" style="float: right;">글쓰기</a>
-	</td></tr></table>
+<div align="center">
+	<table style="width: 80%">
+		<tr>
+			<td><b style="float: left;">총 [${count}]개의 글이 있습니다.</b> <a
+				href="insertFrom.freeboard?name=${memberDTO.name}&mnum=${memberDTO.mnum}"
+				style="float: right;">글쓰기</a></td>
+		</tr>
+	</table>
 </div>
-<div align="center" style="width:80%">
-	<table border="1" >
+<div align="center">
+	<table border="1" style="width: 80%">
 		<tr bgcolor="green">
 			<th>번호</th>
 			<th>제목</th>

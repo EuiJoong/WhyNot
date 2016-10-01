@@ -1,0 +1,65 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 토요일-10월-01-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table WN_FREEBOARD
+--------------------------------------------------------
+
+  CREATE TABLE "WHYNOT"."WN_FREEBOARD" 
+   (	"BNUM" NUMBER, 
+	"NAME" VARCHAR2(50 BYTE), 
+	"MNUM" VARCHAR2(50 BYTE), 
+	"SUBJECT" VARCHAR2(50 BYTE), 
+	"REG_DATE" DATE, 
+	"READCOUNT" NUMBER, 
+	"CONTENT" VARCHAR2(4000 BYTE), 
+	"RE_STEP" NUMBER, 
+	"RE_LEVEL" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into WHYNOT.WN_FREEBOARD
+SET DEFINE OFF;
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (22,'kkk','100','한글확인',to_date('16/09/30','RR/MM/DD'),56,'<p>&nbsp;이얍</p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (4,'kkk','100','asdfasdf',to_date('16/09/27','RR/MM/DD'),133,'<p>&nbsp;1111111111111</p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (41,'tjdqls201@naver.com','4','자게자게',to_date('16/10/01','RR/MM/DD'),28,'<p>자게다</p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (42,'tjdqls201@naver.com','4','자게자게',to_date('16/10/01','RR/MM/DD'),0,'<p>자게다</p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (43,'조잡스','4','ㅂㅈㄷㅂㅈㄷㅂㅈㄷ',to_date('16/10/01','RR/MM/DD'),1,'<p>ㅂㅈㄷㅂㅈㄷㅈㅂㄷ</p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (44,'조잡스','4','ㅂㅈㄷㅂㅈㄷㅂㅈㄷ',to_date('16/10/01','RR/MM/DD'),1,'<p>ㅂㅈㄷㅂㅈㄷㅈㅂㄷ</p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (45,'조잡스','4','ㅂㅈㄷㅂㅈㄷㅂㅈㄷ',to_date('16/10/01','RR/MM/DD'),1,'<p>ㅂㅈㄷㅂㅈㄷㅈㅂㄷ</p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (46,'조잡스','4','ㅂㅈㄷ',to_date('16/10/01','RR/MM/DD'),0,'<p>align="center"<br></p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (47,'조잡스','4','align="center"',to_date('16/10/01','RR/MM/DD'),1,'<p>align="center"<br></p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (48,'조잡스','4','align="center"',to_date('16/10/01','RR/MM/DD'),0,'<p>align="center"<br></p>',0,0);
+Insert into WHYNOT.WN_FREEBOARD (BNUM,NAME,MNUM,SUBJECT,REG_DATE,READCOUNT,CONTENT,RE_STEP,RE_LEVEL) values (49,'조잡스','4','align="center"',to_date('16/10/01','RR/MM/DD'),0,'<p>align="center"<br></p>',0,0);
+--------------------------------------------------------
+--  DDL for Index WN_BOARD_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "WHYNOT"."WN_BOARD_PK" ON "WHYNOT"."WN_FREEBOARD" ("BNUM") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Constraints for Table WN_FREEBOARD
+--------------------------------------------------------
+
+  ALTER TABLE "WHYNOT"."WN_FREEBOARD" MODIFY ("BNUM" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_FREEBOARD" ADD CONSTRAINT "WN_BOARD_PK" PRIMARY KEY ("BNUM")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+
+  
+  --------------------------------------------------------
+--  파일이 생성됨 - 토요일-10월-01-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence WN_FREEBOARD_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_FREEBOARD_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+  

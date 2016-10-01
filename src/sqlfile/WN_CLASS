@@ -1,0 +1,53 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 토요일-10월-01-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table WN_CLASS
+--------------------------------------------------------
+
+  CREATE TABLE "WHYNOT"."WN_CLASS" 
+   (	"CLNUM" NUMBER, 
+	"LSNUM" NUMBER, 
+	"TTNUM" NUMBER, 
+	"TITLE" VARCHAR2(50 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into WHYNOT.WN_CLASS
+SET DEFINE OFF;
+Insert into WHYNOT.WN_CLASS (CLNUM,LSNUM,TTNUM,TITLE) values (3,1,3,'3강 겐지');
+Insert into WHYNOT.WN_CLASS (CLNUM,LSNUM,TTNUM,TITLE) values (1,1,1,'1강 윈스턴');
+Insert into WHYNOT.WN_CLASS (CLNUM,LSNUM,TTNUM,TITLE) values (2,1,2,'2강 자이라');
+--------------------------------------------------------
+--  DDL for Index WN_CLASS_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "WHYNOT"."WN_CLASS_PK" ON "WHYNOT"."WN_CLASS" ("CLNUM") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Constraints for Table WN_CLASS
+--------------------------------------------------------
+
+  ALTER TABLE "WHYNOT"."WN_CLASS" ADD CONSTRAINT "WN_CLASS_PK" PRIMARY KEY ("CLNUM")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "WHYNOT"."WN_CLASS" MODIFY ("CLNUM" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_CLASS" MODIFY ("TITLE" NOT NULL ENABLE);
+  ALTER TABLE "WHYNOT"."WN_CLASS" MODIFY ("LSNUM" NOT NULL ENABLE);
+
+  --------------------------------------------------------
+--  파일이 생성됨 - 토요일-10월-01-2016   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence WN_CLASS_SEQ
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "WHYNOT"."WN_CLASS_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+  
