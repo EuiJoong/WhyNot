@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 파일 생성시 복사해서 쓰기 위한 base 파일  -->
+<mapper namespace="freeboard.mybatis.Comment">
+<!-- 쿼리문 작성 하는 곳 -->
+
+<select id="listComment" parameterType="int" resultType="CommentDTO" >
+	select * from wn_freeboard_comment where bnum = #{bnum}  ORDER BY cbnum ASC
+</select>
+
+<insert id="insertComment" parameterType="CommentDTO">
+	insert into wn_freeboard_comment values(WN_CATEGORY_SEQ.nextval, #{bnum}, #{name}, #{mnum}, #{content}, sysdate)
+</insert>
+
+<delete id="deleteComment" parameterType="int">
+	delete from wn_freeboard_comment where cbnum=#{cbnum}
+</delete>
+
+
+</mapper>

@@ -3,6 +3,43 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 파일 생성시 복사해서 쓰기 위한 base 파일  -->
-<mapper namespace=".mybatis.">
+<mapper namespace="freeboard.mybatis.FreeBoard">
 <!-- 쿼리문 작성 하는 곳 -->
+
+  <select id="listfreeBoard" resultType="FreeBoardDTO" parameterType="HashMap" >
+   select * from (select rownum rn, A.* from (select * from wn_freeboard order by re_step asc)A) where rn between #{start} and #{end} 
+ </select>
+  
+  <insert id="insertfreeBoard" parameterType="FreeBoardDTO">
+    insert into wn_freeboard  (bnum,name,mnum,subject,reg_date,readcount,content,re_step,re_level) values(wn_freeboard_seq.nextval,#{name},#{mnum},#{subject},sysdate,0,#{content},#{re_step},#{re_level})
+  </insert>
+  
+  <select id="getfreeBoard" parameterType="int" resultType="FreeBoardDTO">
+    select * from wn_freeboard where bnum = #{bnum}
+  </select>
+  
+  <update id="freereadCount" parameterType="int">
+    update wn_freeboard set readcount=readcount+1 where bnum=#{bnum}
+  </update>
+
+  <delete id="deletefreeBoard" parameterType="int">
+    delete from wn_freeboard where bnum = #{bnum}
+  </delete>
+  
+  <update id="updatefreeBoard" parameterType="FreeBoardDTO">
+    update wn_freeboard  set subject=#{subject}, content=#{content} where bnum = #{bnum}
+  </update>
+  
+  <select id="freegetCount" resultType="int">
+    select count(*) from wn_freeboard
+  </select> 
+  
+  
+   <select id="freechk"  parameterType="int"  resultType="int" >
+    select mnum from wn_freeboard  where bnum= #{bnum}
+  </select>
+
+
+
+
 </mapper>

@@ -11,7 +11,7 @@
 	}
 </script>
 <head>
-
+<!-- Bootstrap Core CSS -->
 <script
 	src='//assets.codepen.io/assets/editor/live/console_runner-d0a557e5cb67f9cd9bbb9673355c7e8e.js'></script>
 <script
@@ -295,8 +295,7 @@ body {
 				</tr>
 			</c:forEach>
 		</table>
-		<!-- <a class="btn btn-primary" onclick="javascript:goOtherEvents()">공지사항
-			목록</a> -->
+		 <button class="btn btn-default" onclick="javascript:goOtherEvents()">목록</button>
 	</div>
 </body>
 <script

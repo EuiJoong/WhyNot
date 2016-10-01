@@ -5,4 +5,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 파일 생성시 복사해서 쓰기 위한 base 파일  -->
 <mapper namespace="requestboard.mybatis.RequestBoard">
 <!-- 쿼리문 작성 하는 곳 -->
+
+  <select id="listBoard" resultType="RequestBoardDTO" parameterType="HashMap" >
+   select * from (select rownum rn, A.* from (select * from wn_Requestboard order by bnum asc) A) where rn between #{start} and #{end} 
+ </select>
+  
+  <insert id="insertBoard" parameterType="RequestBoardDTO">
+    insert into wn_Requestboard (bnum,id,mnum,subject,reg_date,readcount,content,push) values(WN_RequestBOARD_SEQ.nextval,#{id},#{mnum},#{subject},sysdate,0,#{content},0)
+  </insert>
+  
+  <select id="getBoard" parameterType="int" resultType="RequestBoardDTO">
+    select * from wn_Requestboard where bnum = #{bnum}
+  </select>
+  
+  <update id="readCount" parameterType="int">
+    update wn_Requestboard set readcount=readcount+1 where bnum=#{bnum}
+  </update>
+
+  <delete id="deleteBoard" parameterType="int">
+    delete from wn_Requestboard where bnum = #{bnum}
+  </delete>
+  
+  <update id="updateBoard" parameterType="RequestBoardDTO">
+    update wn_Requestboard  set subject=#{subject}, content=#{content} where bnum = #{bnum}
+  </update>
+  
+  <select id="getCount" resultType="int">
+    select count(*) from wn_Requestboard
+  </select> 
+  
+   <select id="chk"  parameterType="int"  resultType="int" >
+    select mnum from wn_Requestboard  where bnum= #{bnum}
+  </select>
+
+
+  <update id="push" parameterType="int">
+    update wn_Requestboard set push=push+1 where bnum=#{bnum}
+  </update>
+
 </mapper>

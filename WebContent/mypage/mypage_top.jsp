@@ -41,9 +41,19 @@
 	</div>
 </div>
 <!-- 메뉴 텝 -->
-<c:set var="readUrl" value="${pageContext.request.requestURL}" />
+<c:set var="readUrl" value="${pageContext.request.requestURL}" /> <!-- 실제 경로 페이지(.jsp)를 불러온다 -->
+<%-- <c:out value="${readUrl }"></c:out> --%>
 <div>
 	<ul class="nav nav-tabs nav-justified">
+		<c:choose>
+			<c:when test="${fn:contains(readUrl,'purchase')}">
+				<li role="presentation" class="active"><a 
+					href="purchase.mypage" style="color: black;"><strong>123</strong></a></li>
+			</c:when>
+			<c:otherwise>
+				<li role="presentation"><a href="purchase.mypage">456</a></li>
+			</c:otherwise>
+		</c:choose>
 		<c:choose>
 			<c:when test="${fn:contains(readUrl,'dashboard')}">
 				<li role="presentation" class="active"><a
@@ -51,7 +61,7 @@
 			</c:when>
 			<c:otherwise>
 				<li role="presentation"><a href="dashboard.mypage">대쉬보드</a></li>
-			</c:otherwise>
+			</c:otherwise>                                                                                                                                                                                                                    
 		</c:choose>
 		<c:choose>
 			<c:when test="${fn:contains(readUrl,'profile')}">
@@ -68,7 +78,7 @@
 					href="setting.mypage"><strong>설정</strong></a></li>
 			</c:when>
 			<c:otherwise>
-				<li role="presentation"><a href="setting.mypage">설정</a></li>
+				<li role="presentation"><a href="setting.mypage">통계</a></li>
 			</c:otherwise>
 		</c:choose>
 		<c:choose>

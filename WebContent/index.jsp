@@ -135,7 +135,7 @@
 								<c:out value="${recommandData.NAME }" />
 							</p>
 							<p>
-							<c:choose>
+								<c:choose>
 									<c:when test="${memberDTO == null }">
 										<a href="cont_detail.oncont?ocnum=${recommandData.OCNUM }"
 											class="btn btn-default">More Info</a>
@@ -170,11 +170,14 @@
 				<br>
 				<li><a href="agreement.footer">이용약관</a></li>
 				<br>
-				<li>개인정보취급방침</li>
-				<br>
 				<li><a href="listNoticeEvent.notice">이벤트 게시판</a></li>
 				<br>
+				<li><a href="list.freeboard">자유게시판</a></li>
+				<br>
+				<li><a href="list.requestboard">이벤트 요청게시판</a></li>
+				<br>
 				<li>자주하는 질문</li>
+				<br>
 			</ul>
 		</div>
 		<div class="col-md-6">

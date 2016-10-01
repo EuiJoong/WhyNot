@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 	자유게시판 관련 서블릿 -->
+	<bean id="freeboardDAO" class="freeboard.model.FreeBoardDAOImpl" />
+	<bean id="commentDAO" class="freeboard.model.CommentDAOImpl" />
+	
+	<bean class="controller.FreeBoardController">
+		<property name="freeboardDAO" ref="freeboardDAO" />
+		<property name="commentDAO" ref="commentDAO" />
+	</bean>
+
+</beans>

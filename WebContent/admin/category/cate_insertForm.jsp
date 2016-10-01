@@ -25,16 +25,16 @@
 </c:if>
  
 	<form name="f" action="chk.cate" method="post">
-	<table border="1" width="300" >
-		<caption>카테고리 등록</caption>
+	<table border="1" style=" width=300; margin-top: 5em;" >
+		<tr><td colspan="2" style="text-align: center;">카테고리 등록</td></tr>
 		<tr>
 			<th>카테고리 이름</th>
-			<td><input type="text" name="name"></td>
+			<td><input type="text" name="name" class="form-control"></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-				<input type="submit" value="등록">
-				<input type="reset" value="취소">
+				<input type="submit" class="btn btn-default" value="등록">
+				<input type="reset" class="btn btn-default" value="취소">
 			</td>
 		</tr>
 	</table>

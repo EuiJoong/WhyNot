@@ -802,7 +802,7 @@
 					}
 				},
 				size : {
-					contentWidth : 700
+					contentWidth : 1300
 				/* 지정된 본문영역의 넓이가 있을 경우에 설정 */
 				}
 			};

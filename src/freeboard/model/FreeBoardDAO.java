@@ -1,15 +1,16 @@
 package freeboard.model;
-
 import java.util.List;
 
 
 public interface FreeBoardDAO {
 	
-	public int getCount();
-	public List list(int startRow, int endRow);
-	public void count(int num);
-	public FreeBoardDBBean getBoard(String mode, int num);
-	public void insertBoard(FreeBoardDBBean dto, int num);
-	public void deleteBoard(FreeBoardDBBean dto, int num, String passwd);
-	public void updateBoard(FreeBoardDBBean dto, int num, String be_passwd);
+	public int freegetCount();//전채 수 구하기
+	public List listfreeBoard(int startRow, int endRow);
+	public void freecount(int bnum);
+	public FreeBoardDBBean getfreeBoard(String mode, int bnum);
+	public void insertfreeBoard(FreeBoardDBBean dto);
+	public void deletefreeBoard(int bnum);
+	public void updatefreeBoard(FreeBoardDBBean dto);
+	public int freechk(int bnum);
+
 }

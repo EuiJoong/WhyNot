@@ -43,7 +43,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="requestboard.model.RequestBoardDBBean"
 			alias="RequestBoardDTO" />
 		<typeAlias type="freeboard.model.FreeBoardDBBean" alias="FreeBoardDTO" />
-
+		<typeAlias type="freeboard.model.CommentDBBean" alias="CommentDTO" />
+		<!-- 마이페이지 -->
+		<typeAlias type="mypage.model.ProfimageDBBean" alias="ProfimageDTO" />
 		<!-- 공지사항 -->
 		<typeAlias type="notice.model.NoticeBoardDBBean" alias="NoticeDTO" />
 		<!-- 문의 -->
@@ -73,9 +75,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="event/poll/mybatis/Event.xml" />
 		<mapper resource="event/poll/mybatis/Nominee.xml" />
 		<mapper resource="freeboard/mybatis/FreeBoard.xml" />
+		<mapper resource="freeboard/mybatis/Comment.xml" />
 		<mapper resource="requestboard/mybatis/RequestBoard.xml" />
 		<mapper resource="notice/mybatis/NoticeBoard.xml" />
 		<mapper resource="assessment/mybatis/Assessment.xml" />
+		<mapper resource="mypage/mybatis/Mypage.xml" />
 	</mappers>
 </configuration>
 <!-- 파일에 설정만 바꾸어 줌 -->

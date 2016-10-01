@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mypage.mybatis.Mypage">
+	<select id="validPassword" parameterType="HashMap" resultType="int">
+		select count(*) from wn_member where mnum=#{mnum} and password=#{pswd}</select>
+		
+	<update id="updatePassword" parameterType="HashMap">
+		update wn_member set password=#{updatePw} where mnum=#{mnum}
+	</update>
+	
+	<insert id="profimage" parameterType="ProfimageDTO">
+		insert into wn_profimage values(wn_profimage_seq.nextval, #{mnum}, #{imgname}, #{imgdir} ) 
+	</insert>
+</mapper>
