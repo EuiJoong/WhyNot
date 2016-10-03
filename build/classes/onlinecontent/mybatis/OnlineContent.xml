@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<insert id="insertContent_videoOk" parameterType="map">
 		insert all
 		into WN_ONLINE values (wn_oncontent_seq.nextval,#{oc_dto.ctnum},#{oc_dto.mnum},#{oc_dto.title},
-			#{oc_dto.content},#{oc_dto.price},wn_photo_seq.nextval,wn_video_seq.nextval)
+			#{oc_dto.content},#{oc_dto.price},wn_photo_seq.nextval,wn_video_seq.nextval,1)
 		into WN_PHOTO values (wn_photo_seq.currval,#{p_dto.mnum},#{p_dto.filename},#{p_dto.fileext},#{p_dto.filedir})
 		into WN_VIDEO values (wn_video_seq.currval,#{v_dto.mnum},#{v_dto.filename},#{v_dto.filedir})
 	    select * from dual
@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertContent_videoNo" parameterType="map">
 		insert all
 		into WN_ONLINE values (wn_oncontent_seq.nextval,#{oc_dto.ctnum},#{oc_dto.mnum},#{oc_dto.title},
-			#{oc_dto.content},#{oc_dto.price},wn_photo_seq.nextval,wn_video_seq.nextval)
+			#{oc_dto.content},#{oc_dto.price},wn_photo_seq.nextval,wn_video_seq.nextval,1)
 		into WN_PHOTO values (wn_photo_seq.currval,#{p_dto.mnum},#{p_dto.filename},#{p_dto.fileext},#{p_dto.filedir})
 	    select * from dual
 	</insert>

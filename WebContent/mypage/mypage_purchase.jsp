@@ -44,7 +44,7 @@
 							</div>
 							<div class="col-mid-6" style="text-align: center;">
 								<div class="circle-chart small kks pull-right"
-									data-percent="${58 }" data-color="black">
+									data-percent="${onContDTO.PERCENT }" data-color="black">
 								</div>
 							</div>
 

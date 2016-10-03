@@ -9,15 +9,17 @@ import offlinecontent.mybatis.OfflineContentMybatis;
 public class OfflineContentDAOImpl implements OfflineContentDAO{
 
 	@Override
-	public OfflineContentDBBean getContent(int num) {
+	public Map getContent(int offnum) {
 		// TODO Auto-generated method stub
-		return null;
+		return OfflineContentMybatis.getContent(offnum);
 	}
 
 	@Override
 	public List listOfflineContent(int ctnum) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("OfflineContentDAOImpl-listOfflineContent 실행");
+		List list = OfflineContentMybatis.listOfflineContent(ctnum);
+		return list;
 	}
 
 	@Override
@@ -68,6 +70,21 @@ public class OfflineContentDAOImpl implements OfflineContentDAO{
 //			System.out.println("OfflineContentDAOImpl-listSearchClassRoom : "+list.get(i).toString());
 //		}
 		return list;
+	}
+
+	@Override
+	public List searchContent(String searchStr) {
+		// TODO Auto-generated method stub
+		System.out.println("OfflineContentDAOImpl-searchContent 실행");
+		List list = OfflineContentMybatis.searchContent(searchStr);
+		return list;
+	}
+
+	@Override
+	public String updateSponsor(SponsorDBBean spDTO) {
+		// TODO Auto-generated method stub
+		String res = OfflineContentMybatis.updateSponsor(spDTO);
+		return res;
 	}
 
 }

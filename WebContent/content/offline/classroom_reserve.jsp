@@ -71,18 +71,19 @@
 	}
 	
 	       function reservePostSender(){ 
+	    	   console.log("reservePostSender 실행!")
 				if( document.all.reserve_chk==null){
 					alert("강의장 검색을 먼저해주세요~!")
 					return false;
 				}
-				chkbox_length = 1;
-				if(document.all.reserve_chk != null && document.all.reserve_chk.length>1){
-					chkbox_length = document.all.reserve_chk.length;
-				} 
-				
+	    	   chkbox_length = 1;
+	    		if(document.all.reserve_chk!=null && document.all.reserve_chk.length>1) {
+	    			chkbox_length = document.all.reserve_chk.length; 
+	    		}
+	    		console.log(chkbox_length)
 				 for (var i=0;i<chkbox_length ;i++) 
 				 { 
-					  if (document.getElementById("chk0").checked == true || document.all.reserve_chk[i].checked == true ) 
+					  if (document.getElementById("chk0").checked == true || document.all.reserve_chk[i].checked == true) 
 					  { 
 						 if(window.confirm("선택된 강의장을 예약 하시겠습니까?")) {
 							    var form = document.createElement("form");

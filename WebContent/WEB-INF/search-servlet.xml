@@ -3,8 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">  
 
+	
 	<bean id="onlineContentDAO" class="onlinecontent.model.OnlineContentDAOImpl">
 	</bean>
+	<bean id="offlineContentDAO" class="offlinecontent.model.OfflineContentDAOImpl"></bean>
 	<bean id="categoryDAO" class="category.model.CategoryDAOImpl">
 	</bean>
 	<!-- <bean id="offlineContentDAO" class="offlinecontent.model.OfflineContentDAOImpl">
@@ -12,6 +14,7 @@
 	<bean class="controller.SearchController">
 		<property name="onlineContentDAO" ref="onlineContentDAO"></property>
 		<property name="categoryDAO" ref="categoryDAO"></property>
+		<property name="offlineContentDAO" ref="offlineContentDAO"></property>
 		<!-- <property name="offlineContentDAO" ref="offlineContentDAO"></property> -->
 	</bean>
 </beans>

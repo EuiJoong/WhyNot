@@ -73,6 +73,16 @@
 <script type="text/javascript">
 	function initForm() {
 		console.log("initForm 실행")
+		if('${res}' == '인증'){
+			alert("로그인상태가 아닙니다. 로그인을 해주세요!")
+		}
+		if ('${res}' == '성공'){
+			if(sessionStorage.getItem("temp_value") != null) {
+				console.log("세션스토리지 있음")
+				sessionStorage.removeItem("temp_value");
+			}
+			location.href="main.app";
+		}
 		if ('${res}' == '실패') {
 			alert("이미 예약된 강의장입니다. 다시 예약해 주세요.")
 		}
@@ -91,7 +101,7 @@
 			document.getElementById("calendar").value = temp_value.period
 		}
 		document.getElementById("ctnum").value = temp_value.ctnum
-
+		
 	}
 </script>
 <script>
@@ -171,11 +181,6 @@
 }
 </style>
 <body onload="initForm()">
-	<c:if test="${null ne res && '실패' eq res }">
-		<script type="text/jabascript">
-		alert("이미 예약된 강의장입니다. 다시 예약해 주세요.")
-	</script>
-	</c:if>
 	<div id="topbody">
 
 		<div class="body" id="topbody">
@@ -187,7 +192,8 @@
 			<form name="tx_editor_form" id="tx_editor_form"
 				action="offcont_insertPro.offcont" method="post"
 				accept-charset="UTF-8" enctype="multipart/form-data">
-				<input type="hidden" name="mnum" value="${memberDTO.mnum }" /> <input
+				<input type="hidden" name="mnum" value="${memberDTO.mnum }" /> 
+				<input
 					type="hidden" name="cr_num" value="${param.cr_num }" />
 				<div class="form-group ">
 
@@ -259,17 +265,17 @@
 
 						<input type="text" class="form-control" name="addr" id="addr"
 							value="${param.addr}" placeholder="장소"
-							style="width: 485px; margin: 0px 0px 5px 10px;"> <input
+							style="width: 500px; margin: 0px 0px 5px 10px;"> <input
 							type="text" class="form-control" name="max_num" id="max_num"
-							value="${param.max_num }" placeholder="최대인원"
+							value="${param.max_num }" placeholder="최대인원 (ex.20)"
 							onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'
-							style="width: 150px; display: inline; margin: 0px 10px 0px 10px; ime-mode: disabled;">
+							style="width: 130px; display: inline; margin: 0px 10px 0px 10px; ime-mode: disabled;">
 						<input type="text" class="form-control" name="reserve_date"
 							id="reserve_date" value="${param.reserve_date }"
-							placeholder="예정날짜" style="width: 160px; display: inline;">
+							placeholder="예정날짜 (ex.20161028)" style="width: 180px; display: inline;">
 						<input type="text" class="form-control" name="time" id="time"
-							value="${param.time }" placeholder="예정시간"
-							style="width: 160px; display: inline;">
+							value="${param.time }" placeholder="예정시간 (ex.12:00~16:00)"
+							style="width: 200px; display: inline;">
 					</div>
 
 					<div class="col-sm-10 text-padding">
@@ -802,7 +808,7 @@
 					}
 				},
 				size : {
-					contentWidth : 1300
+					
 				/* 지정된 본문영역의 넓이가 있을 경우에 설정 */
 				}
 			};

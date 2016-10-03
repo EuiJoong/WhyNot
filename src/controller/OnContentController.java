@@ -32,6 +32,7 @@ import category.mybatis.CategoryMybatis;
 import mypage.model.MypageDAO;
 import mypage.model.ProfimageDBBean;
 import mypage.model.ProfitorDBBean;
+import offlinecontent.model.OfflineContentDAO;
 import onlinecontent.model.OnlineContentDAO;
 import onlinecontent.model.OnlineContentDBBean;
 import onlinecontent.mybatis.OnlineContentMybatis;
@@ -53,7 +54,7 @@ public class OnContentController {
 	private PaymentDAO paymentDAO;
 	private AssessmentDAO assessmentDAO;
 	private MypageDAO mypageDAO;
-	
+	private OfflineContentDAO offlineContentDAO;
 	
 
 	public void setMypageDAO(MypageDAO mypageDAO) {
@@ -82,6 +83,10 @@ public class OnContentController {
 
 	public void setAssessmentDAO(AssessmentDAO assessmentDAO) {
 		this.assessmentDAO = assessmentDAO;
+	}
+	
+	public void setOfflineContentDAO(OfflineContentDAO offlineContentDAO) {
+		this.offlineContentDAO = offlineContentDAO;
 	}
 
 	// -------------- ÄÁÅÙÃ÷ -----------------------------------
@@ -169,12 +174,14 @@ public class OnContentController {
 
 		// --- Ä«Å×°í¸® ¸ñ·Ï
 		List<CategoryDBBean> cateList = categoryDAO.listCategory();
-
+		
 		List<Object> contList = onlineContentDAO.listOnlineContent(ctnum);
+		List<Object> offContList = offlineContentDAO.listOfflineContent(ctnum);
 		System.out.println(contList.size());
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("cateList", cateList);
 		mav.addObject("contList", contList);
+		mav.addObject("offContList", offContList);
 		mav.setViewName("content/contentList.jsp");
 		return mav;
 

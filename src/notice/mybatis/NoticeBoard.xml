@@ -26,9 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="isVote" parameterType="CurrPollDTO" resultType="CurrPollDTO">
 		select * from wn_currpoll where eventnum=#{eventnum} and memberemail=(select id from wn_member where id=#{membermail})
 	</select>
-	<insert id="insertNotice" parameterType="NoticeDTO">
-		insert into wn_notice (ntnum, mnum, title, content, reg_date, eventnum) values (wn_notice_seq.nextval, #{mnum}, #{title}, #{content}, sysdate, #{eventnum})
-	</insert>
+   <insert id="insertNotice" parameterType="NoticeDTO">
+      insert into wn_notice (ntnum, mnum, title, content, reg_date, eventnum, noticeimage) values (wn_notice_seq.nextval, #{mnum}, #{title}, #{content}, sysdate, #{eventnum}, #{noticeimage})
+   </insert>
 	<insert id="insertCurrPoll" parameterType="CurrPollDTO">
 		insert into wn_currpoll (eventnum, memberemail, nominum, nominame) values (#{eventnum},#{membermail},#{nominum},(select nominame from wn_nominee where nominum=#{nominum}))
 	</insert>

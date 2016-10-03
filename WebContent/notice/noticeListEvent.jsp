@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 
-<html lang="ko">s
+<html lang="ko">
 
 <head>
 <link href="css/bootstrap.min.css" rel="stylesheet">

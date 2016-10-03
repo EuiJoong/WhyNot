@@ -29,7 +29,6 @@
 							
 
 					<c:if test="${size>0 }">
-					<td colspan="4" align="right">
 							<c:forEach var="noticeData" items="${listNotice }">
 							<tr>
 								<td>${noticeData.ntnum }</td>
@@ -37,7 +36,6 @@
 								<td> ${noticeData.reg_date }</td>
 							</tr>
 							</c:forEach>
-					</td>
 					</c:if>
 					
 					<c:if test="${size==0}">

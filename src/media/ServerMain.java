@@ -19,7 +19,7 @@ public class ServerMain implements Runnable{
    
    public void run() {
          try {
-            File saveDir=new File("C:\\spring_ws\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\WhyNot\\WhyNot");
+            File saveDir=new File("C:\\spring_ws\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\WhyNot\\WhyNot");
             if(!saveDir.exists())
                saveDir.mkdir();//경로 생성
             

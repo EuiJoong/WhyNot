@@ -2,6 +2,8 @@ package offlinecontent.mybatis;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +17,7 @@ import attachfile.model.PhotoDBBean;
 import offlinecontent.model.ClassRoomDBBean;
 import offlinecontent.model.OfflineContentDBBean;
 import offlinecontent.model.ReserveDateDBBean;
+import offlinecontent.model.SponsorDBBean;
 
 //------------------ 파일 생성시 복사해서 쓰기 위한 base파일 ------------------------------
 
@@ -50,9 +53,15 @@ public class OfflineContentMybatis {
 		SqlSession session = sqlMapper.openSession();
 		List list = session.selectList("listSearchClassRoom", paramMap);
 		session.close();
-//		for(int i=0; i<list.size(); i++) {
-//			System.out.println("OfflineContentMybatis-listSearchClassRoom : "+list.get(i).toString());
-//		}
+		return list;
+	}
+	
+	public static List listOfflineContent(int ctnum) {
+		// TODO Auto-generated method stub
+		System.out.println("OfflineContentMybatis_listOfflineContent() 실행");
+		SqlSession session = sqlMapper.openSession();
+		List list = session.selectList("listOffContent", ctnum);
+		session.close();
 		return list;
 	}
 	
@@ -79,5 +88,58 @@ public class OfflineContentMybatis {
 			session.close();
 			return true;
 		}
+	}
+	
+	public static List searchContent(String searchStr) {
+		// TODO Auto-generated method stub
+		System.out.println("OfflineContentMybatis_searchContent()");
+		SqlSession session = sqlMapper.openSession();
+		List searchList = session.selectList("searchOffContent",searchStr);
+		session.close();
+		return searchList;
+	}
+	
+	public static Map getContent(int offnum) {
+		// TODO Auto-generated method stub
+		System.out.println("OfflineContentMybatis_getContent()");
+		SqlSession session = sqlMapper.openSession();
+		Map offContent_map = new HashMap(); 
+		offContent_map.put("offContentDTO", session.selectOne("getOffContent",offnum));
+		offContent_map.put("classRoomDTO", session.selectOne("getClassRoom",offnum));
+		offContent_map.put("photoDTO", session.selectOne("getOffPhoto",offnum));
+		offContent_map.put("sponsorList", session.selectList("getSponsor",offnum));
+		offContent_map.put("writer", session.selectOne("getOffWriter",offnum));
+		session.close();
+		return offContent_map;
+	}
+	
+	public static String updateSponsor(SponsorDBBean spDTO) {
+		System.out.println("OfflineContentMybatis_updateSponsor()");
+		SqlSession session = sqlMapper.openSession();
+		List chkList = session.selectList("isFullPartici",spDTO.getOffnum());
+		Map map = (Map)chkList.get(0);
+		BigDecimal particnum = (BigDecimal)map.get("PARTICNUM");
+		BigDecimal max_num = (BigDecimal)map.get("MAX_NUM");
+		if(particnum.compareTo(max_num) >= 0)	//정원 꽉찼는지 확인
+		{
+			session.close();
+			return "full";
+		}
+		int mileage = session.selectOne("mileageChk", spDTO.getMnum());
+		if(mileage < spDTO.getSpamount()) {	//마일리지가 모자를때
+			session.close();
+			return "mileage";
+		}
+		int res = session.insert("insertSponsor", spDTO);
+		if(res>0) {
+			res = session.update("updateSponsor", spDTO);
+			res = session.update("updateMileage", spDTO);
+		}
+		session.commit();
+		session.close();
+		if(res>0)
+			return "success";
+		else return "fail";
+		
 	}
 }

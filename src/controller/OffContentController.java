@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,14 +26,21 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.ServletUtils;
 
+import assessment.model.AssessmentDBBean;
 import attachfile.model.PhotoDBBean;
+import attachfile.model.VideoDBBean;
 import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
+import member.model.MemberDBBean;
 import offlinecontent.model.ClassRoomDBBean; 
 import offlinecontent.model.OfflineContentDAO;
 import offlinecontent.model.OfflineContentDBBean;
 import offlinecontent.model.ReserveDateDBBean;
+import offlinecontent.model.SponsorDBBean;
+import onlinecontent.model.OnlineContentDBBean;
+import onlinecurriculum.model.OnlineCurriculumDBBean;
+import payment.model.OnlinePaymentDBBean;
 import payment.model.PaymentDAO;
 
 @Controller
@@ -78,6 +88,13 @@ public class OffContentController {
 		}catch(IOException e){}
 		OfflineContentDBBean offDTO = new OfflineContentDBBean();
 		offDTO.setCtnum(Integer.parseInt(mr.getParameter("ctnum")));
+		if(mr.getParameter("mnum")==null){
+			List<CategoryDBBean> list = categoryDAO.listCategory();
+			Map map = new HashMap();
+				map.put("cateList", list);
+				map.put("res", "인증");
+			return new ModelAndView("content/offline/cont_insertForm.jsp", map);
+		}
 		offDTO.setMnum(Integer.parseInt(mr.getParameter("mnum")));
 		offDTO.setTitle(mr.getParameter("title"));
 		offDTO.setContent(mr.getParameter("content"));
@@ -114,8 +131,7 @@ public class OffContentController {
 		PhotoDBBean ptDTO = new PhotoDBBean();
 		ptDTO.setMnum(Integer.parseInt(mr.getParameter("mnum")));
 		String fileName = mr.getFilesystemName("image-file");
-		String randomName = System.currentTimeMillis() + (int)Math.random()*10000 +"_";
-		ptDTO.setFilename(randomName+fileName.substring(0,fileName.indexOf(".")));
+		ptDTO.setFilename(fileName.substring(0,fileName.lastIndexOf(".")));
 		ptDTO.setFileext(fileName.substring(fileName.lastIndexOf(".")+1));
 		ptDTO.setFiledir(upPath);
 		////////////////////////////////////////////////////////////////////////////
@@ -126,7 +142,7 @@ public class OffContentController {
 		boolean res = offlineContentDAO.insertContent(offDTO, crDTO, rdateDTO, ptDTO);
 		
 		
-		if(res) return new ModelAndView("main.app");
+		if(res) return new ModelAndView("content/offline/cont_insertForm.jsp","res","성공");
 		else {
 			List<CategoryDBBean> list = categoryDAO.listCategory();
 			Map map = new HashMap();
@@ -175,4 +191,81 @@ public class OffContentController {
 		
 		return new ModelAndView("content/offline/classroom_reserve.jsp", map);
     }
+	
+	@RequestMapping(value = "/cont_detail.offcont") // 후원 상세보기
+	public ModelAndView off_detailContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		System.out.println("OfflineContentController_off_detailContent() 실행");
+		int offnum = Integer.parseInt(arg0.getParameter("offnum"));
+		Map map = offlineContentDAO.getContent(offnum);
+		
+		OfflineContentDBBean offDTO = (OfflineContentDBBean)map.get("offContentDTO");
+		String period = offDTO.getPeriod();	// d-day계산하기
+		map.put("dDay", calDday(Integer.parseInt(period.substring(0,4)), Integer.parseInt(period.substring(4,6)), Integer.parseInt(period.substring(6))));
+		
+		String tempDate = offDTO.getReserve_date();	// 날짜 형식
+		String reserveDate = tempDate.substring(0,4) +"년"+tempDate.substring(4,6)+"월"+tempDate.substring(6)+"일"; 
+		map.put("reserveDate", reserveDate);
+		
+		MemberDBBean memberDTO = (MemberDBBean)arg0.getSession().getAttribute("memberDTO");
+		if(memberDTO != null) {
+			List<SponsorDBBean> spList = (List)map.get("sponsorList");
+			String isPartici = "no";
+			for(int i=0; i<spList.size(); i++){	// 현재 접속자의 실강 참여여부 체크
+				if(memberDTO.getMnum() == spList.get(i).getMnum() && spList.get(i).getParticichk().equals("ok")) {
+					isPartici = "ok";
+					break;
+				}
+			}
+			map.put("isPartici", isPartici);
+		}
+		if(arg0.getParameter("res") != null)
+			map.put("res", arg0.getParameter("res"));
+		
+		return new ModelAndView("content/offline/cont_detailForm.jsp", map);
+	}
+	
+	@RequestMapping(value = "/cont_sponsor.offcont") // 후원 하기
+	public ModelAndView off_sponsorContent(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		System.out.println("OfflineContentController_off_sponsorContent() 실행");
+		int sponsor = ServletRequestUtils.getIntParameter(arg0, "sponsor");
+		String particiChk = arg0.getParameter("particiChk");
+		int offnum = ServletRequestUtils.getIntParameter(arg0, "offnum");
+		System.out.println(sponsor+"/"+particiChk+"/"+offnum);
+		SponsorDBBean spDTO = new SponsorDBBean();
+		MemberDBBean memberDTO = (MemberDBBean)arg0.getSession().getAttribute("memberDTO");
+		Map map = new HashMap();
+		map.put("offnum", offnum);
+		if(memberDTO == null) {
+			map.put("res", "notLogin");
+			return new ModelAndView("cont_detail.offcont", map);
+		}
+		spDTO.setMnum(memberDTO.getMnum());
+		spDTO.setOffnum(offnum);
+		spDTO.setParticichk(particiChk);
+		spDTO.setSpamount(sponsor);
+		spDTO.setSpdate(new SimpleDateFormat("yyyyMMdd").format(new Date()));
+		
+		String res = offlineContentDAO.updateSponsor(spDTO);
+		map.put("res", res);
+		return new ModelAndView("redirect:cont_detail.offcont", map);
+	}
+	
+	 public int calDday(int myear, int mmonth, int mday) {	// d-day계산
+	        try {
+	            Calendar today = Calendar.getInstance(); //현재 오늘 날짜
+	            Calendar dday = Calendar.getInstance(); 
+	            dday.set(myear,mmonth-1,mday);// D-day의 날짜를 입력합니다.
+	            long day = dday.getTimeInMillis(); 
+	            // 각각 날의 시간 값을 얻어온 다음 
+	            //( 1일의 값(86400000 = 24시간 * 60분 * 60초 * 1000(1초값) ) )
+	            long tday = today.getTimeInMillis();
+	            long count = (day - tday)/(24*60*60*1000); // 오늘 날짜에서 dday 날짜를 빼주게 됩니다.
+	            return (int) count; // 날짜는 하루 + 시켜줘야합니다.
+	        } 
+	        catch (Exception e) 
+	        {
+	            e.printStackTrace();
+	            return -1;
+	        } 
+	    }
 }

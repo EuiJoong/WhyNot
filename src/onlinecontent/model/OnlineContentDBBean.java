@@ -3,18 +3,25 @@ package onlinecontent.model;
 import attachfile.model.PhotoDBBean;
 
 public class OnlineContentDBBean {
-	Integer ocnum; 	//온라인컨텐츠번호
-	Integer ctnum; 	//카테고리번호
-	Integer mnum;	//작성자
-	String title;	//제목
-	String content;	//내용
-	Integer price;	//가격
-	Integer ptnum;	//사진번호
-	Integer vdnum;	//동영상번호
-	PhotoDBBean p_dto;
-	Integer ptnumO;
-	Integer vdnumO;
+	private Integer ocnum; 	//온라인컨텐츠번호
+	private Integer ctnum; 	//카테고리번호
+	private Integer mnum;	//작성자
+	private String title;	//제목
+	private String content;	//내용
+	private Integer price;	//가격
+	private Integer ptnum;	//사진번호
+	private Integer vdnum;	//동영상번호
+	private PhotoDBBean p_dto;
+	private Integer ptnumO;
+	private Integer vdnumO;
+	private Integer percent;
 	
+	public Integer getPercent() {
+		return percent;
+	}
+	public void setPercent(Integer percent) {
+		this.percent = percent;
+	}
 	public Integer getPtnumO() {
 		return ptnumO;
 	}

@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into wn_offline values
 	<choose>
 		<when test="cr_num==0">
-		(wn_offcontent_seq.nextval,#{ctnum},#{mnum},#{title},#{content},#{period},0,#{goal_amount},#{min_amount},0,wn_classroon_seq.nextval,wn_photo_seq.nextval,#{reserve_date})
+		(wn_offcontent_seq.nextval,#{ctnum},#{mnum},#{title},#{content},#{period},0,#{goal_amount},#{min_amount},0,wn_classroom_seq.nextval,wn_photo_seq.nextval,#{reserve_date})
 		</when>
 		<otherwise>
 		(wn_offcontent_seq.nextval,#{ctnum},#{mnum},#{title},#{content},#{period},0,#{goal_amount},#{min_amount},0,#{cr_num},wn_photo_seq.nextval,#{reserve_date})
@@ -54,4 +54,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	insert into wn_photo values(wn_photo_seq.currval, #{mnum}, #{filename}, #{fileext}, #{filedir})
 </insert>
 
+<!-- 오프라인 컨텐츠 getList -->
+<select id="listOffContent" parameterType="int" resultType="map">
+	select WN_offline.*, WN_PHOTO.FILENAME, WN_PHOTO.FILEDIR, WN_PHOTO.FILEEXT, WN_MEMBER.NAME from WN_OFFLINE, WN_PHOTO, WN_MEMBER where WN_OFFLINE.PTNUM = WN_PHOTO.PTNUM and WN_OFFLINE.CTNUM = #{ctnum} and WN_MEMBER.MNUM = WN_PHOTO.MNUM
+	</select>
+
+<select id="searchOffContent" parameterType="String" resultType="map">
+	select * from (select wn_OFFLINE.offnum, WN_CATEGORY.NAME as ctname, wn_OFFLINE.title, wn_OFFLINE.content, wn_OFFLINE.goal_amount, wn_OFFLINE.sponsor, wn_OFFLINE.ptnum, wn_member.NAME , WN_PHOTO.FILEDIR, WN_PHOTO.FILENAME, WN_PHOTO.FILEEXT from WN_OFFLINE, WN_PHOTO, WN_MEMBER, WN_CATEGORY where wn_OFFLine.MNUM = wn_member.mnum and wn_OFFLine.PTNUM = wn_photo.PTNUM and wn_OFFLine.CTNUM = wn_CATEGORY.CTNUM) where NAME like '%' || #{value} || '%' or TITLE like '%' || #{value} || '%'
+	</select>
+	
+<!-- 오프라인 컨텐츠 getOne -->
+<select id="getOffContent" parameterType="int" resultType="OffConDTO">
+	select * from wn_offline where offnum=#{offnum}
+</select>
+<select id="getClassRoom" parameterType="int" resultType="ClassRoomDTO">
+	select * from wn_classroom where cr_num=(select cr_num from wn_offline where offnum=#{offnum})
+</select>
+<select id="getOffPhoto" parameterType="int" resultType="AttachPhotoDTO">
+	select * from wn_photo where ptnum=(select ptnum from wn_offline where offnum=#{offnum})
+</select>
+<select id="getSponsor" parameterType="int" resultType="SponsorDTO">
+	select * from wn_sponsor where offnum=#{offnum}
+</select>
+<select id="getOffWriter" parameterType="int" resultType="String">
+	select name from wn_member where mnum=(select mnum from wn_offline where offnum=#{offnum})
+</select>
+
+<!-- 후원하기 -->
+<select id="isFullPartici" parameterType="int" resultType="map">
+	select distinct max_num, particnum from wn_classroom, wn_offline where wn_classroom.cr_num=(select cr_num from wn_offline where offnum=#{offnum})
+</select>
+<select id="mileageChk" parameterType="int" resultType="int">
+	select mileage from wn_member where mnum=#{mnum}
+</select>
+<insert id="insertSponsor" parameterType="SponsorDTO">
+	insert into wn_sponsor values(wn_sponsor_seq.nextval,#{mnum},#{offnum},#{spamount},#{spdate},#{particichk})
+</insert>
+<update id="updateSponsor" parameterType="SponsorDTO">
+	update wn_offline set  
+	<if test="particichk.equals('ok')">
+	particnum=particnum + 1,
+	</if>
+	 sponsor=sponsor + #{spamount} where offnum=#{offnum}
+</update>
+<update id="updateMileage" parameterType="SponsorDTO">
+	update wn_member set mileage=mileage-#{spamount}
+</update>
 </mapper>

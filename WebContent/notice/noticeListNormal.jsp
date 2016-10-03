@@ -22,27 +22,20 @@
 				공지사항</a></li>
 		<%-- <li class="list-group-item">관리자:<c:out value="${memberDTO.name }님" /></li> --%>
 	</ul>
-
 	<div style="width: 80%; float: right;">
-
 		<div align="center">
 			<div class="panel panel-default">
 				<!-- Default panel contents -->
 				<div class="panel-heading">공지사항 목록</div>
-
 				<!-- Table -->
 				<!-- <form name="f" action="insertPro.event" method="post"> -->
 				<table class="table">
-						
-				
 					<tr>
 						<th>공지 번호</th>
 						<th>공지 제목</th>
 						<th>공지 날짜</th>
 					</tr>
-					
 					<c:if test="${size>0 }">
-					<td colspan="4" align="right">
 							<c:forEach var="noticeData" items="${listNoticeNormal }">
 							<tr>
 								<td>${noticeData.ntnum }</td>
@@ -50,22 +43,16 @@
 								<td> ${noticeData.reg_date }</td>
 							</tr>
 							</c:forEach>
-					</td>
 					</c:if>
-					
 					<c:if test="${size==0}">
 						<tr>
 							<td align="center" colspan="4">일반 공지사항이 없습니다..</td>
 						</tr>
 					</c:if>
-					
 				</table>
 				<!-- </form> -->
 			</div>
 		</div>
-
-
 	</div>
-
 </body>
 </html>
