@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="listNoticeAll" resultType="NoticeDTO">
 		select * from wn_notice order by ntnum desc
 	</select>
-	<select id="getEventNum" resultType="int">
+	<select id="getEventNum1" resultType="int">
 		select DISTINCT eventnum from wn_poll
 	</select>
 	<select id="selectNomineeOfEventnum" parameterType="int" resultType="NomineeDTO">
@@ -22,6 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="selectNotice" parameterType="int" resultType="NoticeDTO">
 		select * from wn_notice where ntnum=#{ntnum}
+	</select>
+	<select id="isVote" parameterType="CurrPollDTO" resultType="CurrPollDTO">
+		select * from wn_currpoll where eventnum=#{eventnum} and memberemail=(select id from wn_member where id=#{membermail})
 	</select>
 	<insert id="insertNotice" parameterType="NoticeDTO">
 		insert into wn_notice (ntnum, mnum, title, content, reg_date, eventnum) values (wn_notice_seq.nextval, #{mnum}, #{title}, #{content}, sysdate, #{eventnum})

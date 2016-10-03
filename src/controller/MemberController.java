@@ -22,9 +22,12 @@ import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
 import login.model.LoginModel;
 import member.auth.Gmail;
+import member.auth.Gmail1;
 import member.auth.TokenKeyMake;
 import member.model.MemberDAO;
 import member.model.MemberDBBean;
+import mypage.model.MypageDAO;
+import mypage.model.ProfimageDBBean;
 import onlinecontent.model.OnlineContentDAO;
 
 @Controller
@@ -34,6 +37,12 @@ public class MemberController {
 	private LoginModel loginModel;
 	private CategoryDAO categoryDAO;
 	private OnlineContentDAO onlineContentDAO;
+	private MypageDAO mypageDAO;
+	
+	
+	public void setMypageDAO(MypageDAO mypageDAO) {
+		this.mypageDAO = mypageDAO;
+	}
 
 	public void setMemberDAO(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
@@ -56,10 +65,22 @@ public class MemberController {
 	public ModelAndView insertFormMember(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		System.out.println("MemberController_insertFormMember() 실행");
 
+		ModelAndView mav = new ModelAndView();
+		
+		String id = arg0.getParameter("id");
+		
+		if(id!=null)mav.addObject("id",id);
+			
 		CategoryDBBean dto = new CategoryDBBean();
 		/* categoryDAO.listCategory(); */
 		List<CategoryDBBean> list = CategoryMybatis.listCategory();
-		return new ModelAndView("member/insertMemberForm.jsp", "cateList", list);
+		
+
+
+		mav.setViewName("member/insertMemberForm.jsp");
+		mav.addObject("cateList",list);
+		
+		return mav;
 
 	}
 
@@ -148,6 +169,9 @@ public class MemberController {
 		case LoginModel.OK:
 			System.out.println("로그인 성공");
 			
+			ProfimageDBBean proDto = mypageDAO.getPhoto(resDTO.getMnum());
+			
+			/*resDTO.getMnum()*/
 			// 추천 강좌 db
 			List recommandList = onlineContentDAO.recommendContent(resDTO.getMnum()); // 추천
 			System.out.println("추천 갯수" + recommandList.size());
@@ -169,14 +193,17 @@ public class MemberController {
 			// memberDTO 세션으로 보내기
 			HttpSession session = arg0.getSession();
 			session.setAttribute("memberDTO", resDTO);
+			session.setAttribute("proDto", proDto);
 			session.setMaxInactiveInterval(50000);
 			
 			url = "index.jsp";
 			break;
 		case LoginModel.NOT_ID:
+			url = "login/faillogin.jsp";
 			System.out.println("아이디 틀림");
 			break;
 		case LoginModel.NOT_PW:
+			url = "login/faillogin.jsp";
 			System.out.println("비밀번호 틀림");
 			break;
 		case LoginModel.NOT_AUTH:
@@ -234,5 +261,78 @@ public class MemberController {
 		HttpSession session = arg0.getSession();
 		return new ModelAndView("admin/member/member_gradeForm.jsp");
 	}
+	//아이디 중복확인
+	@RequestMapping(value = "/idChk.member")
+	public ModelAndView chkid(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		System.out.println("MemberController_idChk() 실행");
 
+		return new ModelAndView("member/idChk.jsp");
+	}
+	@RequestMapping(value = "/end.member")
+	public ModelAndView end(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		System.out.println("MemberController_idChk() 실행");
+
+		return new ModelAndView("member/end_chk.jsp");
+	}
+	
+	@RequestMapping(value = "/idChkpro.member")
+	public ModelAndView chkidpor(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		System.out.println("MemberController_idChkpro() 실행");
+
+		ModelAndView mav = new ModelAndView();
+		String url = "";
+		String id = arg0.getParameter("id");
+		if(memberDAO.idChk(id)!=0){	
+			url = "/member/idChk.jsp";
+			String msg = "중복";
+			mav.addObject("msg",msg);
+		}else{
+			url = "member/end_chk.jsp";
+		}
+
+		mav.setViewName(url);
+		mav.addObject("id",id);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/getpasswd.member")
+	public ModelAndView getpasswd(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+
+		System.out.println("getpasswd 실행()");
+		return new ModelAndView("login/getpasswd.jsp");
+	}
+	
+	
+	@RequestMapping(value="/getpasswdpro.member")
+	public ModelAndView getpasswd_pro(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		System.out.println("getpasswd_pro 실행()");
+		String url = "";
+		String msg = null;
+		String id = arg0.getParameter("id");
+		
+		
+		if(memberDAO.idChk(id)!=0){	
+			//해ㅐ당하느 아이디 가지고 다시 패스워드 찾아서 비밀번호를 이메일로 전송
+			MemberDBBean passwd =   memberDAO.getPasswd(id);
+			String getpasswd = passwd.getPassword();
+			mav.addObject("getpasswd",getpasswd); 
+			
+			 url = "login/getpasswd.jsp";
+			 Gmail1.sendMail(id, getpasswd);
+			 msg = "해당하는 이메일로 비밀번호를 보냈습니다.";
+		}else{
+			//없는경우 없다고 알려주기
+			url = "login/getpasswd.jsp";
+			msg = "등록되지 않은 아이디이거나, 아이디 를 잘못 입력하셨습니다.";
+		}
+
+		mav.setViewName(url);
+		mav.addObject("msg",msg);
+		mav.addObject("id",id);
+		
+		return mav;
+		
+	}
 }

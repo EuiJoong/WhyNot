@@ -78,12 +78,9 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public boolean idChk(String id) {
+	public int idChk(String id) {
 		// TODO Auto-generated method stub
-		
-		
-		
-		return false;
+		return MemberMybatis.idChk(id);
 	}
 
 	@Override
@@ -115,6 +112,12 @@ public class MemberDAOImpl implements MemberDAO {
 		map.put("mileage", mileage);
 		map.put("seller", seller);
 		MemberMybatis.tradeMileage(map);
+	}
+
+	@Override
+	public MemberDBBean getPasswd(String id) {
+		// TODO Auto-generated method stub
+		return MemberMybatis.getPasswd(id);
 	}
 
 }

@@ -77,6 +77,14 @@ public class NoticeBoardDAOImpl implements NoticeBoardDAO{
 		
 		
 	}
+
+	@Override
+	public boolean isVote(CurrPollDBBean cdto) {
+		// TODO Auto-generated method stub
+		boolean result;
+		result=NoticeBoardMybatis.isVote(cdto);
+		return result;
+	}
 	
 	
 	

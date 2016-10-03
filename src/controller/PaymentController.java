@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import login.model.LoginModel;
 import member.model.MemberDAO;
 import member.model.MemberDBBean;
+import mypage.model.MypageDAO;
+import mypage.model.ProfimageDBBean;
 import payment.model.MileagePaymentDBBean;
 import payment.model.OnlinePaymentDBBean;
 import payment.model.PaymentDAO;
@@ -21,6 +23,11 @@ public class PaymentController {
 	private PaymentDAO paymentDAO;
 	private MemberDAO memberDAO;
 	private LoginModel loginModel;
+	private MypageDAO mypageDAO;
+
+	public void setMypageDAO(MypageDAO mypageDAO) {
+		this.mypageDAO = mypageDAO;
+	}
 
 	public void setPaymentDAO(PaymentDAO paymentDAO) {
 		this.paymentDAO = paymentDAO;
@@ -164,8 +171,10 @@ public class PaymentController {
 		int mnum = Integer.parseInt(arg0.getParameter("mnum"));
 		int ocnum = Integer.parseInt(arg0.getParameter("ocnum"));
 		MemberDBBean resDTO = loginModel.reLogin(mnum);
+		ProfimageDBBean proDTO = mypageDAO.getPhoto(mnum);
 		HttpSession session = arg0.getSession();
 		session.setAttribute("memberDTO", resDTO);
+		session.setAttribute("proDto", proDTO);
 
 		return new ModelAndView("cont_detail.oncont?ocnum=" + ocnum);
 	}

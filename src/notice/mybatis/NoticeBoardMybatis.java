@@ -69,9 +69,9 @@ public class NoticeBoardMybatis {
 	
 	public static List<NomineeDBBean> getEventNum()
 	{
-		System.out.println("NomineeMybatis_getEventNum() 실행");
+		System.out.println("NoticeMybatis_getEventNum() 실행");
 		SqlSession session = sqlMapper.openSession();
-		List<NomineeDBBean> list = session.selectList("getEventNum");
+		List<NomineeDBBean> list = session.selectList("getEventNum1");
 		session.close();
 		System.out.println("NoticeBoardMybatis_getEventNum() 성공");
 		return list;
@@ -79,7 +79,7 @@ public class NoticeBoardMybatis {
 	
 	public static void insertNotice(NoticeBoardDBBean ndto)
 	{
-		System.out.println("NomineeMybatis_insertNotice() 실행");
+		System.out.println("NoticeMybatis_insertNotice() 실행");
 		SqlSession session = sqlMapper.openSession();
 		System.out.println("들어갈 내용 : "+ndto.getContent());
 		session.insert("insertNotice",ndto);
@@ -90,7 +90,7 @@ public class NoticeBoardMybatis {
 	//selectNomineeOfEventnum
 	public static List selectNomineeOfEventnum(int eventnum)
 	{
-		System.out.println("NomineeMybatis_selectNomineeOfEventnum() 실행");
+		System.out.println("NoticeMybatis_selectNomineeOfEventnum() 실행");
 		SqlSession session = sqlMapper.openSession();
 		System.out.println("들어갈 내용 : "+eventnum);
 		List list=session.selectList("selectNomineeOfEventnum",eventnum);
@@ -104,7 +104,7 @@ public class NoticeBoardMybatis {
 	//selectNotice
 	public static NoticeBoardDBBean selectNotice(int ntnum)
 	{
-		System.out.println("NomineeMybatis_selectNotice() 실행");
+		System.out.println("NoticeMybatis_selectNotice() 실행");
 		SqlSession session = sqlMapper.openSession();
 		System.out.println("들어갈 내용 : "+ntnum);
 		NoticeBoardDBBean ndto=session.selectOne("selectNotice",ntnum);
@@ -117,7 +117,7 @@ public class NoticeBoardMybatis {
 	//updateVoteScore
 	public static void updateVoteScore(int eventnum, int nominee)
 	{
-		System.out.println("NomineeMybatis_updateVoteScore() 실행");
+		System.out.println("NoticeMybatis_updateVoteScore() 실행");
 		SqlSession session = sqlMapper.openSession();
 		System.out.println("들어갈 내용 : "+eventnum+" , "+nominee);
 		NomineeDBBean ndto=new NomineeDBBean();
@@ -133,12 +133,28 @@ public class NoticeBoardMybatis {
 	//insertCurrPoll
 	public static void insertCurrPoll(CurrPollDBBean cdto)
 	{
-		System.out.println("NomineeMybatis_insertCurrPoll() 실행");
+		System.out.println("NoticeMybatis_insertCurrPoll() 실행");
 		SqlSession session = sqlMapper.openSession();
 		session.insert("insertCurrPoll",cdto);
 		session.commit();
 		session.close();
 		System.out.println("currpoll에 로그 등록!");
 	}
+	
+	//isVote
+	
+	public static boolean isVote(CurrPollDBBean cdto)
+	{
+		System.out.println("NoticeMybatis_isVote() 실행");
+		SqlSession session=sqlMapper.openSession();
+		List list=session.selectList("isVote", cdto);
+		boolean result=false;
+		if(list.size()>0 )//투표 이미 했다는 거니까
+			result=true;
+		
+		return result;
+	}
+	
+	
 	
 }

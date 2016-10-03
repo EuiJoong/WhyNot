@@ -33,34 +33,32 @@
 				<!-- Table -->
 				<!-- <form name="f" action="insertPro.event" method="post"> -->
 				<table class="table">
-
-
+						
+				
 					<tr>
 						<th>공지 번호</th>
 						<th>공지 제목</th>
-						<th>작성자</th>
 						<th>공지 날짜</th>
-						
 					</tr>
-
+					
 					<c:if test="${size>0 }">
-						<c:forEach var="noticeData" items="${listNoticeNormal }">
+					<td colspan="4" align="right">
+							<c:forEach var="noticeData" items="${listNoticeNormal }">
 							<tr>
 								<td>${noticeData.ntnum }</td>
-								<td><a
-									href="detail.notice?ntnum=${noticeData.ntnum }&isEvent=0">${noticeData.title }</a></td>
-								<td>관리자</td>
-								<td>${noticeData.reg_date }</td>
+								<td> <a href="detail.notice?ntnum=${noticeData.ntnum }&isEvent=0">${noticeData.title }</a></td>
+								<td> ${noticeData.reg_date }</td>
 							</tr>
-						</c:forEach>
+							</c:forEach>
+					</td>
 					</c:if>
-
+					
 					<c:if test="${size==0}">
 						<tr>
 							<td align="center" colspan="4">일반 공지사항이 없습니다..</td>
 						</tr>
 					</c:if>
-
+					
 				</table>
 				<!-- </form> -->
 			</div>

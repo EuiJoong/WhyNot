@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from wn_nominee ORDER BY eventnum DESC
 </select>
 
-<select id="getEventNum1" resultType="NomineeDTO">
+<select id="getEventNum" resultType="NomineeDTO">
 	select eventNum from wn_poll 
 </select>
 

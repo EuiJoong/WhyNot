@@ -5,10 +5,12 @@
 
 	<bean id="paymentDAO" class="payment.model.PaymentDAOImpl"></bean>
 	<bean id="memberDAO" class="member.model.MemberDAOImpl"></bean>
+	<bean id="mypageDAO" class="mypage.model.MypageDAOImpl"></bean>
 <bean id="loginModel" class="login.model.LoginModel"></bean>
 	<bean class="controller.PaymentController">
 		<property name="paymentDAO" ref="paymentDAO"></property>
 		<property name="memberDAO" ref="memberDAO"></property>
 		<property name="loginModel" ref="loginModel"></property>
+		<property name="mypageDAO" ref="mypageDAO"></property>
 	</bean>
 </beans>

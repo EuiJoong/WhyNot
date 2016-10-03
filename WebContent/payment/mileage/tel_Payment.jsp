@@ -21,14 +21,10 @@ function isNum() {
 		alert("휴대전화번호를 적어주세요");
 		document.f.tel_num.focus();
 		exit;
-	}
-	
-	var exptext = /([0-9])+/g//숫자만
-	
-	if(	exptext.test(document.f.tel_num.value)==false){
-		alert("휴대전화번호가 이상합니다!!");
-		document.f.tel_num.focus();
-		exit;
+	}else if(f.tel_num.value.length !=11){
+		alert("휴대전화 전화 번호는 최대 11자리 이상입니다.");
+		f.tel_num.focus();
+		exit
 	}
 	
 	
@@ -36,6 +32,10 @@ function isNum() {
 		document.f.tel_cnum2.value == "") {
 		alert("주민 번호를 적어주세요");
 		document.f.card_num.card_num1.focus();
+		exit;
+	}else if(f.tel_cnum1.value.length !=6){
+		alert("주민 번호 앞자리는 6자리 입력 필수 입니다.");
+		f.card_num1.focus();
 		exit;
 	}
 	
@@ -88,7 +88,29 @@ function tel_chk() {
 
 </script>
 
-<body style="padding: 20px">
+<script type="text/javascript">
+
+function onlyNumber(event) {
+	event = event || window.event;
+	var keyID = (event.which) ? event.which : event.keyCode;
+	if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
+			|| keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
+		return;
+	else
+		return false;
+}
+function removeChar(event) {
+	event = event || window.event;
+	var keyID = (event.which) ? event.which : event.keyCode;
+	if (keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
+		return;
+	else
+		event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+
+</script>
+
+<body style="padding: 10px">
 	<div class="page-header">
 		<h1>
 			휴대폰 충전
@@ -112,19 +134,24 @@ function tel_chk() {
 				</div>
 		</div><br>
 		<div>
-		<label>휴대전화번호</label>
-		<input type="text" id = "tel_num" name="tel_num" class="form-control" maxlength="11"><br>
+		<label>휴대전화번호</label><br>
+		<input type="text" id = "tel_num" name="tel_num" class="form-control" 
+
+		onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)" style="ime-mode: disabled;" maxlength="11"><br>
 		</div><br>
 		<label>주민등록번호</label><br>
 		<div>
-		<input type="text" id = "tel_cnum1" name="tel_cnum1" class="form-control" maxlength="6"> - 
-		<input type="text" id = "tel_cnum2" name="tel_cnum2" class="form-control" maxlength="1">XXXXXX
+		<input type="text" id = "tel_cnum1" name="tel_cnum1" class="form-control"  size="6"
+			onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)" style="ime-mode: disabled;" maxlength="6"> - 
+		<input type="text" id = "tel_cnum2" name="tel_cnum2" class="form-control"  size="1"
+			onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)" style="ime-mode: disabled;"maxlength="1">XXXXXX
 		</div>
+		<br>
 		<div class="form-group">
 				<h4>약관</h4>
-				<input type="checkbox" id = "box1" name="box" onclick="chkBoxCheck(0)" > 전채 선택 <br>
+				<input type="checkbox" id = "box1" name="box" onclick="chkBoxCheck(0)" > 전채 선택 <br><br>
 				<input type="checkbox" id = "box2" name="box">
-				<textarea class="form-control" rows="3">
+				<textarea class="form-control" rows="5" readonly="readonly">
 임시약관 1
 
 이 이용약관(이하 ‘약관’이라 합니다.)은 와이낫(이하 ‘회사’라 합니다.)가 제공하는 와이낫(WhyNot.com) 및 와이낫관련 제반 서비스(이하 ‘서비스’라 한다.)를 이용고객(이하 ‘회원’이라 합니다.)이 이용함에 있어 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 구체적으로 규정함을 목적으로 합니다.
@@ -142,7 +169,7 @@ function tel_chk() {
 (2) 이 약관에서 사용하는 용어 중 제1항에서 정하지 아니한 것은 관계 법령 및 서비스 별 안내에서 정하는 바에 따르며, 그 외에는 일반 관례에 따릅니다.
 				</textarea>
 				<input type="checkbox" id = "box3" name="box">
-				<textarea class="form-control" rows="3">
+				<textarea class="form-control" rows="5" readonly="readonly">
 임시약관 2
 
 이 이용약관(이하 ‘약관’이라 합니다.)은 와이낫(이하 ‘회사’라 합니다.)가 제공하는 와이낫(WhyNot.com) 및 와이낫관련 제반 서비스(이하 ‘서비스’라 한다.)를 이용고객(이하 ‘회원’이라 합니다.)이 이용함에 있어 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 구체적으로 규정함을 목적으로 합니다.
@@ -160,7 +187,7 @@ function tel_chk() {
 (2) 이 약관에서 사용하는 용어 중 제1항에서 정하지 아니한 것은 관계 법령 및 서비스 별 안내에서 정하는 바에 따르며, 그 외에는 일반 관례에 따릅니다.
 				</textarea>
 				<input type="checkbox" id = "box4" name="box">
-				<textarea class="form-control" rows="3">
+				<textarea class="form-control" rows="5" readonly="readonly">
 임시약관 3
 
 이 이용약관(이하 ‘약관’이라 합니다.)은 와이낫(이하 ‘회사’라 합니다.)가 제공하는 와이낫(WhyNot.com) 및 와이낫관련 제반 서비스(이하 ‘서비스’라 한다.)를 이용고객(이하 ‘회원’이라 합니다.)이 이용함에 있어 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 구체적으로 규정함을 목적으로 합니다.
@@ -179,7 +206,7 @@ function tel_chk() {
 				</textarea>
 			</div>
 			<div class="form-group text-center">
-		</div>
+		</div><br><br>
 			<div class="form-group text-center">
 				<button type="button" class="btn btn-info" onclick="tel_chk()">결재요청<i class="fa fa-check spaceLeft"></i></button>
 				<button type="button" class="btn btn-warning" onclick="self.close()">취소<i class="fa fa-times spaceLeft"></i></button>

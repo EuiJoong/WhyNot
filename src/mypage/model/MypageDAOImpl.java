@@ -1,6 +1,7 @@
 package mypage.model;
 
 import java.util.HashMap;
+import java.util.List;
 
 import mypage.mybatis.MypageMybatis;
 
@@ -52,22 +53,88 @@ public class MypageDAOImpl implements MypageDAO {
 	public int profimageMerge(ProfimageDBBean pi) {
 		// TODO Auto-generated method stub
 		
-		MypageMybatis.profimageMerge(pi);
+		
 				
 		
-		System.out.println("mypage.model/MypageDAOImpl.java : 1");
+		System.out.println("mypage.model/MypageDAOImpl.java - profimageMerge : 1");
+		
+		MypageMybatis.profimageMerge(pi);
+		
+		System.out.println("mypage.model/MypageDAOImpl.java - profimageMerge : 2");
 		
 		
-		System.out.println("mypage.model/MypageDAOImpl.java : 2");
+		System.out.println("mypage.model/MypageDAOImpl.java - profimageMerge : 3");
 		
 		
-		System.out.println("mypage.model/MypageDAOImpl.java : 3");
-		
-		
-		System.out.println("mypage.model/MypageDAOImpl.java : 4");
+		System.out.println("mypage.model/MypageDAOImpl.java - profimageMerge : 4");
 		
 		
 		
 		return 0;
+	}
+	
+	@Override
+	public int profitor(int mnum, String content) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("mypage.model/MypageDAOImpl.java - profitor : 1");
+		
+		MypageMybatis.profitor(mnum, content);
+		
+		System.out.println("mypage.model/MypageDAOImpl.java - profitor : 2");
+		
+		System.out.println("mypage.model/MypageDAOImpl.java - profitor : 3");
+		
+		System.out.println("mypage.model/MypageDAOImpl.java - profitor : 4");
+		
+		return 0;
+	}
+	
+	@Override
+	public HashMap<String, Object> loadProfile(int mnum) {
+		// TODO Auto-generated method stub
+
+		System.out.println("mypage.model/MypageDAOImpl - loadProfile [1]");
+		System.out.println("mypage.model/MypageDAOImpl - loadProfile [2]");
+		System.out.println("mypage.model/MypageDAOImpl - loadProfile [3]");
+		
+		HashMap<String, Object> map = new HashMap<>();
+				
+		map = MypageMybatis.loadProfile(mnum);		
+
+		System.out.println("mypage.model/MypageDAOImpl - loadProfile [4]");
+		System.out.println("mypage.model/MypageDAOImpl - loadProfile [5]");
+		System.out.println("mypage.model/MypageDAOImpl - loadProfile [6]");
+		
+		
+		return map;
+	}
+
+	@Override
+	public ProfimageDBBean getPhoto(int mnum) {
+		// TODO Auto-generated method stub
+		System.out.println("MypageDAOImpl_getPhoto() 角青");
+		return MypageMybatis.getPhoto(mnum);
+	}
+
+	@Override
+	public List getPurchaseOncont(int mnum) {
+		// TODO Auto-generated method stub
+		System.out.println("MypageDAOImpl_getPurchaseOncont() 角青");
+		return MypageMybatis.getPurchaseOncont(mnum);
+	}
+
+	@Override
+	public List getSaleOncont(int mnum) {
+		// TODO Auto-generated method stub
+		System.out.println("MypageDAOImpl_getSaleOncont() 角青");
+		return MypageMybatis.getSaleOncont(mnum);
+	}
+
+	@Override
+	public ProfitorDBBean getProfile(int mnum) {
+		// TODO Auto-generated method stub
+		System.out.println("MypageDAOImpl_getProfile() 角青");
+		return MypageMybatis.getProfile(mnum);
 	}
 }

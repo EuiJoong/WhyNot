@@ -45,7 +45,7 @@ public class NomineeMybatis
 	{
 		System.out.println("NomineeMybatis_getEventNum() 실행");
 		SqlSession session = sqlMapper.openSession();
-		List<NomineeDBBean> list = session.selectList("getEventNum1");
+		List<NomineeDBBean> list = session.selectList("getEventNum");
 		session.close();
 		System.out.println("NomineeMybatis_getEventNum() 성공");
 		return list;

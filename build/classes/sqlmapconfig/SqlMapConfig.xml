@@ -46,9 +46,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="freeboard.model.CommentDBBean" alias="CommentDTO" />
 		<!-- 마이페이지 -->
 		<typeAlias type="mypage.model.ProfimageDBBean" alias="ProfimageDTO" />
+		<typeAlias type="mypage.model.ProfitorDBBean" alias="Profitor"/>
 		<!-- 공지사항 -->
 		<typeAlias type="notice.model.NoticeBoardDBBean" alias="NoticeDTO" />
 		<!-- 문의 -->
+		<!-- FAQ -->
+		<typeAlias type="faqboard.model.FaqcodeDBBean" alias="FaqCodeDTO" />
+		<typeAlias type="faqboard.model.FaqboardDBBean" alias="FaqBoardDTO" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -80,6 +84,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="notice/mybatis/NoticeBoard.xml" />
 		<mapper resource="assessment/mybatis/Assessment.xml" />
 		<mapper resource="mypage/mybatis/Mypage.xml" />
+		<mapper resource="faqboard/mybatis/FaqBoard.xml"/>
 	</mappers>
 </configuration>
 <!-- 파일에 설정만 바꾸어 줌 -->

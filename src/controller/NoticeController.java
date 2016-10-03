@@ -191,25 +191,37 @@ public class NoticeController {
 	}
 	
 	//Vote.notice
-	@RequestMapping(value = "/Vote.notice")
-	public ModelAndView doVoteUpdate(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
-		System.out.println("NoticeController_doVote() 실행");
-		ModelAndView mav=new ModelAndView();
-		int eventnum=Integer.parseInt(arg0.getParameter("eventnum"));
-		int nominee=Integer.parseInt(arg0.getParameter("nominee"));
-		String name=arg0.getParameter("name");
-		System.out.println("로그 name : "+name);
-		noticeDAO.doVoteUpdate(eventnum,nominee);
-		//currpoll에도 등록!
-		CurrPollDBBean cdto=new CurrPollDBBean();
-		cdto.setEventnum(eventnum);
-		cdto.setNominum(nominee);
-		cdto.setMembermail(name);//id. mail
-		noticeDAO.insertCurrPoll(cdto);
-		mav.setViewName("listNoticeEvent.notice");
-		
-		return mav;
-	}
+	   @RequestMapping(value = "/Vote.notice")
+	   public ModelAndView doVoteUpdate(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+	      System.out.println("NoticeController_doVote() 실행");
+	      ModelAndView mav=new ModelAndView();
+	      int eventnum=Integer.parseInt(arg0.getParameter("eventnum"));
+	      int mnum=Integer.parseInt(arg0.getParameter("mnum"));
+	      int nominee=Integer.parseInt(arg0.getParameter("nominee"));
+	      String name=arg0.getParameter("name");
+	      System.out.println("로그 name : "+name);
+	      System.out.println("eventnum : "+eventnum);
+	      
+	      //currpoll에도 등록!
+	      CurrPollDBBean cdto=new CurrPollDBBean();
+	      cdto.setEventnum(eventnum);
+	      cdto.setNominum(nominee);
+	      cdto.setMembermail(name);//id. mail
+	      
+	      ////
+	      
+	      boolean isvote=noticeDAO.isVote(cdto);
+	      System.out.println("투표했나? "+isvote);
+	      if(!isvote){//투표안했어!
+	         noticeDAO.insertCurrPoll(cdto);
+	         noticeDAO.doVoteUpdate(eventnum,nominee);
+	      }
+	      
+	      mav.addObject("isvote",isvote);
+	      mav.setViewName("listNoticeEvent.notice");
+	      
+	      return mav;
+	   }
 	
 	//detailForAdmin.notice
 	@RequestMapping(value = "/detailForAdmin.notice")

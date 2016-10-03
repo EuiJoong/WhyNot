@@ -5,8 +5,10 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +29,9 @@ import attachfile.model.VideoDBBean;
 import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
+import mypage.model.MypageDAO;
+import mypage.model.ProfimageDBBean;
+import mypage.model.ProfitorDBBean;
 import onlinecontent.model.OnlineContentDAO;
 import onlinecontent.model.OnlineContentDBBean;
 import onlinecontent.mybatis.OnlineContentMybatis;
@@ -47,6 +52,13 @@ public class OnContentController {
 	private CategoryDAO categoryDAO;
 	private PaymentDAO paymentDAO;
 	private AssessmentDAO assessmentDAO;
+	private MypageDAO mypageDAO;
+	
+	
+
+	public void setMypageDAO(MypageDAO mypageDAO) {
+		this.mypageDAO = mypageDAO;
+	}
 
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
@@ -310,7 +322,6 @@ public class OnContentController {
 		}
 
 		List<Object> contList = onlineContentDAO.getDetailWho(ocnum);
-
 		if (contList != null) {
 			mav.addObject("contList", contList);
 			System.out.println("contList 있엉");
@@ -342,10 +353,21 @@ public class OnContentController {
 
 		// lsnum 구하기
 		int lsnum = onlineCurriculumDAO.getLsnum(ocnum);
-
+		
+		//강사 프로필 구하기
+		Map<Object, Object> map = (Map)contList.get(0);
+		System.out.println("<<"+ map.get("MNUM"));
+		String number = String.valueOf(map.get("MNUM"));
+		ProfimageDBBean piDTO = mypageDAO.getPhoto(Integer.parseInt(number));
+		ProfitorDBBean peDTO = mypageDAO.getProfile(Integer.parseInt(number));
+		
+		System.out.println(">>"+piDTO + ">>" + peDTO);
+		mav.addObject("piDTO",piDTO);
+		mav.addObject("peDTO",peDTO);
+		
 		// 커리큘럼 목록 구하기
 		List<OnlineCurriculumDBBean> currList = onlineCurriculumDAO.listCurriculum(lsnum);
-
+		
 		mav.addObject("currList", currList);
 		mav.addObject("lsnum", lsnum);
 		mav.addObject("avg", avg);

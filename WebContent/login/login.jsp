@@ -21,6 +21,21 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+ <c:choose>
+ <c:when test="${msg eq null }">
+ 
+ </c:when>
+ <c:otherwise>
+	<script type="text/javascript">
+	alert("${msg}");	
+	</script> 
+ </c:otherwise>
+ </c:choose>   
+    <script type="text/javascript">
+		function GetPasswd(){
+			window.open('getpasswd.member', 'getpasswd','width=400 height=350'); 
+		}
+    </script>
 </head>
 <body>
 	<section class="login-form" style="padding: 5px">
@@ -70,7 +85,7 @@
 
 					<div class="form-links">
 						<span class="glyphicon glyphicon-question-sign text-primary"></span>
-						<a href="#">Forgot your password ?</a><br /> <span
+						<a href="#"onclick="GetPasswd()">Forgot your password ?</a><br /> <span
 							class="glyphicon glyphicon-user text-primary"></span> <a href="insert.member">Create
 							an account</a>
 					</div>

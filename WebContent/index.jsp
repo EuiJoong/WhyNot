@@ -4,6 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:if test="${loginOK == -1}">
+	<script type="text/javascript">
+		alert("등록되지 않은 아이디이거나, 아이디 또는 비밀번호를 잘못 입력하셨습니다");
+	</script>
+</c:if>
 <c:set var="readUrl" value="${pageContext.request.requestURL}" />
 <c:if test="${fn:contains(readUrl,'jsp')}">
 	<c:if test="${cateList == null }">
@@ -165,8 +170,8 @@
 			<ul>
 				<strong>WhyNot</strong>
 				<br>
-				<br>
-				<li>서비스 소개</li>
+				<!-- <br>
+				<li>서비스 소개</li> -->
 				<br>
 				<li><a href="agreement.footer">이용약관</a></li>
 				<br>
@@ -176,7 +181,7 @@
 				<br>
 				<li><a href="list.requestboard">이벤트 요청게시판</a></li>
 				<br>
-				<li>자주하는 질문</li>
+				<li><a href="Faqboardlist.faq">FAQ게시판</a></li>
 				<br>
 			</ul>
 		</div>

@@ -6,6 +6,8 @@
 <c:set var="videoDTO" value="${videoDTO }" />
 <!-- 상세정보의 비디오 정보들 -->
 <c:set var="contList" value="${contList }" />
+<c:set var="piDTO" value="${piDTO }" />
+<c:set var="peDTO" value="${peDTO }" />
 <!-- 상세정보(wn_member, wn_photo, wn_online -->
 <!-- css 는 밑에 링크 파일에!! -->
 <link
@@ -61,7 +63,8 @@ body {
 					<hr>
 					<!-- Date/Time -->
 					<p>
-						by <a href="#" style="font-size: large; color: black;">${contData.NAME }</a><!--  <span
+						by <a href="#" style="font-size: large; color: black;">${contData.NAME }</a>
+						<!--  <span
 							class="glyphicon glyphicon-time">날짜</span> -->
 					</p>
 
@@ -72,21 +75,25 @@ body {
 					<div class="row">
 
 						<div class="col-md-4">
-							<c:if test="${contData.FILENAME == null }">
-								<img
-									src="${pageContext.request.contextPath}/images/defaultpro.png"
-									alt="" width="200" height="150">
-							</c:if>
-							<c:if test="${contData.FILENAME != null }">
-								<img
-									src="${pageContext.request.contextPath}/images/${contData.FILENAME}.${contData.FILEEXT }"
-									alt="" width="200" height="150">
-							</c:if>
+							<c:choose>
+								<c:when test="${piDTO.imgname == null }">
+									<img
+										src="${pageContext.request.contextPath}/images/defaultpro.png"
+										alt="" width="200" height="150">
+								</c:when>
+								<c:otherwise>
+									<img
+										src="${pageContext.request.contextPath}/images/${piDTO.imgname}"
+										alt="" width="200" height="150">
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<!-- 강사 소개 부분  -->
 						<div class="col-md-8">
 							<h3>강사 프로필</h3>
-							<p>후에 추가</p>
+							<p>
+								<c:out value="${peDTO.content }" />
+							</p>
 						</div>
 
 					</div>
@@ -114,7 +121,7 @@ body {
 					<!-- Blog Comments -->
 
 					<c:set var="sum" value="0" />
-					
+
 					<!-- Comments Form -->
 					<form role="form" action="insertAssessment.oncont" method="post"
 						name="cmtform">
@@ -172,7 +179,7 @@ body {
                         </c:otherwise>
 					</c:choose>
 					<!-- Posted Comments -->
-		
+
 					<div class="panel-heading">
 						<!-- <a href="#" class="btn btn-primary">평가하기</a> -->
 					</div>

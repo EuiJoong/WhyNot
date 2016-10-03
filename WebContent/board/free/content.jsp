@@ -29,7 +29,7 @@
 		</tr>
 		<tr>
 			<td bgcolor="yellow" align="right" colspan="4"><c:choose>
-					<c:when test="${cchk==true}">
+					<c:when test="${cchk==true ||sessionScope.memberDTO.grade==1	}">
 						<input class="btn btn-default" type="button" value="글수정"
 							onClick="window.location='updateform.freeboard?bnum=${boardDTO.bnum}&mnum=${boardDTO.mnum}&re_step=${boardDTO.re_step}&re_level=${boardDTO.re_level}'">
 						<input class="btn btn-default" type="button" value="글삭제"
@@ -53,7 +53,7 @@
 						<td width="15%">${com.name}</td>
 						<td width="80%">${com.content}</td>
 						<td><c:choose>
-								<c:when test="${com.mnum==mnum}">
+								<c:when test="${com.mnum==mnum ||sessionScope.memberDTO.grade==1}">
 									<a
 										href="delete.comment?cbnum=${com.cbnum}&bnum=${bnum}&mnum=${mnum}">삭제</a>
 

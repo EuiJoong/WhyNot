@@ -61,14 +61,14 @@ public class MemberMybatis {
 	}
 
 	// 아이디 중복 확인
-	public static boolean idChk(String id) {
+	public static int idChk(String id) {
 		// TODO Auto-generated method stub
 		System.out.println("MemberMybatis_idChk() 실행");
 		SqlSession session = sqlMapper.openSession();
-		boolean res = session.selectOne("idChk", id);
+		int res = session.selectOne("idChk", id);
 		session.close();
 
-		return false;
+		return res;
 	}
 
 	// 이메일 인증
@@ -114,6 +114,7 @@ public class MemberMybatis {
 		System.out.println("MemberMybatis_listMember() 실행");
 		SqlSession session = sqlMapper.openSession();
 		List<MemberDBBean> list = session.selectList("listMember");
+		session.close();
 		return list;
 	}
 
@@ -149,6 +150,14 @@ public class MemberMybatis {
 		session.update("sellerMileage", map);
 		session.commit();
 		session.close();
+	}
+
+	public static MemberDBBean getPasswd(String id) {
+
+		SqlSession session = sqlMapper.openSession();
+		MemberDBBean getpw = session.selectOne("getPasswd", id);
+		session.close();
+		return getpw;
 	}
 
 }

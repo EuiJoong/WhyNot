@@ -32,6 +32,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <title>재능 교육 사이트 - WhyNot?</title>
+
 </head>
 <body>
 	<c:set var="memberDTO" value="${sessionScope.memberDTO}" />
@@ -69,7 +70,7 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<c:choose>
-						<c:when test="${memberDTO == null}">
+						<c:when test="${memberDTO == null && proDto == null}">
 							<li style="padding-top: 8px"><a href="login/login.jsp"
 								type="button" id="login" data-toggle="modal"
 								data-target=".bs-example-modal-sm"
@@ -80,11 +81,11 @@
 						<c:otherwise>
 							<li><div style="padding-top: 8px">
 									<c:choose>
-										<c:when test="${memberDTO.ppnum == 0 }">
+										<c:when test="${proDto.imgdir == null }">
 											<img class="img-circle" src="img/defaultpro.png">
 										</c:when>
 										<c:otherwise>
-											<img class="img-circle" src="">
+											<img class="img-circle" src="${pageContext.request.contextPath}/images/${proDto.imgname}">
 										</c:otherwise>
 									</c:choose>
 								</div></li>
@@ -95,8 +96,8 @@
 										${memberDTO.name}님</h4>
 									<ul class="dropdown-menu" role="menu"
 										aria-labelledby="logindropMenu">
-										<li role="presentation"><a role="menuitem" tabindex="-1" target="_blank"
-											href="paymentForm.payment?mnum=${memberDTO.mnum}">${memberDTO.mileage }마일리지</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1"
+											href="paymentForm.payment?mnum=${memberDTO.mnum}" onclick="window.open(this.href,'_blank','width=600, height=600, resizable=no, location = no');return false;" >${memberDTO.mileage }마일리지</a></li>
 										<c:choose>
 											<c:when test="${memberDTO.grade == 1 }">
 												<li role="presentation"><a role="menuitem"
@@ -105,7 +106,7 @@
 											</c:when>
 											<c:otherwise>
 												<li role="presentation"><a role="menuitem"
-													tabindex="-1" href="purchase.mypage">마이페이지</a></li>
+													tabindex="-1" href="profile.mypage?mnum=${memberDTO.mnum }">마이페이지</a></li>
 											</c:otherwise>
 										</c:choose>
 										<li role="presentation" class="divider"></li>

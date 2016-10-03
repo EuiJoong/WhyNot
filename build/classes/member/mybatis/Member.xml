@@ -6,16 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="member.mybatis.Member">
 	<!-- 회원 가입 -->
 	<insert id="insertMember" parameterType="member.model.MemberDBBean">
-		insert into wn_member
-		values (wn_member_seq.nextval, #{id}, #{password},
-		#{name}, #{gender},
-		#{birth}, #{interest} , 1000000 , 3 , sysdate , 1
-		, null, #{auth})
+		insert all
+		into wn_member
+		values (wn_member_seq.nextval, #{id}, #{password}, #{name}, #{gender},
+		#{birth}, #{interest} , 1000000 , 3 , sysdate , 1, null, #{auth})
+		into
+		wn_profimage values(wn_profimage_seq.nextval, wn_member_seq.currval,
+		null, null)
+		into wn_profitor values (wn_profitor_seq.nextval,
+		wn_member_seq.currval,null)
+		select * from dual
 	</insert>
 	<!-- 아이디 중복 확인 -->
-	<select id="idChk" parameterType="String" resultType="boolean">
-		select id
-		from wn_member where id = #{id}
+	<select id="idChk" parameterType="String" resultType="int">
+		select
+		COUNT (*) from wn_member where id = #{id}
 	</select>
 	<!-- 회원 인증 확인 -->
 	<update id="authCHK" parameterType="HashMap">
@@ -50,6 +55,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update wn_member set
 		mileage=mileage+#{mileage} where mnum=#{seller}
 	</update>
+	<select id="getPasswd" resultType="MemberDTO">
+		select password
+		from wn_member where id = #{id}
+	</select>
 	<!-- 회원 수정 -->
 
 	<!-- 회원 삭제 -->

@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<td bgcolor="Aqua" align="right" colspan="6"><c:choose>
-					<c:when test="${cchk==true}">
+					<c:when test="${cchk==true ||sessionScope.memberDTO.grade==1}">
 						<input type="button" value="글수정"
 							onClick="window.location='updateform.requestboard?bnum=${boardDTO.bnum}&mnum=${boardDTO.mnum}'">
 						<input type="button" value="글삭제"

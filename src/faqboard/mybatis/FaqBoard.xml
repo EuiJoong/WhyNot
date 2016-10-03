@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faqboard.mybatis.FaqBoard">
+<select id="checkcode" resultType="int" parameterType="string">
+	select count(*) from wn_faqcode where code = #{code}
+</select>
+
+<select id="getCodeCount" resultType="int">
+	select count(*) from wn_faqcode
+</select>
+
+<select id="getcodelist" resultType="FaqCodeDTO">
+	select *from wn_faqcode order by cnum asc
+</select>
+
+<select id="getwholeboardlist" resultType="FaqBoardDTO">
+	select *from wn_faqboard order by qnum desc 
+</select>
+
+<select id="getboardlist" resultType="FaqBoardDTO" parameterType="int">
+	select *from wn_faqboard where faq_code = #{code}
+</select>
+
+
+ <insert id="insertfaqcode" parameterType="FaqCodeDTO">
+    insert into wn_faqcode  values(wn_faqcode_seq.nextval,#{code},#{name})
+  </insert>
+  
+  <delete id="deletecode" parameterType="String">
+    delete from wn_faqcode where code = #{code}
+  </delete>
+  
+  <update id="updatecode"  parameterType="FaqCodeDTO">
+  	update wn_faqcode set name=#{name} where code=${code}
+  </update>
+  
+  
+  <insert id="insertfaqboard" parameterType="FaqBoardDTO">
+  	insert into wn_faqboard values(wn_faqboard_seq.nextval,#{faq_code},#{title},#{content})
+  </insert>
+  
+  <select id="getfaqboard" resultType="FaqBoardDTO" parameterType="int">
+  	select * from wn_faqboard where qnum = #{qnum}
+  </select>
+  
+  
+  <update id="updateboard" parameterType="FaqBoardDTO">
+  	update wn_faqboard set faq_code =#{faq_code} , title =#{title} , content =#{content} where qnum=#{qnum}
+  
+  </update>
+  
+  <delete id="deletefaqboard" parameterType="int">
+  	delete from wn_faqboard where qnum=#{qnum}
+  
+  </delete>
+  
+  
+</mapper>

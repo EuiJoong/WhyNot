@@ -4,9 +4,8 @@
 <%@include file="../../top.jsp"%>
 <c:set var="memberDTO" value="${sessionScope.memberDTO}" />
 <c:set var="count" value="${count}" />
-<div align="center" style="margin-top: 5em;">
+<div align="center" class="panel-heading" style="margin-top: 5em;">
 	<b>글 목 록</b>
-	<p>
 </div>
 <div align="center">
 	<table style="width: 80%">

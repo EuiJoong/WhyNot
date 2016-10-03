@@ -4,14 +4,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <link href="../../css/user_payment.min.css" rel="stylesheet">
+
 <script type="text/JavaScript">
 function isMoney() {
 
 	if (!$(':input:radio[name=amount]:checked').val()) {
 		alert("돈을 선택해 주세요");
 		exit;
+	}else if($(':input:radio[id=amount5]:checked').val() && f.box.value==""){
+		alert("가격 입력해주세요");
+		document.f.box.focus();
+		exit;
 	}
-
 }
 
 function isTool() {
@@ -31,12 +35,33 @@ function btnChk() {
 	document.f.submit();
 }
 </script>
-<body style="padding: 20px">
+<script type="text/javascript">
+function onlyNumber(event) {
+	event = event || window.event;
+	var keyID = (event.which) ? event.which : event.keyCode;
+	if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
+			|| keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
+		return;
+	else
+		return false;
+}
+function removeChar(event) {
+	event = event || window.event;
+	var keyID = (event.which) ? event.which : event.keyCode;
+	if (keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39)
+		return;
+	else
+		event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+
+</script>
+
+<body style="padding: 10px">
 	<div class="page-header">
 		<h1>
-			마일리지 <small>너는 이미 충전하고 있다</small>
+			마일리지
 		</h1>
-	</div>
+	</div><br><br>
 	<div class="col-md-6 col-md-offset-3">
 		<form name="f" action="select.payment" method="post" >
 			<input type="hidden" name = "mnum" value="${param.mnum}">
@@ -54,9 +79,10 @@ function btnChk() {
 					<input type="radio"	id="amount4" name="amount" value = "30000" onClick="this.form.box.readOnly=true" />30000원</label>
 					<label class="btn btn-success">
 					<input type="radio"	id="amount5" name="amount" value = "amount" onClick="this.form.box.readOnly=false"/>직접입력</label>
-					<input type="text" name="box">
+					<input type="text" name="box" maxlength="10"  onclick="boxchk()"  onkeydown="return onlyNumber(event)" onkeyup="removeChar(event)" size="6" style="ime-mode: disabled;">
 				</div>
 			</div>
+			<br>
 			<div class="form-group" id="tool" name="tool" class="form-control">
 				<label for="tool">결재 수단</label>
 				<div class="btn-group input-group" name="tool" data-toggle="buttons">
@@ -66,6 +92,8 @@ function btnChk() {
 					<input type="radio"	id="tool2" name="tool" value = "2" />신용카드 </label>
 				</div>
 			</div>
+			<br>
+			<br>
 			<div class="form-group text-center">
 				<button type="button" class="btn btn-info" onclick="btnChk()">	결재요청<i class="fa fa-check spaceLeft"></i></button>
 				<button type="button" class="btn btn-warning" onclick="self.close()">취소<i class="fa fa-times spaceLeft"></i></button>

@@ -14,4 +14,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="profimage" parameterType="ProfimageDTO">
 		insert into wn_profimage values(wn_profimage_seq.nextval, #{mnum}, #{imgname}, #{imgdir} ) 
 	</insert>
+	
+	<insert id="profitor" parameterType="Profitor">
+		insert into wn_profitor values(wn_profitor_seq.nextval, #{mnum}, #{content})
+	</insert>
+	
+	<select id="loadPe" parameterType="int" resultType="Profitor">
+		select * from wn_profitor where mnum=#{mnum} order by penum desc
+	</select>
+	<select id="getPhoto" parameterType="int" resultType="ProfimageDTO">
+		select * from wn_profimage where mnum=#{mnum} order by pinum desc
+	</select>
+	<select id="purchaseOncont" parameterType="int" resultType="map" >
+	   select WN_online.*, WN_PHOTO.FILENAME, WN_PHOTO.FILEDIR, WN_PHOTO.FILEEXT, WN_MEMBER.NAME from WN_ONLINE, WN_PHOTO, WN_MEMBER, WN_ONPAYMENT where WN_ONLINE.PTNUM = WN_PHOTO.PTNUM  and WN_ONPAYMENT.OCNUM = WN_ONLINE.OCNUM and WN_MEMBER.MNUM = WN_PHOTO.MNUM and WN_ONPAYMENT.MNUM = #{mnum}
+	</select>
+	<select id="saleOncont" parameterType="int" resultType="map">
+	    select WN_online.*, WN_PHOTO.FILENAME, WN_PHOTO.FILEDIR, WN_PHOTO.FILEEXT, WN_MEMBER.NAME from WN_ONLINE, WN_PHOTO, WN_MEMBER where WN_ONLINE.PTNUM = WN_PHOTO.PTNUM  and WN_MEMBER.MNUM = WN_PHOTO.MNUM and WN_ONLINE.MNUM = #{mnum}
+	</select>
 </mapper>

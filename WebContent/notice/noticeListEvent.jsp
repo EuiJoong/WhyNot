@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 
-<html lang="ko">
+<html lang="ko">s
 
 <head>
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -13,6 +13,11 @@
 <title>공지사항 목록</title>
 </head>
 <body>
+	<c:if test="${isvote }">
+		<script>
+			alert("이미 이벤트에 참여하셨습니다.");
+		</script>
+	</c:if>
 	<c:set var="listNoticeEvent" value="${listNoticeEvent }" />
 	<ul class="list-group"
 		style="float: left; width: 20%; position: fixed;">
@@ -33,32 +38,33 @@
 				<!-- Table -->
 				<!-- <form name="f" action="insertPro.event" method="post"> -->
 				<table class="table">
-						
-				
+
+
 					<tr>
 						<th>공지 번호</th>
 						<th>공지 제목</th>
 						<th>작성자</th>
 						<th>공지 날짜</th>
 					</tr>
-					
+
 					<c:if test="${size>0 }">
-							<c:forEach var="noticeData" items="${listNoticeEvent }">
+						<c:forEach var="noticeData" items="${listNoticeEvent }">
 							<tr>
 								<td>${noticeData.ntnum }</td>
-								<td> <a href="detail.notice?ntnum=${noticeData.ntnum }&isEvent=1&eventnum=${noticeData.eventnum}">${noticeData.title }</a></td>
+								<td><a
+									href="detail.notice?ntnum=${noticeData.ntnum }&isEvent=1&eventnum=${noticeData.eventnum}">${noticeData.title }</a></td>
 								<td>관리자</td>
-								<td> ${noticeData.reg_date }</td>
+								<td>${noticeData.reg_date }</td>
 							</tr>
-							</c:forEach>
+						</c:forEach>
 					</c:if>
-					
+
 					<c:if test="${size==0}">
 						<tr>
 							<td align="center" colspan="4">이벤트 공지사항이 없습니다..</td>
 						</tr>
 					</c:if>
-					
+
 				</table>
 				<!-- </form> -->
 			</div>

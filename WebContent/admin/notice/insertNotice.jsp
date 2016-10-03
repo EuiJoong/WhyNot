@@ -104,12 +104,82 @@
 					<label class="control-label float-left lable-position">제 목
 						:</label> <input type="text" class="form-control" id="title" name="title"
 						style="float: left; padding-right: 10px" placeholder="제목을 입력하세요.">
+					<select name="ctnum">
+						<!-- css 적용하면 option이 하나만적용됨!!ㅜㅠ 누가 해결점 -->
+						<c:choose>
+							<c:when test="${cateList.size() == 0 }">
+								<option value="">카테고리 목록이 없습니다</option>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="cateDTO" items="${cateList }">
+									<option value="${cateDTO.ctnum }">${cateDTO.name }</option>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+					</select>
 
 				</div>
 
 				<!-- 에디터 컨테이너 시작 -->
 				<div id="tx_trex_container " class="tx-editor-container">
 					<!-- 사이드바 -->
+					<div id="tx_sidebar" class="tx-sidebar">
+						<div class="tx-sidebar-boundary">
+							<!-- 사이드바 / 첨부 -->
+							<ul class="tx-bar tx-bar-left tx-nav-attach">
+								<!-- 이미지 첨부 버튼 시작 -->
+								<!--
+							@decsription
+							<li></li> 단위로 위치를 이동할 수 있다.
+						-->
+								<li class="tx-list">
+									<div unselectable="on" id="tx_image"
+										class="tx-image tx-btn-trans">
+										<a href="javascript:;" title="사진" class="tx-text">사진</a>
+									</div>
+								</li>
+								<!-- 이미지 첨부 버튼 끝 -->
+								<li class="tx-list">
+									<div unselectable="on" id="tx_file"
+										class="tx-file tx-btn-trans">
+										<a href="javascript:;" title="파일" class="tx-text">파일</a>
+									</div>
+								</li>
+
+								<li class="tx-list tx-list-extra">
+									<div unselectable="on" class="tx-btn-nlrbg tx-extra">
+										<a href="javascript:;" class="tx-icon" title="버튼 더보기">버튼
+											더보기</a>
+									</div>
+									<ul class="tx-extra-menu tx-menu" style="left: -48px;"
+										unselectable="on">
+										<!--
+									@decsription
+									일부 버튼들을 빼서 레이어로 숨기는 기능을 원할 경우 이 곳으로 이동시킬 수 있다.
+								-->
+									</ul>
+								</li>
+							</ul>
+							<!-- 사이드바 / 우측영역 -->
+							<ul class="tx-bar tx-bar-right">
+								<li class="tx-list">
+									<div unselectable="on" class="tx-btn-lrbg tx-fullscreen"
+										id="tx_fullscreen">
+										<a href="javascript:;" class="tx-icon" title="넓게쓰기 (Ctrl+M)">넓게쓰기</a>
+									</div>
+								</li>
+							</ul>
+							<ul class="tx-bar tx-bar-right tx-nav-opt">
+								<li class="tx-list">
+									<div unselectable="on" class="tx-switchtoggle"
+										id="tx_switchertoggle">
+										<a href="javascript:;" title="에디터 타입">에디터</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+
 					<!-- 툴바 - 기본 시작 -->
 					<!--
 				@decsription
