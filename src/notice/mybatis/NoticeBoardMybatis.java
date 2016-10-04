@@ -155,6 +155,16 @@ public class NoticeBoardMybatis {
 		return result;
 	}
 	
+	public static List getNotice() {
+		// TODO Auto-generated method stub
+		System.out.println("NoticeMybatis_getNotice() 실행");
+		SqlSession session=sqlMapper.openSession();
+		List list = session.selectList("getData");
+		System.out.println("공지 데이터"+list.size());
+		session.close();
+		return list;
+	}
+	
 	
 	
 }

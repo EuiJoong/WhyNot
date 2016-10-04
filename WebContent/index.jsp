@@ -23,21 +23,22 @@
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 		<li data-target="#myCarousel" data-slide-to="1"></li>
 		<li data-target="#myCarousel" data-slide-to="2"></li>
+		<li data-target="#myCarousel" data-slide-to="3"></li>
 	</ol>
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner">
+	
 		<div class="item active">
-			<div class="fill"
-				style="background-image: url('http://placehold.it/1900x1080&amp;text=하하하하(1900x1080)');"></div>
+			<div class="fill" style="background-image: url('${pageContext.request.contextPath}/img/why-not-pin.jpg');"></div>
 		</div>
-		<div class="item">
-			<div class="fill"
-				style="background-image: url('http://placehold.it/1900x1080&amp;text=공지 사항(1900x1080)');"></div>
-		</div>
-		<div class="item">
-			<div class="fill"
-				style="background-image: url('http://placehold.it/1900x1080&amp;text=이벤트 강연(1900x1080)');"></div>
-		</div>
+		<c:if test="${notiList.size() != 0 }">
+		<c:forEach var="noticeDTO" items="${notiList }">
+			<div class="item">
+				<div class="fill"
+					style="background-image: url('${pageContext.request.contextPath}/images/${noticeDTO.NOTICEIMAGE}');"></div>
+			</div>
+		</c:forEach>
+		</c:if>
 	</div>
 	<!-- Controls -->
 	<a class="left carousel-control" href="#myCarousel" data-slide="prev">

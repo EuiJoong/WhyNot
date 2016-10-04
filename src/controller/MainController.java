@@ -16,6 +16,7 @@ import category.model.CategoryDAO;
 import category.model.CategoryDBBean;
 import category.mybatis.CategoryMybatis;
 import member.model.MemberDBBean;
+import notice.model.NoticeBoardDAO;
 import onlinecontent.model.OnlineContentDAO;
 
 @Controller
@@ -23,13 +24,18 @@ public class MainController {
 
 	private CategoryDAO categoryDAO;
 	private OnlineContentDAO onlineContentDAO;
-
+	private NoticeBoardDAO noticeBoardDAO;
+	
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
 	}
 
 	public void setOnlineContentDAO(OnlineContentDAO onlineContentDAO) {
 		this.onlineContentDAO = onlineContentDAO;
+	}
+
+	public void setNoticeBoardDAO(NoticeBoardDAO noticeBoardDAO) {
+		this.noticeBoardDAO = noticeBoardDAO;
 	}
 
 	@RequestMapping(value = "/main.app")
@@ -54,6 +60,10 @@ public class MainController {
 			mav.addObject("recommandList", recommandList);
 		}
 		
+		//공지사항 사진 불러오기
+		List notiList = noticeBoardDAO.getNotice();
+		
+		mav.addObject("notiList",notiList);
 		mav.addObject("bestList",bestList);
 		mav.addObject("cateList", catelist);
 		mav.setViewName("index.jsp");
@@ -67,5 +77,7 @@ public class MainController {
 		System.out.println("MainController_goAdminMain() 실행");
 		return new ModelAndView("admin/adminMain.jsp");
 	}
+	
+	
 
 }

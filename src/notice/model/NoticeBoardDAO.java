@@ -17,4 +17,5 @@ public interface NoticeBoardDAO {
 	public void insertCurrPoll(CurrPollDBBean cdto);
 	public void deleteNotice(int ntnum);
 	public boolean isVote(CurrPollDBBean cdto);
+	public List getNotice();
 }

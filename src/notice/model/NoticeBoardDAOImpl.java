@@ -85,6 +85,12 @@ public class NoticeBoardDAOImpl implements NoticeBoardDAO{
 		result=NoticeBoardMybatis.isVote(cdto);
 		return result;
 	}
+
+	@Override
+	public List getNotice() {
+		// TODO Auto-generated method stub
+		return NoticeBoardMybatis.getNotice();
+	}
 	
 	
 	

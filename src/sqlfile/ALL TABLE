@@ -1174,9 +1174,17 @@ Insert into WHYNOT.WN_NOMINEE (NOMINUM,NOMINAME,SCORE,EVENTNUM) values (61,'전모
 Insert into WHYNOT.WN_NOMINEE (NOMINUM,NOMINAME,SCORE,EVENTNUM) values (62,'양전모',0,61);
 Insert into WHYNOT.WN_NOMINEE (NOMINUM,NOMINAME,SCORE,EVENTNUM) values (63,'삼전모',0,61);
 Insert into WHYNOT.WN_NOMINEE (NOMINUM,NOMINAME,SCORE,EVENTNUM) values (81,'임원',13,81);
+Insert into WHYNOT.WN_NOMINEE (NOMINUM,NOMINAME,SCORE,EVENTNUM) values (101,'후보자1',0,121);
+Insert into WHYNOT.WN_NOMINEE (NOMINUM,NOMINAME,SCORE,EVENTNUM) values (102,'후보자2',0,121);
 REM INSERTING into WHYNOT.WN_NOTICE
 SET DEFINE OFF;
 Insert into WHYNOT.WN_NOTICE (NTNUM,MNUM,TITLE,CONTENT,REG_DATE,EVENTNUM,NOTICEIMAGE) values (81,1,'홍길동','<p>123124124</p>',to_date('16/10/03','RR/MM/DD'),0,'Hydrangeas.jpg');
+Insert into WHYNOT.WN_NOTICE (NTNUM,MNUM,TITLE,CONTENT,REG_DATE,EVENTNUM,NOTICEIMAGE) values (101,1,'최근 공지11111','<p>아하하하하하하하하</p>',to_date('16/10/04','RR/MM/DD'),121,'Chrysanthemum.jpg');
+Insert into WHYNOT.WN_NOTICE (NTNUM,MNUM,TITLE,CONTENT,REG_DATE,EVENTNUM,NOTICEIMAGE) values (102,0,'공지다아아아앙','<p>1234124124124</p>',to_date('16/10/04','RR/MM/DD'),81,'Lighthouse.jpg');
+Insert into WHYNOT.WN_NOTICE (NTNUM,MNUM,TITLE,CONTENT,REG_DATE,EVENTNUM,NOTICEIMAGE) values (103,0,'ㅈㅂㄷㅈㅂㄷㅈㅂㄷ','<p>ㅂㄷㅈㅂㅈㄷㅂㅈㄷ</p>',to_date('16/10/04','RR/MM/DD'),0,'Koala.jpg');
+Insert into WHYNOT.WN_NOTICE (NTNUM,MNUM,TITLE,CONTENT,REG_DATE,EVENTNUM,NOTICEIMAGE) values (104,0,'ㅂㅈㅇㅁㄴㅇㅁㄴㅇ','<p>ㅂㅈㄷㅈㅂㄷㅂㄷㅈㅂㄷ</p>',to_date('16/10/04','RR/MM/DD'),0,'Lighthouse.jpg');
+Insert into WHYNOT.WN_NOTICE (NTNUM,MNUM,TITLE,CONTENT,REG_DATE,EVENTNUM,NOTICEIMAGE) values (105,0,'ㅁㄴㅇㄴㅁㅇㄴㅁㅇ','<p>aㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ</p>',to_date('16/10/04','RR/MM/DD'),0,'Tulips.jpg');
+Insert into WHYNOT.WN_NOTICE (NTNUM,MNUM,TITLE,CONTENT,REG_DATE,EVENTNUM,NOTICEIMAGE) values (106,0,'ㅂㅈㄷㅂㅈㄷㅂㅈㄷㅈㅂ','<p>ㅂㅈㄷㅂㅈㄷㅂㅈㄷㅈㅂㄷㅂㅈㄷ</p>',to_date('16/10/04','RR/MM/DD'),0,'Lighthouse.jpg');
 REM INSERTING into WHYNOT.WN_OFFLINE
 SET DEFINE OFF;
 Insert into WHYNOT.WN_OFFLINE (OFFNUM,CTNUM,MNUM,TITLE,CONTENT,PERIOD,PARTICNUM,GOAL_AMOUNT,MIN_AMOUNT,SPONSOR,CR_NUM,PTNUM,RESERVE_DATE) values (1,3,801,'제목이다','<p>제발되라</p>','20161021',0,123,11,0,5,101,'20161025');
@@ -1230,6 +1238,7 @@ Insert into WHYNOT.WN_PHOTO (PTNUM,MNUM,FILENAME,FILEEXT,FILEDIR) values (83,1,'
 Insert into WHYNOT.WN_PHOTO (PTNUM,MNUM,FILENAME,FILEEXT,FILEDIR) values (84,1,'Hydrangeas','jpg','C:\spring_ws\.metadata\.plugins\org.eclipse.wst.server.core\tmp2\wtpwebapps\WhyNot\images');
 REM INSERTING into WHYNOT.WN_POLL
 SET DEFINE OFF;
+Insert into WHYNOT.WN_POLL (EVENTNUM,EVENTTITLE,DEADLINE) values (121,'최근 이벤트',to_date('16/01/01','RR/MM/DD'));
 Insert into WHYNOT.WN_POLL (EVENTNUM,EVENTTITLE,DEADLINE) values (81,'썅.....',to_date('16/01/01','RR/MM/DD'));
 Insert into WHYNOT.WN_POLL (EVENTNUM,EVENTTITLE,DEADLINE) values (42,'2차 이벤트 에이요',to_date('16/07/13','RR/MM/DD'));
 REM INSERTING into WHYNOT.WN_PROFIMAGE

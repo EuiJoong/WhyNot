@@ -38,4 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteNotice" parameterType="int">
 		delete from wn_notice where ntnum=#{ntnum}
 	</delete>
+	<select id="getData" resultType="map">
+	select * from wn_notice where rownum <![CDATA[<=]]> 3 ORDER BY ntnum desc
+	</select>
 </mapper>

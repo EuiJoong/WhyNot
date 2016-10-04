@@ -35,7 +35,7 @@
 --  DDL for Sequence WN_EVENT_SEQ
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "WHYNOT"."WN_EVENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 121 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "WHYNOT"."WN_EVENT_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 141 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence WN_FAQBOARD_SEQ
 --------------------------------------------------------
@@ -70,12 +70,12 @@
 --  DDL for Sequence WN_NOMINEE_SEQ
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "WHYNOT"."WN_NOMINEE_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "WHYNOT"."WN_NOMINEE_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 121 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence WN_NOTICE_SEQ
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "WHYNOT"."WN_NOTICE_SEQ"  MINVALUE 1 MAXVALUE 9999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "WHYNOT"."WN_NOTICE_SEQ"  MINVALUE 1 MAXVALUE 9999 INCREMENT BY 1 START WITH 121 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence WN_OFFCONTENT_SEQ
 --------------------------------------------------------
